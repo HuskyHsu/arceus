@@ -45,3 +45,7 @@ JSON.stringify(
       return data;
     })
 );
+
+[...document.querySelectorAll("#mw-content-text th a img")].map(
+  (img) => img.getAttribute("srcset").split(", ")[1].split(" ")[0]
+);
