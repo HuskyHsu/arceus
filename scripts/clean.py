@@ -28,7 +28,7 @@ class Pokemon(BaseModel):
     types: List[Union[str, List[str]]]
     alt_form: Optional[List[str]] = None
     obtain: List[Obtain]
-    props: List[str] = []
+    # props: List[str] = []
     stats: Union[Stats, List[Stats]] = None
     # evolution: Optional[Evolution] = None
 
