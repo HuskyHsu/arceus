@@ -125,7 +125,20 @@ if __name__ == '__main__':
             print('\n')
 
         pm = Pokemon(**pm)
-        all_data.append(pm)
+
+        if pm.alt_form is not None and len(pm.alt_form) > 1:
+            print(pm.name)
+            for i in range(len(pm.alt_form)):
+                pm_ = pm.dict()
+                pm_['alt_form'] = [pm.alt_form[i]]
+                if type(pm_['stats'][0]) is list:
+                    pm_['stats'] = pm.stats[i]
+                if type(pm_['types'][0]) is list:
+                    pm_['types'] = pm.types[i]
+
+                all_data.append(Pokemon(**pm_))
+        else:
+            all_data.append(pm)
         # print(pm)
         # print('\n')
 
