@@ -46,6 +46,7 @@ def location_code(name):
         if name in area[area_name]:
             return f'{i}-{area[area_name].index(name)}'
 
+    print(name)
     return name
 
 
