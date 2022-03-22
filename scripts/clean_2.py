@@ -31,7 +31,7 @@ class Pokemon(BaseModel):
     pid: int
     name: str
     types: List[Union[str, List[str]]]
-    alt_form: Optional[List[str]] = None
+    alt_form: Optional[str] = None
     obtain: List[Obtain]
     stats: Union[str, list[int], list[list[int]]]
     # evolution: Optional[Evolution] = None
@@ -64,6 +64,8 @@ if __name__ == '__main__':
                 o['location'][l[0]] = [l[1]]
 
         # pm['stats'] = ','.join(list(map(str, pm['stats'])))
+        if 'alt_form' in pm:
+            pm['alt_form'] = pm['alt_form'][0]
 
         pm = Pokemon(**pm)
         all_data.append(pm)
