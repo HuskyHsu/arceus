@@ -1,6 +1,7 @@
 // import { useState } from "react";
 
 import pm025 from "./assets/image/icon/025.png";
+import { ReactComponent as Electric } from "./assets/image/type/Electric.svg";
 
 interface Location {
   [propName: string]: number[];
@@ -22,40 +23,46 @@ interface Pokemon {
 }
 
 const pm: Pokemon = {
-  id: 1,
-  pid: 722,
-  name: "木木梟",
-  types: ["草", "飛行"],
+  id: 56,
+  pid: 25,
+  name: "皮卡丘",
+  types: ["電"],
   obtain: [
     {
-      location: "0",
-      mode: "拉苯博士贈送",
-      remark: "最初的夥伴，3選1(只有一隻)",
-    },
-    {
-      location: "0",
-      mode: "拉苯博士贈送",
-      remark: "完成主任務18後，最初的夥伴選擇火球鼠或水水獺時(只有一隻)",
-    },
-    {
-      location: "4",
+      location: {
+        "1": [6],
+        "2": [0],
+        "3": [12],
+      },
       mode: "野生",
-      remark: "時空歪曲",
+    },
+    {
+      mode: "進化",
+      remark: "由關係「還挺好」的「皮丘」進化",
     },
   ],
-  stats: [68, 55, 55, 50, 50, 42],
+  stats: [35, 55, 40, 50, 50, 90],
 };
 
 function App() {
   return (
     <div className="flex justify-center items-center h-screen">
-      <div className="w-24 h-24 bg-yellow-500 relative">
-        <div className="w-20 h-20 rounded-full overflow-hidden bg-green-500 absolute transform top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-          <img
-            src={pm025}
-            alt=""
-            className="max-w-none w-24 absolute transform top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
-          />
+      <div className="p-2 bg-yellow-200">
+        <div className="w-24 h-24  relative">
+          <div className="w-20 h-20 rounded-full outline outline-2 outline-yellow-700 overflow-hidden bg-green-500 absolute transform inset-1/2 -translate-x-1/2 -translate-y-1/2">
+            <img
+              src={pm025}
+              alt=""
+              className="max-w-none w-24 rounded-full absolute transform inset-1/2 -translate-x-1/2 -translate-y-1/2"
+            />
+          </div>
+        </div>
+        <div className="flex flex-col items-center">
+          <span>皮卡丘</span>
+          <span>#056</span>
+          <span>
+            <Electric />
+          </span>
         </div>
       </div>
     </div>
