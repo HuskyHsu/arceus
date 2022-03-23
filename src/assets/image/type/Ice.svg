@@ -2,22 +2,17 @@
 <!-- Generator: Adobe Illustrator 26.0.2, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 100 100" style="enable-background:new 0 0 100 100;" xml:space="preserve">
-<style type="text/css">
-	.st0{fill:#4CCBC8;}
-	.st1{fill:#FFFFFF;}
-</style>
-<path class="st0" d="M90,100H10c-5.52,0-10-4.48-10-10V10C0,4.48,4.48,0,10,0h80c5.52,0,10,4.48,10,10v80
+<path fill="#4CCBC8" d="M90,100H10c-5.52,0-10-4.48-10-10V10C0,4.48,4.48,0,10,0h80c5.52,0,10,4.48,10,10v80
 	C100,95.52,95.52,100,90,100z"/>
 <g>
-	
-		<rect x="44.04" y="12.47" transform="matrix(0.7075 -0.7067 0.7067 0.7075 1.6012 40.7239)" class="st1" width="11.92" height="11.92"/>
-	<path class="st1" d="M50,26.85L29.95,38.42v23.15L50,73.14l20.05-11.57V38.42L50,26.85z M38.74,44.06v12.48h-5V41.08l13.96-7.6
+
+	<rect fill="#FFFFFF" x="44.04" y="12.47" transform="matrix(0.7075 -0.7067 0.7067 0.7075 1.6012 40.7239)" width="11.92" height="11.92"/>
+	<path fill="#FFFFFF" d="M50,26.85L29.95,38.42v23.15L50,73.14l20.05-11.57V38.42L50,26.85z M38.74,44.06v12.48h-5V41.08l13.96-7.6
 		l4.79,3.09L38.74,44.06z"/>
-	<rect x="18.04" y="26.5" class="st1" width="11.92" height="11.92"/>
-	<rect x="70.05" y="26.5" class="st1" width="11.92" height="11.92"/>
-	<rect x="70.05" y="61.57" class="st1" width="11.92" height="11.92"/>
-	<rect x="18.04" y="61.57" class="st1" width="11.92" height="11.92"/>
-	
-		<rect x="44.04" y="75.61" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -43.0362 59.2475)" class="st1" width="11.92" height="11.92"/>
+	<rect fill="#FFFFFF" x="18.04" y="26.5" width="11.92" height="11.92"/>
+	<rect fill="#FFFFFF" x="70.05" y="26.5" width="11.92" height="11.92"/>
+	<rect fill="#FFFFFF" x="70.05" y="61.57" width="11.92" height="11.92"/>
+	<rect fill="#FFFFFF" x="18.04" y="61.57" width="11.92" height="11.92"/>
+	<rect fill="#FFFFFF" x="44.04" y="75.61" transform="matrix(0.7071 -0.7071 0.7071 0.7071 -43.0362 59.2475)" width="11.92" height="11.92"/>
 </g>
 </svg>
