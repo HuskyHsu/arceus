@@ -28,7 +28,7 @@ interface Props {
 
 const zeroFilled = (n: Number) => ("000" + n).slice(-3);
 
-enum Suffixes {
+enum Suffix {
   "洗翠" = "H",
   "砂土蓑衣" = "G",
   "垃圾蓑衣" = "S",
@@ -47,13 +47,13 @@ enum Suffixes {
 }
 
 function PokemonBase({ pm }: Props) {
-  const suffixes = Suffixes[pm.alt_form || ""] || "";
+  const suffixes = Suffix[pm.alt_form as keyof typeof Suffix] ?? "";
 
   return (
     <div className="p-2">
       <div className="w-24 h-24 relative">
         <div
-          className="w-20 h-20 rounded-full outline outline-2 outline-type-electric bg-type-electric bg-opacity-50
+          className="w-20 h-20 rounded-full outline outline-2 outline-type-electric bg-opacity-50
 overflow-hidden absolute transform inset-1/2 -translate-x-1/2 -translate-y-1/2"
         >
           <img
