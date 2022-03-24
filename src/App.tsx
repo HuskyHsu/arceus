@@ -57,7 +57,7 @@ function PokemonBase({ pm }: Props) {
 overflow-hidden absolute transform inset-1/2 -translate-x-1/2 -translate-y-1/2"
         >
           <img
-            src={`/image/icon/${zeroFilled(pm.pid)}${suffixes}.png`}
+            src={`/arceus/image/icon/${zeroFilled(pm.pid)}${suffixes}.png`}
             alt=""
             className="max-w-none w-24 rounded-full absolute transform inset-1/2 -translate-x-1/2 -translate-y-1/2"
           />
@@ -89,7 +89,10 @@ function App() {
     <div className="flex justify-center items-center">
       <div className="flex justify-center items-center flex-wrap content-center gap-x-4 gap-y-8 w-5/6 max-w-3xl">
         {allPM.slice(0).map((pm) => (
-          <PokemonBase pm={pm} />
+          <PokemonBase
+            key={pm.pid + `${pm.alt_form !== undefined ? pm.alt_form : ""}`}
+            pm={pm}
+          />
         ))}
       </div>
     </div>
