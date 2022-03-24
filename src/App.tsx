@@ -63,22 +63,20 @@ overflow-hidden absolute transform inset-1/2 -translate-x-1/2 -translate-y-1/2"
           />
         </div>
       </div>
-      <div className="h-16 flex flex-col justify-start items-center gap-y-2">
+      <div className="h-14 flex flex-col justify-start items-center gap-y-2">
         <span className="text-gray-600 text-sm leading-none">
           #{zeroFilled(pm.id)}
-        </span>
-        <span className="text-lg font-semibold leading-none flex flex-col items-center">
-          {pm.name}
-          {
-            <span className="text-xs text-gray-500 font-thin">
-              {pm.alt_form && `(${pm.alt_form})`}
-            </span>
-          }
         </span>
         <span className="flex gap-1">
           {GetTypeIcon(pm.types[0])}
           {pm.types.length > 1 && GetTypeIcon(pm.types[1])}
         </span>
+        <div className="flex flex-col items-center gap-y-1">
+          <span className="text-lg font-semibold leading-none">{pm.name}</span>
+          <span className="text-xs text-gray-500 font-thin">
+            {pm.alt_form && `(${pm.alt_form})`}
+          </span>
+        </div>
       </div>
     </div>
   );
@@ -87,7 +85,7 @@ overflow-hidden absolute transform inset-1/2 -translate-x-1/2 -translate-y-1/2"
 function App() {
   return (
     <div className="flex justify-center items-center">
-      <div className="flex justify-center items-center flex-wrap content-center gap-x-4 gap-y-8 w-5/6 max-w-3xl">
+      <div className="flex justify-center items-center flex-wrap content-center gap-x-4 gap-y-12 w-5/6 max-w-4xl">
         {allPM.slice(0).map((pm) => (
           <PokemonBase
             key={pm.pid + `${pm.alt_form !== undefined ? pm.alt_form : ""}`}
