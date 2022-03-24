@@ -54,12 +54,10 @@ function PokemonBase({ pm }: Props) {
       <div className="w-24 h-24 relative">
         <div
           className="w-20 h-20 rounded-full outline outline-2 outline-type-electric bg-opacity-50
-overflow-hidden absolute transform inset-1/2 -translate-x-1/2 -translate-y-1/2">
+overflow-hidden absolute transform inset-1/2 -translate-x-1/2 -translate-y-1/2"
+        >
           <img
-            src={
-              window.location.origin +
-              `/src/assets/image/icon/${zeroFilled(pm.pid)}${suffixes}.png`
-            }
+            src={`/image/icon/${zeroFilled(pm.pid)}${suffixes}.png`}
             alt=""
             className="max-w-none w-24 rounded-full absolute transform inset-1/2 -translate-x-1/2 -translate-y-1/2"
           />
