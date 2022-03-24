@@ -54,8 +54,7 @@ function PokemonBase({ pm }: Props) {
       <div className="w-24 h-24 relative">
         <div
           className="w-20 h-20 rounded-full outline outline-2 outline-type-electric bg-opacity-50
-overflow-hidden absolute transform inset-1/2 -translate-x-1/2 -translate-y-1/2"
-        >
+overflow-hidden absolute transform inset-1/2 -translate-x-1/2 -translate-y-1/2">
           <img
             src={
               window.location.origin +
@@ -70,17 +69,17 @@ overflow-hidden absolute transform inset-1/2 -translate-x-1/2 -translate-y-1/2"
         <span className="text-gray-600 text-sm leading-none">
           #{zeroFilled(pm.id)}
         </span>
+        <span className="text-lg font-semibold leading-none flex flex-col items-center">
+          {pm.name}
+          {
+            <span className="text-xs text-gray-500 font-thin">
+              {pm.alt_form && `(${pm.alt_form})`}
+            </span>
+          }
+        </span>
         <span className="flex gap-1">
           {GetTypeIcon(pm.types[0])}
           {pm.types.length > 1 && GetTypeIcon(pm.types[1])}
-        </span>
-        <span className="text-lg font-bold leading-none flex flex-col items-center">
-          {pm.name}
-          {pm.alt_form && (
-            <span className="text-xs text-gray-500 font-thin">
-              ({pm.alt_form})
-            </span>
-          )}
         </span>
       </div>
     </div>
@@ -90,7 +89,7 @@ overflow-hidden absolute transform inset-1/2 -translate-x-1/2 -translate-y-1/2"
 function App() {
   return (
     <div className="flex justify-center items-center">
-      <div className="flex justify-center items-center flex-wrap content-center gap-x-4 gap-y-8 w-5/6">
+      <div className="flex justify-center items-center flex-wrap content-center gap-x-4 gap-y-8 w-5/6 max-w-3xl">
         {allPM.slice(0).map((pm) => (
           <PokemonBase pm={pm} />
         ))}
