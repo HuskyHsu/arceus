@@ -72,7 +72,7 @@ overflow-hidden absolute transform inset-1/2 -translate-x-1/2 -translate-y-1/2"
           {pm.types.length > 1 && GetTypeIcon(pm.types[1])}
         </span>
         <div className="flex flex-col items-center gap-y-1">
-          <span className="text-lg font-semibold leading-none">{pm.name}</span>
+          <span className="text-lg font-medium leading-none">{pm.name}</span>
           <span className="text-xs text-gray-500 font-thin">
             {pm.alt_form && `(${pm.alt_form})`}
           </span>
