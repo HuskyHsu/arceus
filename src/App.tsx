@@ -132,7 +132,7 @@ function PokemonBase({ pm }: Props) {
 
 function App() {
   return (
-    <article className="flex flex-col justify-center items-center mt-20 gap-8">
+    <article className="flex flex-col justify-center items-center my-20 gap-8">
       <section className="w-5/6 max-w-xl">
         <form
           className={
@@ -152,7 +152,7 @@ function App() {
             </svg>
             <input
               type="text"
-              className="w-32 md:w-64 bg-opacity-0 bg-white"
+              className="w-32 md:w-64 bg-opacity-0 bg-white focus:outline-0"
               placeholder="Search"
             />
           </span>
