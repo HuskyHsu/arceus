@@ -102,8 +102,7 @@ function PokemonBase({ pm }: Props) {
             " " +
             bgClass +
             " w-20 h-20 rounded-full outline outline-2 bg-opacity-50 overflow-hidden absolute transform inset-1/2 -translate-x-1/2 -translate-y-1/2"
-          }
-        >
+          }>
           <img
             src={`/arceus/image/icon/${zeroFilled(pm.pid)}${suffixes}.png`}
             alt=""
@@ -132,7 +131,74 @@ function PokemonBase({ pm }: Props) {
 
 function App() {
   return (
-    <article className="flex justify-center items-center">
+    <article className="flex flex-col justify-center items-center m-20">
+      <section>
+        <form className={"flex p-4 rounded-full " + BgClass["電"]}>
+          <div className="relative">
+            <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+              <svg
+                className="w-5 h-5 text-gray-400"
+                viewBox="0 0 24 24"
+                fill="none">
+                <path
+                  d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"></path>
+              </svg>
+            </span>
+            <input
+              type="text"
+              className="w-full py-3 pl-10 pr-4 text-gray-700 bg-white border rounded-md dark:bg-gray-800 dark:text-gray-300 dark:border-gray-600 focus:border-blue-500 dark:focus:border-blue-500 focus:outline-none focus:ring"
+              placeholder="Search"
+            />
+          </div>
+
+          <div x-data="select" className="relative w-36">
+            <button
+              type="button"
+              className="flex w-full items-center justify-between rounded bg-white px-2 p-3 ring-1 ring-gray-300 ring-blue-600'">
+              <span>全區域</span>
+              <svg
+                className="h-6 w-6"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  fillRule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </button>
+
+            <ul className="z-2 absolute mt-2 w-full rounded bg-gray-50 ring-1 ring-gray-300 hidden">
+              <li className="cursor-pointer select-none p-2 hover:bg-gray-200">
+                全區域
+              </li>
+              <li className="cursor-pointer select-none p-2 hover:bg-gray-200">
+                黑曜原野
+              </li>
+              <li className="cursor-pointer select-none p-2 hover:bg-gray-200">
+                紅蓮濕地
+              </li>
+              <li className="cursor-pointer select-none p-2 hover:bg-gray-200">
+                群青海岸
+              </li>
+              <li className="cursor-pointer select-none p-2 hover:bg-gray-200">
+                天冠山麓
+              </li>
+              <li className="cursor-pointer select-none p-2 hover:bg-gray-200">
+                黑曜原野
+              </li>
+              <li className="cursor-pointer select-none p-2 hover:bg-gray-200">
+                純白凍土
+              </li>
+            </ul>
+          </div>
+        </form>
+      </section>
       <section className="flex justify-center items-center flex-wrap content-center gap-x-4 gap-y-12 w-full md:w-5/6 max-w-4xl">
         {allPM.map((pm) => (
           <PokemonBase key={`${pm.pid}${pm.alt_form ?? ""}`} pm={pm} />
