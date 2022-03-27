@@ -9,8 +9,8 @@ import { bgTypeClass } from "../utils/color";
 function Types({ pm }: Props) {
   return (
     <li className="flex gap-1">
-      {TypeIcon(pm.types[0])}
-      {pm.types.length > 1 && TypeIcon(pm.types[1])}
+      {<TypeIcon type={pm.types[0]} />}
+      {pm.types.length > 1 && <TypeIcon type={pm.types[1]} />}
     </li>
   );
 }

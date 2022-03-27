@@ -1,37 +1,60 @@
+import clsx from "clsx";
+
+import { Search, Down } from "./icon";
+import { TypeMap } from "../models";
+import areaMap from "../data/area.json";
+import { TypeIcon } from "./TypeIcon";
+
 export function SearchBar() {
   return (
-    <form className="flex items-center gap-2 p-4 justify-between rounded-full bg-opacity-20 bg-yellow-200">
-      <span className="flex items-center gap-2">
-        <svg className="w-5 h-5" viewBox="0 0 24 24" fill="none">
-          <path
-            d="M21 21L15 15M17 10C17 13.866 13.866 17 10 17C6.13401 17 3 13.866 3 10C3 6.13401 6.13401 3 10 3C13.866 3 17 6.13401 17 10Z"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          ></path>
-        </svg>
-        <input
-          type="text"
-          className="w-32 md:w-64 bg-opacity-0 bg-white focus:outline-0"
-          placeholder="Search"
-        />
-      </span>
-      <button type="button" className="flex">
-        <span>全區域</span>
-        <svg
-          className="h-6 w-6"
-          fill="currentColor"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
+    <form>
+      <ul className="flex flex-col items-center gap-y-8">
+        <li
+          className={clsx(
+            "w-full max-w-xl flex items-center gap-2 px-4 py-2 justify-between",
+            "rounded-full bg-gray-100 shadow-inner shadow-gray-700"
+          )}
         >
-          <path
-            fillRule="evenodd"
-            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-            clipRule="evenodd"
-          />
-        </svg>
-      </button>
+          <span className="w-full flex items-center gap-2">
+            <Search className="w-5 h-5 text-gray-400" />
+            <input
+              type="text"
+              className="w-full bg-gray-100 focus:outline-0"
+              placeholder="Search"
+            />
+          </span>
+          <button
+            type="button"
+            className="w-32 flex justify-evenly relative bg-white rounded-full shadow px-2 py-1"
+          >
+            <span>{areaMap.area[-1]}</span>
+            <Down className="h-6 w-6" />
+            <ul className="absolute z-20 w-32 mt-10 bg-white rounded-md shadow-md border-2 px-2 hidden">
+              {Object.keys(areaMap.area)
+                .sort()
+                .map((a, i, arr) => {
+                  return (
+                    <li
+                      className={clsx(
+                        "py-2 hover:bg-gray-200",
+                        "transition-colors duration-200 transform",
+                        { "border-b-2": i !== arr.length - 1 }
+                      )}
+                      key={a}
+                    >
+                      {areaMap.area[a as keyof typeof areaMap.area]}
+                    </li>
+                  );
+                })}
+            </ul>
+          </button>
+        </li>
+        <li className="w-full md:w-5/6 flex flex-wrap justify-center items-center gap-4">
+          {Object.keys(TypeMap).map((type) => (
+            <TypeIcon type={type} iconSize="w-8 h-8" key={type} />
+          ))}
+        </li>
+      </ul>
     </form>
   );
 }

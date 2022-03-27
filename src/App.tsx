@@ -6,8 +6,8 @@ import clsx from "clsx";
 
 function App() {
   return (
-    <article className="flex flex-col justify-center items-center my-20 gap-8">
-      <section className="w-5/6 max-w-xl">
+    <article className="flex flex-col justify-center items-center my-16 gap-8">
+      <section className="w-5/6 max-w-5xl">
         <SearchBar />
       </section>
       <section
