@@ -2,19 +2,19 @@ import clsx from "clsx";
 import {
   BgFromClass,
   BgToClass,
-  HoverBgToClass,
-  HoverBgFromClass,
+  BeforeBgFromClass,
+  BeforeBgToClass,
 } from "../models";
 
-export const bgTypeClass = ([from, to]: string[], hover = false) => {
+export const bgTypeClass = ([from, to]: string[], before = false) => {
   const fromClass = BgFromClass[from as keyof typeof BgFromClass];
   const toClass = BgToClass[(to ?? from) as keyof typeof BgToClass];
   const hoverFromClass =
-    HoverBgFromClass[from as keyof typeof HoverBgFromClass];
+    BeforeBgFromClass[from as keyof typeof BeforeBgFromClass];
   const hoverToClass =
-    HoverBgToClass[(to ?? from) as keyof typeof HoverBgToClass];
+    BeforeBgToClass[(to ?? from) as keyof typeof BeforeBgToClass];
 
-  return hover
-    ? clsx(hoverFromClass, hoverToClass)
+  return before
+    ? clsx("bg-gradient-to-b", hoverFromClass, hoverToClass)
     : clsx("bg-gradient-to-b", fromClass, toClass);
 };
