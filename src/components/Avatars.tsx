@@ -40,6 +40,7 @@ export function Avatars({ pm }: Props) {
       >
         <img
           src={`/arceus/image/icon/${zeroFilled(pm.pid)}${suffixes}.png`}
+          loading="lazy"
           alt=""
           className={clsx("max-w-none w-24 rounded-full", center)}
         />
