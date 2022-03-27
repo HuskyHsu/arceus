@@ -32,9 +32,9 @@ export function BaseInfo({ pm }: Props) {
   return (
     <button
       className={clsx(
-        "group p-2 drop-shadow-md",
+        "group px-2 md:px-4 py-2 drop-shadow-md",
         "hover:drop-shadow-xl",
-        "before:opacity-0 before:absolute before:-inset-1 before:rounded-md",
+        "before:opacity-0 before:absolute before:inset-0 before:rounded-md",
         "before:bg-gradient-to-b",
         bgTypeClass(pm.types.slice(0).reverse(), true),
         "before:hover:opacity-60 before:-z-10 before:transition-opacity before:duration-500"
