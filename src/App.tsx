@@ -2,6 +2,7 @@ import allPM from "./data/pokemon_.json";
 
 import { BaseInfo } from "./components/BaseInfo";
 import { SearchBar } from "./components/SearchBar";
+import clsx from "clsx";
 
 function App() {
   return (
@@ -9,7 +10,12 @@ function App() {
       <section className="w-5/6 max-w-xl">
         <SearchBar />
       </section>
-      <section className="flex justify-center items-center flex-wrap content-center gap-x-4 gap-y-12 w-full md:w-5/6 max-w-4xl">
+      <section
+        className={clsx(
+          "flex justify-center items-center flex-wrap content-center",
+          "gap-x-4 gap-y-6 w-full md:w-5/6 max-w-4xl"
+        )}
+      >
         {allPM.map((pm) => (
           <BaseInfo key={`${pm.pid}${pm.alt_form ?? ""}`} pm={pm} />
         ))}

@@ -1,6 +1,6 @@
 import { TypeMap } from "../models";
 
-export const GetTypeIcon = (type: string) => {
+export const TypeIcon = (type: string) => {
   const iconSize = "w-5 h-5";
   return (
     <img

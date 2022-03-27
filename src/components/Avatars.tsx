@@ -1,6 +1,7 @@
 import clsx from "clsx";
 
-import { Props, OutlineClass, BgClass } from "../models";
+import { Props, OutlineClass, BgFromClass, BgToClass } from "../models";
+import { bgTypeClass } from "../utils/color";
 import { zeroFilled } from "../utils/id";
 
 enum Suffix {
@@ -24,7 +25,7 @@ enum Suffix {
 export function Avatars({ pm }: Props) {
   const suffixes = Suffix[pm.alt_form as keyof typeof Suffix] ?? "";
   const outlineClass = OutlineClass[pm.types[0] as keyof typeof OutlineClass];
-  const bgClass = BgClass[pm.types[0] as keyof typeof BgClass];
+
   const center =
     "absolute transform inset-1/2 -translate-x-1/2 -translate-y-1/2";
 
@@ -32,9 +33,10 @@ export function Avatars({ pm }: Props) {
     <header className="w-24 h-24 relative">
       <div
         className={clsx(
-          outlineClass,
-          bgClass,
-          "w-20 h-20 rounded-full outline outline-2 bg-opacity-50 overflow-hidden",
+          "outline-white",
+          bgTypeClass(pm.types),
+          "w-20 h-20 rounded-full outline-0 overflow-hidden",
+          "group-hover:outline group-hover:outline-4",
           center
         )}
       >
