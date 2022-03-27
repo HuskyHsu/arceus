@@ -13,7 +13,7 @@ function App() {
       <section
         className={clsx(
           "flex justify-center items-center flex-wrap content-center",
-          "gap-x-2 gap-y-4 w-full md:w-5/6 max-w-4xl"
+          "gap-x-2 gap-y-4 w-full md:w-5/6 max-w-5xl"
         )}
       >
         {allPM.map((pm) => (
