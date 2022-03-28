@@ -28,7 +28,15 @@ function Name({ pm }: Props) {
   );
 }
 
-export function BaseInfo({ pm }: Props) {
+interface Filter {
+  type: string[];
+  keyword: string;
+}
+interface PmCard extends Props {
+  filter: Filter;
+}
+
+export function BaseInfo({ pm, filter }: PmCard) {
   return (
     <button
       type="button"
@@ -38,8 +46,12 @@ export function BaseInfo({ pm }: Props) {
         "before:opacity-0 before:absolute before:inset-0 before:rounded-md",
         "before:bg-gradient-to-b",
         bgTypeClass(pm.types.slice(0).reverse(), true),
-        "before:hover:opacity-60 before:-z-10 before:transition-opacity before:duration-500"
-      )}>
+        "before:hover:opacity-60 before:-z-10 before:transition-opacity before:duration-500",
+        {
+          hidden: !pm.name.includes(filter.keyword),
+        }
+      )}
+    >
       <Avatars pm={pm} />
       <ul className="h-24 z-0 flex flex-col justify-start items-center gap-y-2">
         <li className="text-gray-600 text-sm leading-none group-hover:text-white">

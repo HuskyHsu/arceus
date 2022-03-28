@@ -5,8 +5,14 @@
 
 body {
   background-image: url("/arceus/image/lightpaperfibers__2X.png");
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 * {
   font-family: "Noto Sans TC", sans-serif;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }

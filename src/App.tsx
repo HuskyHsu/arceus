@@ -21,17 +21,15 @@ function App() {
         className={clsx(
           "flex justify-center items-center flex-wrap content-center",
           "gap-x-2 gap-y-4 w-full md:w-5/6 max-w-5xl"
-        )}>
-        {allPM
-          .filter((pm) => {
-            if (pm.name.includes(filter.keyword)) {
-              return true;
-            }
-            return false;
-          })
-          .map((pm) => (
-            <BaseInfo key={`${pm.pid}${pm.alt_form ?? ""}`} pm={pm} />
-          ))}
+        )}
+      >
+        {allPM.map((pm) => (
+          <BaseInfo
+            key={`${pm.pid}${pm.alt_form ?? ""}`}
+            pm={pm}
+            filter={filter}
+          />
+        ))}
       </section>
     </article>
   );
