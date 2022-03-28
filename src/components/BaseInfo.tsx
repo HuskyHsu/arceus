@@ -31,6 +31,7 @@ function Name({ pm }: Props) {
 export function BaseInfo({ pm }: Props) {
   return (
     <button
+      type="button"
       className={clsx(
         "group px-2 md:px-4 py-2 drop-shadow-md",
         "hover:drop-shadow-xl",
@@ -38,8 +39,7 @@ export function BaseInfo({ pm }: Props) {
         "before:bg-gradient-to-b",
         bgTypeClass(pm.types.slice(0).reverse(), true),
         "before:hover:opacity-60 before:-z-10 before:transition-opacity before:duration-500"
-      )}
-    >
+      )}>
       <Avatars pm={pm} />
       <ul className="h-24 z-0 flex flex-col justify-start items-center gap-y-2">
         <li className="text-gray-600 text-sm leading-none group-hover:text-white">
