@@ -18,6 +18,11 @@ export interface Pokemon {
   alt_form?: string;
 }
 
+export interface Filter {
+  type: string[];
+  keyword: string;
+}
+
 export interface Props {
   pm: Pokemon;
 }

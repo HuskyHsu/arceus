@@ -1,39 +1,45 @@
 import clsx from "clsx";
 
-import { Props } from "../models";
+import { Filter, Props } from "../models";
 import { Avatars } from "./Avatars";
 import { TypeIcon } from "./TypeIcon";
 import { zeroFilled } from "../utils/id";
 import { bgTypeClass } from "../utils/color";
 
+interface PmCard extends Props {
+  filter: Filter;
+}
+
 function Types({ pm }: Props) {
+  if (pm.types.length === 1) {
+    return <TypeIcon type={pm.types[0]} />;
+  }
   return (
     <li className="flex gap-1">
-      {<TypeIcon type={pm.types[0]} />}
-      {pm.types.length > 1 && <TypeIcon type={pm.types[1]} />}
+      {
+        <>
+          <TypeIcon type={pm.types[0]} />
+          <TypeIcon type={pm.types[1]} />
+        </>
+      }
     </li>
   );
 }
 
 function Name({ pm }: Props) {
   return (
-    <li className="flex flex-col items-center gap-y-1">
-      <span className="text-lg font-medium leading-none group-hover:text-white transition-all">
-        {pm.name}
-      </span>
-      <span className="text-xs text-gray-500 font-thin group-hover:text-white transition-all">
-        {pm.alt_form && `(${pm.alt_form})`}
-      </span>
+    <li
+      className={clsx(
+        "flex flex-col items-center gap-y-1",
+        "text-lg font-medium leading-none group-hover:text-white transition-all"
+      )}
+    >
+      {pm.name}
+      {pm.alt_form && (
+        <span className="text-xs font-thin">{`(${pm.alt_form})`}</span>
+      )}
     </li>
   );
-}
-
-interface Filter {
-  type: string[];
-  keyword: string;
-}
-interface PmCard extends Props {
-  filter: Filter;
 }
 
 export function BaseInfo({ pm, filter }: PmCard) {
@@ -53,10 +59,13 @@ export function BaseInfo({ pm, filter }: PmCard) {
       )}
     >
       <Avatars pm={pm} />
-      <ul className="h-24 z-0 flex flex-col justify-start items-center gap-y-2">
-        <li className="text-gray-600 text-sm leading-none group-hover:text-white">
-          #{zeroFilled(pm.id)}
-        </li>
+      <ul
+        className={clsx(
+          "h-24 z-0 flex flex-col justify-start items-center gap-y-2",
+          "text-gray-700 group-hover:text-white"
+        )}
+      >
+        <li className="text-sm leading-none">#{zeroFilled(pm.id)}</li>
         <Types pm={pm} />
         <Name pm={pm} />
       </ul>

@@ -1,14 +1,9 @@
 import clsx from "clsx";
 
 import { Search, Down } from "./icon";
-import { TypeMap } from "../models";
+import { Filter, TypeMap } from "../models";
 import areaMap from "../data/area.json";
 import { TypeIcon } from "./TypeIcon";
-
-interface Filter {
-  type: string[];
-  keyword: string;
-}
 
 interface Props {
   filter: Filter;
