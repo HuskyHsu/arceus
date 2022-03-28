@@ -43,6 +43,10 @@ function Name({ pm }: Props) {
 }
 
 export function BaseInfo({ pm, filter }: PmCard) {
+  let hidden = false;
+  if (filter.keyword !== "") {
+    hidden = !pm.name.includes(filter.keyword);
+  }
   return (
     <button
       type="button"
@@ -54,7 +58,7 @@ export function BaseInfo({ pm, filter }: PmCard) {
         bgTypeClass(pm.types.slice(0).reverse(), true),
         "before:hover:opacity-60 before:-z-10 before:transition-opacity before:duration-500",
         {
-          hidden: !pm.name.includes(filter.keyword),
+          hidden: hidden,
         }
       )}
     >
