@@ -10,6 +10,17 @@ interface PmCard extends Props {
   filter: Filter;
 }
 
+function isHidden({ pm, filter }: PmCard) {
+  let hidden = false;
+  if (filter.keyword !== "") {
+    hidden = !pm.name.includes(filter.keyword);
+  }
+  if (!hidden && filter.types.size > 0) {
+    hidden = pm.types.find((type) => filter.types.has(type)) === undefined;
+  }
+  return hidden;
+}
+
 function Types({ pm }: Props) {
   if (pm.types.length === 1) {
     return <TypeIcon type={pm.types[0]} />;
@@ -43,10 +54,7 @@ function Name({ pm }: Props) {
 }
 
 export function BaseInfo({ pm, filter }: PmCard) {
-  let hidden = false;
-  if (filter.keyword !== "") {
-    hidden = !pm.name.includes(filter.keyword);
-  }
+  const hidden = isHidden({ pm, filter });
   return (
     <button
       type="button"

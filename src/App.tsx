@@ -8,14 +8,14 @@ import { SearchBar } from "./components/SearchBar";
 
 function App() {
   const [filter, setFilter] = useState({
-    type: [],
+    types: new Set(),
     keyword: "",
   });
 
   return (
     <article className="flex flex-col justify-center items-center my-16 gap-8">
       <section className="w-5/6 max-w-5xl">
-        <SearchBar setFilter={setFilter} filter={filter} />
+        <SearchBar setFilter={setFilter} />
       </section>
       <section
         className={clsx(

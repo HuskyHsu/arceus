@@ -6,11 +6,10 @@ import areaMap from "../data/area.json";
 import { TypeIcon } from "./TypeIcon";
 
 interface Props {
-  filter: Filter;
   setFilter: Function;
 }
 
-export function SearchBar({ filter, setFilter }: Props) {
+export function SearchBar({ setFilter }: Props) {
   function update(e: React.FormEvent<HTMLInputElement>) {
     const keyword = e.currentTarget.value;
     setFilter((filter: Filter) => {

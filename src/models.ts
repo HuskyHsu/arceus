@@ -19,7 +19,7 @@ export interface Pokemon {
 }
 
 export interface Filter {
-  type: string[];
+  types: Set<string>;
   keyword: string;
 }
 
