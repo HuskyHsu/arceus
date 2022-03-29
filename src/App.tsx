@@ -6,8 +6,9 @@ import { defaultTypeTrue } from "./utils/status";
 import { BaseInfo } from "./components/BaseInfo";
 import { SearchBar } from "./components/SearchBar";
 import { api } from "./data";
+import { Pokemon } from "./models";
 
-const allPM = await api("/arceus/data/pokemon.json");
+const allPM = await api<Pokemon[]>("/arceus/data/pokemon.json");
 
 function App() {
   const [filter, setFilter] = useState({
