@@ -18,8 +18,12 @@ export interface Pokemon {
   alt_form?: string;
 }
 
+interface TypeShow {
+  [propName: string]: boolean;
+}
+
 export interface Filter {
-  types: Set<string>;
+  types: TypeShow;
   keyword: string;
 }
 

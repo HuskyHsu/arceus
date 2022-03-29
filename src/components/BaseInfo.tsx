@@ -15,8 +15,8 @@ function isHidden({ pm, filter }: PmCard) {
   if (filter.keyword !== "") {
     hidden = !pm.name.includes(filter.keyword);
   }
-  if (!hidden && filter.types.size > 0) {
-    hidden = pm.types.find((type) => filter.types.has(type)) === undefined;
+  if (!hidden && Object.values(filter.types).some((bool) => !bool)) {
+    hidden = pm.types.find((type) => filter.types[type]) === undefined;
   }
   return hidden;
 }
@@ -43,8 +43,7 @@ function Name({ pm }: Props) {
       className={clsx(
         "flex flex-col items-center gap-y-1",
         "text-lg font-medium leading-none group-hover:text-white transition-all"
-      )}
-    >
+      )}>
       {pm.name}
       {pm.alt_form && (
         <span className="text-xs font-thin">{`(${pm.alt_form})`}</span>
@@ -68,15 +67,13 @@ export function BaseInfo({ pm, filter }: PmCard) {
         {
           hidden: hidden,
         }
-      )}
-    >
+      )}>
       <Avatars pm={pm} />
       <ul
         className={clsx(
           "h-24 z-0 flex flex-col justify-start items-center gap-y-2",
           "text-gray-700 group-hover:text-white"
-        )}
-      >
+        )}>
         <li className="text-sm leading-none">#{zeroFilled(pm.id)}</li>
         <Types pm={pm} />
         <Name pm={pm} />

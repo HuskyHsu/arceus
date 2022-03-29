@@ -2,24 +2,26 @@ import { TypeMap } from "../models";
 
 interface TypeIconInterface {
   type: string;
-  iconSize?: string;
+  className?: string;
   button?: boolean;
+  clickFn?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
 export const TypeIcon = ({
   type,
-  iconSize = "w-5 h-5",
+  className = "w-5 h-5",
   button = false,
+  clickFn = () => {},
 }: TypeIconInterface) => {
   if (button) {
     return (
-      <button type="button">
+      <button type="button" onClick={clickFn}>
         <img
           src={`/arceus/image/type/${
             TypeMap[type as keyof typeof TypeMap]
           }.svg`}
           alt={type}
-          className={iconSize}
+          className={className}
           key={type}
         />
       </button>
@@ -29,7 +31,7 @@ export const TypeIcon = ({
     <img
       src={`/arceus/image/type/${TypeMap[type as keyof typeof TypeMap]}.svg`}
       alt={type}
-      className={iconSize}
+      className={className}
       key={type}
     />
   );
