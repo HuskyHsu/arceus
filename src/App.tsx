@@ -1,11 +1,13 @@
 import { useState } from "react";
 import clsx from "clsx";
 
-import allPM from "./data/pokemon_.json";
 import { defaultTypeTrue } from "./utils/status";
 
 import { BaseInfo } from "./components/BaseInfo";
 import { SearchBar } from "./components/SearchBar";
+import { api } from "./data";
+
+const allPM = await api("/arceus/data/pokemon.json");
 
 function App() {
   const [filter, setFilter] = useState({

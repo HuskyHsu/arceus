@@ -115,6 +115,7 @@ export enum BeforeBgFromClass {
   "岩石" = "before:from-type-rock",
   "鋼" = "before:from-type-steel",
   "水" = "before:from-type-water",
+  "透明" = "before:from-transparent",
 }
 
 export enum BgToClass {
