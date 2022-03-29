@@ -1,13 +1,60 @@
 import clsx from "clsx";
+import { Fragment } from "react";
 
 import { Search, Down } from "./icon";
 import { Filter, TypeMap } from "../models";
 import areaMap from "../data/area.json";
 import { TypeIcon } from "./TypeIcon";
+import { defaultTypeTrue, defaultTypeFalse } from "../utils/status";
 
 interface Props {
   setFilter: Function;
   filter: Filter;
+}
+
+function AreaSelect({ filter, setFilter }: Props) {
+  function toggerSelect() {
+    setFilter((filter: Filter) => {
+      return { ...filter, ...{ areaSelector: !filter.areaSelector } };
+    });
+  }
+
+  return (
+    <div className="relative">
+      <button
+        type="button"
+        className="w-32 flex justify-evenly bg-white rounded-full shadow px-2 py-1"
+        onClick={() => toggerSelect()}
+      >
+        <span>{areaMap.area[-1]}</span>
+        <Down className="h-6 w-6" />
+      </button>
+      <ul
+        className={clsx(
+          "absolute z-20 w-32 mt-4 px-2 flex flex-col justify-center",
+          "bg-white rounded-md shadow-md border-2",
+          { hidden: !filter.areaSelector }
+        )}
+      >
+        {Object.keys(areaMap.area)
+          .sort()
+          .map((a, i, arr) => {
+            return (
+              <li
+                className={clsx(
+                  "py-2 hover:bg-gray-200 text-center",
+                  "transition-colors duration-200 transform",
+                  { "border-b-2": i !== arr.length - 1 }
+                )}
+                key={a}
+              >
+                {areaMap.area[a as keyof typeof areaMap.area]}
+              </li>
+            );
+          })}
+      </ul>
+    </div>
+  );
 }
 
 function SearchInput({ filter, setFilter }: Props) {
@@ -29,29 +76,7 @@ function SearchInput({ filter, setFilter }: Props) {
           onChange={updateInput}
         />
       </span>
-      <button
-        type="button"
-        className="w-32 flex justify-evenly relative bg-white rounded-full shadow px-2 py-1">
-        <span>{areaMap.area[-1]}</span>
-        <Down className="h-6 w-6" />
-        <ul className="absolute z-20 w-32 mt-10 bg-white rounded-md shadow-md border-2 px-2 hidden">
-          {Object.keys(areaMap.area)
-            .sort()
-            .map((a, i, arr) => {
-              return (
-                <li
-                  className={clsx(
-                    "py-2 hover:bg-gray-200",
-                    "transition-colors duration-200 transform",
-                    { "border-b-2": i !== arr.length - 1 }
-                  )}
-                  key={a}>
-                  {areaMap.area[a as keyof typeof areaMap.area]}
-                </li>
-              );
-            })}
-        </ul>
-      </button>
+      <AreaSelect filter={filter} setFilter={setFilter} />
     </>
   );
 }
@@ -61,32 +86,20 @@ export function SearchBar({ filter, setFilter }: Props) {
     event.preventDefault();
   };
 
-  function updateInput(type: string) {
+  const updateInput = (type: string) => {
     setFilter((filter: Filter) => {
       let { types } = filter;
       if (Object.values(types).every((bool) => bool)) {
-        types = Object.keys(TypeMap).reduce<Record<string, boolean>>(
-          (acc, curr) => {
-            acc[curr] = curr === type;
-            return acc;
-          },
-          {}
-        );
+        types = { ...defaultTypeFalse, ...{ [type]: true } };
       } else {
         types = { ...types, ...{ [type]: !types[type] } };
         if (Object.values(types).every((bool) => !bool)) {
-          types = Object.keys(TypeMap).reduce<Record<string, boolean>>(
-            (acc, curr) => {
-              acc[curr] = true;
-              return acc;
-            },
-            {}
-          );
+          types = { ...defaultTypeTrue };
         }
       }
       return { ...filter, ...{ types } };
     });
-  }
+  };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -95,7 +108,8 @@ export function SearchBar({ filter, setFilter }: Props) {
           className={clsx(
             "w-full max-w-xl flex items-center gap-2 px-4 py-2 justify-between",
             "rounded-full bg-gray-100 shadow-inner shadow-gray-700"
-          )}>
+          )}
+        >
           <SearchInput filter={filter} setFilter={setFilter} />
         </li>
         <li className="w-full md:w-5/6 flex flex-wrap justify-center items-center gap-4">

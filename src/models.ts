@@ -25,6 +25,8 @@ interface TypeShow {
 export interface Filter {
   types: TypeShow;
   keyword: string;
+  area: string;
+  areaSelector: boolean;
 }
 
 export interface Props {
