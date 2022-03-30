@@ -136,7 +136,7 @@ export enum BgToClass {
   "毒" = "to-type-poison/60",
   "超能力" = "to-type-psychic/60",
   "岩石" = "to-type-rock/60",
-  "鋼" = "to-type-stee/60l",
+  "鋼" = "to-type-steel/60",
   "水" = "to-type-water/60",
 }
 
