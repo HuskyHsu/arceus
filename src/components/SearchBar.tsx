@@ -19,14 +19,22 @@ function AreaSelect({ filter, setFilter }: Props) {
     });
   }
 
+  function updateAreaSelect(area: string) {
+    setFilter((filter: Filter) => {
+      return {
+        ...filter,
+        ...{ area: area, areaSelector: false },
+      };
+    });
+  }
+
   return (
     <div className="relative">
       <button
         type="button"
         className="w-32 flex justify-evenly bg-white rounded-full shadow px-2 py-1"
-        onClick={() => toggerSelect()}
-      >
-        <span>{areaMap.area[-1]}</span>
+        onClick={() => toggerSelect()}>
+        <span>{filter.area}</span>
         <Down className="h-6 w-6" />
       </button>
       <ul
@@ -34,8 +42,7 @@ function AreaSelect({ filter, setFilter }: Props) {
           "absolute z-20 w-32 mt-4 px-2 flex flex-col justify-center",
           "bg-white rounded-md shadow-md border-2",
           { hidden: !filter.areaSelector }
-        )}
-      >
+        )}>
         {Object.keys(areaMap.area)
           .sort()
           .map((a, i, arr) => {
@@ -43,11 +50,13 @@ function AreaSelect({ filter, setFilter }: Props) {
               <li
                 className={clsx(
                   "py-2 hover:bg-gray-200 text-center",
-                  "transition-colors duration-200 transform",
+                  "transition-colors duration-200 transform cursor-pointer",
                   { "border-b-2": i !== arr.length - 1 }
                 )}
                 key={a}
-              >
+                onClick={() =>
+                  updateAreaSelect(areaMap.area[a as keyof typeof areaMap.area])
+                }>
                 {areaMap.area[a as keyof typeof areaMap.area]}
               </li>
             );
@@ -108,8 +117,7 @@ export function SearchBar({ filter, setFilter }: Props) {
           className={clsx(
             "w-full max-w-xl flex items-center gap-2 px-4 py-2 justify-between",
             "rounded-full bg-gray-100 shadow-inner shadow-gray-700"
-          )}
-        >
+          )}>
           <SearchInput filter={filter} setFilter={setFilter} />
         </li>
         <li className="w-full md:w-5/6 flex flex-wrap justify-center items-center gap-4">

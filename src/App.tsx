@@ -2,14 +2,15 @@ import { useEffect, useState } from "react";
 import clsx from "clsx";
 
 import { defaultTypeTrue } from "./utils/status";
-import { api } from "./data";
+import { api } from "./utils/http";
 import { Pokemon } from "./models";
 import { BaseInfo } from "./components/BaseInfo";
 import { SearchBar } from "./components/SearchBar";
 
+import { area } from "./data/area.json";
+
 function App() {
   const [pokemons, setPokemons] = useState<Pokemon[]>([]);
-
   const [filter, setFilter] = useState({
     types: defaultTypeTrue,
     keyword: "",
@@ -17,10 +18,32 @@ function App() {
     areaSelector: false,
   });
 
+  const getData = async () => {
+    return await api<Pokemon[]>("/arceus/data/pokemon.json");
+  };
+
+  const decodeData = async () => {
+    const data = await getData();
+    for (let pokemon of data) {
+      pokemon.locations = new Set(
+        pokemon.obtain
+          .map((obtain) => {
+            if (typeof obtain.location === "string") {
+              return obtain.location;
+            } else if (typeof obtain.location === "object") {
+              return Object.keys(obtain.location);
+            }
+          })
+          .filter(Boolean)
+          .flat()
+          .map((location) => area[location as keyof typeof area])
+      );
+    }
+    setPokemons(data);
+  };
+
   useEffect(() => {
-    api<Pokemon[]>("/arceus/data/pokemon.json").then((data) => {
-      setPokemons(data);
-    });
+    decodeData();
   }, []);
 
   return (

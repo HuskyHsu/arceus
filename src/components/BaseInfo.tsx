@@ -15,6 +15,9 @@ function isHidden({ pm, filter }: PmCard) {
   if (filter.keyword !== "") {
     hidden = !pm.name.includes(filter.keyword);
   }
+  if (!hidden && filter.area !== "全區域") {
+    hidden = !pm.locations?.has(filter.area) || false;
+  }
   if (!hidden && Object.values(filter.types).some((bool) => !bool)) {
     hidden = pm.types.find((type) => filter.types[type]) === undefined;
   }
