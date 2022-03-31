@@ -1,39 +1,25 @@
+import { useContext } from "react";
 import clsx from "clsx";
-import { Fragment } from "react";
 
-import { Search, Down } from "./icon";
-import { Filter, TypeMap } from "../models";
-import areaMap from "../data/area.json";
-import { TypeIcon } from "./TypeIcon";
-import { defaultTypeTrue, defaultTypeFalse } from "../utils/status";
+import { Filter, TypeMap } from "@/models";
+import areaMap from "@/data/area.json";
+import { TypeIcon } from "@/components/TypeIcon";
+import { Search, Down } from "@/components/icon";
+import { FilterContext } from "../List";
 
 interface Props {
-  setFilter: Function;
   filter: Filter;
 }
 
-function AreaSelect({ filter, setFilter }: Props) {
-  function toggerSelect() {
-    setFilter((filter: Filter) => {
-      return { ...filter, ...{ areaSelector: !filter.areaSelector } };
-    });
-  }
-
-  function updateAreaSelect(area: string) {
-    setFilter((filter: Filter) => {
-      return {
-        ...filter,
-        ...{ area: area, areaSelector: false },
-      };
-    });
-  }
+function AreaSelect({ filter }: Props) {
+  const { toggereAreaSelect, updateAreaSelect } = useContext(FilterContext);
 
   return (
     <div className="relative">
       <button
         type="button"
         className="w-32 flex justify-evenly bg-white rounded-full shadow px-2 py-1"
-        onClick={() => toggerSelect()}>
+        onClick={() => toggereAreaSelect()}>
         <span>{filter.area}</span>
         <Down className="h-6 w-6" />
       </button>
@@ -66,12 +52,11 @@ function AreaSelect({ filter, setFilter }: Props) {
   );
 }
 
-function SearchInput({ filter, setFilter }: Props) {
+function SearchInput({ filter }: Props) {
+  const { updateKeywordFilter } = useContext(FilterContext);
+
   function updateInput(e: React.FormEvent<HTMLInputElement>) {
-    const keyword = e.currentTarget.value;
-    setFilter((filter: Filter) => {
-      return { ...filter, keyword };
-    });
+    updateKeywordFilter(e.currentTarget.value);
   }
 
   return (
@@ -85,30 +70,17 @@ function SearchInput({ filter, setFilter }: Props) {
           onChange={updateInput}
         />
       </span>
-      <AreaSelect filter={filter} setFilter={setFilter} />
+      <AreaSelect filter={filter} />
     </>
   );
 }
 
-export function SearchBar({ filter, setFilter }: Props) {
+export function SearchBar({ filter }: Props) {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
   };
 
-  const updateInput = (type: string) => {
-    setFilter((filter: Filter) => {
-      let { types } = filter;
-      if (Object.values(types).every((bool) => bool)) {
-        types = { ...defaultTypeFalse, ...{ [type]: true } };
-      } else {
-        types = { ...types, ...{ [type]: !types[type] } };
-        if (Object.values(types).every((bool) => !bool)) {
-          types = { ...defaultTypeTrue };
-        }
-      }
-      return { ...filter, ...{ types } };
-    });
-  };
+  const { updateTypeFilter } = useContext(FilterContext);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -118,7 +90,7 @@ export function SearchBar({ filter, setFilter }: Props) {
             "w-full max-w-xl flex items-center gap-2 px-4 py-2 justify-between",
             "rounded-full bg-gray-100 shadow-inner shadow-gray-700"
           )}>
-          <SearchInput filter={filter} setFilter={setFilter} />
+          <SearchInput filter={filter} />
         </li>
         <li className="w-full md:w-5/6 flex flex-wrap justify-center items-center gap-4">
           {Object.keys(TypeMap).map((type) => (
@@ -127,7 +99,7 @@ export function SearchBar({ filter, setFilter }: Props) {
               type={type}
               className={clsx("w-8 h-8", { "opacity-30": !filter.types[type] })}
               button={true}
-              clickFn={() => updateInput(type)}
+              clickFn={() => updateTypeFilter(type)}
             />
           ))}
         </li>
