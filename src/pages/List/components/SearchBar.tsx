@@ -1,25 +1,23 @@
 import { useContext } from "react";
 import clsx from "clsx";
 
-import { Filter, TypeMap } from "@/models";
+import { TypeMap } from "@/models";
 import areaMap from "@/data/area.json";
 import { TypeIcon } from "@/components/TypeIcon";
 import { Search, Down } from "@/components/icon";
 import { FilterContext } from "../List";
 
-interface Props {
-  filter: Filter;
-}
-
-function AreaSelect({ filter }: Props) {
-  const { toggereAreaSelect, updateAreaSelect } = useContext(FilterContext);
+function AreaSelect() {
+  const { filter, toggereAreaSelect, updateAreaSelect } =
+    useContext(FilterContext);
 
   return (
     <div className="relative">
       <button
         type="button"
         className="w-32 flex justify-evenly bg-white rounded-full shadow px-2 py-1"
-        onClick={() => toggereAreaSelect()}>
+        onClick={() => toggereAreaSelect()}
+      >
         <span>{filter.area}</span>
         <Down className="h-6 w-6" />
       </button>
@@ -28,7 +26,8 @@ function AreaSelect({ filter }: Props) {
           "absolute z-20 w-32 mt-4 px-2 flex flex-col justify-center",
           "bg-white rounded-md shadow-md border-2",
           { hidden: !filter.areaSelector }
-        )}>
+        )}
+      >
         {Object.keys(areaMap.area)
           .sort()
           .map((a, i, arr) => {
@@ -42,7 +41,8 @@ function AreaSelect({ filter }: Props) {
                 key={a}
                 onClick={() =>
                   updateAreaSelect(areaMap.area[a as keyof typeof areaMap.area])
-                }>
+                }
+              >
                 {areaMap.area[a as keyof typeof areaMap.area]}
               </li>
             );
@@ -52,7 +52,7 @@ function AreaSelect({ filter }: Props) {
   );
 }
 
-function SearchInput({ filter }: Props) {
+function SearchInput() {
   const { updateKeywordFilter } = useContext(FilterContext);
 
   function updateInput(e: React.FormEvent<HTMLInputElement>) {
@@ -70,17 +70,17 @@ function SearchInput({ filter }: Props) {
           onChange={updateInput}
         />
       </span>
-      <AreaSelect filter={filter} />
+      <AreaSelect />
     </>
   );
 }
 
-export function SearchBar({ filter }: Props) {
+export function SearchBar() {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
   };
 
-  const { updateTypeFilter } = useContext(FilterContext);
+  const { filter, updateTypeFilter } = useContext(FilterContext);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -89,8 +89,9 @@ export function SearchBar({ filter }: Props) {
           className={clsx(
             "w-full max-w-xl flex items-center gap-2 px-4 py-2 justify-between",
             "rounded-full bg-gray-100 shadow-inner shadow-gray-700"
-          )}>
-          <SearchInput filter={filter} />
+          )}
+        >
+          <SearchInput />
         </li>
         <li className="w-full md:w-5/6 flex flex-wrap justify-center items-center gap-4">
           {Object.keys(TypeMap).map((type) => (

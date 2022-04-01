@@ -14,12 +14,15 @@ interface PokemonBaseList {
   filter: Filter;
 }
 
-export const FilterContext = createContext({
-  updateKeywordFilter: (keyword: string) => {},
-  updateTypeFilter: (targetType: string) => {},
-  toggereAreaSelect: () => {},
-  updateAreaSelect: (area: string) => {},
-});
+interface FilterContextInterface {
+  updateKeywordFilter: Function;
+  updateTypeFilter: Function;
+  toggereAreaSelect: Function;
+  updateAreaSelect: Function;
+  filter: Filter;
+}
+
+export const FilterContext = createContext({} as FilterContextInterface);
 
 function usePokemon() {
   const [pokemonList, setPokemons] = useState<Pokemon[]>([]);
@@ -121,19 +124,21 @@ function List() {
     updateTypeFilter,
     toggereAreaSelect,
     updateAreaSelect,
+    filter,
   };
 
   return (
     <FilterContext.Provider value={context}>
       <article className="flex flex-col justify-center items-center my-16 gap-8">
         <section className="w-5/6 max-w-5xl">
-          <SearchBar filter={filter} />
+          <SearchBar />
         </section>
         <section
           className={clsx(
             "flex justify-center items-center flex-wrap content-center",
             "gap-x-2 gap-y-4 w-full md:w-5/6 max-w-5xl"
-          )}>
+          )}
+        >
           <PokemonBaseList pokemonList={pokemonList} filter={filter} />
         </section>
       </article>
