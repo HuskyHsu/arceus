@@ -1,5 +1,5 @@
 import { TypeMap } from "../models";
-
+import { BASE_URL } from "@/utils/const";
 interface TypeIconInterface {
   type: string;
   className?: string;
@@ -17,7 +17,7 @@ export const TypeIcon = ({
     return (
       <button type="button" onClick={clickFn}>
         <img
-          src={`/arceus/image/type/${
+          src={`${BASE_URL}image/type/${
             TypeMap[type as keyof typeof TypeMap]
           }.svg`}
           alt={type}
@@ -29,7 +29,7 @@ export const TypeIcon = ({
   }
   return (
     <img
-      src={`/arceus/image/type/${TypeMap[type as keyof typeof TypeMap]}.svg`}
+      src={`${BASE_URL}image/type/${TypeMap[type as keyof typeof TypeMap]}.svg`}
       alt={type}
       className={className}
       key={type}

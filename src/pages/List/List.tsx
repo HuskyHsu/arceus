@@ -4,10 +4,11 @@ import clsx from "clsx";
 import { defaultTypeFalse, defaultTypeTrue } from "@/utils/status";
 import { api } from "@/utils/http";
 import { Filter, Pokemon } from "@/models";
-import { BaseInfo } from "@/components/BaseInfo";
+import { BaseInfo } from "./components/BaseInfo";
 import { SearchBar } from "./components/SearchBar";
 
 import { area } from "@/data/area.json";
+import { BASE_URL } from "@/utils/const";
 
 interface PokemonBaseList {
   pokemonList: Pokemon[];
@@ -28,7 +29,7 @@ function usePokemon() {
   const [pokemonList, setPokemons] = useState<Pokemon[]>([]);
 
   const getData = async () => {
-    return await api<Pokemon[]>("/arceus/data/pokemon.json");
+    return await api<Pokemon[]>(`${BASE_URL}data/pokemon.json`);
   };
 
   const decodeData = (data: Pokemon[]) => {

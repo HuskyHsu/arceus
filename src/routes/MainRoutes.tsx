@@ -2,14 +2,14 @@ import { Route, Routes } from "react-router-dom";
 
 import Layout from "@/components/Layout";
 import List from "@/pages/List";
-import Expenses from "./expenses";
+import Detail from "@/pages/Detail";
 
 function MainRouter() {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<List />} />
-        <Route path="expenses" element={<Expenses />} />
+        <Route path=":pid" element={<Detail />} />
       </Route>
     </Routes>
   );

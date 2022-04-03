@@ -1,10 +1,11 @@
+import { Link } from "react-router-dom";
 import clsx from "clsx";
 
-import { Filter, Props } from "../models";
-import { Avatars } from "./Avatars";
-import { TypeIcon } from "./TypeIcon";
-import { zeroFilled } from "../utils/id";
-import { bgTypeClass } from "../utils/color";
+import { Filter, Props } from "@/models";
+import { Avatars } from "@/components/Avatars";
+import { TypeIcon } from "@/components/TypeIcon";
+import { zeroFilled } from "@/utils/id";
+import { bgTypeClass } from "@/utils/color";
 
 interface PmCard extends Props {
   filter: Filter;
@@ -46,7 +47,8 @@ function Name({ pm }: Props) {
       className={clsx(
         "flex flex-col items-center gap-y-1",
         "text-lg font-medium leading-none group-hover:text-white transition-all"
-      )}>
+      )}
+    >
       {pm.name}
       {pm.alt_form && (
         <span className="text-xs font-thin">{`(${pm.alt_form})`}</span>
@@ -58,8 +60,8 @@ function Name({ pm }: Props) {
 export function BaseInfo({ pm, filter }: PmCard) {
   const hidden = isHidden({ pm, filter });
   return (
-    <button
-      type="button"
+    <Link
+      to={`/${pm.pid}`}
       className={clsx(
         "group px-2 md:px-4 py-2 drop-shadow-md",
         "hover:drop-shadow-xl",
@@ -70,17 +72,19 @@ export function BaseInfo({ pm, filter }: PmCard) {
         {
           hidden: hidden,
         }
-      )}>
+      )}
+    >
       <Avatars pm={pm} />
       <ul
         className={clsx(
           "h-24 z-0 flex flex-col justify-start items-center gap-y-2",
           "text-gray-700 group-hover:text-white"
-        )}>
+        )}
+      >
         <li className="text-sm leading-none">#{zeroFilled(pm.id)}</li>
         <Types pm={pm} />
         <Name pm={pm} />
       </ul>
-    </button>
+    </Link>
   );
 }

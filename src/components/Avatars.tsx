@@ -3,6 +3,7 @@ import clsx from "clsx";
 import { Props } from "../models";
 import { bgTypeClass } from "../utils/color";
 import { zeroFilled } from "../utils/id";
+import { BASE_URL } from "@/utils/const";
 
 enum Suffix {
   "洗翠" = "H",
@@ -27,6 +28,7 @@ export function Avatars({ pm }: Props) {
 
   const center =
     "absolute transform inset-1/2 -translate-x-1/2 -translate-y-1/2";
+  const imgPath = `${BASE_URL}image/icon/${zeroFilled(pm.pid)}${suffixes}.png`;
 
   return (
     <header className="w-24 h-24 relative">
@@ -41,7 +43,7 @@ export function Avatars({ pm }: Props) {
         )}
       >
         <img
-          src={`/arceus/image/icon/${zeroFilled(pm.pid)}${suffixes}.png`}
+          src={imgPath}
           loading="lazy"
           alt=""
           className={clsx("max-w-none w-24 rounded-full", center)}
