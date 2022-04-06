@@ -7,7 +7,7 @@
             "草",
             "飛行"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": "0",
                 "mode": "拉苯博士贈送",
@@ -41,7 +41,7 @@
             "草",
             "飛行"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": "4",
                 "mode": "野生",
@@ -69,8 +69,8 @@
             "草",
             "格鬥"
         ],
-        "alt_form": "洗翠",
-        "obtain": [
+        "altForm": "洗翠",
+        "getMethods": [
             {
                 "location": "4",
                 "mode": "野生",
@@ -97,7 +97,7 @@
         "types": [
             "火"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": "0",
                 "mode": "拉苯博士贈送",
@@ -130,7 +130,7 @@
         "types": [
             "火"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": "2",
                 "mode": "野生",
@@ -158,8 +158,8 @@
             "火",
             "幽靈"
         ],
-        "alt_form": "洗翠",
-        "obtain": [
+        "altForm": "洗翠",
+        "getMethods": [
             {
                 "location": "2",
                 "mode": "野生",
@@ -182,7 +182,7 @@
         "types": [
             "水"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": "0",
                 "mode": "拉苯博士贈送",
@@ -215,7 +215,7 @@
         "types": [
             "水"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": "5",
                 "mode": "野生",
@@ -243,8 +243,8 @@
             "水",
             "惡"
         ],
-        "alt_form": "洗翠",
-        "obtain": [
+        "altForm": "洗翠",
+        "getMethods": [
             {
                 "location": "5",
                 "mode": "野生",
@@ -271,7 +271,7 @@
         "types": [
             "一般"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -308,7 +308,7 @@
             "一般",
             "水"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -350,7 +350,7 @@
             "一般",
             "飛行"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -385,7 +385,7 @@
             "一般",
             "飛行"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -424,7 +424,7 @@
             "一般",
             "飛行"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -457,7 +457,7 @@
         "types": [
             "電"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -488,7 +488,7 @@
         "types": [
             "電"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -526,7 +526,7 @@
         "types": [
             "電"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -562,7 +562,7 @@
         "types": [
             "蟲"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -590,7 +590,7 @@
         "types": [
             "蟲"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -623,7 +623,7 @@
             "蟲",
             "飛行"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -659,7 +659,7 @@
         "types": [
             "蟲"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -692,7 +692,7 @@
             "蟲",
             "毒"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -728,7 +728,7 @@
         "types": [
             "火"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -764,7 +764,7 @@
         "types": [
             "火"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -795,7 +795,7 @@
         "types": [
             "一般"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -833,7 +833,7 @@
         "types": [
             "水"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": "3",
                 "mode": "野生",
@@ -860,7 +860,7 @@
         "types": [
             "電"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": "4",
                 "mode": "野生",
@@ -887,7 +887,7 @@
         "types": [
             "火"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": "2",
                 "mode": "野生",
@@ -919,7 +919,7 @@
         "types": [
             "超能力"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": "5",
                 "mode": "野生",
@@ -946,7 +946,7 @@
         "types": [
             "惡"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": "2",
                 "mode": "野生",
@@ -973,7 +973,7 @@
         "types": [
             "草"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": "1",
                 "mode": "野生",
@@ -1000,7 +1000,7 @@
         "types": [
             "冰"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": "5",
                 "mode": "野生",
@@ -1027,7 +1027,7 @@
         "types": [
             "妖精"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": "1",
                 "mode": "野生",
@@ -1060,7 +1060,7 @@
             "毒",
             "飛行"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -1103,7 +1103,7 @@
             "毒",
             "飛行"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -1147,7 +1147,7 @@
             "毒",
             "飛行"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -1181,7 +1181,7 @@
             "幽靈",
             "飛行"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -1223,7 +1223,7 @@
             "幽靈",
             "飛行"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -1266,7 +1266,7 @@
         "types": [
             "蟲"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -1298,7 +1298,7 @@
         "types": [
             "蟲"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -1332,7 +1332,7 @@
         "types": [
             "水"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -1364,7 +1364,7 @@
         "types": [
             "水"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -1398,8 +1398,8 @@
         "types": [
             "蟲"
         ],
-        "alt_form": "草木蓑衣",
-        "obtain": [
+        "altForm": "草木蓑衣",
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -1452,8 +1452,8 @@
         "types": [
             "蟲"
         ],
-        "alt_form": "砂土蓑衣",
-        "obtain": [
+        "altForm": "砂土蓑衣",
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -1506,8 +1506,8 @@
         "types": [
             "蟲"
         ],
-        "alt_form": "垃圾蓑衣",
-        "obtain": [
+        "altForm": "垃圾蓑衣",
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -1561,8 +1561,8 @@
             "蟲",
             "草"
         ],
-        "alt_form": "草木蓑衣",
-        "obtain": [
+        "altForm": "草木蓑衣",
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -1612,8 +1612,8 @@
             "蟲",
             "地面"
         ],
-        "alt_form": "砂土蓑衣",
-        "obtain": [
+        "altForm": "砂土蓑衣",
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -1663,8 +1663,8 @@
             "蟲",
             "鋼"
         ],
-        "alt_form": "垃圾蓑衣",
-        "obtain": [
+        "altForm": "垃圾蓑衣",
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -1714,7 +1714,7 @@
             "蟲",
             "飛行"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -1754,7 +1754,7 @@
             "岩石",
             "地面"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -1800,7 +1800,7 @@
             "岩石",
             "地面"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -1853,7 +1853,7 @@
             "岩石",
             "地面"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -1883,7 +1883,7 @@
         "types": [
             "一般"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -1913,7 +1913,7 @@
             "一般",
             "超能力"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "mode": "進化",
                 "remark": "由「驚角鹿」使用20次迅疾「屏障猛攻」進化"
@@ -1935,7 +1935,7 @@
         "types": [
             "一般"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -1964,7 +1964,7 @@
         "types": [
             "一般"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -1998,7 +1998,7 @@
             "蟲",
             "草"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -2038,7 +2038,7 @@
             "蟲",
             "草"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -2081,7 +2081,7 @@
         "types": [
             "電"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -2111,7 +2111,7 @@
         "types": [
             "電"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -2147,7 +2147,7 @@
         "types": [
             "電"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -2177,7 +2177,7 @@
         "types": [
             "超能力"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -2207,7 +2207,7 @@
         "types": [
             "超能力"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -2240,7 +2240,7 @@
         "types": [
             "超能力"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -2270,7 +2270,7 @@
         "types": [
             "火"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -2298,7 +2298,7 @@
             "火",
             "格鬥"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -2329,7 +2329,7 @@
             "火",
             "格鬥"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -2359,7 +2359,7 @@
         "types": [
             "一般"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -2389,7 +2389,7 @@
         "types": [
             "一般"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -2423,7 +2423,7 @@
         "types": [
             "草"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -2457,8 +2457,8 @@
         "types": [
             "草"
         ],
-        "alt_form": "陰天形態",
-        "obtain": [
+        "altForm": "陰天形態",
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -2496,8 +2496,8 @@
         "types": [
             "草"
         ],
-        "alt_form": "晴天形態",
-        "obtain": [
+        "altForm": "晴天形態",
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -2535,7 +2535,7 @@
         "types": [
             "水"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -2573,7 +2573,7 @@
         "types": [
             "水"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -2628,7 +2628,7 @@
             "蟲",
             "飛行"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -2666,7 +2666,7 @@
             "蟲",
             "飛行"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -2699,7 +2699,7 @@
             "蟲",
             "飛行"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -2729,7 +2729,7 @@
             "蟲",
             "岩石"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "mode": "進化",
                 "remark": "由「飛天螳螂」使用「黑奇石」進化"
@@ -2752,7 +2752,7 @@
             "蟲",
             "鋼"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": "5",
                 "mode": "野生",
@@ -2780,7 +2780,7 @@
             "蟲",
             "格鬥"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -2811,7 +2811,7 @@
             "超能力",
             "妖精"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -2839,7 +2839,7 @@
             "超能力",
             "妖精"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -2869,7 +2869,7 @@
         "types": [
             "一般"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -2905,7 +2905,7 @@
         "types": [
             "一般"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "3": [
@@ -2941,7 +2941,7 @@
         "types": [
             "水"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -2972,7 +2972,7 @@
             "水",
             "飛行"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -3009,7 +3009,7 @@
         "types": [
             "水"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -3048,7 +3048,7 @@
             "水",
             "地面"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -3090,8 +3090,8 @@
             "惡",
             "毒"
         ],
-        "alt_form": "洗翠",
-        "obtain": [
+        "altForm": "洗翠",
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -3123,7 +3123,7 @@
             "惡",
             "毒"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -3154,7 +3154,7 @@
         "types": [
             "一般"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -3187,7 +3187,7 @@
         "types": [
             "一般"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -3224,7 +3224,7 @@
         "types": [
             "一般"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -3258,7 +3258,7 @@
             "草",
             "毒"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -3290,7 +3290,7 @@
             "草",
             "毒"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -3325,7 +3325,7 @@
             "草",
             "毒"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -3356,7 +3356,7 @@
         "types": [
             "草"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -3388,7 +3388,7 @@
         "types": [
             "草"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -3416,8 +3416,8 @@
             "草",
             "格鬥"
         ],
-        "alt_form": "洗翠",
-        "obtain": [
+        "altForm": "洗翠",
+        "getMethods": [
             {
                 "mode": "進化",
                 "remark": "由「百合根娃娃」使用「日之石」進化"
@@ -3439,7 +3439,7 @@
         "types": [
             "草"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -3468,7 +3468,7 @@
         "types": [
             "草"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -3499,7 +3499,7 @@
             "水",
             "地面"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -3530,7 +3530,7 @@
             "水",
             "地面"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -3565,7 +3565,7 @@
             "毒",
             "格鬥"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -3597,7 +3597,7 @@
             "毒",
             "格鬥"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -3634,7 +3634,7 @@
             "超能力",
             "妖精"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -3666,7 +3666,7 @@
             "超能力",
             "妖精"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -3701,7 +3701,7 @@
             "超能力",
             "妖精"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "5": [
@@ -3733,7 +3733,7 @@
             "超能力",
             "格鬥"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "5": [
@@ -3764,7 +3764,7 @@
             "蟲",
             "飛行"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -3797,7 +3797,7 @@
             "蟲",
             "飛行"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -3831,7 +3831,7 @@
         "types": [
             "地面"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -3861,7 +3861,7 @@
         "types": [
             "地面"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -3895,7 +3895,7 @@
         "types": [
             "電"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -3922,7 +3922,7 @@
             "毒",
             "惡"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -3952,7 +3952,7 @@
             "毒",
             "惡"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -3985,7 +3985,7 @@
         "types": [
             "一般"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -4014,7 +4014,7 @@
         "types": [
             "一般"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -4048,7 +4048,7 @@
             "地面",
             "一般"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "mode": "進化",
                 "remark": "滿月的夜晚時騎「圈圈熊」尋找並使用「泥炭塊」進化"
@@ -4070,7 +4070,7 @@
         "types": [
             "龍"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -4100,8 +4100,8 @@
             "鋼",
             "龍"
         ],
-        "alt_form": "洗翠",
-        "obtain": [
+        "altForm": "洗翠",
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -4136,8 +4136,8 @@
             "鋼",
             "龍"
         ],
-        "alt_form": "洗翠",
-        "obtain": [
+        "altForm": "洗翠",
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -4178,7 +4178,7 @@
             "岩石",
             "地面"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -4210,7 +4210,7 @@
             "鋼",
             "地面"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -4241,7 +4241,7 @@
             "地面",
             "岩石"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -4274,7 +4274,7 @@
             "地面",
             "岩石"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -4306,7 +4306,7 @@
             "地面",
             "岩石"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -4336,7 +4336,7 @@
         "types": [
             "岩石"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -4365,7 +4365,7 @@
         "types": [
             "岩石"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -4398,7 +4398,7 @@
         "types": [
             "一般"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -4428,7 +4428,7 @@
         "types": [
             "一般"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -4461,7 +4461,7 @@
         "types": [
             "妖精"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -4493,7 +4493,7 @@
             "妖精",
             "飛行"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -4529,7 +4529,7 @@
             "妖精",
             "飛行"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -4559,7 +4559,7 @@
         "types": [
             "草"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -4585,7 +4585,7 @@
         "types": [
             "草"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -4616,7 +4616,7 @@
             "草",
             "地面"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -4646,7 +4646,7 @@
         "types": [
             "一般"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": "2",
                 "mode": "野生",
@@ -4669,7 +4669,7 @@
         "types": [
             "一般"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": "2",
                 "mode": "野生",
@@ -4692,7 +4692,7 @@
         "types": [
             "一般"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": "2",
                 "mode": "野生",
@@ -4716,7 +4716,7 @@
             "幽靈",
             "毒"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -4755,7 +4755,7 @@
             "幽靈",
             "毒"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -4798,7 +4798,7 @@
             "幽靈",
             "毒"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": "1",
                 "mode": "野生",
@@ -4826,7 +4826,7 @@
             "幽靈",
             "惡"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -4854,7 +4854,7 @@
             "惡",
             "飛行"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -4888,7 +4888,7 @@
             "惡",
             "飛行"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -4922,7 +4922,7 @@
         "types": [
             "超能力"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -4950,7 +4950,7 @@
             "冰",
             "水"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "3": [
@@ -4977,7 +4977,7 @@
             "冰",
             "水"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "3": [
@@ -5008,7 +5008,7 @@
             "冰",
             "水"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "3": [
@@ -5039,7 +5039,7 @@
         "types": [
             "水"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "3": [
@@ -5067,7 +5067,7 @@
         "types": [
             "水"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "3": [
@@ -5099,7 +5099,7 @@
             "毒",
             "蟲"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "3": [
@@ -5127,7 +5127,7 @@
             "毒",
             "惡"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "3": [
@@ -5158,8 +5158,8 @@
             "火",
             "岩石"
         ],
-        "alt_form": "洗翠",
-        "obtain": [
+        "altForm": "洗翠",
+        "getMethods": [
             {
                 "location": {
                     "3": [
@@ -5187,8 +5187,8 @@
             "火",
             "岩石"
         ],
-        "alt_form": "洗翠",
-        "obtain": [
+        "altForm": "洗翠",
+        "getMethods": [
             {
                 "mode": "進化",
                 "remark": "由「卡蒂狗」使用「火之石」進化"
@@ -5210,7 +5210,7 @@
         "types": [
             "一般"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "3": [
@@ -5240,7 +5240,7 @@
         "types": [
             "一般"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "3": [
@@ -5274,7 +5274,7 @@
         "types": [
             "格鬥"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -5313,7 +5313,7 @@
         "types": [
             "格鬥"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -5355,7 +5355,7 @@
         "types": [
             "格鬥"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "5": [
@@ -5386,7 +5386,7 @@
             "一般",
             "飛行"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "3": [
@@ -5413,7 +5413,7 @@
         "types": [
             "幽靈"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "3": [
@@ -5444,7 +5444,7 @@
         "types": [
             "幽靈"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "3": [
@@ -5479,7 +5479,7 @@
         "types": [
             "幽靈"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "3": [
@@ -5510,7 +5510,7 @@
         "types": [
             "水"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "3": [
@@ -5536,7 +5536,7 @@
         "types": [
             "水"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "3": [
@@ -5567,7 +5567,7 @@
             "水",
             "鋼"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "3": [
@@ -5598,7 +5598,7 @@
             "水",
             "飛行"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "3": [
@@ -5626,7 +5626,7 @@
             "水",
             "飛行"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "3": [
@@ -5656,8 +5656,8 @@
         "types": [
             "水"
         ],
-        "alt_form": "白條紋",
-        "obtain": [],
+        "altForm": "白條紋",
+        "getMethods": [],
         "stats": [
             70,
             92,
@@ -5675,8 +5675,8 @@
             "水",
             "幽靈"
         ],
-        "alt_form": "雄性",
-        "obtain": [
+        "altForm": "雄性",
+        "getMethods": [
             {
                 "mode": "進化",
                 "remark": "由「野蠻鱸魚」使用剛猛(雄)/迅疾(雌)的「波動沖」累計對自身造成300以上傷害進化"
@@ -5699,8 +5699,8 @@
             "水",
             "幽靈"
         ],
-        "alt_form": "雌性",
-        "obtain": [
+        "altForm": "雌性",
+        "getMethods": [
             {
                 "mode": "進化",
                 "remark": "由「野蠻鱸魚」使用剛猛(雄)/迅疾(雌)的「波動沖」累計對自身造成300以上傷害進化"
@@ -5722,7 +5722,7 @@
         "types": [
             "火"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "3": [
@@ -5748,8 +5748,8 @@
         "types": [
             "冰"
         ],
-        "alt_form": "阿羅拉",
-        "obtain": [
+        "altForm": "阿羅拉",
+        "getMethods": [
             {
                 "location": "5",
                 "mode": "贈送",
@@ -5772,7 +5772,7 @@
         "types": [
             "火"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "3": [
@@ -5802,8 +5802,8 @@
         "types": [
             "冰"
         ],
-        "alt_form": "阿羅拉",
-        "obtain": [
+        "altForm": "阿羅拉",
+        "getMethods": [
             {
                 "mode": "進化",
                 "remark": "由「阿羅拉六尾」使用「冰之石」進化"
@@ -5826,7 +5826,7 @@
             "水",
             "毒"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "3": [
@@ -5855,7 +5855,7 @@
             "水",
             "毒"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "3": [
@@ -5887,7 +5887,7 @@
         "types": [
             "水"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "3": [
@@ -5913,7 +5913,7 @@
         "types": [
             "水"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "3": [
@@ -5943,7 +5943,7 @@
         "types": [
             "火"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "3": [
@@ -5969,7 +5969,7 @@
         "types": [
             "火"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "3": [
@@ -5999,7 +5999,7 @@
         "types": [
             "火"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": "4",
                 "mode": "野生",
@@ -6027,7 +6027,7 @@
             "電",
             "鋼"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": "3",
                 "mode": "野生",
@@ -6051,7 +6051,7 @@
             "電",
             "鋼"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": "3",
                 "mode": "野生",
@@ -6079,7 +6079,7 @@
             "電",
             "鋼"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -6112,7 +6112,7 @@
             "鋼",
             "超能力"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -6146,7 +6146,7 @@
             "鋼",
             "超能力"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -6183,7 +6183,7 @@
         "types": [
             "電"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -6213,7 +6213,7 @@
         "types": [
             "電"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -6247,7 +6247,7 @@
         "types": [
             "電"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -6278,7 +6278,7 @@
             "地面",
             "飛行"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -6312,7 +6312,7 @@
             "地面",
             "飛行"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -6343,7 +6343,7 @@
             "龍",
             "地面"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -6374,7 +6374,7 @@
             "龍",
             "地面"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -6408,7 +6408,7 @@
             "龍",
             "地面"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "5": [
@@ -6438,7 +6438,7 @@
         "types": [
             "岩石"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -6466,7 +6466,7 @@
             "岩石",
             "鋼"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -6497,8 +6497,8 @@
             "電",
             "草"
         ],
-        "alt_form": "洗翠",
-        "obtain": [
+        "altForm": "洗翠",
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -6525,8 +6525,8 @@
             "電",
             "草"
         ],
-        "alt_form": "洗翠",
-        "obtain": [
+        "altForm": "洗翠",
+        "getMethods": [
             {
                 "mode": "葉之石進化",
                 "remark": "霹靂電球"
@@ -6553,8 +6553,8 @@
             "電",
             "幽靈"
         ],
-        "alt_form": "洛托姆的樣子",
-        "obtain": [
+        "altForm": "洛托姆的樣子",
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -6582,8 +6582,8 @@
             "電",
             "火"
         ],
-        "alt_form": "加熱洛托姆",
-        "obtain": [
+        "altForm": "加熱洛托姆",
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -6611,8 +6611,8 @@
             "電",
             "水"
         ],
-        "alt_form": "清洗洛托姆",
-        "obtain": [
+        "altForm": "清洗洛托姆",
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -6640,8 +6640,8 @@
             "電",
             "冰"
         ],
-        "alt_form": "結冰洛托姆",
-        "obtain": [
+        "altForm": "結冰洛托姆",
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -6669,8 +6669,8 @@
             "電",
             "飛行"
         ],
-        "alt_form": "旋轉洛托姆",
-        "obtain": [
+        "altForm": "旋轉洛托姆",
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -6698,8 +6698,8 @@
             "電",
             "草"
         ],
-        "alt_form": "切割洛托姆",
-        "obtain": [
+        "altForm": "切割洛托姆",
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -6726,7 +6726,7 @@
         "types": [
             "超能力"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -6755,7 +6755,7 @@
         "types": [
             "超能力"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -6788,7 +6788,7 @@
         "types": [
             "幽靈"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -6817,7 +6817,7 @@
         "types": [
             "幽靈"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -6848,7 +6848,7 @@
         "types": [
             "妖精"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -6875,7 +6875,7 @@
         "types": [
             "妖精"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -6906,7 +6906,7 @@
         "types": [
             "妖精"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -6938,8 +6938,8 @@
             "惡",
             "冰"
         ],
-        "alt_form": "狃拉",
-        "obtain": [
+        "altForm": "狃拉",
+        "getMethods": [
             {
                 "location": "1",
                 "mode": "野生",
@@ -6977,8 +6977,8 @@
             "格鬥",
             "毒"
         ],
-        "alt_form": "洗翠",
-        "obtain": [
+        "altForm": "洗翠",
+        "getMethods": [
             {
                 "location": "1",
                 "mode": "野生",
@@ -7016,7 +7016,7 @@
             "格鬥",
             "毒"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "mode": "進化",
                 "remark": "由「狃拉」在白天使用「銳利之爪」進化"
@@ -7039,7 +7039,7 @@
             "惡",
             "冰"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": "1",
                 "mode": "野生",
@@ -7066,7 +7066,7 @@
         "types": [
             "冰"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "5": [
@@ -7095,7 +7095,7 @@
         "types": [
             "冰"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "5": [
@@ -7129,7 +7129,7 @@
             "冰",
             "幽靈"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "5": [
@@ -7162,7 +7162,7 @@
         "types": [
             "岩石"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": "4",
                 "mode": "野生",
@@ -7185,7 +7185,7 @@
         "types": [
             "岩石"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": "4",
                 "mode": "野生",
@@ -7213,7 +7213,7 @@
             "岩石",
             "鋼"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": "4",
                 "mode": "野生",
@@ -7237,7 +7237,7 @@
             "岩石",
             "鋼"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": "4",
                 "mode": "野生",
@@ -7265,7 +7265,7 @@
             "冰",
             "地面"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "5": [
@@ -7294,7 +7294,7 @@
             "冰",
             "地面"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "5": [
@@ -7327,7 +7327,7 @@
             "冰",
             "地面"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "5": [
@@ -7357,7 +7357,7 @@
         "types": [
             "冰"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "5": [
@@ -7385,8 +7385,8 @@
             "冰",
             "岩石"
         ],
-        "alt_form": "洗翠",
-        "obtain": [
+        "altForm": "洗翠",
+        "getMethods": [
             {
                 "location": {
                     "5": [
@@ -7418,7 +7418,7 @@
             "草",
             "冰"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "5": [
@@ -7446,7 +7446,7 @@
             "草",
             "冰"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "5": [
@@ -7478,8 +7478,8 @@
             "一般",
             "幽靈"
         ],
-        "alt_form": "洗翠",
-        "obtain": [
+        "altForm": "洗翠",
+        "getMethods": [
             {
                 "location": {
                     "5": [
@@ -7508,8 +7508,8 @@
             "一般",
             "幽靈"
         ],
-        "alt_form": "洗翠",
-        "obtain": [
+        "altForm": "洗翠",
+        "getMethods": [
             {
                 "location": {
                     "5": [
@@ -7542,7 +7542,7 @@
             "一般",
             "飛行"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "5": [
@@ -7570,8 +7570,8 @@
             "超能力",
             "飛行"
         ],
-        "alt_form": "洗翠",
-        "obtain": [
+        "altForm": "洗翠",
+        "getMethods": [
             {
                 "location": {
                     "5": [
@@ -7602,7 +7602,7 @@
         "types": [
             "格鬥"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "5": [
@@ -7630,7 +7630,7 @@
             "格鬥",
             "鋼"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "5": [
@@ -7662,7 +7662,7 @@
         "types": [
             "超能力"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "5": [
@@ -7689,7 +7689,7 @@
         "types": [
             "超能力"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -7716,7 +7716,7 @@
         "types": [
             "超能力"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -7744,7 +7744,7 @@
             "火",
             "鋼"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "3": [
@@ -7771,7 +7771,7 @@
         "types": [
             "一般"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "5": [
@@ -7798,7 +7798,7 @@
         "types": [
             "超能力"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -7825,8 +7825,8 @@
         "types": [
             "飛行"
         ],
-        "alt_form": "化身形態",
-        "obtain": [
+        "altForm": "化身形態",
+        "getMethods": [
             {
                 "location": {
                     "5": [
@@ -7853,8 +7853,8 @@
         "types": [
             "飛行"
         ],
-        "alt_form": "靈獸形態",
-        "obtain": [
+        "altForm": "靈獸形態",
+        "getMethods": [
             {
                 "location": {
                     "5": [
@@ -7882,8 +7882,8 @@
             "電",
             "飛行"
         ],
-        "alt_form": "化身形態",
-        "obtain": [
+        "altForm": "化身形態",
+        "getMethods": [
             {
                 "location": {
                     "3": [
@@ -7912,8 +7912,8 @@
             "電",
             "飛行"
         ],
-        "alt_form": "靈獸形態",
-        "obtain": [
+        "altForm": "靈獸形態",
+        "getMethods": [
             {
                 "location": {
                     "3": [
@@ -7942,8 +7942,8 @@
             "地面",
             "飛行"
         ],
-        "alt_form": "化身形態",
-        "obtain": [
+        "altForm": "化身形態",
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -7971,8 +7971,8 @@
             "地面",
             "飛行"
         ],
-        "alt_form": "靈獸形態",
-        "obtain": [
+        "altForm": "靈獸形態",
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -8000,8 +8000,8 @@
             "妖精",
             "飛行"
         ],
-        "alt_form": "化身形態",
-        "obtain": [
+        "altForm": "化身形態",
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -8029,8 +8029,8 @@
             "妖精",
             "飛行"
         ],
-        "alt_form": "靈獸形態",
-        "obtain": [
+        "altForm": "靈獸形態",
+        "getMethods": [
             {
                 "location": {
                     "2": [
@@ -8058,8 +8058,8 @@
             "鋼",
             "龍"
         ],
-        "alt_form": "帝牙盧卡",
-        "obtain": [
+        "altForm": "帝牙盧卡",
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -8087,8 +8087,8 @@
             "鋼",
             "龍"
         ],
-        "alt_form": "起源形態",
-        "obtain": [
+        "altForm": "起源形態",
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -8116,8 +8116,8 @@
             "水",
             "龍"
         ],
-        "alt_form": "帝牙盧卡",
-        "obtain": [
+        "altForm": "帝牙盧卡",
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -8145,8 +8145,8 @@
             "水",
             "龍"
         ],
-        "alt_form": "起源形態",
-        "obtain": [
+        "altForm": "起源形態",
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -8174,8 +8174,8 @@
             "幽靈",
             "龍"
         ],
-        "alt_form": "別種形態",
-        "obtain": [
+        "altForm": "別種形態",
+        "getMethods": [
             {
                 "location": {
                     "3": [
@@ -8203,8 +8203,8 @@
             "幽靈",
             "龍"
         ],
-        "alt_form": "起源形態",
-        "obtain": [
+        "altForm": "起源形態",
+        "getMethods": [
             {
                 "location": {
                     "3": [
@@ -8231,7 +8231,7 @@
         "types": [
             "一般"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "4": [
@@ -8258,7 +8258,7 @@
         "types": [
             "水"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "3": [
@@ -8285,7 +8285,7 @@
         "types": [
             "水"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "3": [
@@ -8312,8 +8312,8 @@
         "types": [
             "草"
         ],
-        "alt_form": "陸上形態",
-        "obtain": [
+        "altForm": "陸上形態",
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -8341,8 +8341,8 @@
             "草",
             "飛行"
         ],
-        "alt_form": "天空形態",
-        "obtain": [
+        "altForm": "天空形態",
+        "getMethods": [
             {
                 "location": {
                     "1": [
@@ -8369,7 +8369,7 @@
         "types": [
             "惡"
         ],
-        "obtain": [
+        "getMethods": [
             {
                 "location": {
                     "4": [
