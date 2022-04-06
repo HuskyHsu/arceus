@@ -2,7 +2,7 @@ interface Location {
   [propName: string]: number[] | undefined;
 }
 
-interface Obtain {
+export interface getMethod {
   mode: string;
   location?: string | Location;
   remark?: string;
@@ -13,9 +13,9 @@ export interface Pokemon {
   pid: number;
   name: string;
   types: string[];
-  obtain: Obtain[];
+  getMethods: getMethod[];
   stats: number[];
-  alt_form?: string;
+  altForm?: string;
   locations?: Set<string>;
 }
 
@@ -53,6 +53,30 @@ export enum TypeMap {
   "岩石" = "Rock",
   "鋼" = "Steel",
   "水" = "Water",
+}
+
+export enum MoveCategory {
+  "物理",
+  "特殊",
+  "變化",
+}
+
+export enum NameSuffix {
+  "洗翠" = "H",
+  "砂土蓑衣" = "G",
+  "垃圾蓑衣" = "S",
+  "晴天形態" = "S",
+  "白條紋" = "W",
+  "雌性" = "F",
+  "阿羅拉" = "A",
+  "加熱洛托姆" = "O",
+  "清洗洛托姆" = "W",
+  "結冰洛托姆" = "R",
+  "旋轉洛托姆" = "F",
+  "切割洛托姆" = "L",
+  "靈獸形態" = "T",
+  "起源形態" = "O",
+  "天空形態" = "S",
 }
 
 export enum BgClass {

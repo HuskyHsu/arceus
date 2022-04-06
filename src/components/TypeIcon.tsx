@@ -1,4 +1,4 @@
-import { TypeMap } from "../models";
+import { TypeMap } from "@/models";
 import { BASE_URL } from "@/utils/const";
 interface TypeIconInterface {
   type: string;

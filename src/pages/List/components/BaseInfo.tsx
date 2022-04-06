@@ -47,11 +47,10 @@ function Name({ pm }: Props) {
       className={clsx(
         "flex flex-col items-center gap-y-1",
         "text-lg font-medium leading-none group-hover:text-white transition-all"
-      )}
-    >
+      )}>
       {pm.name}
-      {pm.alt_form && (
-        <span className="text-xs font-thin">{`(${pm.alt_form})`}</span>
+      {pm.altForm && (
+        <span className="text-xs font-thin">{`(${pm.altForm})`}</span>
       )}
     </li>
   );
@@ -72,15 +71,13 @@ export function BaseInfo({ pm, filter }: PmCard) {
         {
           hidden: hidden,
         }
-      )}
-    >
+      )}>
       <Avatars pm={pm} />
       <ul
         className={clsx(
           "h-24 z-0 flex flex-col justify-start items-center gap-y-2",
           "text-gray-700 group-hover:text-white"
-        )}
-      >
+        )}>
         <li className="text-sm leading-none">#{zeroFilled(pm.id)}</li>
         <Types pm={pm} />
         <Name pm={pm} />

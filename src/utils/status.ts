@@ -1,4 +1,4 @@
-import { TypeMap } from "../models";
+import { TypeMap } from "@/models";
 
 export const defaultTypeFalse = Object.keys(TypeMap).reduce<
   Record<string, boolean>

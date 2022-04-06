@@ -35,12 +35,12 @@ function usePokemon() {
   const decodeData = (data: Pokemon[]) => {
     for (let pokemon of data) {
       pokemon.locations = new Set(
-        pokemon.obtain
-          .map((obtain) => {
-            if (typeof obtain.location === "string") {
-              return obtain.location;
-            } else if (typeof obtain.location === "object") {
-              return Object.keys(obtain.location);
+        pokemon.getMethods
+          .map((get) => {
+            if (typeof get.location === "string") {
+              return get.location;
+            } else if (typeof get.location === "object") {
+              return Object.keys(get.location);
             }
           })
           .filter(Boolean)
@@ -66,7 +66,7 @@ function PokemonBaseList({ pokemonList, filter }: PokemonBaseList) {
     <>
       {pokemonList.map((pm) => (
         <BaseInfo
-          key={`${pm.pid}${pm.alt_form ?? ""}`}
+          key={`${pm.pid}${pm.altForm ?? ""}`}
           pm={pm}
           filter={filter}
         />
@@ -138,8 +138,7 @@ function List() {
           className={clsx(
             "flex justify-center items-center flex-wrap content-center",
             "gap-x-2 gap-y-4 w-full md:w-5/6 max-w-5xl"
-          )}
-        >
+          )}>
           <PokemonBaseList pokemonList={pokemonList} filter={filter} />
         </section>
       </article>

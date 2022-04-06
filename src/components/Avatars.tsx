@@ -1,30 +1,12 @@
 import clsx from "clsx";
 
-import { Props } from "../models";
-import { bgTypeClass } from "../utils/color";
-import { zeroFilled } from "../utils/id";
+import { NameSuffix, Props } from "@/models";
+import { bgTypeClass } from "@/utils/color";
+import { zeroFilled } from "@/utils/id";
 import { BASE_URL } from "@/utils/const";
 
-enum Suffix {
-  "洗翠" = "H",
-  "砂土蓑衣" = "G",
-  "垃圾蓑衣" = "S",
-  "晴天形態" = "S",
-  "白條紋" = "W",
-  "雌性" = "F",
-  "阿羅拉" = "A",
-  "加熱洛托姆" = "O",
-  "清洗洛托姆" = "W",
-  "結冰洛托姆" = "R",
-  "旋轉洛托姆" = "F",
-  "切割洛托姆" = "L",
-  "靈獸形態" = "T",
-  "起源形態" = "O",
-  "天空形態" = "S",
-}
-
 export function Avatars({ pm }: Props) {
-  const suffixes = Suffix[pm.alt_form as keyof typeof Suffix] ?? "";
+  const suffixes = NameSuffix[pm.altForm as keyof typeof NameSuffix] ?? "";
 
   const center =
     "absolute transform inset-1/2 -translate-x-1/2 -translate-y-1/2";
@@ -40,8 +22,7 @@ export function Avatars({ pm }: Props) {
           "group-hover:outline group-hover:outline-4",
           center,
           "transition-all"
-        )}
-      >
+        )}>
         <img
           src={imgPath}
           loading="lazy"
