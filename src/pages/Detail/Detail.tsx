@@ -76,7 +76,7 @@ function Detail() {
   let { pid = "724" } = useParams();
   const getImgPath = (pm: Pokemon) => {
     return `${BASE_URL}image/pokemon/${pm.link}${
-      pm.genderDiff ? "_M" : ""
+      pm.genderDiff ? "_m" : ""
     }.png`;
   };
 
