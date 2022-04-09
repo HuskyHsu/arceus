@@ -115,13 +115,14 @@ if __name__ == "__main__":
             "name": pm["name"],
             "types": pm["types"],
             "genderDiff": pm["genderDiff"],
+            "link": pm["link"],
         }
         if "altForm" in pm:
             info["altForm"] = pm["altForm"]
 
         base_map[pm["name"]] = info
 
-    for pm in all_pm[:]:
+    for i, pm in enumerate(all_pm):
         print(pm["name"])
         if "evolution" in pm:
             for ev in pm["evolution"]:
@@ -139,5 +140,39 @@ if __name__ == "__main__":
                         if type(ev2["after"]) == str:
                             ev2["after"] = base_map[ev2["after"]]
 
+        if i > 0:
+            pm["previous"] = {
+                "id": all_pm[i - 1]["id"],
+                "pid": all_pm[i - 1]["pid"],
+                "name": all_pm[i - 1]["name"],
+                "types": all_pm[i - 1]["types"],
+                "genderDiff": all_pm[i - 1]["genderDiff"],
+                "link": all_pm[i - 1]["link"],
+            }
+            if "altForm" in all_pm[i - 1]:
+                pm["previous"]["altForm"] = all_pm[i - 1]["altForm"]
+        else:
+            pm["previous"] = None
+
+        if i < len(all_pm) - 1:
+            pm["next"] = {
+                "id": all_pm[i + 1]["id"],
+                "pid": all_pm[i + 1]["pid"],
+                "name": all_pm[i + 1]["name"],
+                "types": all_pm[i + 1]["types"],
+                "genderDiff": all_pm[i + 1]["genderDiff"],
+                "link": all_pm[i + 1]["link"],
+            }
+            if "altForm" in all_pm[i + 1]:
+                pm["next"]["altForm"] = all_pm[i + 1]["altForm"]
+        else:
+            pm["next"] = None
+
     with open("../public/data/pokemon_full.json", "wt", encoding="utf-8") as fout:
         fout.write(json.dumps(all_pm, ensure_ascii=False))
+
+    for pm in all_pm:
+        with open(
+            f"../public/data/pokemon/{pm['link']}.json", "wt", encoding="utf-8"
+        ) as fout:
+            fout.write(json.dumps(pm, ensure_ascii=False))
