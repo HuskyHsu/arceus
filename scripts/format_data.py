@@ -176,3 +176,42 @@ if __name__ == "__main__":
             f"../public/data/pokemon/{pm['link']}.json", "wt", encoding="utf-8"
         ) as fout:
             fout.write(json.dumps(pm, ensure_ascii=False))
+
+    base_pm = []
+    for pm in all_pm:
+        base = {
+            "id": pm["id"],
+            "pid": pm["pid"],
+            "name": pm["name"],
+            "types": pm["types"],
+            "genderDiff": pm["genderDiff"],
+            "link": pm["link"],
+        }
+        if "altForm" in pm:
+            base["altForm"] = pm["altForm"]
+
+        locations = []
+        for method in pm["getMethods"]:
+            if "location" in method:
+                if type(method["location"]) == str:
+                    locations.append(method["location"])
+                else:
+                    locations += method["location"].keys()
+
+        base["locations"] = list(set(locations))
+        base_pm.append(base)
+
+    with open("../public/data/pokemon.json", "wt", encoding="utf-8") as fout:
+        fout.write(json.dumps(base_pm, ensure_ascii=False))
+
+        # pokemon.getMethods
+        #   .map((get) => {
+        #     if (typeof get.location === "string") {
+        #       return get.location;
+        #     } else if (typeof get.location === "object") {
+        #       return Object.keys(get.location);
+        #     }
+        #   })
+        #   .filter(Boolean)
+        #   .flat()
+        #   .map((location) => area[location as keyof typeof area])

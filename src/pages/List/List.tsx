@@ -7,7 +7,6 @@ import { Filter, Pokemon } from "@/models";
 import { BaseInfo } from "./components/BaseInfo";
 import { SearchBar } from "./components/SearchBar";
 
-import { area } from "@/data/area.json";
 import { BASE_URL } from "@/utils/const";
 
 interface PokemonBaseList {
@@ -34,19 +33,7 @@ function usePokemon() {
 
   const decodeData = (data: Pokemon[]) => {
     for (let pokemon of data) {
-      pokemon.locations = new Set(
-        pokemon.getMethods
-          .map((get) => {
-            if (typeof get.location === "string") {
-              return get.location;
-            } else if (typeof get.location === "object") {
-              return Object.keys(get.location);
-            }
-          })
-          .filter(Boolean)
-          .flat()
-          .map((location) => area[location as keyof typeof area])
-      );
+      pokemon.locations = new Set(pokemon.locations);
     }
     setPokemons(data);
   };
@@ -65,11 +52,7 @@ function PokemonBaseList({ pokemonList, filter }: PokemonBaseList) {
   return (
     <>
       {pokemonList.map((pm) => (
-        <BaseInfo
-          key={`${pm.pid}${pm.altForm ?? ""}`}
-          pm={pm}
-          filter={filter}
-        />
+        <BaseInfo key={`${pm.link}`} pm={pm} filter={filter} />
       ))}
     </>
   );
@@ -138,7 +121,8 @@ function List() {
           className={clsx(
             "flex justify-center items-center flex-wrap content-center",
             "gap-x-2 gap-y-4 w-full md:w-5/6 max-w-5xl"
-          )}>
+          )}
+        >
           <PokemonBaseList pokemonList={pokemonList} filter={filter} />
         </section>
       </article>

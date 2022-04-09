@@ -17,6 +17,7 @@ export interface Pokemon {
   stats: number[];
   altForm?: string;
   locations?: Set<string>;
+  link: string;
 }
 
 interface TypeShow {

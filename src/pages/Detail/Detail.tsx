@@ -63,6 +63,8 @@ interface Pokemon extends BasePokemon {
   learnset: Learnset;
   previous: BasePokemon;
   next: BasePokemon;
+  link: string;
+  genderDiff: boolean;
   imgPath?: string;
 }
 
@@ -73,8 +75,9 @@ const getData = async (pid: string) => {
 function Detail() {
   let { pid = "724" } = useParams();
   const getImgPath = (pm: Pokemon) => {
-    const suffixes = NameSuffix[pm.altForm as keyof typeof NameSuffix] ?? "";
-    return `${BASE_URL}image/pokemon/${zeroFilled(pm.pid)}${suffixes}.png`;
+    return `${BASE_URL}image/pokemon/${pm.link}${
+      pm.genderDiff ? "_M" : ""
+    }.png`;
   };
 
   const [pokemon, setPokemon] = useState<Pokemon>({
@@ -86,6 +89,7 @@ function Detail() {
     getMethods: [],
     stats: [0, 0, 0, 0, 0, 0],
     items: [],
+    link: "",
     learnset: { levelingUp: [], tutoring: [] },
     previous: { id: 0, pid: 0, name: "", types: [], genderDiff: false },
     next: { id: 0, pid: 0, name: "", types: [], genderDiff: false },
@@ -122,8 +126,14 @@ function Detail() {
           <ul>
             {pokemon.getMethods.map((get, i) => (
               <li key={i}>
-                {get.location && get.location + " - "}
-                {get.mode}({get.remark})
+                {get.location &&
+                  typeof get.location === "string" &&
+                  get.location + " - "}
+                {get.location &&
+                  typeof get.location === "object" &&
+                  JSON.stringify(get.location) + " - "}
+                {get.mode}
+                {get.remark && `(${get.remark})`}
               </li>
             ))}
           </ul>

@@ -1,16 +1,13 @@
 import clsx from "clsx";
 
-import { NameSuffix, Props } from "@/models";
+import { Props } from "@/models";
 import { bgTypeClass } from "@/utils/color";
-import { zeroFilled } from "@/utils/id";
 import { BASE_URL } from "@/utils/const";
 
 export function Avatars({ pm }: Props) {
-  const suffixes = NameSuffix[pm.altForm as keyof typeof NameSuffix] ?? "";
-
   const center =
     "absolute transform inset-1/2 -translate-x-1/2 -translate-y-1/2";
-  const imgPath = `${BASE_URL}image/icon/${zeroFilled(pm.pid)}${suffixes}.png`;
+  const imgPath = `${BASE_URL}image/icon/${pm.link}.png`;
 
   return (
     <header className="w-24 h-24 relative">
@@ -22,7 +19,8 @@ export function Avatars({ pm }: Props) {
           "group-hover:outline group-hover:outline-4",
           center,
           "transition-all"
-        )}>
+        )}
+      >
         <img
           src={imgPath}
           loading="lazy"
