@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import clsx from "clsx";
 
+import { MoveCategory, getMethod, TypeMap } from "@/models";
 import { api } from "@/utils/http";
 import { BASE_URL } from "@/utils/const";
-import { Radar } from "./components/radarChart";
-import clsx from "clsx";
-import { zeroFilled } from "@/utils/id";
-import { MoveCategory, NameSuffix, getMethod, TypeMap } from "@/models";
+import { Header } from "./components/Header";
+import { BaseStats } from "./components/BaseStats";
 
 interface BasePokemon {
   id: number;
@@ -15,6 +15,7 @@ interface BasePokemon {
   types: string[];
   altForm?: string;
   genderDiff: boolean;
+  link: string;
 }
 
 interface Move {
@@ -55,30 +56,55 @@ interface Item {
   "%": number;
   boss: boolean;
 }
-interface Pokemon extends BasePokemon {
+
+interface ImageMap {
+  gender?: {
+    m: string;
+    f: string;
+    m_s: string;
+    f_s: string;
+  };
+  g?: string;
+  g_s?: string;
+}
+
+export interface Pokemon extends BasePokemon {
   getMethods: getMethod[];
   stats: number[];
   evolution?: Evolution[];
   items: Item[];
   learnset: Learnset;
-  previous: BasePokemon;
-  next: BasePokemon;
-  link: string;
+  previous: BasePokemon | null;
+  next: BasePokemon | null;
   genderDiff: boolean;
-  imgPath?: string;
+  imgPath: ImageMap;
 }
 
 const getData = async (pid: string) => {
   return await api<Pokemon>(`${BASE_URL}data/pokemon/${pid}.json`);
 };
 
+const getImgPath = (pm: Pokemon) => {
+  const basePath = `${BASE_URL}image/pokemon/${pm.link}`;
+  let imageMap = null;
+  if (pm.genderDiff) {
+    imageMap = {
+      m: `${basePath}_m.png`,
+      f: `${basePath}_f.png`,
+      m_s: `${basePath}_m_s.png`,
+      f_s: `${basePath}_f_s.png`,
+    };
+  } else {
+    imageMap = {
+      g: `${basePath}.png`,
+      g_s: `${basePath}_s.png`,
+    };
+  }
+  return imageMap;
+};
+
 function Detail() {
-  let { pid = "724" } = useParams();
-  const getImgPath = (pm: Pokemon) => {
-    return `${BASE_URL}image/pokemon/${pm.link}${
-      pm.genderDiff ? "_m" : ""
-    }.png`;
-  };
+  let { pid } = useParams();
 
   const [pokemon, setPokemon] = useState<Pokemon>({
     id: 0,
@@ -91,8 +117,16 @@ function Detail() {
     items: [],
     link: "",
     learnset: { levelingUp: [], tutoring: [] },
-    previous: { id: 0, pid: 0, name: "", types: [], genderDiff: false },
-    next: { id: 0, pid: 0, name: "", types: [], genderDiff: false },
+    previous: {
+      id: 0,
+      pid: 0,
+      name: "",
+      types: [],
+      genderDiff: false,
+      link: "",
+    },
+    next: { id: 0, pid: 0, name: "", types: [], genderDiff: false, link: "" },
+    imgPath: {},
   });
 
   useEffect(() => {
@@ -107,19 +141,10 @@ function Detail() {
     <article className="flex flex-col justify-center items-center my-16">
       <article className="w-5/6 max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-4">
         <section className="">
-          <h3 className="text-xl">種族值</h3>
-          <Radar stats={pokemon.stats} />
+          <Header pokemon={pokemon} />
         </section>
         <section className="">
-          <img
-            src={pokemon.imgPath}
-            loading="lazy"
-            alt=""
-            className={clsx("max-w-none w-96 rounded-full")}
-          />
-          <h3 className="text-xl">
-            {pokemon.name}:{pokemon.types.join(";")}
-          </h3>
+          <BaseStats pokemon={pokemon} />
         </section>
         <section className="">
           <h3 className="text-xl">出沒地點</h3>

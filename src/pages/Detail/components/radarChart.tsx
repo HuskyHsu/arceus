@@ -81,7 +81,8 @@ export function Radar({
   return (
     <svg
       className="w-full h-auto"
-      viewBox={`0 0 ${center[0] * 2} ${center[1] * 2}`}>
+      viewBox={`0 0 ${center[0] * 2} ${center[1] * 2}`}
+    >
       <polygon points={bgPoints.flat().join(", ")} fill="#e9e9e9" />
       <g>
         <Line deg={-30} />
