@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import clsx from "clsx";
 
 import { MoveCategory, getMethod, TypeMap } from "@/models";
 import { api } from "@/utils/http";
@@ -104,7 +103,7 @@ const getImgPath = (pm: Pokemon) => {
 };
 
 function Detail() {
-  let { pid } = useParams();
+  let { link = "722" } = useParams();
 
   const [pokemon, setPokemon] = useState<Pokemon>({
     id: 0,
@@ -131,7 +130,7 @@ function Detail() {
 
   useEffect(() => {
     (async () => {
-      const data = await getData(pid);
+      const data = await getData(link);
       data.imgPath = getImgPath(data);
       setPokemon(data);
     })();
