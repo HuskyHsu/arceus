@@ -53,7 +53,7 @@ const Text = ({ deg, text, value }: TextPorps) => {
   );
 };
 
-export function Radar({
+export function RadarChart({
   stats: [hp, att, def, spAtk, spDef, speed],
 }: RadarPorps) {
   const bgPoints = [...Array(6).keys()]
