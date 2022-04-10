@@ -1,5 +1,5 @@
 import { Pokemon } from "../Detail";
-import { RadarChart } from "./RadarChart";
+import { RadarChart } from "@/components/RadarChart";
 
 interface Props {
   pokemon: Pokemon;
@@ -13,7 +13,7 @@ export function BaseStats({ pokemon }: Props) {
         <li className="w-60">
           <RadarChart stats={pokemon.stats} />
         </li>
-        <li>total: {pokemon.stats.reduce((acc, curr) => acc + curr, 0)}</li>
+        <li>total：{pokemon.stats.reduce((acc, curr) => acc + curr, 0)}</li>
       </ul>
     </>
   );
