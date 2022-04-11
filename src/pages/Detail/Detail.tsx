@@ -6,6 +6,7 @@ import { api } from "@/utils/http";
 import { BASE_URL } from "@/utils/const";
 import { Header } from "./components/Header";
 import { BaseStats } from "./components/BaseStats";
+import { TypeIcon } from "@/components/TypeIcon";
 
 interface BasePokemon {
   id: number;
@@ -136,57 +137,209 @@ function Detail() {
 
   return (
     <article className="flex flex-col justify-center items-center my-16">
-      <article className="w-5/6 max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-4">
+      <article className="w-5/6 max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-8">
         <section className="">
           <Header pokemon={pokemon} />
         </section>
         <section className="">
           <BaseStats pokemon={pokemon} />
         </section>
-        <section className="">
-          <h3 className="text-xl">出沒地點</h3>
-          <ul>
-            {pokemon.getMethods.map((get, i) => (
-              <li key={i}>
-                {get.location &&
-                  typeof get.location === "string" &&
-                  get.location + " - "}
-                {get.location &&
-                  typeof get.location === "object" &&
-                  JSON.stringify(get.location) + " - "}
-                {get.mode}
-                {get.remark && `(${get.remark})`}
-              </li>
-            ))}
-          </ul>
+        <section className="max-w-md w-full px-4 py-4 mx-auto bg-slate-400/10 rounded-lg shadow-lg">
+          <h2 className="mt-2 text-xl font-semibold text-gray-800 md:mt-0 md:text-lg">
+            出沒地點
+          </h2>
+          <table className="table-auto w-full text-left text-sm whitespace-no-wrap">
+            <thead>
+              <tr>
+                <th className="px-2 py-1 title-font tracking-wider text-gray-900 bg-gray-100">
+                  地點
+                </th>
+                <th className="px-2 py-1 title-font tracking-wider text-gray-900 bg-gray-100">
+                  方式
+                </th>
+                <th className="px-2 py-1 title-font tracking-wider text-gray-900 bg-gray-100">
+                  條件
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {pokemon.getMethods.map((get, i) => (
+                <tr key={i}>
+                  <td className="border-t-2 border-gray-200 px-2 py-1">
+                    {get.location &&
+                      (typeof get.location === "string"
+                        ? get.location
+                        : Object.entries(get.location as object).map(
+                            ([key, value]) => {
+                              return (
+                                <p key={key}>{`${key}：${value.join(",")}`}</p>
+                              );
+                            }
+                          ))}
+                  </td>
+                  <td className="border-t-2 border-gray-200 px-2 py-1">
+                    {get.mode}
+                  </td>
+                  <td className="border-t-2 border-gray-200 px-2 py-1">
+                    {get.remark}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </section>
-        <section className="">
-          <h3 className="text-xl">攜帶道具</h3>
-          <ul>
-            {pokemon.items.map((item, i) => (
-              <li key={i}>
-                {item.name}({item["%"]}%){item.boss && "(頭目)"}
-              </li>
-            ))}
-          </ul>
+        <section className="max-w-md w-full px-4 py-4 mx-auto bg-slate-400/10 rounded-lg shadow-lg">
+          <h2 className="mt-2 text-xl font-semibold text-gray-800 md:mt-0 md:text-lg">
+            攜帶道具
+          </h2>
+          <table className="table-auto w-full text-left text-sm whitespace-no-wrap">
+            <thead>
+              <tr>
+                <th className="px-2 py-1 title-font tracking-wider text-gray-900 bg-gray-100">
+                  來源
+                </th>
+                <th className="px-2 py-1 title-font tracking-wider text-gray-900 bg-gray-100">
+                  道具名稱
+                </th>
+                <th className="px-2 py-1 title-font tracking-wider text-gray-900 bg-gray-100">
+                  機率(%)
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {pokemon.items.map((item, i) => (
+                <tr key={i}>
+                  <td className="border-t-2 border-gray-200 px-2 py-1">
+                    {item.boss ? "頭目" : "一般"}
+                  </td>
+                  <td className="border-t-2 border-gray-200 px-2 py-1">
+                    {item.name}
+                  </td>
+                  <td className="border-t-2 border-gray-200 px-2 py-1">
+                    {item["%"]}%
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </section>
-        <section className="">
-          <h3 className="text-xl">升等招式</h3>
-          <ul>
-            {pokemon.learnset.levelingUp.map((move, i) => (
-              <li key={i}>
-                {move.learn} -{move.mastery} : {move.name}
-              </li>
-            ))}
-          </ul>
+        <section className="max-w-md w-full px-4 py-4 mx-auto bg-slate-400/10 rounded-lg shadow-lg">
+          <h2 className="mt-2 text-xl font-semibold text-gray-800 md:mt-0 md:text-lg">
+            升等招式
+          </h2>
+          <table className="table-auto w-full text-left text-sm whitespace-no-wrap">
+            <thead>
+              <tr>
+                <th className="px-2 py-1 title-font tracking-wider text-gray-900 bg-gray-100">
+                  等級
+                </th>
+                <th className="px-2 py-1 title-font tracking-wider text-gray-900 bg-gray-100">
+                  精通
+                </th>
+                <th className="px-2 py-1 title-font tracking-wider text-gray-900 bg-gray-100">
+                  招式
+                </th>
+                <th className="px-2 py-1 title-font tracking-wider text-gray-900 bg-gray-100">
+                  屬性
+                </th>
+                <th className="px-2 py-1 title-font tracking-wider text-gray-900 bg-gray-100">
+                  分類
+                </th>
+                <th className="px-2 py-1 title-font tracking-wider text-gray-900 bg-gray-100">
+                  威力
+                </th>
+                <th className="px-2 py-1 title-font tracking-wider text-gray-900 bg-gray-100">
+                  命中
+                </th>
+                <th className="px-2 py-1 title-font tracking-wider text-gray-900 bg-gray-100">
+                  PP
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {pokemon.learnset.levelingUp.map((move, i) => (
+                <tr>
+                  <td className="border-t-2 border-gray-200 px-2 py-1">
+                    {move.learn < 0 ? "進化" : move.learn}
+                  </td>
+                  <td className="border-t-2 border-gray-200 px-2 py-1">
+                    {move.mastery}
+                  </td>
+                  <td className="border-t-2 border-gray-200 px-2 py-1">
+                    {move.name}
+                  </td>
+                  <td className="border-t-2 border-gray-200 px-2 py-1">
+                    <TypeIcon type={move.type} className="w-6 h-6" />
+                  </td>
+                  <td className="border-t-2 border-gray-200 px-2 py-1">
+                    {move.category}
+                  </td>
+                  <td className="border-t-2 border-gray-200 px-2 py-1">
+                    {move.power}
+                  </td>
+                  <td className="border-t-2 border-gray-200 px-2 py-1">
+                    {move.accuracy}
+                  </td>
+                  <td className="border-t-2 border-gray-200 px-2 py-1">
+                    {move.PP}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </section>
-        <section className="">
-          <h3 className="text-xl">傳授招式</h3>
-          <ul>
-            {pokemon.learnset.tutoring.map((move, i) => (
-              <li key={i}>{move.name}</li>
-            ))}
-          </ul>
+        <section className="max-w-md w-full px-4 py-4 mx-auto bg-slate-400/10 rounded-lg shadow-lg">
+          <h2 className="mt-2 text-xl font-semibold text-gray-800 md:mt-0 md:text-lg">
+            傳授招式
+          </h2>
+          <table className="table-auto w-full text-left text-sm whitespace-no-wrap">
+            <thead>
+              <tr>
+                <th className="px-2 py-1 title-font tracking-wider text-gray-900 bg-gray-100">
+                  招式
+                </th>
+                <th className="px-2 py-1 title-font tracking-wider text-gray-900 bg-gray-100">
+                  屬性
+                </th>
+                <th className="px-2 py-1 title-font tracking-wider text-gray-900 bg-gray-100">
+                  分類
+                </th>
+                <th className="px-2 py-1 title-font tracking-wider text-gray-900 bg-gray-100">
+                  威力
+                </th>
+                <th className="px-2 py-1 title-font tracking-wider text-gray-900 bg-gray-100">
+                  命中
+                </th>
+                <th className="px-2 py-1 title-font tracking-wider text-gray-900 bg-gray-100">
+                  PP
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {pokemon.learnset.tutoring.map((move, i) => (
+                <tr>
+                  <td className="border-t-2 border-gray-200 px-2 py-1">
+                    {move.name}
+                  </td>
+                  <td className="border-t-2 border-gray-200 px-2 py-1">
+                    <TypeIcon type={move.type} className="w-6 h-6" />
+                  </td>
+                  <td className="border-t-2 border-gray-200 px-2 py-1">
+                    {move.category}
+                  </td>
+                  <td className="border-t-2 border-gray-200 px-2 py-1">
+                    {move.power}
+                  </td>
+                  <td className="border-t-2 border-gray-200 px-2 py-1">
+                    {move.accuracy}
+                  </td>
+                  <td className="border-t-2 border-gray-200 px-2 py-1">
+                    {move.PP}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </section>
         <section className="md:col-span-2">
           <h3 className="text-xl"></h3>

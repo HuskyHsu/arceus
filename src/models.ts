@@ -1,4 +1,4 @@
-interface Location {
+export interface Location {
   [propName: string]: number[] | undefined;
 }
 
