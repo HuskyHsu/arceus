@@ -1,4 +1,4 @@
-import { useEffect, useState, createContext } from "react";
+import { useEffect, useState, createContext, useRef } from "react";
 import clsx from "clsx";
 
 import { defaultTypeFalse, defaultTypeTrue } from "@/utils/status";
@@ -23,6 +23,7 @@ interface FilterContextInterface {
 }
 
 export const FilterContext = createContext({} as FilterContextInterface);
+const cache = {} as PokemonBaseList;
 
 function usePokemon() {
   const [pokemonList, setPokemons] = useState<Pokemon[]>([]);
@@ -36,12 +37,18 @@ function usePokemon() {
       pokemon.locations = new Set(pokemon.locations);
     }
     setPokemons(data);
+    return data;
   };
 
   useEffect(() => {
     (async () => {
-      const data = await getData();
-      decodeData(data);
+      if (cache.pokemonList) {
+        setPokemons(cache.pokemonList);
+      } else {
+        let data = await getData();
+        data = decodeData(data);
+        cache.pokemonList = data;
+      }
     })();
   }, []);
 
@@ -121,8 +128,7 @@ function List() {
           className={clsx(
             "flex justify-center items-center flex-wrap content-center",
             "gap-x-2 gap-y-4 w-full md:w-5/6 max-w-5xl"
-          )}
-        >
+          )}>
           <PokemonBaseList pokemonList={pokemonList} filter={filter} />
         </section>
       </article>
