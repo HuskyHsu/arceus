@@ -22,8 +22,7 @@ function Types({ pokemon }: Props) {
               "flex gap-2 pr-2 rounded-sm items-center",
               "bg-slate-600 text-slate-100"
             )}
-            key={type}
-          >
+            key={type}>
             <TypeIcon type={type} className="w-6 h-6" />
             <span className="">{type}</span>
           </li>
@@ -38,9 +37,7 @@ export function Header({ pokemon }: Props) {
     <ul className="flex flex-col items-center gap-1">
       <li className={clsx("w-64 h-64 rounded-2xl", bgTypeClass(pokemon.types))}>
         <img
-          src={
-            pokemon.genderDiff ? pokemon.imgPath.gender?.m : pokemon.imgPath.g
-          }
+          src={pokemon.genderDiff ? pokemon.imgPath.m : pokemon.imgPath.g}
           alt=""
           className="w-full"
         />

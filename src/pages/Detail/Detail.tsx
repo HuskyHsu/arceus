@@ -57,12 +57,10 @@ interface Item {
 }
 
 interface ImageMap {
-  gender?: {
-    m: string;
-    f: string;
-    m_s: string;
-    f_s: string;
-  };
+  m?: string;
+  f?: string;
+  m_s?: string;
+  f_s?: string;
   g?: string;
   g_s?: string;
 }
