@@ -9,7 +9,7 @@ function MainRouter() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<List />} />
-        <Route path=":pid" element={<Detail />} />
+        <Route path=":link" element={<Detail />} />
       </Route>
     </Routes>
   );

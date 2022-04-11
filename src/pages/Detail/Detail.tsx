@@ -130,7 +130,7 @@ function Detail() {
 
   useEffect(() => {
     (async () => {
-      const data = await getData(link);
+      const data = await getData(link as string);
       data.imgPath = getImgPath(data);
       setPokemon(data);
     })();
