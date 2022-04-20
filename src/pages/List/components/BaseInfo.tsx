@@ -1,11 +1,11 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 
 import { Filter, Props } from "@/models";
-import { Avatars } from "@/components/Avatars";
-import { TypeIcon } from "@/components/TypeIcon";
-import { zeroFilled } from "@/utils/id";
-import { bgTypeClass } from "@/utils/color";
+import { Avatars, TypeIcon } from "@/components";
+import { zeroFilled, bgTypeClass } from "@/utils";
+import { FilterContext } from "../List";
 
 interface PmCard extends Props {
   filter: Filter;
@@ -57,7 +57,8 @@ function Name({ pm }: Props) {
   );
 }
 
-export function BaseInfo({ pm, filter }: PmCard) {
+export function BaseInfo({ pm }: Props) {
+  const { filter } = useContext(FilterContext);
   const hidden = isHidden({ pm, filter });
   return (
     <Link

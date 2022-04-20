@@ -2,9 +2,8 @@ import { useContext } from "react";
 import clsx from "clsx";
 
 import { TypeMap } from "@/models";
+import { TypeIcon, Icon } from "@/components";
 import areaMap from "@/data/area.json";
-import { TypeIcon } from "@/components/TypeIcon";
-import { Search, Down } from "@/components/icon";
 import { FilterContext } from "../List";
 
 function AreaSelect() {
@@ -19,7 +18,7 @@ function AreaSelect() {
         onClick={() => toggereAreaSelect()}
       >
         <span>{filter.area}</span>
-        <Down className="h-6 w-6" />
+        <Icon.Down className="h-6 w-6" />
       </button>
       <ul
         className={clsx(
@@ -53,7 +52,7 @@ function AreaSelect() {
 }
 
 function SearchInput() {
-  const { updateKeywordFilter } = useContext(FilterContext);
+  const { filter, updateKeywordFilter } = useContext(FilterContext);
 
   function updateInput(e: React.FormEvent<HTMLInputElement>) {
     updateKeywordFilter(e.currentTarget.value);
@@ -62,12 +61,13 @@ function SearchInput() {
   return (
     <>
       <span className="w-full flex items-center gap-2">
-        <Search className="w-5 h-5 text-gray-400" />
+        <Icon.Search className="w-5 h-5 text-gray-400" />
         <input
           type="text"
           className="w-full bg-gray-100 focus:outline-0"
           placeholder="Search"
           onChange={updateInput}
+          value={filter.keyword}
         />
       </span>
       <AreaSelect />
@@ -76,11 +76,11 @@ function SearchInput() {
 }
 
 export function SearchBar() {
+  const { filter, updateTypeFilter } = useContext(FilterContext);
+
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
   };
-
-  const { filter, updateTypeFilter } = useContext(FilterContext);
 
   return (
     <form onSubmit={handleSubmit}>
