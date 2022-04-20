@@ -1,4 +1,4 @@
-import { Pokemon } from "../Detail";
+import { Pokemon } from "@/models";
 import { RadarChart } from "@/components/RadarChart";
 
 interface Props {

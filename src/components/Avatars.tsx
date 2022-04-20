@@ -1,10 +1,10 @@
 import clsx from "clsx";
 
-import { Props } from "@/models";
+import { BaseProps } from "@/models";
 import { bgTypeClass } from "@/utils/color";
 import { BASE_URL } from "@/utils/const";
 
-export function Avatars({ pm }: Props) {
+export function Avatars({ pm }: BaseProps) {
   const center =
     "absolute transform inset-1/2 -translate-x-1/2 -translate-y-1/2";
   const imgPath = `${BASE_URL}image/icon/${pm.link}.png`;

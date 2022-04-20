@@ -2,12 +2,12 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 
-import { Filter, Props } from "@/models";
+import { Filter, BaseProps } from "@/models";
 import { Avatars, TypeIcon } from "@/components";
 import { zeroFilled, bgTypeClass } from "@/utils";
 import { FilterContext } from "../List";
 
-interface PmCard extends Props {
+interface PmCard extends BaseProps {
   filter: Filter;
 }
 
@@ -25,7 +25,7 @@ function isHidden({ pm, filter }: PmCard) {
   return hidden;
 }
 
-function Types({ pm }: Props) {
+function Types({ pm }: BaseProps) {
   if (pm.types.length === 1) {
     return <TypeIcon type={pm.types[0]} />;
   }
@@ -41,7 +41,7 @@ function Types({ pm }: Props) {
   );
 }
 
-function Name({ pm }: Props) {
+function Name({ pm }: BaseProps) {
   return (
     <li
       className={clsx(
@@ -57,7 +57,7 @@ function Name({ pm }: Props) {
   );
 }
 
-export function BaseInfo({ pm }: Props) {
+export function BaseInfo({ pm }: BaseProps) {
   const { filter } = useContext(FilterContext);
   const hidden = isHidden({ pm, filter });
   return (

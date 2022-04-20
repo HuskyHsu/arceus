@@ -1,84 +1,14 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-import { MoveCategory, getMethod, TypeMap } from "@/models";
-import { api } from "@/utils/http";
-import { BASE_URL } from "@/utils/const";
+import { Pokemon } from "@/models";
+import { api, BASE_URL } from "@/utils";
+import { TypeIcon } from "@/components";
+
 import { Header } from "./components/Header";
 import { BaseStats } from "./components/BaseStats";
-import { TypeIcon } from "@/components/TypeIcon";
 import { GetMethods } from "./components/GetMethods";
 import { Items } from "./components/Items";
-
-interface BasePokemon {
-  id: number;
-  pid: number;
-  name: string;
-  types: string[];
-  altForm?: string;
-  genderDiff: boolean;
-  link: string;
-}
-
-interface Move {
-  id: number;
-  name: string;
-  type: TypeMap;
-  category: MoveCategory;
-  power: number;
-  accuracy: number;
-  PP: number;
-  description: string;
-  effect: string;
-  agilePower: number;
-  agileEffect: string;
-  strongPower: number;
-  strongAccuracy: number;
-  strongEffect: string;
-}
-
-interface levelingUpMove extends Move {
-  learn: number;
-  mastery: number;
-}
-
-interface Learnset {
-  levelingUp: levelingUpMove[];
-  tutoring: Move[];
-}
-
-interface Evolution {
-  before: BasePokemon;
-  after: BasePokemon;
-  require: string;
-}
-
-interface Item {
-  name: string;
-  "%": number;
-  boss: boolean;
-}
-
-interface ImageMap {
-  m?: string;
-  f?: string;
-  m_s?: string;
-  f_s?: string;
-  g?: string;
-  g_s?: string;
-}
-
-export interface Pokemon extends BasePokemon {
-  getMethods: getMethod[];
-  stats: number[];
-  evolution?: Evolution[];
-  items: Item[];
-  learnset: Learnset;
-  previous: BasePokemon | null;
-  next: BasePokemon | null;
-  genderDiff: boolean;
-  imgPath: ImageMap;
-}
 
 const getData = async (pid: string) => {
   return await api<Pokemon>(`${BASE_URL}data/pokemon/${pid}.json`);

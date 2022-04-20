@@ -2,10 +2,10 @@ import { createContext } from "react";
 import clsx from "clsx";
 
 import { BaseInfo, SearchBar } from "./components";
-import { Filter, Pokemon } from "@/models";
+import { Filter, BasePokemon } from "@/models";
 
 interface PokemonBaseList {
-  pokemonList: Pokemon[];
+  pokemonList: BasePokemon[];
 }
 interface FilterContextInterface {
   updateKeywordFilter: Function;

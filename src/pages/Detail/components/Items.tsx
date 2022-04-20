@@ -1,4 +1,4 @@
-import { Pokemon } from "../Detail";
+import { Pokemon } from "@/models";
 
 interface Props {
   pokemon: Pokemon;

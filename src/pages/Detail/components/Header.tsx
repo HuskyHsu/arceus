@@ -1,9 +1,8 @@
 import clsx from "clsx";
 
-import { TypeIcon } from "@/components/TypeIcon";
-import { Pokemon } from "../Detail";
-import { zeroFilled } from "@/utils/id";
-import { bgTypeClass } from "@/utils/color";
+import { TypeIcon } from "@/components";
+import { Pokemon } from "@/models";
+import { zeroFilled, bgTypeClass } from "@/utils";
 
 interface Props {
   pokemon: Pokemon;
@@ -22,7 +21,8 @@ function Types({ pokemon }: Props) {
               "flex gap-2 pr-2 rounded-sm items-center",
               "bg-slate-600 text-slate-100"
             )}
-            key={type}>
+            key={type}
+          >
             <TypeIcon type={type} className="w-6 h-6" />
             <span className="">{type}</span>
           </li>
