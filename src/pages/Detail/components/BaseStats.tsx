@@ -8,8 +8,8 @@ interface Props {
 export function BaseStats({ pokemon }: Props) {
   return (
     <>
-      <h3 className="text-xl">種族值</h3>
-      <ul className="flex flex-col items-center">
+      {/* <h3 className="text-xl">種族值</h3> */}
+      <ul className="flex">
         <li className="w-60">
           <RadarChart stats={pokemon.stats} />
         </li>
