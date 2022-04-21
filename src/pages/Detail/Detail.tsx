@@ -130,13 +130,25 @@ function Detail() {
           </span>
           <Types pokemon={pokemon} />
         </div>
-        <div className="w-full h-16 pl-36 flex items-center gap-4 bg-slate-400">
-          <span>基本資訊</span>
-          <span>捕獲</span>
-          <span>升等招式</span>
-          <span>傳授招式</span>
-          <span>進化途徑</span>
-          <span>出沒地圖</span>
+        <div className="w-full h-16 pl-36 flex items-end bg-slate-400 border-b border-gray-200">
+          <button className="flex items-center h-12 px-4 py-2 text-sm text-center text-gray-700 border border-b-0 border-gray-300 sm:text-base rounded-t-md whitespace-nowrap focus:outline-none bg-white">
+            基本資訊
+          </button>
+          <button className="flex items-center h-12 px-4 py-2 text-sm text-center text-gray-700 bg-transparent border-b border-gray-300 sm:text-base whitespace-nowrap cursor-base focus:outline-none hover:border-gray-400">
+            捕獲
+          </button>
+          <button className="flex items-center h-12 px-4 py-2 text-sm text-center text-gray-700 bg-transparent border-b border-gray-300 sm:text-base whitespace-nowrap cursor-base focus:outline-none hover:border-gray-400">
+            升等招式
+          </button>
+          <button className="flex items-center h-12 px-4 py-2 text-sm text-center text-gray-700 bg-transparent border-b border-gray-300 sm:text-base whitespace-nowrap cursor-base focus:outline-none hover:border-gray-400">
+            傳授招式
+          </button>
+          <button className="flex items-center h-12 px-4 py-2 text-sm text-center text-gray-700 bg-transparent border-b border-gray-300 sm:text-base whitespace-nowrap cursor-base focus:outline-none hover:border-gray-400">
+            進化途徑
+          </button>
+          <button className="flex items-center h-12 px-4 py-2 text-sm text-center text-gray-700 bg-transparent border-b border-gray-300 sm:text-base whitespace-nowrap cursor-base focus:outline-none hover:border-gray-400">
+            出沒地圖
+          </button>
         </div>
         <div className="w-full grow pl-36 pr-28 bg-white">
           <table className="table-auto w-full text-left text-sm whitespace-no-wrap">
