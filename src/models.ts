@@ -14,7 +14,7 @@ enum MoveCategory {
   "變化",
 }
 
-interface Move {
+export interface Move {
   id: number;
   name: string;
   type: TypeMap;
@@ -31,7 +31,7 @@ interface Move {
   strongEffect: string;
 }
 
-interface levelingUpMove extends Move {
+export interface levelingUpMove extends Move {
   learn: number;
   mastery: number;
 }
