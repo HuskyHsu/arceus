@@ -129,7 +129,7 @@ function Detail() {
           className={clsx(
             "flex-initial flex flex-col h-full w-9/12",
             cssCenter,
-            "bg-slate-200"
+            "bg-gray-200"
           )}
           style={{
             clipPath: "polygon(0 0, 100% 0%, 90% 100%, 0% 100%)",
@@ -142,7 +142,7 @@ function Detail() {
           <div className="w-full h-20 pl-36 flex items-center gap-4">
             <NameTypes />
           </div>
-          <div className="w-full h-16 pl-36 flex items-end border-b">
+          <div className="w-full h-16 pl-36 flex items-end">
             <Tabs
               tabs={tabList}
               action={display.actionTab}

@@ -1,5 +1,26 @@
 import clsx from "clsx";
 
+enum TypeColor {
+  "蟲" = "#A2A329",
+  "惡" = "#4E4646",
+  "龍" = "#5871BD",
+  "電" = "#E2BE2A",
+  "妖精" = "#E28EE3",
+  "格鬥" = "#E39423",
+  "火" = "#E5633F",
+  "飛行" = "#77AFD4",
+  "幽靈" = "#6C456E",
+  "草" = "#49983A",
+  "地面" = "#A6753B",
+  "冰" = "#4CCBC8",
+  "一般" = "#848383",
+  "毒" = "#9556CB",
+  "超能力" = "#EA708A",
+  "岩石" = "#AFA781",
+  "鋼" = "#6EB0C7",
+  "水" = "#339DDF",
+}
+
 enum BgClass {
   "蟲" = "bg-type-bug",
   "惡" = "bg-type-dark",
@@ -106,7 +127,11 @@ enum BeforeBgToClass {
   "水" = "before:to-type-water",
 }
 
-export const getTypebg = (type: string) => {
+export const getTypeColor = (type: string) => {
+  return TypeColor[type as keyof typeof TypeColor];
+};
+
+export const getTypeBg = (type: string) => {
   return BgClass[type as keyof typeof BgClass];
 };
 

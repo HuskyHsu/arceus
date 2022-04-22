@@ -2,6 +2,7 @@ import { useContext } from "react";
 
 import { RadarChart, Table } from "@/components";
 import { GetMethod, Item } from "@/models";
+import { getTypeColor } from "@/utils";
 import { PokemonContext } from "../Detail";
 
 interface ItemsBase {
@@ -81,11 +82,11 @@ export function BaseInfo() {
       },
     },
     {
-      name: "道具",
+      name: "道具一",
       value: (items: Items) => items[1],
     },
     {
-      name: "道具",
+      name: "道具二",
       value: (items: Items) => items[2],
     },
   ];
@@ -104,7 +105,10 @@ export function BaseInfo() {
       </div>
       <div className="row-span-2">
         <h4 className="text-lg">種族值</h4>
-        <RadarChart stats={pokemon.stats} />
+        <RadarChart
+          stats={pokemon.stats}
+          color={getTypeColor(pokemon.types[0])}
+        />
       </div>
     </div>
   );

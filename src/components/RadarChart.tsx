@@ -2,6 +2,7 @@ const radius = 100;
 const center = [radius * 1.4, radius * 1.4];
 interface RadarPorps {
   stats: number[];
+  color: string;
 }
 
 interface LinePorps {
@@ -67,6 +68,7 @@ const TotalText = ({ value }: TextPorps) => {
 
 export function RadarChart({
   stats: [hp, att, def, spAtk, spDef, speed],
+  color = "#339DDF",
 }: RadarPorps) {
   const total = hp + att + def + spAtk + spDef + speed;
 
@@ -105,7 +107,7 @@ export function RadarChart({
       </g>
       <polygon
         points={speciesStrength.flat().join(", ")}
-        fill="#339DDF"
+        fill={color}
         fillOpacity="0.6"
       />
       <g>
