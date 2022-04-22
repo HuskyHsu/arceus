@@ -118,7 +118,12 @@ function Detail() {
   return (
     <PokemonContext.Provider value={pokemon}>
       <article
-        className={clsx("h-screen", cssCenter, bgTypeClass(pokemon.types))}
+        className={clsx(
+          "h-screen",
+          cssCenter,
+          bgTypeClass(pokemon.types),
+          "relative overflow-hidden"
+        )}
       >
         <div
           className={clsx(
