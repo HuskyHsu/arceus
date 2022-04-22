@@ -1,8 +1,8 @@
-interface Location {
+export interface Location {
   [propName: string]: number[] | undefined;
 }
 
-interface getMethod {
+export interface GetMethod {
   mode: string;
   location?: string | Location;
   remark?: string;
@@ -78,7 +78,7 @@ interface ImageMap {
 }
 
 export interface Pokemon extends BasePokemon {
-  getMethods: getMethod[];
+  getMethods: GetMethod[];
   stats: number[];
   evolution?: Evolution[];
   items: Item[];

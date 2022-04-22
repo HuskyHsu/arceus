@@ -53,9 +53,23 @@ const Text = ({ deg, text, value }: TextPorps) => {
   );
 };
 
+const TotalText = ({ value }: TextPorps) => {
+  const point = getPosition(0, 0);
+
+  return (
+    <>
+      <text x={point[0]} y={point[1] + 10} fontSize="1.5em" textAnchor="middle">
+        {value}
+      </text>
+    </>
+  );
+};
+
 export function RadarChart({
   stats: [hp, att, def, spAtk, spDef, speed],
 }: RadarPorps) {
+  const total = hp + att + def + spAtk + spDef + speed;
+
   const bgPoints = [...Array(6).keys()]
     .map((_, i) => 30 + i * 60)
     .map((deg) => getPosition(deg, radius));
@@ -81,8 +95,7 @@ export function RadarChart({
   return (
     <svg
       className="w-full h-auto"
-      viewBox={`0 0 ${center[0] * 2} ${center[1] * 2}`}
-    >
+      viewBox={`0 0 ${center[0] * 2} ${center[1] * 2}`}>
       <polygon points={bgPoints.flat().join(", ")} fill="#e9e9e9" />
       <g>
         <Line deg={-30} />
@@ -103,6 +116,7 @@ export function RadarChart({
             deg={label.deg}
           />
         ))}
+        <TotalText text={"total"} value={total} />
       </g>
     </svg>
   );

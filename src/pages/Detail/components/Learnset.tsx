@@ -1,55 +1,8 @@
 import { useContext } from "react";
 
 import { Move, levelingUpMove } from "@/models";
-import { TypeIcon } from "@/components";
+import { TypeIcon, Table } from "@/components";
 import { PokemonContext } from "../Detail";
-
-interface Feild {
-  name: string;
-  value: Function;
-}
-
-interface Props {
-  feilds: Feild[];
-  moveSourceType: string;
-}
-
-function MoveTable({ feilds, moveSourceType }: Props) {
-  const pokemon = useContext(PokemonContext);
-  const moves =
-    moveSourceType === "levelingUp"
-      ? pokemon.learnset.levelingUp
-      : pokemon.learnset.tutoring;
-
-  return (
-    <table className="table-auto w-full text-left text-sm whitespace-no-wrap">
-      <thead>
-        <tr>
-          {feilds.map((feild) => (
-            <th
-              key={feild.name}
-              className="px-2 py-1 title-font tracking-wider text-gray-900 bg-gray-100">
-              {feild.name}
-            </th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {moves.map((move, i) => (
-          <tr key={i}>
-            {feilds.map((feild) => (
-              <td
-                key={feild.name}
-                className="border-t-2 border-gray-200 px-2 py-1">
-                {feild.value(move)}
-              </td>
-            ))}
-          </tr>
-        ))}
-      </tbody>
-    </table>
-  );
-}
 
 export function LevelingUp() {
   const feilds = [
@@ -89,7 +42,8 @@ export function LevelingUp() {
     },
   ];
 
-  return <MoveTable feilds={feilds} moveSourceType={"levelingUp"} />;
+  const pokemon = useContext(PokemonContext);
+  return <Table feilds={feilds} data={pokemon.learnset.levelingUp} />;
 }
 
 export function Tutoring() {
@@ -120,5 +74,6 @@ export function Tutoring() {
     },
   ];
 
-  return <MoveTable feilds={feilds} moveSourceType={"tutoring"} />;
+  const pokemon = useContext(PokemonContext);
+  return <Table feilds={feilds} data={pokemon.learnset.tutoring} />;
 }

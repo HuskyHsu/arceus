@@ -6,7 +6,7 @@ import { Pokemon } from "@/models";
 import { api, BASE_URL, bgTypeClass } from "@/utils";
 import { Tabs } from "@/components";
 
-import { Hero, BaseInfo, Learnset } from "./components";
+import { Hero, NameTypes, BaseInfo, Learnset } from "./components";
 
 const defaultPokemon = {
   id: 0,
@@ -74,7 +74,7 @@ function Detail() {
   let { link = "722" } = useParams();
   const pokemon = usePokemon(link);
 
-  const [actionTab, setActionTab] = useState("升等招式");
+  const [actionTab, setActionTab] = useState("基本資訊");
   const taggleTab = (value: string) => {
     setActionTab(value);
   };
@@ -98,24 +98,18 @@ function Detail() {
             《 001 002 003 004 005 006 007 008 009 010 》
           </div>
           <div className="w-full h-20 pl-36 flex items-center gap-4">
-            <BaseInfo />
+            <NameTypes />
           </div>
           <div className="w-full h-16 pl-36 flex items-end border-b">
             <Tabs
-              tabs={[
-                "基本資訊",
-                "捕獲",
-                "升等招式",
-                "傳授招式",
-                "進化途徑",
-                "出沒地圖",
-              ]}
+              tabs={["基本資訊", "升等招式", "傳授招式", "進化途徑"]}
               action={actionTab}
               taggleTab={taggleTab}
             />
           </div>
           <div className="w-full grow pl-36 pr-60 bg-white">
             <div className="max-h-[28rem] overflow-y-auto mt-8">
+              {actionTab === "基本資訊" && <BaseInfo />}
               {actionTab === "升等招式" && <Learnset.LevelingUp />}
               {actionTab === "傳授招式" && <Learnset.Tutoring />}
             </div>
