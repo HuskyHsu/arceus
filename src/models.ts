@@ -1,8 +1,8 @@
-interface Location {
+export interface Location {
   [propName: string]: number[] | undefined;
 }
 
-interface getMethod {
+export interface GetMethod {
   mode: string;
   location?: string | Location;
   remark?: string;
@@ -14,7 +14,7 @@ enum MoveCategory {
   "變化",
 }
 
-interface Move {
+export interface Move {
   id: number;
   name: string;
   type: TypeMap;
@@ -31,7 +31,7 @@ interface Move {
   strongEffect: string;
 }
 
-interface levelingUpMove extends Move {
+export interface levelingUpMove extends Move {
   learn: number;
   mastery: number;
 }
@@ -62,7 +62,7 @@ interface Evolution {
   require: string;
 }
 
-interface Item {
+export interface Item {
   name: string;
   "%": number;
   boss: boolean;
@@ -73,12 +73,12 @@ interface ImageMap {
   f?: string;
   m_s?: string;
   f_s?: string;
-  g?: string;
-  g_s?: string;
+  s?: string;
+  s_s?: string;
 }
 
 export interface Pokemon extends BasePokemon {
-  getMethods: getMethod[];
+  getMethods: GetMethod[];
   stats: number[];
   evolution?: Evolution[];
   items: Item[];
@@ -135,4 +135,10 @@ export enum NameSuffix {
   "靈獸形態" = "T",
   "起源形態" = "O",
   "天空形態" = "S",
+}
+
+export interface Display {
+  selectGender: string;
+  shiny: boolean;
+  actionTab: string;
 }
