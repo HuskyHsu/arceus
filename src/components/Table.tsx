@@ -16,7 +16,8 @@ export function Table<T>({ feilds, data }: Props<T>) {
           {feilds.map((feild, i) => (
             <th
               key={i}
-              className="px-2 py-1 title-font tracking-wider text-gray-900 bg-gray-100">
+              className="px-2 py-1 title-font tracking-wider whitespace-nowrap text-gray-900 bg-gray-100"
+            >
               {feild.name}
             </th>
           ))}

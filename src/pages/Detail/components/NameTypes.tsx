@@ -15,10 +15,11 @@ function Types() {
         return (
           <li
             className={clsx(
-              "flex gap-2 pr-2 rounded-sm items-center",
+              "flex gap-2 pr-2 rounded items-center",
               "bg-slate-600 text-slate-100"
             )}
-            key={type}>
+            key={type}
+          >
             <TypeIcon type={type} className="w-6 h-6" />
             <span className="">{type}</span>
           </li>

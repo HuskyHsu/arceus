@@ -1,24 +1,102 @@
 import { useContext } from "react";
+import clsx from "clsx";
 
 import { Icon } from "@/components";
 import { zeroFilled } from "@/utils";
+import { Display } from "@/models";
 import { PokemonContext } from "../Detail";
 
-function DisplayImage() {
+interface ButtonProps {
+  children: JSX.Element;
+  status: boolean;
+  onClick: Function;
+}
+
+interface DisplayProps {
+  display: Display;
+  taggleShiny: Function;
+  taggleGender: Function;
+}
+
+function Button({ children, status, onClick }: ButtonProps) {
+  return (
+    <button
+      className={clsx(
+        "rounded-full p-2",
+        status ? "bg-slate-600" : "bg-slate-200"
+      )}
+      onClick={() => {
+        onClick();
+      }}
+    >
+      {children}
+    </button>
+  );
+}
+
+function GenderButton({ display, taggleGender }: DisplayProps) {
   const pokemon = useContext(PokemonContext);
   return (
     <>
-      <div className="min-w-min -ml-72 z-10">
-        <img
-          src={pokemon.genderDiff ? pokemon.imgPath.m : pokemon.imgPath.g}
-          alt=""
+      <Button onClick={taggleGender} status={display.selectGender === "male"}>
+        <Icon.Male
+          className={clsx(
+            "h-6 w-6",
+            display.selectGender === "male"
+              ? "fill-slate-200"
+              : "fill-slate-600"
+          )}
         />
+      </Button>
+      <Button onClick={taggleGender} status={display.selectGender === "female"}>
+        <Icon.Female
+          className={clsx(
+            "h-6 w-6",
+            display.selectGender === "female"
+              ? "fill-slate-200"
+              : "fill-slate-600"
+          )}
+        />
+      </Button>
+    </>
+  );
+}
+
+function DisplayImage({ display, taggleShiny, taggleGender }: DisplayProps) {
+  const pokemon = useContext(PokemonContext);
+
+  const getShowUrl = () => {
+    if (display.selectGender === "same") {
+      return display.shiny ? pokemon.imgPath.s_s : pokemon.imgPath.s;
+    }
+    if (display.selectGender === "male") {
+      return display.shiny ? pokemon.imgPath.m_s : pokemon.imgPath.m;
+    }
+    return display.shiny ? pokemon.imgPath.f_s : pokemon.imgPath.f;
+  };
+
+  return (
+    <>
+      <div className="min-w-min -ml-72 z-10">
+        <img src={getShowUrl()} alt="" />
       </div>
-      <ul>
-        <li className="absolute flex flex-col right-0">
-          <Icon.Shiny className="h-6 w-6" />
-          <Icon.Male className="h-6 w-6" />
-          <Icon.Female className="h-6 w-6" />
+      <ul className="absolute right-20 z-20">
+        <li className="flex flex-col gap-2">
+          <Button onClick={taggleShiny} status={display.shiny}>
+            <Icon.Shiny
+              className={clsx(
+                "h-6 w-6",
+                display.shiny ? "fill-slate-200" : "fill-slate-600"
+              )}
+            />
+          </Button>
+          {pokemon.genderDiff && (
+            <GenderButton
+              display={display}
+              taggleShiny={() => {}}
+              taggleGender={taggleGender}
+            />
+          )}
         </li>
       </ul>
     </>
@@ -34,10 +112,14 @@ function IdString() {
   );
 }
 
-export function Hero() {
+export function Hero({ display, taggleShiny, taggleGender }: DisplayProps) {
   return (
     <>
-      <DisplayImage />
+      <DisplayImage
+        display={display}
+        taggleShiny={taggleShiny}
+        taggleGender={taggleGender}
+      />
       <IdString />
     </>
   );

@@ -33,8 +33,13 @@ const defaultPokemon = {
 
 export const PokemonContext = createContext(defaultPokemon as Pokemon);
 
-const usePokemon = (link: string) => {
+const usePokemon = (link: string, tabList: string[]) => {
   const [pokemon, setPokemon] = useState<Pokemon>(defaultPokemon);
+  const [display, setDisplay] = useState({
+    actionTab: tabList[0],
+    selectGender: pokemon.genderDiff ? "male" : "same",
+    shiny: false,
+  });
 
   const getData = async (pid: string) => {
     return await api<Pokemon>(`${BASE_URL}data/pokemon/${pid}.json`);
@@ -52,8 +57,8 @@ const usePokemon = (link: string) => {
       };
     } else {
       imageMap = {
-        g: `${basePath}.png`,
-        g_s: `${basePath}_s.png`,
+        s: `${basePath}.png`,
+        s_s: `${basePath}_s.png`,
       };
     }
     return imageMap;
@@ -64,27 +69,57 @@ const usePokemon = (link: string) => {
       const data = await getData(link);
       data.imgPath = getImgPath(data);
       setPokemon(data);
+      setDisplay((display) => {
+        return {
+          ...display,
+          ...{ selectGender: data.genderDiff ? "male" : "same" },
+        };
+      });
     })();
   }, []);
 
-  return pokemon;
+  const taggleTab = (value: string) => {
+    setDisplay((display) => {
+      return { ...display, ...{ actionTab: value } };
+    });
+  };
+
+  const taggleShiny = () => {
+    setDisplay((display) => {
+      return { ...display, ...{ shiny: !display.shiny } };
+    });
+  };
+
+  const taggleGender = () => {
+    setDisplay((display) => {
+      console.log(display);
+      return {
+        ...display,
+        ...{
+          selectGender: display.selectGender === "male" ? "female" : "male",
+        },
+      };
+    });
+  };
+
+  return { pokemon, display, taggleTab, taggleShiny, taggleGender };
 };
 
 function Detail() {
   let { link = "722" } = useParams();
-  const pokemon = usePokemon(link);
-
-  const [actionTab, setActionTab] = useState("基本資訊");
-  const taggleTab = (value: string) => {
-    setActionTab(value);
-  };
+  const tabList = ["基本資訊", "升等招式", "傳授招式", "進化途徑"];
+  const { pokemon, display, taggleTab, taggleShiny, taggleGender } = usePokemon(
+    link,
+    tabList
+  );
 
   const cssCenter = "flex justify-center items-center";
 
   return (
     <PokemonContext.Provider value={pokemon}>
       <article
-        className={clsx("h-screen", cssCenter, bgTypeClass(pokemon.types))}>
+        className={clsx("h-screen", cssCenter, bgTypeClass(pokemon.types))}
+      >
         <div
           className={clsx(
             "flex-initial flex flex-col h-full w-9/12",
@@ -93,30 +128,36 @@ function Detail() {
           )}
           style={{
             clipPath: "polygon(0 0, 100% 0%, 90% 100%, 0% 100%)",
-          }}>
+          }}
+        >
           <div className="w-full h-28 pl-36 flex items-center">
-            《 001 002 003 004 005 006 007 008 009 010 》
+            《 001 002 003 004 005 006 007 008 009 010
+            》(快速選單在這裡，施工中)
           </div>
           <div className="w-full h-20 pl-36 flex items-center gap-4">
             <NameTypes />
           </div>
           <div className="w-full h-16 pl-36 flex items-end border-b">
             <Tabs
-              tabs={["基本資訊", "升等招式", "傳授招式", "進化途徑"]}
-              action={actionTab}
+              tabs={tabList}
+              action={display.actionTab}
               taggleTab={taggleTab}
             />
           </div>
           <div className="w-full grow pl-36 pr-60 bg-white">
-            <div className="max-h-[28rem] overflow-y-auto mt-8">
-              {actionTab === "基本資訊" && <BaseInfo />}
-              {actionTab === "升等招式" && <Learnset.LevelingUp />}
-              {actionTab === "傳授招式" && <Learnset.Tutoring />}
+            <div className="max-h-[26rem] overflow-y-auto mt-4">
+              {display.actionTab === "基本資訊" && <BaseInfo />}
+              {display.actionTab === "升等招式" && <Learnset.LevelingUp />}
+              {display.actionTab === "傳授招式" && <Learnset.Tutoring />}
             </div>
           </div>
         </div>
         <div className={clsx("flex-initial h-full w-3/12", cssCenter)}>
-          <Hero />
+          <Hero
+            display={display}
+            taggleShiny={taggleShiny}
+            taggleGender={taggleGender}
+          />
         </div>
       </article>
     </PokemonContext.Provider>
