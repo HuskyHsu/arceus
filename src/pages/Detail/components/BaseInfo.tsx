@@ -34,8 +34,8 @@ const formatItems = (items: Item[]) => {
       return acc;
     },
     {
-      boss: { "1": "", "2": "null", boss: true },
-      normal: { "1": "", "2": "null", boss: false },
+      boss: { "1": "", "2": "", boss: true },
+      normal: { "1": "", "2": "", boss: false },
     }
   );
 
@@ -83,11 +83,11 @@ export function BaseInfo() {
     },
     {
       name: "道具一",
-      value: (items: Items) => items[1],
+      value: (items: Items) => items[1] || "-",
     },
     {
       name: "道具二",
-      value: (items: Items) => items[2],
+      value: (items: Items) => items[2] || "-",
     },
   ];
 
