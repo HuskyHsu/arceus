@@ -9,8 +9,8 @@ interface LinePorps {
 }
 
 interface TextPorps {
-  deg: number;
-  text: string;
+  deg?: number;
+  text?: string;
   value: number;
 }
 
@@ -39,7 +39,7 @@ const Line = ({ deg }: LinePorps) => {
 };
 
 const Text = ({ deg, text, value }: TextPorps) => {
-  const point = getPosition(deg, radius * 1.1);
+  const point = getPosition(deg as number, radius * 1.1);
 
   return (
     <>
@@ -95,7 +95,8 @@ export function RadarChart({
   return (
     <svg
       className="w-full h-auto"
-      viewBox={`0 0 ${center[0] * 2} ${center[1] * 2}`}>
+      viewBox={`0 0 ${center[0] * 2} ${center[1] * 2}`}
+    >
       <polygon points={bgPoints.flat().join(", ")} fill="#e9e9e9" />
       <g>
         <Line deg={-30} />
