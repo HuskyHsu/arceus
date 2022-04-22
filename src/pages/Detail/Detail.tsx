@@ -4,7 +4,7 @@ import clsx from "clsx";
 
 import { Pokemon } from "@/models";
 import { api, BASE_URL, bgTypeClass } from "@/utils";
-import { Tabs } from "@/components";
+import { Icon, Tabs } from "@/components";
 
 import { Hero, NameTypes, BaseInfo, Learnset } from "./components";
 
@@ -158,6 +158,9 @@ function Detail() {
             taggleShiny={taggleShiny}
             taggleGender={taggleGender}
           />
+          <div className="absolute bottom-0">
+            <Icon.PokemonBall className="h-[30rem] w-[30rem]" />
+          </div>
         </div>
       </article>
     </PokemonContext.Provider>

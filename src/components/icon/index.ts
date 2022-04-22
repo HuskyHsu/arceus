@@ -3,4 +3,5 @@ import { ReactComponent as Down } from "./Down.svg";
 import { ReactComponent as Male } from "./Male.svg";
 import { ReactComponent as Female } from "./Female.svg";
 import { ReactComponent as Shiny } from "./Shiny.svg";
-export { Search, Down, Male, Female, Shiny };
+import { ReactComponent as PokemonBall } from "./PokemonBall.svg";
+export { Search, Down, Male, Female, Shiny, PokemonBall };
