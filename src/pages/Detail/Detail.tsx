@@ -108,6 +108,36 @@ const usePokemon = (link: string, tabList: string[]) => {
   return { pokemon, display, taggleTab, taggleShiny, taggleGender };
 };
 
+const getSubList = (
+  pokemonList: BasePokemon[],
+  range: number,
+  link: string
+) => {
+  const listIndex = pokemonList.findIndex((pm) => pm.link === link);
+  const listRange = [
+    listIndex - range < 0 ? 0 : listIndex - range,
+    listIndex + range + 1 > pokemonList.length
+      ? pokemonList.length
+      : listIndex + range + 1,
+  ];
+  let subList = pokemonList.slice(...listRange);
+  if (subList.length < range * 2 + 1) {
+    if (listRange[0] === 0) {
+      subList = pokemonList
+        .slice(
+          pokemonList.length - range * 2 - 1 + subList.length,
+          pokemonList.length
+        )
+        .concat(subList);
+    } else if (listRange[1] === pokemonList.length) {
+      subList = subList.concat(
+        pokemonList.slice(0, range * 2 + 1 - subList.length)
+      );
+    }
+  }
+  return subList;
+};
+
 function Detail({ pokemonList }: Props) {
   let { link = "722" } = useParams();
   const tabList = ["基本資訊", "升等招式", "傳授招式", "進化途徑"];
@@ -119,14 +149,7 @@ function Detail({ pokemonList }: Props) {
   const cssCenter = "flex justify-center items-center";
 
   const range = 5;
-  const listIndex = pokemonList.findIndex((pm) => pm.link === link);
-  const listRange = [
-    listIndex - range < 0 ? 0 : listIndex - range,
-    listIndex + range + 1 > pokemonList.length
-      ? pokemonList.length
-      : listIndex + range + 1,
-  ];
-  const subList = pokemonList.slice(...listRange);
+  const subList = getSubList(pokemonList, range, link);
 
   return (
     <PokemonContext.Provider value={pokemon}>
@@ -148,20 +171,22 @@ function Detail({ pokemonList }: Props) {
             clipPath: "polygon(0 0, 100% 0%, 90% 100%, 0% 100%)",
           }}
         >
-          <div className="w-full h-20 pl-36 flex items-center gap-2 text-white">
+          <div className="w-full h-20 pl-36 flex items-center gap-2 text-xl text-white">
             《
             {subList.map((pm) => (
               <Link
                 key={pm.link}
                 to={`../${pm.link}`}
-                className={clsx({ "text-yellow-400": pm.link === link })}
+                className={clsx({
+                  "text-yellow-400": pm.link === link,
+                })}
               >
                 {zeroFilled(pm.id)}
               </Link>
             ))}
             》
           </div>
-          <div className="w-full h-20 pl-36 flex items-center gap-4">
+          <div className="w-full h-16 pl-36 flex items-center gap-4">
             <NameTypes />
           </div>
           <div className="w-full h-16 pl-36 flex items-end">
@@ -172,7 +197,7 @@ function Detail({ pokemonList }: Props) {
             />
           </div>
           <div className="w-full grow pl-36 pr-60 bg-white">
-            <div className="max-h-[26rem] overflow-y-auto mt-4">
+            <div className="max-h-[28rem] overflow-y-auto mt-4">
               {display.actionTab === "基本資訊" && <BaseInfo />}
               {display.actionTab === "升等招式" && <Learnset.LevelingUp />}
               {display.actionTab === "傳授招式" && <Learnset.Tutoring />}
