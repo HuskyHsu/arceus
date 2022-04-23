@@ -17,7 +17,7 @@ function MainRouter() {
           index
           element={<List pokemonList={pokemonList} filterModel={filterModel} />}
         />
-        <Route path=":link" element={<Detail />} />
+        <Route path=":link" element={<Detail pokemonList={pokemonList} />} />
       </Route>
     </Routes>
   );

@@ -1,12 +1,16 @@
 import { useEffect, useState, createContext } from "react";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import clsx from "clsx";
 
-import { Pokemon } from "@/models";
-import { api, BASE_URL, bgTypeClass } from "@/utils";
+import { BasePokemon, Pokemon } from "@/models";
+import { api, BASE_URL, bgTypeClass, zeroFilled } from "@/utils";
 import { Icon, Tabs } from "@/components";
 
 import { Hero, NameTypes, BaseInfo, Learnset } from "./components";
+
+interface Props {
+  pokemonList: BasePokemon[];
+}
 
 const defaultPokemon = {
   id: 0,
@@ -76,7 +80,7 @@ const usePokemon = (link: string, tabList: string[]) => {
         };
       });
     })();
-  }, []);
+  }, [link]);
 
   const taggleTab = (value: string) => {
     setDisplay((display) => {
@@ -92,7 +96,6 @@ const usePokemon = (link: string, tabList: string[]) => {
 
   const taggleGender = () => {
     setDisplay((display) => {
-      console.log(display);
       return {
         ...display,
         ...{
@@ -105,7 +108,7 @@ const usePokemon = (link: string, tabList: string[]) => {
   return { pokemon, display, taggleTab, taggleShiny, taggleGender };
 };
 
-function Detail() {
+function Detail({ pokemonList }: Props) {
   let { link = "722" } = useParams();
   const tabList = ["基本資訊", "升等招式", "傳授招式", "進化途徑"];
   const { pokemon, display, taggleTab, taggleShiny, taggleGender } = usePokemon(
@@ -114,6 +117,16 @@ function Detail() {
   );
 
   const cssCenter = "flex justify-center items-center";
+
+  const range = 5;
+  const listIndex = pokemonList.findIndex((pm) => pm.link === link);
+  const listRange = [
+    listIndex - range < 0 ? 0 : listIndex - range,
+    listIndex + range + 1 > pokemonList.length
+      ? pokemonList.length
+      : listIndex + range + 1,
+  ];
+  const subList = pokemonList.slice(...listRange);
 
   return (
     <PokemonContext.Provider value={pokemon}>
@@ -135,9 +148,18 @@ function Detail() {
             clipPath: "polygon(0 0, 100% 0%, 90% 100%, 0% 100%)",
           }}
         >
-          <div className="w-full h-28 pl-36 flex items-center">
-            《 001 002 003 004 005 006 007 008 009 010
-            》(快速選單在這裡，施工中)
+          <div className="w-full h-20 pl-36 flex items-center gap-2 text-white">
+            《
+            {subList.map((pm) => (
+              <Link
+                key={pm.link}
+                to={`../${pm.link}`}
+                className={clsx({ "text-yellow-400": pm.link === link })}
+              >
+                {zeroFilled(pm.id)}
+              </Link>
+            ))}
+            》
           </div>
           <div className="w-full h-20 pl-36 flex items-center gap-4">
             <NameTypes />
