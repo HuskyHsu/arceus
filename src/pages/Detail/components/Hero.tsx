@@ -112,7 +112,7 @@ function DisplayImage({ display, taggleShiny, taggleGender }: DisplayProps) {
 function IdString() {
   const pokemon = useContext(PokemonContext);
   return (
-    <span className="absolute bottom-4 right-4 text-white text-7xl">
+    <span className="hidden md:block absolute bottom-4 right-4 text-white text-7xl">
       #{zeroFilled(pokemon.id)}
     </span>
   );

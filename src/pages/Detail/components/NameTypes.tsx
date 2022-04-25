@@ -3,6 +3,7 @@ import clsx from "clsx";
 
 import { TypeIcon } from "@/components";
 import { PokemonContext } from "../Detail";
+import { zeroFilled } from "@/utils";
 
 function Types() {
   const pokemon = useContext(PokemonContext);
@@ -32,14 +33,21 @@ function Types() {
 function Name() {
   const pokemon = useContext(PokemonContext);
   return (
-    <span className="text-3xl leading-none">
-      {pokemon.name}{" "}
-      {pokemon.altForm && (
-        <span className="text-sm text-slate-600 leading-none">
-          ({pokemon.altForm})
-        </span>
-      )}
-    </span>
+    <>
+      <span className="text-3xl leading-none">
+        {pokemon.name}{" "}
+        {pokemon.altForm && (
+          <span className="text-sm text-slate-600 leading-none">
+            ({pokemon.altForm})
+          </span>
+        )}
+        {window.screen.width < 768 && (
+          <span className="text-sm text-slate-600 leading-none">
+            {`#${zeroFilled(pokemon.id)}`}
+          </span>
+        )}
+      </span>
+    </>
   );
 }
 
@@ -47,6 +55,7 @@ export function NameTypes() {
   return (
     <>
       <Name />
+
       <Types />
     </>
   );
