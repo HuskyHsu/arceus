@@ -94,12 +94,13 @@ const usePokemon = (link: string, tabList: string[]) => {
     });
   };
 
-  const taggleGender = () => {
+  const taggleGender = (gender: string) => {
     setDisplay((display) => {
       return {
         ...display,
         ...{
-          selectGender: display.selectGender === "male" ? "female" : "male",
+          selectGender:
+            display.selectGender !== gender ? gender : display.selectGender,
         },
       };
     });
