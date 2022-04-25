@@ -147,9 +147,12 @@ function Detail({ pokemonList }: Props) {
     tabList
   );
 
-  const cssCenter = "flex justify-center items-center";
+  const cssCenter = "flex md:justify-center items-center";
 
-  const range = 5;
+  const isMobile = window.screen.width < 768;
+  const range = isMobile ? 1 : 5;
+  const clipPath = isMobile ? "" : "polygon(0 0, 100% 0%, 90% 100%, 0% 100%)";
+
   const subList = getSubList(pokemonList, range, link);
 
   return (
@@ -158,49 +161,59 @@ function Detail({ pokemonList }: Props) {
         className={clsx(
           "h-screen",
           cssCenter,
-          bgTypeClass(pokemon.types),
-          "relative overflow-hidden",
+          "flex-col md:flex-row",
+          isMobile ? "bg-inherit" : bgTypeClass(pokemon.types),
+          "relative overflow-y-auto md:overflow-hidden",
           "text-slate-600"
         )}
       >
         <div
           className={clsx(
-            "flex-initial flex flex-col h-full w-9/12",
+            "flex-initial flex flex-col h-full w-full md:w-9/12",
             cssCenter,
-            "bg-gray-200"
+            "bg-gray-200",
+            "order-2 md:order-1"
           )}
           style={{
-            clipPath: "polygon(0 0, 100% 0%, 90% 100%, 0% 100%)",
+            clipPath: clipPath,
           }}
         >
-          <div className="w-full h-24 pl-36 flex items-center gap-4 text-lg text-slate-300">
+          <div className="w-full h-24 md:pl-36 flex items-center justify-center md:justify-start gap-4 overflow-x-auto text-lg text-slate-300">
             <QuickList pokemonList={subList} link={link} />
           </div>
-          <div className="w-full h-12 pl-36 flex items-center gap-4">
+          <div className="w-full h-12 md:pl-36 flex items-center justify-center md:justify-start gap-4">
             <NameTypes />
           </div>
-          <div className="w-full h-16 pl-36 flex items-end">
+          <div className="w-full h-16 md:pl-36 flex items-end justify-center md:justify-start">
             <Tabs
               tabs={tabList}
               action={display.actionTab}
               taggleTab={taggleTab}
             />
           </div>
-          <div className="w-full grow pl-36 pr-60 bg-white">
-            <div className="max-h-[28rem] overflow-y-auto mt-4">
+          <div className="w-full grow md:pl-36 md:pr-60 bg-white">
+            <div className="max-h-[28rem] overflow-y-auto mt-4 px-4 md:p-0">
               {display.actionTab === "基本資訊" && <BaseInfo />}
               {display.actionTab === "升等招式" && <Learnset.LevelingUp />}
               {display.actionTab === "傳授招式" && <Learnset.Tutoring />}
             </div>
           </div>
         </div>
-        <div className={clsx("flex-initial h-full w-3/12", cssCenter)}>
+        <div
+          className={clsx(
+            "flex-initial max-h-min md:h-full md:w-3/12",
+            "flex justify-center",
+            cssCenter,
+            isMobile ? bgTypeClass(pokemon.types) : "bg-inherit",
+            "order-1 md:order-2"
+          )}
+        >
           <Hero
             display={display}
             taggleShiny={taggleShiny}
             taggleGender={taggleGender}
           />
-          <div className="absolute bottom-0">
+          <div className="hidden md:block absolute bottom-0">
             <Icon.PokemonBall className="h-[30rem] w-[30rem]" />
           </div>
         </div>
