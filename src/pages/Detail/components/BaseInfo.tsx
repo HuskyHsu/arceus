@@ -94,21 +94,21 @@ export function BaseInfo() {
   const items = formatItems(pokemon.items);
 
   return (
-    <div className="grid grid-rows-2 grid-flow-col gap-2">
-      <div className="">
+    <div className="grid grid-rows-5 grid-cols-3 gap-2">
+      <div className="col-span-2 row-span-3">
         <h4 className="text-lg">取得方式</h4>
         <Table feilds={getMethodsFeilds} data={pokemon.getMethods} />
       </div>
-      <div className="">
-        <h4 className="text-lg mt-4">攜帶道具</h4>
-        <Table feilds={itemsFeilds} data={items} />
-      </div>
-      <div className="row-span-2">
+      <div className="row-span-5">
         <h4 className="text-lg">種族值</h4>
         <RadarChart
           stats={pokemon.stats}
           color={getTypeColor(pokemon.types[0])}
         />
+      </div>
+      <div className="col-span-2 row-span-2">
+        <h4 className="text-lg mt-4">攜帶道具</h4>
+        <Table feilds={itemsFeilds} data={items} />
       </div>
     </div>
   );

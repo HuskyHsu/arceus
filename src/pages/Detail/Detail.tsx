@@ -1,12 +1,12 @@
 import { useEffect, useState, createContext } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import clsx from "clsx";
 
 import { BasePokemon, Pokemon } from "@/models";
-import { api, BASE_URL, bgTypeClass, zeroFilled } from "@/utils";
+import { api, BASE_URL, bgTypeClass } from "@/utils";
 import { Icon, Tabs } from "@/components";
 
-import { Hero, NameTypes, BaseInfo, Learnset } from "./components";
+import { Hero, NameTypes, BaseInfo, Learnset, QuickList } from "./components";
 
 interface Props {
   pokemonList: BasePokemon[];
@@ -159,7 +159,8 @@ function Detail({ pokemonList }: Props) {
           "h-screen",
           cssCenter,
           bgTypeClass(pokemon.types),
-          "relative overflow-hidden"
+          "relative overflow-hidden",
+          "text-slate-600"
         )}
       >
         <div
@@ -172,22 +173,10 @@ function Detail({ pokemonList }: Props) {
             clipPath: "polygon(0 0, 100% 0%, 90% 100%, 0% 100%)",
           }}
         >
-          <div className="w-full h-20 pl-36 flex items-center gap-2 text-xl text-white">
-            《
-            {subList.map((pm) => (
-              <Link
-                key={pm.link}
-                to={`../${pm.link}`}
-                className={clsx({
-                  "text-yellow-400": pm.link === link,
-                })}
-              >
-                {zeroFilled(pm.id)}
-              </Link>
-            ))}
-            》
+          <div className="w-full h-24 pl-36 flex items-center gap-4 text-lg text-slate-300">
+            <QuickList pokemonList={subList} link={link} />
           </div>
-          <div className="w-full h-16 pl-36 flex items-center gap-4">
+          <div className="w-full h-12 pl-36 flex items-center gap-4">
             <NameTypes />
           </div>
           <div className="w-full h-16 pl-36 flex items-end">
