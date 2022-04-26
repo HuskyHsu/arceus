@@ -61,6 +61,7 @@ interface Evolution {
   before: BasePokemon;
   after: BasePokemon;
   require: string;
+  evolution?: Evolution[];
 }
 
 export interface Item {
