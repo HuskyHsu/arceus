@@ -6,7 +6,14 @@ import { BasePokemon, Pokemon } from "@/models";
 import { api, BASE_URL, bgTypeClass } from "@/utils";
 import { Icon, Tabs } from "@/components";
 
-import { Hero, NameTypes, BaseInfo, Learnset, QuickList } from "./components";
+import {
+  QuickList,
+  Hero,
+  NameTypes,
+  BaseInfo,
+  Learnset,
+  Evolution,
+} from "./components";
 
 interface Props {
   pokemonList: BasePokemon[];
@@ -132,7 +139,7 @@ const getSubList = (
 };
 
 function Detail({ pokemonList }: Props) {
-  let { link = "722" } = useParams();
+  let { link = "001" } = useParams();
   const tabList = ["基本資訊", "升等招式", "傳授招式", "進化途徑"];
   const { pokemon, display, taggleTab, taggleShiny, taggleGender } = usePokemon(
     link,
@@ -188,6 +195,7 @@ function Detail({ pokemonList }: Props) {
               {display.actionTab === "基本資訊" && <BaseInfo />}
               {display.actionTab === "升等招式" && <Learnset.LevelingUp />}
               {display.actionTab === "傳授招式" && <Learnset.Tutoring />}
+              {display.actionTab === "進化途徑" && <Evolution />}
             </div>
           </div>
         </div>

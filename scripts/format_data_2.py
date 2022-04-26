@@ -18,17 +18,30 @@ NameSuffix = {
     "天空形態": "S",
 }
 
+
+def getLink(pm):
+    pm["link"] = str(pm["id"]).zfill(3)
+    pm["linkPid"] = str(pm["pid"]).zfill(3)
+    if "altForm" in pm and pm["altForm"] in NameSuffix:
+        pm["link"] += NameSuffix[pm["altForm"]]
+        pm["linkPid"] += NameSuffix[pm["altForm"]]
+
+
 if __name__ == "__main__":
 
     with open("../public/data/pokemon_full.json", "rt", encoding="utf-8") as fin:
         all_pm = json.load(fin)
 
     for pm in all_pm:
-        pm["link"] = str(pm["id"]).zfill(3)
-        pm["linkPid"] = str(pm["pid"]).zfill(3)
-        if "altForm" in pm and pm["altForm"] in NameSuffix:
-            pm["link"] += NameSuffix[pm["altForm"]]
-            pm["linkPid"] += NameSuffix[pm["altForm"]]
+        if "evolution" in pm:
+            for sub in pm["evolution"]:
+                getLink(sub["before"])
+                getLink(sub["after"])
+
+                if "evolution" in sub:
+                    for subb in sub["evolution"]:
+                        getLink(subb["before"])
+                        getLink(subb["after"])
 
         with open(
             f"../public/data/pokemon/{pm['link']}.json", "wt", encoding="utf-8"
@@ -36,18 +49,4 @@ if __name__ == "__main__":
             fout.write(json.dumps(pm, ensure_ascii=False))
 
     with open("../public/data/pokemon_full_new.json", "wt", encoding="utf-8") as fout:
-        fout.write(json.dumps(all_pm, ensure_ascii=False))
-
-
-    with open("../public/data/pokemon.json", "rt", encoding="utf-8") as fin:
-        all_pm = json.load(fin)
-
-    for pm in all_pm:
-        pm["link"] = str(pm["id"]).zfill(3)
-        pm["linkPid"] = str(pm["pid"]).zfill(3)
-        if "altForm" in pm and pm["altForm"] in NameSuffix:
-            pm["link"] += NameSuffix[pm["altForm"]]
-            pm["linkPid"] += NameSuffix[pm["altForm"]]
-
-    with open("../public/data/pokemon_new.json", "wt", encoding="utf-8") as fout:
         fout.write(json.dumps(all_pm, ensure_ascii=False))
