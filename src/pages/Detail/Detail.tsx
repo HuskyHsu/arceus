@@ -23,15 +23,6 @@ const defaultPokemon = {
   items: [],
   link: "",
   learnset: { levelingUp: [], tutoring: [] },
-  previous: {
-    id: 0,
-    pid: 0,
-    name: "",
-    types: [],
-    genderDiff: false,
-    link: "",
-  },
-  next: { id: 0, pid: 0, name: "", types: [], genderDiff: false, link: "" },
   imgPath: {},
 };
 

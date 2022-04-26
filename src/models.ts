@@ -83,8 +83,6 @@ export interface Pokemon extends BasePokemon {
   evolution?: Evolution[];
   items: Item[];
   learnset: Learnset;
-  previous: BasePokemon | null;
-  next: BasePokemon | null;
   imgPath: ImageMap;
 }
 interface TypeShow {
