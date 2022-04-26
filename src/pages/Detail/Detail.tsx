@@ -22,6 +22,7 @@ const defaultPokemon = {
   stats: [0, 0, 0, 0, 0, 0],
   items: [],
   link: "",
+  linkPid: "",
   learnset: { levelingUp: [], tutoring: [] },
   imgPath: {},
 };
@@ -41,7 +42,7 @@ const usePokemon = (link: string, tabList: string[]) => {
   };
 
   const getImgPath = (pm: Pokemon) => {
-    const basePath = `${BASE_URL}image/pokemon/${pm.link}`;
+    const basePath = `${BASE_URL}image/pokemon/${pm.linkPid}`;
     let imageMap = null;
     if (pm.genderDiff) {
       imageMap = {

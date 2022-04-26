@@ -1,5 +1,4 @@
 import json
-from os import path
 
 NameSuffix = {
     "洗翠": "H",
@@ -25,12 +24,30 @@ if __name__ == "__main__":
         all_pm = json.load(fin)
 
     for pm in all_pm:
-        del pm["previous"]
-        del pm["next"]
+        pm["link"] = str(pm["id"]).zfill(3)
+        pm["linkPid"] = str(pm["pid"]).zfill(3)
+        if "altForm" in pm and pm["altForm"] in NameSuffix:
+            pm["link"] += NameSuffix[pm["altForm"]]
+            pm["linkPid"] += NameSuffix[pm["altForm"]]
+
         with open(
             f"../public/data/pokemon/{pm['link']}.json", "wt", encoding="utf-8"
         ) as fout:
             fout.write(json.dumps(pm, ensure_ascii=False))
 
     with open("../public/data/pokemon_full_new.json", "wt", encoding="utf-8") as fout:
+        fout.write(json.dumps(all_pm, ensure_ascii=False))
+
+
+    with open("../public/data/pokemon.json", "rt", encoding="utf-8") as fin:
+        all_pm = json.load(fin)
+
+    for pm in all_pm:
+        pm["link"] = str(pm["id"]).zfill(3)
+        pm["linkPid"] = str(pm["pid"]).zfill(3)
+        if "altForm" in pm and pm["altForm"] in NameSuffix:
+            pm["link"] += NameSuffix[pm["altForm"]]
+            pm["linkPid"] += NameSuffix[pm["altForm"]]
+
+    with open("../public/data/pokemon_new.json", "wt", encoding="utf-8") as fout:
         fout.write(json.dumps(all_pm, ensure_ascii=False))

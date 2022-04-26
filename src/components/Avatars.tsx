@@ -12,7 +12,7 @@ interface Props extends BaseProps {
 export function Avatars({ pm, style = "", size = "big" }: Props) {
   const center =
     "absolute transform inset-1/2 -translate-x-1/2 -translate-y-1/2";
-  const imgPath = `${BASE_URL}image/icon/${pm.link}.png`;
+  const imgPath = `${BASE_URL}image/icon/${pm.linkPid}.png`;
 
   return (
     <header

@@ -50,6 +50,7 @@ export interface BasePokemon {
   genderDiff: boolean;
   locations?: Set<string>;
   link: string;
+  linkPid: string;
 }
 
 export interface BaseProps {
