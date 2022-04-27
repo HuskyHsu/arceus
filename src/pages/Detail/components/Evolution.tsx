@@ -1,8 +1,44 @@
 import { useContext } from "react";
 
-import { Avatars } from "@/components";
+import { BasePokemon } from "@/models";
+import { Avatars, Icon } from "@/components";
 import { PokemonContext } from "../Detail";
 import clsx from "clsx";
+
+interface InfoProps {
+  text: string;
+  className: string;
+}
+
+interface AvatarsProps {
+  pm: BasePokemon;
+  className: string;
+}
+
+function Info({ text, className }: InfoProps) {
+  return (
+    <div
+      className={clsx(
+        className,
+        "text-center flex flex-col justify-center items-center"
+      )}
+    >
+      <Icon.Forward className={clsx("w-full", "fill-slate-600")} />
+      <span className={clsx("text-sm")}>{text}</span>
+    </div>
+  );
+}
+
+function PokemonAvatars({ pm, className }: AvatarsProps) {
+  return (
+    <div
+      className={clsx(className, "flex flex-col justify-center items-center")}
+    >
+      <Avatars pm={pm} />
+      <span>{pm.name}</span>
+    </div>
+  );
+}
 
 export function Evolution() {
   const pokemon = useContext(PokemonContext);
@@ -36,37 +72,37 @@ export function Evolution() {
 
     if (i === 0) {
       rowElement.push(
-        <div
+        <PokemonAvatars
           key={keyId}
           className={
             rows === "row-span-1" && secRows === "row-span-2"
               ? "row-span-2"
               : rows
-          }>
-          <Avatars pm={evolution.before} />
-        </div>
+          }
+          pm={evolution.before}
+        />
       );
     }
 
     rowElement = rowElement.concat([
-      <p
+      <Info
         key={keyId + 1}
         className={
           rows === "row-span-1" && secRows === "row-span-2"
             ? "row-span-2"
             : "row-span-1"
-        }>
-        {evolution.require}
-      </p>,
-      <div
+        }
+        text={evolution.require}
+      />,
+      <PokemonAvatars
         key={keyId + 2}
         className={
           rows === "row-span-1" && secRows === "row-span-2"
             ? "row-span-2"
             : "row-span-1"
-        }>
-        <Avatars pm={evolution.after} />
-      </div>,
+        }
+        pm={evolution.after}
+      />,
     ]);
 
     acc = acc.concat(rowElement.slice(0));
@@ -74,8 +110,12 @@ export function Evolution() {
     if (evolution.evolution) {
       evolution.evolution.forEach((evolution_, j) => {
         acc = acc.concat([
-          <p key={keyId}>{evolution_.require}</p>,
-          <Avatars key={keyId + 1} pm={evolution_.after} />,
+          <Info key={keyId} className={""} text={evolution_.require} />,
+          <PokemonAvatars
+            key={keyId + 1}
+            className={""}
+            pm={evolution_.after}
+          />,
         ]);
         keyId += 2;
       });
@@ -84,7 +124,7 @@ export function Evolution() {
   }, [] as JSX.Element[]);
 
   return (
-    <div className={clsx("grid justify-center items-center", cols)}>
+    <div className={clsx("grid gap-y-4 justify-center items-center", cols)}>
       {evolutionPath}
     </div>
   );

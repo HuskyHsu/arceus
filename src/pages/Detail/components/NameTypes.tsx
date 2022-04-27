@@ -37,12 +37,12 @@ function Name() {
       <span className="text-3xl leading-none">
         {pokemon.name}{" "}
         {pokemon.altForm && (
-          <span className="text-sm text-slate-600 leading-none">
+          <span className="text-sm text-slate-100 leading-none">
             ({pokemon.altForm})
           </span>
         )}
         {window.screen.width < 768 && (
-          <span className="text-sm text-slate-600 leading-none">
+          <span className="text-sm text-slate-100 leading-none">
             {`#${zeroFilled(pokemon.id)}`}
           </span>
         )}
