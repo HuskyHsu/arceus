@@ -170,20 +170,26 @@ function Detail({ pokemonList }: Props) {
           className={clsx(
             "flex-initial flex flex-col h-full w-full md:w-9/12",
             cssCenter,
-            "bg-gray-200 bg-no-repeat bg-contain",
+            "bg-gray-200 bg-repeat",
             "order-2 md:order-1"
           )}
           style={{
             clipPath: clipPath,
-            backgroundImage: `url(${BASE_URL}image/brush_1.png)`,
-            backgroundSize: "350px 60px",
-            backgroundPosition: isMobile ? "2rem 5.5rem" : "8rem 5.5rem",
+            backgroundImage: `url(${BASE_URL}image/bg-weave-light.jpg)`,
           }}
         >
           <div className="w-full h-24 md:pl-36 flex items-center justify-center md:justify-start gap-4 overflow-x-auto text-lg text-slate-300">
             <QuickList pokemonList={subList} link={link} />
           </div>
-          <div className="w-full h-12 md:pl-36 flex items-center justify-center md:justify-start gap-4 text-white">
+          <div
+            className="w-full h-12 md:pl-36 flex items-center justify-center md:justify-start gap-4 text-white bg-no-repeat bg-contain"
+            style={{
+              clipPath: clipPath,
+              backgroundImage: `url(${BASE_URL}image/brush_1.png)`,
+              backgroundSize: "300px 60px",
+              backgroundPosition: isMobile ? "2rem 0rem" : "8rem 0rem",
+            }}
+          >
             <NameTypes />
           </div>
           <div className="w-full h-16 md:pl-36 flex items-end justify-center md:justify-start">
@@ -193,15 +199,7 @@ function Detail({ pokemonList }: Props) {
               taggleTab={taggleTab}
             />
           </div>
-          <div
-            className="w-full grow md:pl-36 md:pr-60 bg-white bg-cover"
-            style={
-              {
-                // backgroundImage: `url(https://i.imgur.com/bX4nohg.jpg)`,
-                // mixBlendMode: "multiply",
-              }
-            }
-          >
+          <div className="w-full grow md:pl-36 md:pr-60 bg-white">
             <div className="max-h-[28rem] overflow-y-auto mt-4 px-4 md:p-0">
               {display.actionTab === "基本資訊" && <BaseInfo />}
               {display.actionTab === "升等招式" && <Learnset.LevelingUp />}

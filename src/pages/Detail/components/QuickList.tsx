@@ -21,9 +21,10 @@ export function QuickList({ pokemonList, link }: Props) {
         <Link
           key={pm.link}
           to={`/${pm.link}`}
-          className={clsx("leading-normal", {
-            "text-slate-600": pm.link === link,
-          })}
+          className={clsx(
+            "leading-normal",
+            pm.link === link ? "text-white" : "text-slate-600"
+          )}
         >
           <ul className="flex flex-col items-center">
             <li>
