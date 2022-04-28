@@ -196,13 +196,7 @@ function Detail({ pokemonList }: Props) {
               taggleTab={taggleTab}
             />
           </div>
-          <div
-            className="w-full grow md:pl-36 md:pr-60 bg-white"
-            // style={{
-            //   backgroundImage:
-            //     "url(https://legends.pokemon.com/assets/bg-paper.jpg)",
-            // }}
-          >
+          <div className="w-full grow md:pl-36 md:pr-60 bg-white">
             <div className="max-h-[28rem] overflow-y-auto mt-4 px-4 md:p-0">
               {display.actionTab === "基本資訊" && <BaseInfo />}
               {display.actionTab === "升等招式" && <Learnset.LevelingUp />}
@@ -234,6 +228,16 @@ function Detail({ pokemonList }: Props) {
               className={clsx(isMobile ? "h-60 w-60" : "h-[30rem] w-[30rem]")}
             />
           </div>
+          <div
+            className={clsx(
+              "absolute top-0",
+              "w-full",
+              isMobile ? "h-60" : "h-full",
+              "bg-repeat-x bg-bottom"
+            )}
+            style={{
+              backgroundImage: `url(${BASE_URL}image/preorder-button-bg.png)`,
+            }}></div>
         </div>
       </article>
     </PokemonContext.Provider>
