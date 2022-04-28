@@ -33,16 +33,6 @@ if __name__ == "__main__":
         all_pm = json.load(fin)
 
     for pm in all_pm:
-        if "evolution" in pm:
-            for sub in pm["evolution"]:
-                getLink(sub["before"])
-                getLink(sub["after"])
-
-                if "evolution" in sub:
-                    for subb in sub["evolution"]:
-                        getLink(subb["before"])
-                        getLink(subb["after"])
-
         with open(
             f"../public/data/pokemon/{pm['link']}.json", "wt", encoding="utf-8"
         ) as fout:

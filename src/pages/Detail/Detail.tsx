@@ -75,7 +75,13 @@ const usePokemon = (link: string, tabList: string[]) => {
       setDisplay((display) => {
         return {
           ...display,
-          ...{ selectGender: data.genderDiff ? "male" : "same" },
+          ...{
+            selectGender: data.genderDiff
+              ? data.altForm === "雌性"
+                ? "female"
+                : "male"
+              : "same",
+          },
         };
       });
     })();
