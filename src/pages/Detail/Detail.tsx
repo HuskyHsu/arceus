@@ -205,7 +205,7 @@ function Detail({ pokemonList }: Props) {
               taggleTab={taggleTab}
             />
           </div>
-          <div className="w-full grow md:pl-36 md:pr-60 bg-white">
+          <div className="w-full grow md:pl-36 md:pr-60 bg-white flex items-center justify-center">
             <div className="max-h-[28rem] overflow-y-auto mt-4 px-4 md:p-0">
               {display.actionTab === "基本資訊" && <BaseInfo />}
               {display.actionTab === "升等招式" && <Learnset.LevelingUp />}
