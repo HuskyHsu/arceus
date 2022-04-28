@@ -66,7 +66,7 @@ export function Evolution() {
     let rowElement = [] as JSX.Element[];
 
     let secRows = "row-span-1";
-    if (evolution.evolution?.length || 0 > 1) {
+    if ((evolution.evolution?.length || 0) > 1) {
       secRows = "row-span-2";
     }
 
