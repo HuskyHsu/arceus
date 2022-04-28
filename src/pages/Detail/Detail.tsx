@@ -164,8 +164,7 @@ function Detail({ pokemonList }: Props) {
           isMobile ? "bg-inherit" : bgTypeClass(pokemon.types),
           "relative overflow-y-auto md:overflow-hidden",
           "text-slate-600"
-        )}
-      >
+        )}>
         <div
           className={clsx(
             "flex-initial flex flex-col h-full w-full md:w-9/12",
@@ -176,8 +175,7 @@ function Detail({ pokemonList }: Props) {
           style={{
             clipPath: clipPath,
             backgroundImage: `url(${BASE_URL}image/bg-weave-light.jpg)`,
-          }}
-        >
+          }}>
           <div className="w-full h-24 md:pl-36 flex items-center justify-center md:justify-start gap-4 overflow-x-auto text-lg text-slate-300">
             <QuickList pokemonList={subList} link={link} />
           </div>
@@ -186,10 +184,9 @@ function Detail({ pokemonList }: Props) {
             style={{
               clipPath: clipPath,
               backgroundImage: `url(${BASE_URL}image/brush_1.png)`,
-              backgroundSize: "300px 60px",
-              backgroundPosition: isMobile ? "2rem 0rem" : "8rem 0rem",
-            }}
-          >
+              backgroundSize: isMobile ? "350px 40px" : "300px 40px",
+              backgroundPosition: isMobile ? "2rem 0.3rem" : "8rem 0.4rem",
+            }}>
             <NameTypes />
           </div>
           <div className="w-full h-16 md:pl-36 flex items-end justify-center md:justify-start">
@@ -210,13 +207,12 @@ function Detail({ pokemonList }: Props) {
         </div>
         <div
           className={clsx(
-            "flex-initial max-h-min md:h-full md:w-3/12",
+            "flex-initial h-60 w-full max-h-min md:h-full md:w-3/12",
             "flex justify-center",
             cssCenter,
             isMobile ? bgTypeClass(pokemon.types) : "bg-inherit",
             "order-1 md:order-2"
-          )}
-        >
+          )}>
           <Hero
             display={display}
             taggleShiny={taggleShiny}

@@ -27,8 +27,7 @@ function Button({ children, status, onClick }: ButtonProps) {
       )}
       onClick={() => {
         onClick();
-      }}
-    >
+      }}>
       {children}
     </button>
   );
@@ -40,8 +39,7 @@ function GenderButton({ display, taggleGender }: DisplayProps) {
     <>
       <Button
         onClick={() => taggleGender("male")}
-        status={display.selectGender === "male"}
-      >
+        status={display.selectGender === "male"}>
         <Icon.Male
           className={clsx(
             "h-6 w-6",
@@ -53,8 +51,7 @@ function GenderButton({ display, taggleGender }: DisplayProps) {
       </Button>
       <Button
         onClick={() => taggleGender("female")}
-        status={display.selectGender === "female"}
-      >
+        status={display.selectGender === "female"}>
         <Icon.Female
           className={clsx(
             "h-6 w-6",
@@ -83,7 +80,7 @@ function DisplayImage({ display, taggleShiny, taggleGender }: DisplayProps) {
 
   return (
     <>
-      <div className="w-3/5 md:w-max md:-ml-72 z-10">
+      <div className="w-3/5 h-60 md:w-max md:-ml-72 z-10">
         <img src={getShowUrl()} alt="" />
       </div>
       <ul className="absolute right-6 md:right-20 z-20">
