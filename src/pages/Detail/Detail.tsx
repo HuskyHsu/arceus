@@ -196,7 +196,13 @@ function Detail({ pokemonList }: Props) {
               taggleTab={taggleTab}
             />
           </div>
-          <div className="w-full grow md:pl-36 md:pr-60 bg-white">
+          <div
+            className="w-full grow md:pl-36 md:pr-60 bg-white"
+            // style={{
+            //   backgroundImage:
+            //     "url(https://legends.pokemon.com/assets/bg-paper.jpg)",
+            // }}
+          >
             <div className="max-h-[28rem] overflow-y-auto mt-4 px-4 md:p-0">
               {display.actionTab === "基本資訊" && <BaseInfo />}
               {display.actionTab === "升等招式" && <Learnset.LevelingUp />}
@@ -211,15 +217,22 @@ function Detail({ pokemonList }: Props) {
             "flex justify-center",
             cssCenter,
             isMobile ? bgTypeClass(pokemon.types) : "bg-inherit",
-            "order-1 md:order-2"
+            "order-1 md:order-2",
+            "bg-bottom bg-no-repeat"
           )}>
           <Hero
             display={display}
             taggleShiny={taggleShiny}
             taggleGender={taggleGender}
           />
-          <div className="hidden md:block absolute bottom-0">
-            <Icon.PokemonBall className="h-[30rem] w-[30rem]" />
+          <div
+            className={clsx(
+              "absolute",
+              isMobile ? "top-0 right-0" : "bottom-0"
+            )}>
+            <Icon.PokemonBall
+              className={clsx(isMobile ? "h-60 w-60" : "h-[30rem] w-[30rem]")}
+            />
           </div>
         </div>
       </article>
