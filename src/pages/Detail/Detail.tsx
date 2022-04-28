@@ -185,7 +185,7 @@ function Detail({ pokemonList }: Props) {
               clipPath: clipPath,
               backgroundImage: `url(${BASE_URL}image/brush_1.png)`,
               backgroundSize: isMobile ? "350px 40px" : "300px 40px",
-              backgroundPosition: isMobile ? "2rem 0.3rem" : "8rem 0.4rem",
+              backgroundPosition: isMobile ? "center" : "8rem 0.4rem",
             }}>
             <NameTypes />
           </div>
