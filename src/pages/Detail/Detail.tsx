@@ -164,7 +164,8 @@ function Detail({ pokemonList }: Props) {
           isMobile ? "bg-inherit" : bgTypeClass(pokemon.types),
           "relative overflow-y-auto md:overflow-hidden",
           "text-slate-600"
-        )}>
+        )}
+      >
         <div
           className={clsx(
             "flex-initial flex flex-col h-full w-full md:w-9/12",
@@ -175,7 +176,8 @@ function Detail({ pokemonList }: Props) {
           style={{
             clipPath: clipPath,
             backgroundImage: `url(${BASE_URL}image/bg-weave-light.jpg)`,
-          }}>
+          }}
+        >
           <div className="w-full h-24 md:pl-36 flex items-center justify-center md:justify-start gap-4 overflow-x-auto text-lg text-slate-300">
             <QuickList pokemonList={subList} link={link} />
           </div>
@@ -186,7 +188,8 @@ function Detail({ pokemonList }: Props) {
               backgroundImage: `url(${BASE_URL}image/brush_1.png)`,
               backgroundSize: isMobile ? "350px 40px" : "350px 40px",
               backgroundPosition: isMobile ? "center" : "8rem 0.4rem",
-            }}>
+            }}
+          >
             <NameTypes />
           </div>
           <div className="w-full h-16 md:pl-36 flex items-end justify-center md:justify-start">
@@ -213,7 +216,8 @@ function Detail({ pokemonList }: Props) {
             isMobile ? bgTypeClass(pokemon.types) : "bg-inherit",
             "order-1 md:order-2",
             "bg-bottom bg-no-repeat"
-          )}>
+          )}
+        >
           <Hero
             display={display}
             taggleShiny={taggleShiny}
@@ -223,21 +227,23 @@ function Detail({ pokemonList }: Props) {
             className={clsx(
               "absolute",
               isMobile ? "top-0 right-0" : "bottom-0"
-            )}>
+            )}
+          >
             <Icon.PokemonBall
               className={clsx(isMobile ? "h-60 w-60" : "h-[30rem] w-[30rem]")}
             />
           </div>
           <div
             className={clsx(
-              "absolute top-0",
+              "absolute",
               "w-full",
-              isMobile ? "h-60" : "h-full",
+              isMobile ? "h-60 top-0" : "h-28 bottom-0",
               "bg-repeat-x bg-bottom"
             )}
             style={{
               backgroundImage: `url(${BASE_URL}image/preorder-button-bg.png)`,
-            }}></div>
+            }}
+          ></div>
         </div>
       </article>
     </PokemonContext.Provider>

@@ -27,19 +27,20 @@ function Button({ children, status, onClick }: ButtonProps) {
       )}
       onClick={() => {
         onClick();
-      }}>
+      }}
+    >
       {children}
     </button>
   );
 }
 
 function GenderButton({ display, taggleGender }: DisplayProps) {
-  const pokemon = useContext(PokemonContext);
   return (
     <>
       <Button
         onClick={() => taggleGender("male")}
-        status={display.selectGender === "male"}>
+        status={display.selectGender === "male"}
+      >
         <Icon.Male
           className={clsx(
             "h-6 w-6",
@@ -51,7 +52,8 @@ function GenderButton({ display, taggleGender }: DisplayProps) {
       </Button>
       <Button
         onClick={() => taggleGender("female")}
-        status={display.selectGender === "female"}>
+        status={display.selectGender === "female"}
+      >
         <Icon.Female
           className={clsx(
             "h-6 w-6",
