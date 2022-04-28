@@ -80,7 +80,7 @@ function DisplayImage({ display, taggleShiny, taggleGender }: DisplayProps) {
 
   return (
     <>
-      <div className="w-3/5 h-60 md:w-max md:-ml-72 z-10">
+      <div className="w-3/5 h-60 md:w-max md:-ml-72 z-10 flex justify-center items-center">
         <img src={getShowUrl()} alt="" />
       </div>
       <ul className="absolute right-6 md:right-20 z-20">
