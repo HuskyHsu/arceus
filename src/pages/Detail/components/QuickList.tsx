@@ -24,14 +24,13 @@ export function QuickList({ pokemonList, link }: Props) {
           className={clsx(
             "leading-normal",
             pm.link === link ? "text-white" : "text-slate-600"
-          )}
-        >
+          )}>
           <ul className="flex flex-col items-center">
             <li>
               <Avatars
                 pm={pm}
                 size={"small"}
-                style={pm.link === link ? "outline outline-[3px]" : ""}
+                style={pm.link === link ? "ring-[3px]" : ""}
               />
             </li>
             <li className="-m-1">{zeroFilled(pm.id)}</li>

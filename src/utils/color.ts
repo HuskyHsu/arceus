@@ -63,26 +63,26 @@ enum BgFromClass {
   "水" = "from-type-water/60",
 }
 
-enum BeforeBgFromClass {
-  "蟲" = "before:from-type-bug",
-  "惡" = "before:from-type-dark",
-  "龍" = "before:from-type-dragon",
-  "電" = "before:from-type-electric",
-  "妖精" = "before:from-type-fairy",
-  "格鬥" = "before:from-type-fighting",
-  "火" = "before:from-type-fire",
-  "飛行" = "before:from-type-flying",
-  "幽靈" = "before:from-type-ghost",
-  "草" = "before:from-type-grass",
-  "地面" = "before:from-type-ground",
-  "冰" = "before:from-type-ice",
-  "一般" = "before:from-type-normal",
-  "毒" = "before:from-type-poison",
-  "超能力" = "before:from-type-psychic",
-  "岩石" = "before:from-type-rock",
-  "鋼" = "before:from-type-steel",
-  "水" = "before:from-type-water",
-  "透明" = "before:from-transparent",
+enum HoverBgFromClass {
+  "蟲" = "hover:from-type-bug/60",
+  "惡" = "hover:from-type-dark/60",
+  "龍" = "hover:from-type-dragon/60",
+  "電" = "hover:from-type-electric/60",
+  "妖精" = "hover:from-type-fairy/60",
+  "格鬥" = "hover:from-type-fighting/60",
+  "火" = "hover:from-type-fire/60",
+  "飛行" = "hover:from-type-flying/60",
+  "幽靈" = "hover:from-type-ghost/60",
+  "草" = "hover:from-type-grass/60",
+  "地面" = "hover:from-type-ground/60",
+  "冰" = "hover:from-type-ice/60",
+  "一般" = "hover:from-type-normal/60",
+  "毒" = "hover:from-type-poison/60",
+  "超能力" = "hover:from-type-psychic/60",
+  "岩石" = "hover:from-type-rock/60",
+  "鋼" = "hover:from-type-steel/60",
+  "水" = "hover:from-type-water/60",
+  "透明" = "hover:from-transparent/60",
 }
 
 enum BgToClass {
@@ -106,25 +106,25 @@ enum BgToClass {
   "水" = "to-type-water/60",
 }
 
-enum BeforeBgToClass {
-  "蟲" = "before:to-type-bug",
-  "惡" = "before:to-type-dark",
-  "龍" = "before:to-type-dragon",
-  "電" = "before:to-type-electric",
-  "妖精" = "before:to-type-fairy",
-  "格鬥" = "before:to-type-fighting",
-  "火" = "before:to-type-fire",
-  "飛行" = "before:to-type-flying",
-  "幽靈" = "before:to-type-ghost",
-  "草" = "before:to-type-grass",
-  "地面" = "before:to-type-ground",
-  "冰" = "before:to-type-ice",
-  "一般" = "before:to-type-normal",
-  "毒" = "before:to-type-poison",
-  "超能力" = "before:to-type-psychic",
-  "岩石" = "before:to-type-rock",
-  "鋼" = "before:to-type-steel",
-  "水" = "before:to-type-water",
+enum HoverBgToClass {
+  "蟲" = "hover:to-type-bug/60",
+  "惡" = "hover:to-type-dark/60",
+  "龍" = "hover:to-type-dragon/60",
+  "電" = "hover:to-type-electric/60",
+  "妖精" = "hover:to-type-fairy/60",
+  "格鬥" = "hover:to-type-fighting/60",
+  "火" = "hover:to-type-fire/60",
+  "飛行" = "hover:to-type-flying/60",
+  "幽靈" = "hover:to-type-ghost/60",
+  "草" = "hover:to-type-grass/60",
+  "地面" = "hover:to-type-ground/60",
+  "冰" = "hover:to-type-ice/60",
+  "一般" = "hover:to-type-normal/60",
+  "毒" = "hover:to-type-poison/60",
+  "超能力" = "hover:to-type-psychic/60",
+  "岩石" = "hover:to-type-rock/60",
+  "鋼" = "hover:to-type-steel/60",
+  "水" = "hover:to-type-water/60",
 }
 
 export const getTypeColor = (type: string) => {
@@ -135,15 +135,15 @@ export const getTypeBg = (type: string) => {
   return BgClass[type as keyof typeof BgClass];
 };
 
-export const bgTypeClass = ([from, to]: string[], before = false) => {
+export const bgTypeClass = ([from, to]: string[], hover = false) => {
   const fromClass = BgFromClass[from as keyof typeof BgFromClass];
   const toClass = BgToClass[(to ?? from) as keyof typeof BgToClass];
   const hoverFromClass =
-    BeforeBgFromClass[from as keyof typeof BeforeBgFromClass];
+    HoverBgFromClass[from as keyof typeof HoverBgFromClass];
   const hoverToClass =
-    BeforeBgToClass[(to ?? from) as keyof typeof BeforeBgToClass];
+    HoverBgToClass[(to ?? from) as keyof typeof HoverBgToClass];
 
-  return before
+  return hover
     ? clsx("bg-gradient-to-b", hoverFromClass, hoverToClass)
     : clsx("bg-gradient-to-b", fromClass, toClass);
 };

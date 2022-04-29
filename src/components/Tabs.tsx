@@ -19,7 +19,7 @@ function Tab({ text, action, taggleTab }: TabProp) {
         "flex items-center h-12 px-4 py-2 rounded-t-md",
         "border border-b-0 border-white",
         "text-sm text-center text-gray-700 sm:text-base",
-        "whitespace-nowrap focus:outline-none",
+        "whitespace-nowrap focus:ring-none",
         action ? "bg-white" : "bg-transparent"
       )}
       onClick={() => taggleTab(text)}>

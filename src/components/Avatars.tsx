@@ -16,20 +16,21 @@ export function Avatars({ pm, style = "", size = "big" }: Props) {
 
   return (
     <header
-      className={clsx("relative", size === "small" ? "w-12 h-12" : "w-24 h-24")}
-    >
+      className={clsx(
+        "relative",
+        size === "small" ? "w-12 h-12" : "w-24 h-24"
+      )}>
       <div
         className={clsx(
-          "outline-white",
+          "ring-white",
           bgTypeClass(pm.types),
           "rounded-full overflow-hidden",
-          "group-hover:outline group-hover:outline-4",
+          "group-hover:ring-4",
           center,
           "transition-all",
-          size === "small" ? "w-10 h-10" : "w-20 h-20 outline-0",
+          size === "small" ? "w-10 h-10" : "w-20 h-20 ring-0",
           style
-        )}
-      >
+        )}>
         <img
           src={imgPath}
           loading="lazy"
