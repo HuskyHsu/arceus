@@ -63,14 +63,17 @@ export function BaseInfo() {
         }
         return method.location;
       },
+      width: "w-7/12",
     },
     {
       name: "方式",
       value: (method: GetMethod) => method.mode,
+      width: "w-2/12",
     },
     {
       name: "條件",
       value: (method: GetMethod) => method.remark,
+      width: "w-3/12",
     },
   ];
 
@@ -80,14 +83,17 @@ export function BaseInfo() {
       value: (items: Items) => {
         return items.boss ? "頭目" : "一般";
       },
+      width: "w-1/5",
     },
     {
       name: "道具一",
       value: (items: Items) => items[1] || "-",
+      width: "w-2/5",
     },
     {
       name: "道具二",
       value: (items: Items) => items[2] || "-",
+      width: "w-2/5",
     },
   ];
 
