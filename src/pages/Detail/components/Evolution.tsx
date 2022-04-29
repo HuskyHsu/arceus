@@ -21,8 +21,7 @@ function Info({ text, className }: InfoProps) {
       className={clsx(
         className,
         "text-center flex flex-col justify-center items-center"
-      )}
-    >
+      )}>
       <Icon.Forward className={clsx("w-full", "fill-slate-600")} />
       <span className={clsx("text-sm")}>{text}</span>
     </div>
@@ -32,8 +31,7 @@ function Info({ text, className }: InfoProps) {
 function PokemonAvatars({ pm, className }: AvatarsProps) {
   return (
     <div
-      className={clsx(className, "flex flex-col justify-center items-center")}
-    >
+      className={clsx(className, "flex flex-col justify-center items-center")}>
       <Avatars pm={pm} />
       <span>{pm.name}</span>
     </div>
@@ -124,8 +122,10 @@ export function Evolution() {
   }, [] as JSX.Element[]);
 
   return (
-    <div className={clsx("grid gap-y-4 justify-center items-center", cols)}>
-      {evolutionPath}
+    <div className="h-full flex items-center justify-center">
+      <div className={clsx("grid gap-y-4 justify-center items-center", cols)}>
+        {evolutionPath}
+      </div>
     </div>
   );
 }
