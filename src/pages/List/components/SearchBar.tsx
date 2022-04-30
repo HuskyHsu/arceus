@@ -6,6 +6,10 @@ import { TypeIcon, Icon } from "@/components";
 import areaMap from "@/data/area.json";
 import { FilterContext } from "../List";
 
+interface TypeProps {
+  type: string;
+}
+
 function AreaSelect() {
   const { filter, toggereAreaSelect, updateAreaSelect } =
     useContext(FilterContext);
@@ -15,7 +19,8 @@ function AreaSelect() {
       <button
         type="button"
         className="w-32 flex justify-evenly bg-white rounded-full shadow px-2 py-1"
-        onClick={() => toggereAreaSelect()}>
+        onClick={() => toggereAreaSelect()}
+      >
         <span>{filter.area}</span>
         <Icon.Down className="h-6 w-6" />
       </button>
@@ -24,7 +29,8 @@ function AreaSelect() {
           "absolute z-20 w-32 mt-4 px-2 flex flex-col justify-center",
           "bg-white rounded-md shadow-md border-2",
           { hidden: !filter.areaSelector }
-        )}>
+        )}
+      >
         {Object.keys(areaMap.area)
           .sort()
           .map((a, i, arr) => {
@@ -38,7 +44,8 @@ function AreaSelect() {
                 key={a}
                 onClick={() =>
                   updateAreaSelect(areaMap.area[a as keyof typeof areaMap.area])
-                }>
+                }
+              >
                 {areaMap.area[a as keyof typeof areaMap.area]}
               </li>
             );
@@ -72,6 +79,28 @@ function SearchInput() {
   );
 }
 
+function Tip({ type }: TypeProps) {
+  return (
+    <div className="absolute -top-8 -left-6 hidden group-hover:block w-20">
+      <p
+        className={clsx(
+          "rounded z-20",
+          "text-center",
+          "bg-slate-600 text-white w-20"
+        )}
+      >
+        {type}
+      </p>
+      <p
+        className={clsx(
+          "w-0 h-0 border-8 my-0 mx-auto",
+          "border-t-slate-600 border-x-transparent border-b-transparent"
+        )}
+      ></p>
+    </div>
+  );
+}
+
 export function SearchBar() {
   const { filter, updateTypeFilter } = useContext(FilterContext);
   const handleSubmit = (event: React.FormEvent) => {
@@ -85,18 +114,23 @@ export function SearchBar() {
           className={clsx(
             "w-full max-w-xl flex items-center gap-2 px-4 py-2 justify-between",
             "rounded-full bg-gray-100 shadow-inner shadow-gray-700"
-          )}>
+          )}
+        >
           <SearchInput />
         </li>
         <li className="w-full md:w-5/6 flex flex-wrap justify-center items-center gap-4">
           {Object.keys(TypeMap).map((type) => (
-            <TypeIcon
-              key={type}
-              type={type}
-              className={clsx("w-8 h-8", { "opacity-30": !filter.types[type] })}
-              button={true}
-              clickFn={() => updateTypeFilter(type)}
-            />
+            <div key={type} className="group relative">
+              <TypeIcon
+                type={type}
+                className={clsx("w-8 h-8", {
+                  "opacity-30": !filter.types[type],
+                })}
+                button={true}
+                clickFn={() => updateTypeFilter(type)}
+              />
+              <Tip type={type} />
+            </div>
           ))}
         </li>
       </ul>
