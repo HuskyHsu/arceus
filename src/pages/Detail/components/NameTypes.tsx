@@ -19,7 +19,8 @@ function Types() {
               "flex gap-2 pr-2 rounded items-center",
               "bg-slate-600 text-slate-100"
             )}
-            key={type}>
+            key={type}
+          >
             <TypeIcon type={type} className="w-6 h-6" />
             <span className="">{type}</span>
           </li>
@@ -41,12 +42,13 @@ function Name() {
             "flex flex-col",
             isMobile ? "justify-center" : "justify-end",
             isMobile ? "h-8" : "h-6"
-          )}>
-          <p className="text-sm text-slate-100 leading-none">
+          )}
+        >
+          <p className="text-sm text-gray-100 leading-none">
             ({pokemon.altForm})
           </p>
           {isMobile && (
-            <p className="text-sm text-slate-100 leading-none">
+            <p className="text-sm text-gray-100 leading-none">
               {`#${zeroFilled(pokemon.id)}`}
             </p>
           )}

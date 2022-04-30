@@ -56,14 +56,21 @@ export function BaseInfo() {
           let locations = [];
           for (let key in method.location) {
             locations.push(
-              <p key={key}>{`${key} : ${method.location[key]?.join()}`}</p>
+              <p key={key}>
+                <span className="text-sm font-medium bg-sky-900 py-1 px-2 rounded text-gray-100 align-middle">
+                  {key}
+                </span>
+                <span className="text-sm font-medium py-1 px-2 rounded text-sky-900 align-middle">
+                  {method.location[key]?.join()}
+                </span>
+              </p>
             );
           }
           return locations;
         }
         return method.location;
       },
-      width: "w-7/12",
+      width: "w-8/12",
     },
     {
       name: "方式",
@@ -73,7 +80,7 @@ export function BaseInfo() {
     {
       name: "條件",
       value: (method: GetMethod) => method.remark,
-      width: "w-3/12",
+      width: "w-2/12",
     },
   ];
 

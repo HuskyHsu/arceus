@@ -47,7 +47,8 @@ function Name({ pm }: BaseProps) {
       className={clsx(
         "flex flex-col items-center gap-y-1",
         "text-lg font-medium leading-none group-hover:text-white transition-all"
-      )}>
+      )}
+    >
       {pm.name}
       {pm.altForm && (
         <span className="text-xs font-thin">{`(${pm.altForm})`}</span>
@@ -66,15 +67,18 @@ export function BaseInfo({ pm }: BaseProps) {
         "relative group",
         "bg-gradient-to-b from-transparent to-transparent",
         bgTypeClass(pm.types.slice(0).reverse(), true),
-        "hover:drop-shadow-xl"
-      )}>
+        "hover:drop-shadow-xl",
+        hidden ? "hidden" : ""
+      )}
+    >
       <Link to={`/${pm.link}`}>
         <Avatars pm={pm} />
         <ul
           className={clsx(
             "h-24 z-0 flex flex-col justify-start items-center gap-y-2",
             "text-gray-700 group-hover:text-white"
-          )}>
+          )}
+        >
           <li className="text-sm leading-none">#{zeroFilled(pm.id)}</li>
           <Types pm={pm} />
           <Name pm={pm} />

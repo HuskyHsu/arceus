@@ -21,9 +21,10 @@ export function Table<T>({ feilds, data }: Props<T>) {
               key={i}
               className={clsx(
                 "px-2 py-1",
-                "title-font tracking-wider whitespace-nowrap text-gray-900 bg-gray-100",
+                "title-font tracking-wider whitespace-nowrap text-gray-100 bg-sky-900",
                 feild.width ? feild.width : ""
-              )}>
+              )}
+            >
               {feild.name}
             </th>
           ))}
