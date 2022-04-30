@@ -16,7 +16,15 @@ export function QuickList({ pokemonList, link }: Props) {
       <Link to={"/"}>
         <Icon.Table className="h-6 w-6" />
       </Link>
-      <Icon.Left className="h-6 w-6" />
+      <Link
+        to={`/${
+          pokemonList.length > 0
+            ? pokemonList[Math.floor(pokemonList.length / 2) - 1].link
+            : ""
+        }`}
+      >
+        <Icon.Left className="h-6 w-6" />
+      </Link>
       {pokemonList.map((pm) => (
         <Link
           key={pm.link}
@@ -24,7 +32,8 @@ export function QuickList({ pokemonList, link }: Props) {
           className={clsx(
             "leading-normal",
             pm.link === link ? "text-white" : "text-slate-600"
-          )}>
+          )}
+        >
           <ul className="flex flex-col items-center">
             <li>
               <Avatars
@@ -37,7 +46,15 @@ export function QuickList({ pokemonList, link }: Props) {
           </ul>
         </Link>
       ))}
-      <Icon.Right className="h-6 w-6" />
+      <Link
+        to={`/${
+          pokemonList.length > 0
+            ? pokemonList[Math.floor(pokemonList.length / 2) + 1].link
+            : ""
+        }`}
+      >
+        <Icon.Right className="h-6 w-6" />
+      </Link>
     </>
   );
 }
