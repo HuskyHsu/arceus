@@ -70,7 +70,7 @@ export function BaseInfo() {
         }
         return method.location;
       },
-      width: "w-8/12",
+      width: "w-7/12",
     },
     {
       name: "方式",
@@ -80,7 +80,7 @@ export function BaseInfo() {
     {
       name: "條件",
       value: (method: GetMethod) => method.remark,
-      width: "w-2/12",
+      width: "w-3/12",
     },
   ];
 
