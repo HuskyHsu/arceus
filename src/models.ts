@@ -99,24 +99,24 @@ export interface Filter {
 }
 
 export enum TypeMap {
-  "蟲" = "Bug",
-  "惡" = "Dark",
-  "龍" = "Dragon",
+  "一般" = "Normal",
+  "草" = "Grass",
+  "火" = "Fire",
+  "水" = "Water",
   "電" = "Electric",
+  "蟲" = "Bug",
   "妖精" = "Fairy",
   "格鬥" = "Fighting",
-  "火" = "Fire",
   "飛行" = "Flying",
   "幽靈" = "Ghost",
-  "草" = "Grass",
   "地面" = "Ground",
+  "岩石" = "Rock",
   "冰" = "Ice",
-  "一般" = "Normal",
   "毒" = "Poison",
   "超能力" = "Psychic",
-  "岩石" = "Rock",
   "鋼" = "Steel",
-  "水" = "Water",
+  "惡" = "Dark",
+  "龍" = "Dragon",
 }
 
 export enum NameSuffix {
