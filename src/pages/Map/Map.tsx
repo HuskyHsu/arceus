@@ -1,10 +1,11 @@
+import { Link } from "react-router-dom";
 import clsx from "clsx";
 
 import areaMap from "@/data/area.json";
 import { Avatars, Icon, Table } from "@/components";
 import { BasePokemon, Filter } from "@/models";
 import { BASE_URL, useFilter } from "@/utils";
-import { flushSync } from "react-dom";
+import { Fragment } from "react";
 
 interface Pokemon extends BasePokemon {
   level: number;
@@ -28,7 +29,8 @@ interface FilterProps {
 
 function Marker({ pm }: MarkerProps) {
   return (
-    <div
+    <Link
+      to={`/${pm.link}`}
       className={clsx(
         "flex flex-col justify-center items-center",
         "absolute -translate-y-2/4 -translate-x-2/4"
@@ -39,7 +41,7 @@ function Marker({ pm }: MarkerProps) {
       }}
     >
       <Avatars pm={pm} size={"S"} style={"ring-[3px]"} />
-    </div>
+    </Link>
   );
 }
 
@@ -341,8 +343,18 @@ function Map() {
 
   const feilds = [
     {
-      name: "頭目名稱",
-      value: (pm: Pokemon) => pm.name,
+      name: (
+        <span className={"flex gap-x-2"}>
+          <Icon.Boss className="h-[1.3rem] w-[1.3rem]" />
+          頭目名稱
+        </span>
+      ),
+      value: (pm: Pokemon) => (
+        <p className={"flex gap-x-2"}>
+          <Icon.Boss className="h-[1.3rem] w-[1.3rem]" />
+          {pm.name}
+        </p>
+      ),
       width: "w-4/12",
     },
     {
@@ -366,7 +378,10 @@ function Map() {
       </div>
       <div className="w-full max-h-screen">
         <div className="overflow-y-auto p-4">
-          <div className="mb-4">
+          <div className="mb-4 flex gap-x-4">
+            <Link to="/" className="bg-white rounded-full p-1 shadow-md">
+              <Icon.Table className="h-6 w-6" />
+            </Link>
             <AreaSelect
               filter={filterModel.filter}
               toggereAreaSelect={filterModel.toggereAreaSelect}

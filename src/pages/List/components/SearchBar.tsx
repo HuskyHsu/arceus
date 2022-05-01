@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import clsx from "clsx";
 
 import { TypeMap } from "@/models";
@@ -74,6 +75,9 @@ function SearchInput() {
           value={filter.keyword}
         />
       </span>
+      <Link to="/map" className="bg-white rounded-full p-1 shadow-md">
+        <Icon.Map className="h-6 w-6" />
+      </Link>
       <AreaSelect />
     </>
   );
