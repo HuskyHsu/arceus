@@ -42,24 +42,24 @@ export function LevelingUp() {
             <p className="text-xs grid grid-cols-6 gap-4">
               <span>一般</span>
               <span className="col-span-3">{move.effect ?? "無附加效果"}</span>
-              <span>{move.power}</span>
-              <span>{move.accuracy}</span>
+              <span>{move.power ?? "-"}</span>
+              <span>{move.accuracy ?? "-"}</span>
             </p>
             <p className="text-xs grid grid-cols-6 gap-4">
               <span>迅疾</span>
               <span className="col-span-3">
                 {move.agileEffect ?? "無附加效果"}
               </span>
-              <span>{move.agilePower}</span>
-              <span>{move.accuracy}</span>
+              <span>{move.agilePower ?? "-"}</span>
+              <span>{move.accuracy ?? "-"}</span>
             </p>
             <p className="text-xs grid grid-cols-6 gap-4">
               <span>剛猛</span>
               <span className="col-span-3">
                 {move.strongEffect ?? "無附加效果"}
               </span>
-              <span>{move.strongPower}</span>
-              <span>{move.strongAccuracy}</span>
+              <span>{move.strongPower ?? "-"}</span>
+              <span>{move.strongAccuracy ?? "-"}</span>
             </p>
           </>
         );
@@ -136,24 +136,24 @@ export function Tutoring() {
             <p className="text-xs grid grid-cols-7 gap-4">
               <span>一般</span>
               <span className="col-span-4">{move.effect ?? "無附加效果"}</span>
-              <span>{move.power}</span>
-              <span>{move.accuracy}</span>
+              <span>{move.power ?? "-"}</span>
+              <span>{move.accuracy ?? "-"}</span>
             </p>
             <p className="text-xs grid grid-cols-7 gap-4">
               <span>迅疾</span>
               <span className="col-span-4">
                 {move.agileEffect ?? "無附加效果"}
               </span>
-              <span>{move.agilePower}</span>
-              <span>{move.accuracy}</span>
+              <span>{move.agilePower ?? "-"}</span>
+              <span>{move.accuracy ?? "-"}</span>
             </p>
             <p className="text-xs grid grid-cols-7 gap-4">
               <span>剛猛</span>
               <span className="col-span-4">
                 {move.strongEffect ?? "無附加效果"}
               </span>
-              <span>{move.strongPower}</span>
-              <span>{move.strongAccuracy}</span>
+              <span>{move.strongPower ?? "-"}</span>
+              <span>{move.strongAccuracy ?? "-"}</span>
             </p>
           </>
         );
