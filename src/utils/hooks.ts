@@ -28,11 +28,11 @@ export function usePokemon() {
   return pokemonList;
 }
 
-export function useFilter() {
+export function useFilter(area = "全區域") {
   const [filter, setFilter] = useState({
     types: defaultTypeTrue,
     keyword: "",
-    area: "全區域",
+    area: area,
     areaSelector: false,
   });
 

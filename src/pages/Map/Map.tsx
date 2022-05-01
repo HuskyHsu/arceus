@@ -1,9 +1,114 @@
-import { Avatars } from "@/components";
-import { BASE_URL } from "@/utils";
 import clsx from "clsx";
 
+import areaMap from "@/data/area.json";
+import { Avatars, Icon, Table } from "@/components";
+import { BasePokemon, Filter } from "@/models";
+import { BASE_URL, useFilter } from "@/utils";
+import { flushSync } from "react-dom";
+
+interface Pokemon extends BasePokemon {
+  level: number;
+  nearby: string;
+  position: number[];
+}
+
+interface MarkerProps {
+  pm: Pokemon;
+}
+
+interface MapProps {
+  pmList: Pokemon[];
+}
+
+interface FilterProps {
+  toggereAreaSelect: Function;
+  updateAreaSelect: Function;
+  filter: Filter;
+}
+
+function Marker({ pm }: MarkerProps) {
+  return (
+    <div
+      className={clsx(
+        "flex flex-col justify-center items-center",
+        "absolute -translate-y-2/4 -translate-x-2/4"
+      )}
+      style={{
+        top: `${pm.position[1] / 10}%`,
+        left: `${pm.position[0] / 10}%`,
+      }}
+    >
+      <Avatars pm={pm} size={"S"} style={"ring-[3px]"} />
+    </div>
+  );
+}
+
+function MapDom({ pmList }: MapProps) {
+  return (
+    <div
+      className="relative aspect-square bg-no-repeat bg-cover"
+      style={{
+        backgroundImage: `url(${BASE_URL}image/map/黑曜原野_LA.png)`,
+        height: "100vmin",
+      }}
+    >
+      {pmList.map((pm, i) => {
+        return <Marker key={i} pm={pm} />;
+      })}
+    </div>
+  );
+}
+
+function AreaSelect({
+  filter,
+  toggereAreaSelect,
+  updateAreaSelect,
+}: FilterProps) {
+  return (
+    <div className="">
+      <button
+        type="button"
+        className="w-32 flex justify-evenly bg-white rounded-full shadow px-2 py-1"
+        onClick={() => toggereAreaSelect()}
+      >
+        <span></span>
+        {filter.area}
+        <Icon.Down className="h-6 w-6" />
+      </button>
+      <ul
+        className={clsx(
+          "absolute z-20 w-32 mt-4 px-2 flex flex-col justify-center",
+          "bg-white rounded-md shadow-md border-2",
+          { hidden: !filter.areaSelector }
+        )}
+      >
+        {Object.keys(areaMap.area)
+          .sort()
+          .filter((a) => Number(a) > 0)
+          .map((a, i, arr) => {
+            return (
+              <li
+                className={clsx(
+                  "py-2 hover:bg-gray-200 text-center",
+                  "transition-colors duration-200 transform cursor-pointer",
+                  { "border-b-2": i !== arr.length - 1 }
+                )}
+                key={a}
+                onClick={() =>
+                  updateAreaSelect(areaMap.area[a as keyof typeof areaMap.area])
+                }
+              >
+                {areaMap.area[a as keyof typeof areaMap.area]}
+              </li>
+            );
+          })}
+      </ul>
+    </div>
+  );
+}
+
 function Map() {
-  const pms = [
+  const pmList = [
     {
       id: 41,
       pid: 418,
@@ -234,45 +339,42 @@ function Map() {
     },
   ];
 
+  const feilds = [
+    {
+      name: "頭目名稱",
+      value: (pm: Pokemon) => pm.name,
+      width: "w-4/12",
+    },
+    {
+      name: "等級",
+      value: (pm: Pokemon) => pm.level,
+      width: "w-2/12",
+    },
+    {
+      name: "出沒地點",
+      value: (pm: Pokemon) => pm.nearby,
+      width: "w-6/12",
+    },
+  ];
+
+  const filterModel = useFilter("黑曜原野");
+
   return (
-    <div className="h-screen w-screen flex flex-col md:flex-row">
-      <div
-        className="relative aspect-square bg-no-repeat bg-cover"
-        style={{
-          backgroundImage: `url(${BASE_URL}image/map/黑曜原野_LA.png)`,
-        }}
-      >
-        {pms.map((pm, i) => {
-          return (
-            <div
-              key={i}
-              className={clsx(
-                "flex flex-col justify-center items-center",
-                "absolute -translate-y-2/4 -translate-x-2/4"
-              )}
-              style={{
-                top: `${pm.position[1] / 10}%`,
-                left: `${pm.position[0] / 10}%`,
-              }}
-            >
-              <Avatars pm={pm} size={"S"} style={"ring-[3px]"} />
-              <span className="text-xs text-center order-1">
-                Lv. {pm.level}
-              </span>
-            </div>
-          );
-        })}
+    <div className="flex flex-col md:flex-row gap-2">
+      <div className="h-full w-full">
+        <MapDom pmList={pmList} />
       </div>
-      <div>
-        {pms.map((pm) => {
-          return (
-            <ul key={pm.name} className="flex gap-4">
-              <li>{pm.name}</li>
-              <li>{pm.level}</li>
-              <li>{pm.nearby}</li>
-            </ul>
-          );
-        })}
+      <div className="w-full max-h-screen">
+        <div className="overflow-y-auto p-4">
+          <div className="mb-4">
+            <AreaSelect
+              filter={filterModel.filter}
+              toggereAreaSelect={filterModel.toggereAreaSelect}
+              updateAreaSelect={filterModel.updateAreaSelect}
+            />
+          </div>
+          <Table feilds={feilds} data={pmList} />
+        </div>
       </div>
     </div>
   );
