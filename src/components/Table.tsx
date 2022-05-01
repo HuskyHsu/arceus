@@ -18,7 +18,7 @@ export function Table<T>({ feilds, data }: Props<T>) {
   const hasToggle = feilds.find((feild) => feild.details !== undefined);
   return (
     <table className="table-auto w-full text-left text-sm whitespace-no-wrap">
-      <thead>
+      <thead className="sticky top-0">
         <tr>
           {feilds.map((feild, i) => (
             <th
