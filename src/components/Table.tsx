@@ -2,7 +2,7 @@ import { Fragment, useState } from "react";
 import clsx from "clsx";
 
 interface Feild {
-  name: string;
+  name: string | JSX.Element;
   value: Function;
   width?: string;
   colSpan?: number;
