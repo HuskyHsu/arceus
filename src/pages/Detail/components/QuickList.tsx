@@ -38,7 +38,7 @@ export function QuickList({ pokemonList, link }: Props) {
             <li>
               <Avatars
                 pm={pm}
-                size={"small"}
+                size={"M"}
                 style={pm.link === link ? "ring-[3px]" : ""}
               />
             </li>

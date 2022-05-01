@@ -9,17 +9,26 @@ interface Props extends BaseProps {
   style?: string;
 }
 
-export function Avatars({ pm, style = "", size = "big" }: Props) {
+export function Avatars({ pm, style = "", size = "L" }: Props) {
   const center =
     "absolute transform inset-1/2 -translate-x-1/2 -translate-y-1/2";
   const imgPath = `${BASE_URL}image/icon/${pm.linkPid}.png`;
 
+  let sizeClass = "";
+  let sizeClassBg = "";
+  if (size == "L") {
+    sizeClass = "w-24 h-24";
+    sizeClassBg = "w-20 h-20 ring-0";
+  } else if (size == "M") {
+    sizeClass = "w-12 h-12";
+    sizeClassBg = "w-10 h-10";
+  } else if (size == "S") {
+    sizeClass = "w-10 h-10";
+    sizeClassBg = "w-8 h-8 ring-2";
+  }
+
   return (
-    <header
-      className={clsx(
-        "relative",
-        size === "small" ? "w-12 h-12" : "w-24 h-24"
-      )}>
+    <header className={clsx("relative", sizeClass)}>
       <div
         className={clsx(
           "ring-white",
@@ -28,18 +37,15 @@ export function Avatars({ pm, style = "", size = "big" }: Props) {
           "group-hover:ring-4",
           center,
           "transition-all",
-          size === "small" ? "w-10 h-10" : "w-20 h-20 ring-0",
+          sizeClassBg,
           style
-        )}>
+        )}
+      >
         <img
           src={imgPath}
           loading="lazy"
           alt=""
-          className={clsx(
-            "max-w-none rounded-full",
-            center,
-            size === "small" ? "w-12 h-12" : "w-24 h-24"
-          )}
+          className={clsx("max-w-none rounded-full", center, sizeClass)}
         />
       </div>
     </header>
