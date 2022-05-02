@@ -12,7 +12,7 @@
         "level": 41,
         "nearby": "熊的比武場",
         "position": [
-            753,
+            720,
             931
         ]
     },
@@ -314,6 +314,24 @@
         "position": [
             360,
             207
+        ]
+    },
+    {
+        "id": 100,
+        "pid": 454,
+        "name": "毒骷蛙",
+        "types": [
+            "毒",
+            "格鬥"
+        ],
+        "genderDiff": false,
+        "link": "100",
+        "linkPid": "454",
+        "level": 47,
+        "nearby": "試煉沙洲",
+        "position": [
+            365,
+            823
         ]
     }
 ]
