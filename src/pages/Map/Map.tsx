@@ -54,7 +54,7 @@ function Map() {
           {pm.name}
         </p>
       ),
-      width: "w-4/12",
+      width: "w-3/12",
     },
     {
       name: "屬性",
@@ -64,12 +64,25 @@ function Map() {
     {
       name: "等級",
       value: (pm: BossPokemon) => pm.level,
-      width: "w-2/12",
+      width: "w-1/12",
     },
     {
       name: "出沒地點",
       value: (pm: BossPokemon) => pm.nearby,
       width: "w-4/12",
+    },
+    {
+      name: "詳細",
+      value: (pm: BossPokemon) => (
+        <Link to={`/${pm.link}`}>
+          <img
+            className="w-5 h-5"
+            src={`${BASE_URL}image/pokeball.png`}
+            alt=""
+          />
+        </Link>
+      ),
+      width: "w-2/12",
     },
   ];
 
@@ -79,10 +92,14 @@ function Map() {
   return (
     <div className="flex flex-col md:flex-row gap-2">
       <div className="h-full w-full">
-        <MapDom pmList={pokemonList} area={filterModel.filter.area} />
+        <MapDom
+          pmList={pokemonList}
+          filter={filterModel.filter}
+          updateKeywordFilter={filterModel.updateKeywordFilter}
+        />
       </div>
       <div className="w-full max-h-screen">
-        <div className="overflow-y-auto p-4 max-w-xl">
+        <div className="max-h-screen overflow-y-auto p-4 max-w-xl">
           <div className="mb-4 flex gap-x-4">
             <Link to="/" className="bg-white rounded-full p-1 shadow-md">
               <Icon.Table className="h-6 w-6" />
@@ -93,7 +110,18 @@ function Map() {
               updateAreaSelect={filterModel.updateAreaSelect}
             />
           </div>
-          <Table feilds={feilds} data={pokemonList} />
+          <Table
+            feilds={feilds}
+            data={pokemonList}
+            selectIndex={
+              filterModel.filter.keyword === ""
+                ? -1
+                : Number(filterModel.filter.keyword)
+            }
+            pointerEnter={(i: string) => {
+              filterModel.updateKeywordFilter(i);
+            }}
+          />
         </div>
       </div>
     </div>

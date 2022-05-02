@@ -12,9 +12,16 @@ interface Feild {
 interface Props<T> {
   feilds: Feild[];
   data: T[];
+  selectIndex?: Number;
+  pointerEnter?: Function;
 }
 
-export function Table<T>({ feilds, data }: Props<T>) {
+export function Table<T>({
+  feilds,
+  data,
+  selectIndex,
+  pointerEnter,
+}: Props<T>) {
   const hasToggle = feilds.find((feild) => feild.details !== undefined);
   return (
     <table className="table-auto w-full text-left text-sm whitespace-no-wrap">
@@ -38,7 +45,15 @@ export function Table<T>({ feilds, data }: Props<T>) {
         {!hasToggle &&
           data.map((item, i) => {
             return (
-              <tr key={i} className="border-b-2 border-gray-200">
+              <tr
+                key={i}
+                className={clsx("border-b-2 border-gray-200", {
+                  "bg-yellow-200": selectIndex === i,
+                })}
+                onPointerEnter={() => {
+                  if (pointerEnter) pointerEnter(String(i));
+                }}
+              >
                 {feilds.map((feild, j) => (
                   <td key={j} className="px-2 py-1">
                     {feild.value(item)}
@@ -54,9 +69,14 @@ export function Table<T>({ feilds, data }: Props<T>) {
             return (
               <Fragment key={i}>
                 <tr
-                  className="border-b-2 border-gray-200"
+                  className={clsx("border-b-2 border-gray-200", {
+                    "bg-yellow-200": selectIndex === i,
+                  })}
                   onClick={() => {
                     setToggle((toggle) => !toggle);
+                  }}
+                  onPointerEnter={() => {
+                    if (pointerEnter) pointerEnter(String(i));
                   }}
                 >
                   {feilds.map((feild, j) => (
