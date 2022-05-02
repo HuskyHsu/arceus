@@ -32,7 +32,7 @@ function Map() {
           頭目名稱
         </span>
       ),
-      value: (pm: Pokemon) => (
+      value: (pm: BossPokemon) => (
         <p className={"flex gap-x-2"}>
           <Icon.Boss className="h-[1.3rem] w-[1.3rem]" />
           {pm.name}
@@ -42,12 +42,12 @@ function Map() {
     },
     {
       name: "等級",
-      value: (pm: Pokemon) => pm.level,
+      value: (pm: BossPokemon) => pm.level,
       width: "w-2/12",
     },
     {
       name: "出沒地點",
-      value: (pm: Pokemon) => pm.nearby,
+      value: (pm: BossPokemon) => pm.nearby,
       width: "w-6/12",
     },
   ];
