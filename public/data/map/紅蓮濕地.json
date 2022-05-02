@@ -1,0 +1,319 @@
+[
+    {
+        "id": 113,
+        "pid": 217,
+        "name": "圈圈熊",
+        "types": [
+            "一般"
+        ],
+        "genderDiff": true,
+        "link": "113",
+        "linkPid": "217",
+        "level": 41,
+        "nearby": "熊的比武場",
+        "position": [
+            753,
+            931
+        ]
+    },
+    {
+        "id": 113,
+        "pid": 217,
+        "name": "圈圈熊",
+        "types": [
+            "一般"
+        ],
+        "genderDiff": true,
+        "link": "113",
+        "linkPid": "217",
+        "level": 55,
+        "nearby": "大嘴沼澤",
+        "position": [
+            171,
+            671
+        ]
+    },
+    {
+        "id": 118,
+        "pid": 95,
+        "name": "大岩蛇",
+        "types": [
+            "岩石",
+            "地面"
+        ],
+        "genderDiff": false,
+        "link": "118",
+        "linkPid": "095",
+        "level": 50,
+        "nearby": "隆隆坡",
+        "position": [
+            543,
+            415
+        ]
+    },
+    {
+        "id": 108,
+        "pid": 450,
+        "name": "河馬獸",
+        "types": [
+            "地面"
+        ],
+        "genderDiff": true,
+        "link": "108",
+        "linkPid": "450",
+        "level": 46,
+        "nearby": "泥炭台地",
+        "position": [
+            512,
+            807
+        ]
+    },
+    {
+        "id": 98,
+        "pid": 340,
+        "name": "鯰魚王",
+        "types": [
+            "水",
+            "地面"
+        ],
+        "genderDiff": false,
+        "link": "098",
+        "linkPid": "340",
+        "level": 64,
+        "nearby": "立志湖",
+        "position": [
+            754,
+            340
+        ]
+    },
+    {
+        "id": 109,
+        "pid": 417,
+        "name": "帕奇利茲",
+        "types": [
+            "電"
+        ],
+        "genderDiff": true,
+        "link": "109",
+        "linkPid": "417",
+        "level": 40,
+        "nearby": "大嘴沼澤",
+        "position": [
+            190,
+            752
+        ]
+    },
+    {
+        "id": 96,
+        "pid": 465,
+        "name": "巨蔓藤",
+        "types": [
+            "草"
+        ],
+        "genderDiff": true,
+        "link": "096",
+        "linkPid": "465",
+        "level": 45,
+        "nearby": "大嘴沼澤",
+        "position": [
+            371,
+            575
+        ]
+    },
+    {
+        "id": 92,
+        "pid": 455,
+        "name": "尖牙籠",
+        "types": [
+            "草"
+        ],
+        "genderDiff": false,
+        "link": "092",
+        "linkPid": "455",
+        "level": 43,
+        "nearby": "羊鬍草原",
+        "position": [
+            751,
+            459
+        ]
+    },
+    {
+        "id": 71,
+        "pid": 416,
+        "name": "蜂女王",
+        "types": [
+            "蟲",
+            "飛行"
+        ],
+        "genderDiff": false,
+        "link": "071",
+        "linkPid": "416",
+        "level": 61,
+        "nearby": "羊鬍草原",
+        "position": [
+            812,
+            511
+        ]
+    },
+    {
+        "id": 111,
+        "pid": 435,
+        "name": "坦克臭鼬",
+        "types": [
+            "毒",
+            "惡"
+        ],
+        "genderDiff": false,
+        "link": "111",
+        "linkPid": "435",
+        "level": 36,
+        "nearby": "緋紅沼",
+        "position": [
+            503,
+            623
+        ]
+    },
+    {
+        "id": 106,
+        "pid": 469,
+        "name": "遠古巨蜓",
+        "types": [
+            "蟲",
+            "飛行"
+        ],
+        "genderDiff": false,
+        "link": "106",
+        "linkPid": "469",
+        "level": 58,
+        "nearby": "羽音原野",
+        "position": [
+            827,
+            737
+        ]
+    },
+    {
+        "id": 116,
+        "pid": 705,
+        "name": "黏美兒",
+        "types": [
+            "鋼",
+            "龍"
+        ],
+        "genderDiff": false,
+        "link": "116H",
+        "altForm": "洗翠",
+        "linkPid": "705H",
+        "level": 50,
+        "nearby": "試煉沙洲",
+        "position": [
+            575,
+            900
+        ]
+    },
+    {
+        "id": 132,
+        "pid": 389,
+        "name": "土台龜",
+        "types": [
+            "草",
+            "地面"
+        ],
+        "genderDiff": false,
+        "link": "132",
+        "linkPid": "389",
+        "level": 65,
+        "nearby": "試煉沙洲",
+        "position": [
+            421,
+            847
+        ]
+    },
+    {
+        "id": 57,
+        "pid": 26,
+        "name": "雷丘",
+        "types": [
+            "電"
+        ],
+        "genderDiff": true,
+        "link": "057",
+        "linkPid": "026",
+        "level": 52,
+        "nearby": "金色平野",
+        "position": [
+            241,
+            382
+        ]
+    },
+    {
+        "id": 126,
+        "pid": 463,
+        "name": "大舌舔",
+        "types": [
+            "一般"
+        ],
+        "genderDiff": false,
+        "link": "126",
+        "linkPid": "463",
+        "level": 52,
+        "nearby": "雲霧遺跡",
+        "position": [
+            498,
+            124
+        ]
+    },
+    {
+        "id": 120,
+        "pid": 111,
+        "name": "獨角犀牛",
+        "types": [
+            "地面",
+            "岩石"
+        ],
+        "genderDiff": true,
+        "link": "120",
+        "linkPid": "111",
+        "level": 45,
+        "nearby": "靠近金剛後山",
+        "position": [
+            500,
+            251
+        ]
+    },
+    {
+        "id": 91,
+        "pid": 407,
+        "name": "羅絲雷朵",
+        "types": [
+            "草",
+            "毒"
+        ],
+        "genderDiff": true,
+        "link": "091",
+        "linkPid": "407",
+        "level": 50,
+        "nearby": "雲海山道（日）",
+        "position": [
+            309,
+            207
+        ]
+    },
+    {
+        "id": 141,
+        "pid": 430,
+        "name": "烏鴉頭頭",
+        "types": [
+            "惡",
+            "飛行"
+        ],
+        "genderDiff": false,
+        "link": "141",
+        "linkPid": "430",
+        "level": 55,
+        "nearby": "雲海山道（夜）",
+        "position": [
+            360,
+            207
+        ]
+    }
+]

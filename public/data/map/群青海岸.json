@@ -1,0 +1,318 @@
+[
+    {
+        "id": 149,
+        "pid": 452,
+        "name": "龍王蠍",
+        "types": [
+            "毒",
+            "惡"
+        ],
+        "genderDiff": false,
+        "link": "149",
+        "linkPid": "452",
+        "level": 45,
+        "nearby": "銀杏海灘",
+        "position": [
+            200,
+            550
+        ]
+    },
+    {
+        "id": 145,
+        "pid": 365,
+        "name": "帝牙海獅",
+        "types": [
+            "冰",
+            "水"
+        ],
+        "genderDiff": false,
+        "link": "145",
+        "linkPid": "365",
+        "level": 50,
+        "nearby": "銀杏海灘",
+        "position": [
+            250,
+            700
+        ]
+    },
+    {
+        "id": 160,
+        "pid": 477,
+        "name": "黑夜魔靈",
+        "types": [
+            "幽靈"
+        ],
+        "genderDiff": false,
+        "link": "160",
+        "linkPid": "477",
+        "level": 65,
+        "nearby": "鬼枯原（夜）",
+        "position": [
+            722,
+            823
+        ]
+    },
+    {
+        "id": 163,
+        "pid": 395,
+        "name": "帝王拿波",
+        "types": [
+            "水",
+            "鋼"
+        ],
+        "genderDiff": false,
+        "link": "163",
+        "linkPid": "395",
+        "level": 69,
+        "nearby": "望島灘",
+        "position": [
+            326,
+            201
+        ]
+    },
+    {
+        "id": 87,
+        "pid": 113,
+        "name": "吉利蛋",
+        "types": [
+            "一般"
+        ],
+        "genderDiff": false,
+        "link": "087",
+        "linkPid": "113",
+        "level": 51,
+        "nearby": "沙洲道",
+        "position": [
+            908,
+            880
+        ]
+    },
+    {
+        "id": 173,
+        "pid": 457,
+        "name": "霓虹魚",
+        "types": [
+            "水"
+        ],
+        "genderDiff": true,
+        "link": "173",
+        "linkPid": "457",
+        "level": 60,
+        "nearby": "海草樂園",
+        "position": [
+            629,
+            323
+        ]
+    },
+    {
+        "id": 83,
+        "pid": 423,
+        "name": "海兔獸",
+        "types": [
+            "水",
+            "地面"
+        ],
+        "genderDiff": false,
+        "link": "083",
+        "linkPid": "423",
+        "level": 61,
+        "nearby": "海草樂園",
+        "position": [
+            585,
+            188
+        ]
+    },
+    {
+        "id": 169,
+        "pid": 38,
+        "name": "九尾",
+        "types": [
+            "火"
+        ],
+        "genderDiff": false,
+        "link": "169",
+        "linkPid": "038",
+        "level": 61,
+        "nearby": "吹火島",
+        "position": [
+            792,
+            118
+        ]
+    },
+    {
+        "id": 81,
+        "pid": 130,
+        "name": "暴鯉龍",
+        "types": [
+            "水",
+            "飛行"
+        ],
+        "genderDiff": true,
+        "link": "081",
+        "linkPid": "130",
+        "level": 65,
+        "nearby": "沙手",
+        "position": [
+            930,
+            494
+        ]
+    },
+    {
+        "id": 155,
+        "pid": 67,
+        "name": "豪力",
+        "types": [
+            "格鬥"
+        ],
+        "genderDiff": false,
+        "link": "155",
+        "linkPid": "067",
+        "level": 40,
+        "nearby": "離散石灘",
+        "position": [
+            303,
+            470
+        ]
+    },
+    {
+        "id": 147,
+        "pid": 224,
+        "name": "章魚桶",
+        "types": [
+            "水"
+        ],
+        "genderDiff": true,
+        "link": "147",
+        "linkPid": "224",
+        "level": 46,
+        "nearby": "離散石灘",
+        "position": [
+            457,
+            431
+        ]
+    },
+    {
+        "id": 45,
+        "pid": 414,
+        "name": "紳士蛾",
+        "types": [
+            "蟲",
+            "飛行"
+        ],
+        "genderDiff": false,
+        "link": "045",
+        "linkPid": "414",
+        "level": 56,
+        "nearby": "隱泉之路",
+        "position": [
+            129,
+            305
+        ]
+    },
+    {
+        "id": 84,
+        "pid": 211,
+        "name": "千針魚",
+        "types": [
+            "惡",
+            "毒"
+        ],
+        "genderDiff": false,
+        "link": "084H",
+        "altForm": "洗翠",
+        "linkPid": "211H",
+        "level": 55,
+        "nearby": "望島灘",
+        "position": [
+            480,
+            160
+        ]
+    },
+    {
+        "id": 165,
+        "pid": 226,
+        "name": "巨翅飛魚",
+        "types": [
+            "水",
+            "飛行"
+        ],
+        "genderDiff": false,
+        "link": "165",
+        "linkPid": "226",
+        "level": 50,
+        "nearby": "寧靜灣",
+        "position": [
+            602,
+            553
+        ]
+    },
+    {
+        "id": 171,
+        "pid": 73,
+        "name": "毒刺水母",
+        "types": [
+            "水",
+            "毒"
+        ],
+        "genderDiff": false,
+        "link": "171",
+        "linkPid": "073",
+        "level": 50,
+        "nearby": "大魚隱岩",
+        "position": [
+            910,
+            558
+        ]
+    },
+    {
+        "id": 69,
+        "pid": 55,
+        "name": "哥達鴨",
+        "types": [
+            "水"
+        ],
+        "genderDiff": false,
+        "link": "069",
+        "linkPid": "055",
+        "level": 50,
+        "nearby": "戲水潟湖",
+        "position": [
+            531,
+            859
+        ]
+    },
+    {
+        "id": 153,
+        "pid": 432,
+        "name": "東施喵",
+        "types": [
+            "一般"
+        ],
+        "genderDiff": false,
+        "link": "153",
+        "linkPid": "432",
+        "level": 45,
+        "nearby": "帷幕海角",
+        "position": [
+            685,
+            394
+        ]
+    },
+    {
+        "id": 78,
+        "pid": 190,
+        "name": "長尾怪手",
+        "types": [
+            "一般"
+        ],
+        "genderDiff": true,
+        "link": "078",
+        "linkPid": "190",
+        "level": 50,
+        "nearby": "後浦",
+        "position": [
+            405,
+            903
+        ]
+    }
+]
