@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 import { RadarChart, Table } from "@/components";
 import { GetMethod, Item } from "@/models";
@@ -56,10 +57,12 @@ export function BaseInfo() {
           let locations = [];
           for (let key in method.location) {
             locations.push(
-              <p key={key}>
-                <span className="text-sm font-medium bg-sky-900 py-1 px-2 rounded text-gray-100 align-middle">
-                  {key}
-                </span>
+              <p>
+                <Link to={`/map?area=${key}`} key={key}>
+                  <span className="text-sm font-medium bg-sky-900 py-1 px-2 rounded text-gray-100 align-middle">
+                    {key}
+                  </span>
+                </Link>
                 <span className="text-sm font-medium py-1 px-2 rounded text-sky-900 align-middle">
                   {method.location[key]?.join()}
                 </span>

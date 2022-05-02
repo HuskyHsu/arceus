@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
 import { Icon, Table, TypeIcon } from "@/components";
 import { BaseProps, BossPokemon } from "@/models";
@@ -86,8 +86,14 @@ function Map() {
     },
   ];
 
-  const filterModel = useFilter("黑曜原野");
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const filterModel = useFilter(searchParams.get("area") ?? "黑曜原野");
   const { pokemonList } = useBossPokemonList(filterModel.filter.area);
+
+  useEffect(() => {
+    setSearchParams({ area: filterModel.filter.area });
+  }, [filterModel.filter.area]);
 
   return (
     <div className="flex flex-col md:flex-row gap-2">
