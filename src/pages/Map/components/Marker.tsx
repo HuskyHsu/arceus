@@ -28,13 +28,13 @@ export function Marker({
         updateKeywordFilter();
       }}
     >
-      <Avatars
-        pm={pm}
-        size={"S"}
-        style={clsx("ring-[1px] md:ring-[3px]", {
-          "ring-yellow-500": selected,
-        })}
-      />
+      <p
+        className={clsx(
+          "absolute w-10 h-10 rounded-full bg-white",
+          selected ? "animate-ping" : "opacity-0"
+        )}
+      ></p>
+      <Avatars pm={pm} size={"S"} style={clsx("ring-[2px] md:ring-[3px]")} />
     </div>
   );
 }
