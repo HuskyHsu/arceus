@@ -8,12 +8,12 @@ import { PokemonContext } from "../Detail";
 
 interface InfoProps {
   text: string;
-  className: string;
+  className?: string;
 }
 
 interface AvatarsProps {
   pm: BasePokemon;
-  className: string;
+  className?: string;
 }
 
 function Info({ text, className }: InfoProps) {
@@ -30,7 +30,7 @@ function Info({ text, className }: InfoProps) {
   );
 }
 
-function PokemonAvatars({ pm, className }: AvatarsProps) {
+function PokemonAvatars({ pm, className = "" }: AvatarsProps) {
   return (
     <div
       className={clsx(className, "flex flex-col justify-center items-center")}
@@ -73,16 +73,16 @@ export function Evolution() {
 
     if (i === 0) {
       rowElement.push(
-        <Link to={`/${evolution.before.link}`}>
-          <PokemonAvatars
-            key={keyId}
-            className={
-              rows === "row-span-1" && secRows === "row-span-2"
-                ? "row-span-2"
-                : rows
-            }
-            pm={evolution.before}
-          />
+        <Link
+          to={`/${evolution.before.link}`}
+          key={keyId}
+          className={
+            rows === "row-span-1" && secRows === "row-span-2"
+              ? "row-span-2"
+              : rows
+          }
+        >
+          <PokemonAvatars pm={evolution.before} />
         </Link>
       );
     }
@@ -97,16 +97,16 @@ export function Evolution() {
         }
         text={evolution.require}
       />,
-      <Link to={`/${evolution.after.link}`}>
-        <PokemonAvatars
-          key={keyId + 2}
-          className={
-            rows === "row-span-1" && secRows === "row-span-2"
-              ? "row-span-2"
-              : "row-span-1"
-          }
-          pm={evolution.after}
-        />
+      <Link
+        to={`/${evolution.after.link}`}
+        key={keyId + 2}
+        className={
+          rows === "row-span-1" && secRows === "row-span-2"
+            ? "row-span-2"
+            : "row-span-1"
+        }
+      >
+        <PokemonAvatars pm={evolution.after} />
       </Link>,
     ]);
 
@@ -115,13 +115,9 @@ export function Evolution() {
     if (evolution.evolution) {
       evolution.evolution.forEach((evolution_, j) => {
         acc = acc.concat([
-          <Info key={keyId} className={""} text={evolution_.require} />,
-          <Link to={`/${evolution_.after.link}`}>
-            <PokemonAvatars
-              key={keyId + 1}
-              className={""}
-              pm={evolution_.after}
-            />
+          <Info key={keyId} text={evolution_.require} />,
+          <Link to={`/${evolution_.after.link}`} key={keyId + 1}>
+            <PokemonAvatars pm={evolution_.after} />
           </Link>,
         ]);
         keyId += 2;
