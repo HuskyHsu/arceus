@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
-import { Icon, Table } from "@/components";
-import { BossPokemon } from "@/models";
+import { Icon, Table, TypeIcon } from "@/components";
+import { BaseProps, BossPokemon } from "@/models";
 import { api, BASE_URL, useFilter } from "@/utils";
 import { AreaSelect, MapDom } from "./components";
 
@@ -23,6 +23,22 @@ const useBossPokemonList = (area: string) => {
   return { pokemonList };
 };
 
+function Types({ pm }: BaseProps) {
+  if (pm.types.length === 1) {
+    return <TypeIcon type={pm.types[0]} />;
+  }
+  return (
+    <li className="flex gap-1">
+      {
+        <>
+          <TypeIcon type={pm.types[0]} />
+          <TypeIcon type={pm.types[1]} />
+        </>
+      }
+    </li>
+  );
+}
+
 function Map() {
   const feilds = [
     {
@@ -41,6 +57,11 @@ function Map() {
       width: "w-4/12",
     },
     {
+      name: "屬性",
+      value: (pm: BossPokemon) => <Types pm={pm} />,
+      width: "w-2/12",
+    },
+    {
       name: "等級",
       value: (pm: BossPokemon) => pm.level,
       width: "w-2/12",
@@ -48,7 +69,7 @@ function Map() {
     {
       name: "出沒地點",
       value: (pm: BossPokemon) => pm.nearby,
-      width: "w-6/12",
+      width: "w-4/12",
     },
   ];
 
@@ -61,7 +82,7 @@ function Map() {
         <MapDom pmList={pokemonList} area={filterModel.filter.area} />
       </div>
       <div className="w-full max-h-screen">
-        <div className="overflow-y-auto p-4">
+        <div className="overflow-y-auto p-4 max-w-xl">
           <div className="mb-4 flex gap-x-4">
             <Link to="/" className="bg-white rounded-full p-1 shadow-md">
               <Icon.Table className="h-6 w-6" />

@@ -21,7 +21,7 @@ export function Marker({ pm }: MarkerProps) {
         left: `${pm.position[0] / 10}%`,
       }}
     >
-      <Avatars pm={pm} size={"S"} style={"ring-[3px]"} />
+      <Avatars pm={pm} size={"S"} style={"ring-[1px] md:ring-[3px]"} />
     </Link>
   );
 }
