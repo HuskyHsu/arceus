@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 
+import areaMap from "@/data/area.json";
 import { RadarChart, Table } from "@/components";
 import { GetMethod, Item } from "@/models";
 import { getTypeColor } from "@/utils";
@@ -71,7 +72,25 @@ export function BaseInfo() {
           }
           return locations;
         }
-        return method.location;
+        if (
+          Object.entries(areaMap.area)
+            .filter(([key, value]) => Number(key) < 1)
+            .map(([key, value]) => value)
+            .includes(method.location)
+        ) {
+          return (
+            <span className="text-sm font-medium bg-sky-900 py-1 px-2 rounded text-gray-100 align-middle">
+              {method.location}
+            </span>
+          );
+        }
+        return (
+          <Link to={`/map?area=${method.location}`} key={method.location}>
+            <span className="text-sm font-medium bg-sky-900 py-1 px-2 rounded text-gray-100 align-middle">
+              {method.location}
+            </span>
+          </Link>
+        );
       },
       width: "w-7/12",
     },
