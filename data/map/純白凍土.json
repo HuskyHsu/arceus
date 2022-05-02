@@ -1,0 +1,251 @@
+[
+    {
+        "id": 196,
+        "pid": 358,
+        "name": "風鈴鈴",
+        "types": [
+            "超能力"
+        ],
+        "genderDiff": false,
+        "link": "196",
+        "linkPid": "358",
+        "level": 65,
+        "nearby": "睿智湖",
+        "position": [
+            412,
+            215
+        ]
+    },
+    {
+        "id": 104,
+        "pid": 475,
+        "name": "艾路雷朵",
+        "types": [
+            "超能力",
+            "格鬥"
+        ],
+        "genderDiff": false,
+        "link": "104",
+        "linkPid": "475",
+        "level": 70,
+        "nearby": "雪峰神殿",
+        "position": [
+            675,
+            72
+        ]
+    },
+    {
+        "id": 214,
+        "pid": 473,
+        "name": "象牙豬",
+        "types": [
+            "冰",
+            "地面"
+        ],
+        "genderDiff": true,
+        "link": "214",
+        "linkPid": "473",
+        "level": 68,
+        "nearby": "冰岩塊",
+        "position": [
+            620,
+            440
+        ]
+    },
+    {
+        "id": 218,
+        "pid": 460,
+        "name": "暴雪王",
+        "types": [
+            "草",
+            "冰"
+        ],
+        "genderDiff": true,
+        "link": "218",
+        "linkPid": "460",
+        "level": 68,
+        "nearby": "冰岩塊",
+        "position": [
+            662,
+            546
+        ]
+    },
+    {
+        "id": 202,
+        "pid": 215,
+        "name": "狃拉",
+        "types": [
+            "格鬥",
+            "毒"
+        ],
+        "genderDiff": true,
+        "link": "202H",
+        "altForm": "洗翠",
+        "linkPid": "215H",
+        "level": 61,
+        "nearby": "冰岩塊",
+        "position": [
+            479,
+            427
+        ]
+    },
+    {
+        "id": 213,
+        "pid": 221,
+        "name": "長毛豬",
+        "types": [
+            "冰",
+            "地面"
+        ],
+        "genderDiff": true,
+        "link": "213",
+        "linkPid": "221",
+        "level": 65,
+        "nearby": "冰岩塊",
+        "position": [
+            337,
+            614
+        ]
+    },
+    {
+        "id": 212,
+        "pid": 220,
+        "name": "小山豬",
+        "types": [
+            "冰",
+            "地面"
+        ],
+        "genderDiff": false,
+        "link": "212",
+        "linkPid": "220",
+        "level": 62,
+        "nearby": "冰岩塊",
+        "position": [
+            484,
+            577
+        ]
+    },
+    {
+        "id": 103,
+        "pid": 282,
+        "name": "沙奈朵",
+        "types": [
+            "超能力",
+            "妖精"
+        ],
+        "genderDiff": false,
+        "link": "103",
+        "linkPid": "282",
+        "level": 70,
+        "nearby": "心形岩山（日）",
+        "position": [
+            840,
+            406
+        ]
+    },
+    {
+        "id": 156,
+        "pid": 68,
+        "name": "怪力",
+        "types": [
+            "格鬥"
+        ],
+        "genderDiff": false,
+        "link": "156",
+        "linkPid": "068",
+        "level": 70,
+        "nearby": "往戰場的路",
+        "position": [
+            305,
+            502
+        ]
+    },
+    {
+        "id": 206,
+        "pid": 362,
+        "name": "冰鬼護",
+        "types": [
+            "冰"
+        ],
+        "genderDiff": false,
+        "link": "206",
+        "linkPid": "362",
+        "level": 62,
+        "nearby": "酷寒荒地",
+        "position": [
+            559,
+            625
+        ]
+    },
+    {
+        "id": 207,
+        "pid": 478,
+        "name": "雪妖女",
+        "types": [
+            "冰",
+            "幽靈"
+        ],
+        "genderDiff": false,
+        "link": "207",
+        "linkPid": "478",
+        "level": 72,
+        "nearby": "雪崩坡（地下）",
+        "position": [
+            222,
+            854
+        ]
+    },
+    {
+        "id": 189,
+        "pid": 445,
+        "name": "烈咬陸鯊",
+        "types": [
+            "龍",
+            "地面"
+        ],
+        "genderDiff": true,
+        "link": "189",
+        "linkPid": "445",
+        "level": 85,
+        "nearby": "雪崩坡",
+        "position": [
+            128,
+            908
+        ]
+    },
+    {
+        "id": 224,
+        "pid": 448,
+        "name": "路卡利歐",
+        "types": [
+            "格鬥",
+            "鋼"
+        ],
+        "genderDiff": false,
+        "link": "224",
+        "linkPid": "448",
+        "level": 70,
+        "nearby": "冰鬼瀑",
+        "position": [
+            288,
+            894
+        ]
+    },
+    {
+        "id": 183,
+        "pid": 125,
+        "name": "電擊獸",
+        "types": [
+            "電"
+        ],
+        "genderDiff": false,
+        "link": "183",
+        "linkPid": "125",
+        "level": 65,
+        "nearby": "冰鬼瀑",
+        "position": [
+            312,
+            785
+        ]
+    }
+]

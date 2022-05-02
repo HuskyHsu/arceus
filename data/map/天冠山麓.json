@@ -1,0 +1,286 @@
+[
+    {
+        "id": 119,
+        "pid": 208,
+        "name": "大鋼蛇",
+        "types": [
+            "鋼",
+            "地面"
+        ],
+        "genderDiff": true,
+        "link": "119",
+        "linkPid": "208",
+        "level": 60,
+        "nearby": "神闔山道",
+        "position": [
+            596,
+            645
+        ]
+    },
+    {
+        "id": 201,
+        "pid": 36,
+        "name": "皮可西",
+        "types": [
+            "妖精"
+        ],
+        "genderDiff": false,
+        "link": "201",
+        "linkPid": "036",
+        "level": 62,
+        "nearby": "妖精之泉",
+        "position": [
+            261,
+            937
+        ]
+    },
+    {
+        "id": 117,
+        "pid": 706,
+        "name": "黏美龍",
+        "types": [
+            "鋼",
+            "龍"
+        ],
+        "genderDiff": false,
+        "link": "117H",
+        "altForm": "洗翠",
+        "linkPid": "706H",
+        "level": 70,
+        "nearby": "古代採石場",
+        "position": [
+            531,
+            843
+        ]
+    },
+    {
+        "id": 191,
+        "pid": 476,
+        "name": "大朝北鼻",
+        "types": [
+            "岩石",
+            "鋼"
+        ],
+        "genderDiff": false,
+        "link": "191",
+        "linkPid": "476",
+        "level": 73,
+        "nearby": "迷幻洞窟",
+        "position": [
+            445,
+            603
+        ]
+    },
+    {
+        "id": 188,
+        "pid": 444,
+        "name": "尖牙陸鯊",
+        "types": [
+            "龍",
+            "地面"
+        ],
+        "genderDiff": true,
+        "link": "188",
+        "linkPid": "444",
+        "level": 56,
+        "nearby": "攀崖崖",
+        "position": [
+            564,
+            496
+        ]
+    },
+    {
+        "id": 17,
+        "pid": 405,
+        "name": "倫琴貓",
+        "types": [
+            "電"
+        ],
+        "genderDiff": true,
+        "link": "017",
+        "linkPid": "405",
+        "level": 51,
+        "nearby": "祈禱廣場",
+        "position": [
+            370,
+            536
+        ]
+    },
+    {
+        "id": 184,
+        "pid": 466,
+        "name": "電擊魔獸",
+        "types": [
+            "電"
+        ],
+        "genderDiff": false,
+        "link": "184",
+        "linkPid": "466",
+        "level": 69,
+        "nearby": "笠雲錐道",
+        "position": [
+            320,
+            366
+        ]
+    },
+    {
+        "id": 45,
+        "pid": 414,
+        "name": "紳士蛾",
+        "types": [
+            "蟲",
+            "飛行"
+        ],
+        "genderDiff": false,
+        "link": "045",
+        "linkPid": "414",
+        "level": 55,
+        "nearby": "迷失山林",
+        "position": [
+            611,
+            891
+        ]
+    },
+    {
+        "id": 185,
+        "pid": 207,
+        "name": "天蠍",
+        "types": [
+            "地面",
+            "飛行"
+        ],
+        "genderDiff": true,
+        "link": "185",
+        "linkPid": "207",
+        "level": 52,
+        "nearby": "神闔寺院遺址",
+        "position": [
+            580,
+            436
+        ]
+    },
+    {
+        "id": 122,
+        "pid": 464,
+        "name": "超甲狂犀",
+        "types": [
+            "地面",
+            "岩石"
+        ],
+        "genderDiff": true,
+        "link": "122",
+        "linkPid": "464",
+        "level": 74,
+        "nearby": "祈禱廣場",
+        "position": [
+            320,
+            597
+        ]
+    },
+    {
+        "id": 48,
+        "pid": 76,
+        "name": "隆隆岩",
+        "types": [
+            "岩石",
+            "地面"
+        ],
+        "genderDiff": false,
+        "link": "048",
+        "linkPid": "076",
+        "level": 60,
+        "nearby": "隆隆山地",
+        "position": [
+            150,
+            699
+        ]
+    },
+    {
+        "id": 92,
+        "pid": 455,
+        "name": "尖牙籠",
+        "types": [
+            "草"
+        ],
+        "genderDiff": false,
+        "link": "092",
+        "linkPid": "455",
+        "level": 52,
+        "nearby": "靠近離泉",
+        "position": [
+            839,
+            588
+        ]
+    },
+    {
+        "id": 198,
+        "pid": 429,
+        "name": "夢妖魔",
+        "types": [
+            "幽靈"
+        ],
+        "genderDiff": false,
+        "link": "198",
+        "linkPid": "429",
+        "level": 61,
+        "nearby": "列石山道",
+        "position": [
+            208,
+            575
+        ]
+    },
+    {
+        "id": 186,
+        "pid": 472,
+        "name": "天蠍王",
+        "types": [
+            "地面",
+            "飛行"
+        ],
+        "genderDiff": false,
+        "link": "186",
+        "linkPid": "472",
+        "level": 77,
+        "nearby": "太古洞穴",
+        "position": [
+            575,
+            563
+        ]
+    },
+    {
+        "id": 36,
+        "pid": 169,
+        "name": "叉字蝠",
+        "types": [
+            "毒",
+            "飛行"
+        ],
+        "genderDiff": false,
+        "link": "036",
+        "linkPid": "169",
+        "level": 60,
+        "nearby": "迷幻洞窟",
+        "position": [
+            725,
+            831
+        ]
+    },
+    {
+        "id": 181,
+        "pid": 437,
+        "name": "青銅鐘",
+        "types": [
+            "鋼",
+            "超能力"
+        ],
+        "genderDiff": false,
+        "link": "181",
+        "linkPid": "437",
+        "level": 55,
+        "nearby": "攀崖崖",
+        "position": [
+            799,
+            523
+        ]
+    }
+]
