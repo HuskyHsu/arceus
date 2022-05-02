@@ -53,6 +53,12 @@ export interface BasePokemon {
   linkPid: string;
 }
 
+export interface BossPokemon extends BasePokemon {
+  level: number;
+  nearby: string;
+  position: number[];
+}
+
 export interface BaseProps {
   pm: BasePokemon;
 }
