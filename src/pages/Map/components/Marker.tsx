@@ -15,7 +15,7 @@ export function Marker({
   selected = false,
 }: MarkerProps) {
   return (
-    <div
+    <button
       className={clsx(
         "flex flex-col justify-center items-center",
         "absolute -translate-y-2/4 -translate-x-2/4"
@@ -24,17 +24,15 @@ export function Marker({
         top: `${pm.position[1] / 10}%`,
         left: `${pm.position[0] / 10}%`,
       }}
-      onPointerEnter={() => {
+      onClick={() => {
         updateKeywordFilter();
-      }}
-    >
+      }}>
       <p
         className={clsx(
           "absolute w-10 h-10 rounded-full bg-white",
           selected ? "animate-ping" : "opacity-0"
-        )}
-      ></p>
+        )}></p>
       <Avatars pm={pm} size={"S"} style={clsx("ring-[2px] md:ring-[3px]")} />
-    </div>
+    </button>
   );
 }

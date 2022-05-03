@@ -124,7 +124,7 @@ function Map() {
                 ? -1
                 : Number(filterModel.filter.keyword)
             }
-            pointerEnter={(i: string) => {
+            clickFn={(i: string) => {
               filterModel.updateKeywordFilter(i);
             }}
           />
