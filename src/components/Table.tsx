@@ -13,15 +13,10 @@ interface Props<T> {
   feilds: Feild[];
   data: T[];
   selectIndex?: Number;
-  pointerEnter?: Function;
+  clickFn?: Function;
 }
 
-export function Table<T>({
-  feilds,
-  data,
-  selectIndex,
-  pointerEnter,
-}: Props<T>) {
+export function Table<T>({ feilds, data, selectIndex, clickFn }: Props<T>) {
   const hasToggle = feilds.find((feild) => feild.details !== undefined);
   return (
     <table className="table-auto w-full text-left text-sm whitespace-no-wrap">
@@ -34,8 +29,7 @@ export function Table<T>({
                 "px-2 py-1",
                 "title-font tracking-wider whitespace-nowrap text-gray-100 bg-sky-900",
                 feild.width ? feild.width : ""
-              )}
-            >
+              )}>
               {feild.name}
             </th>
           ))}
@@ -50,10 +44,9 @@ export function Table<T>({
                 className={clsx("border-b-2 border-gray-200", {
                   "bg-yellow-200": selectIndex === i,
                 })}
-                onPointerEnter={() => {
-                  if (pointerEnter) pointerEnter(String(i));
-                }}
-              >
+                onClick={() => {
+                  if (clickFn) clickFn(String(i));
+                }}>
                 {feilds.map((feild, j) => (
                   <td key={j} className="px-2 py-1">
                     {feild.value(item)}
@@ -74,11 +67,8 @@ export function Table<T>({
                   })}
                   onClick={() => {
                     setToggle((toggle) => !toggle);
-                  }}
-                  onPointerEnter={() => {
-                    if (pointerEnter) pointerEnter(String(i));
-                  }}
-                >
+                    if (clickFn) clickFn(String(i));
+                  }}>
                   {feilds.map((feild, j) => (
                     <td key={j} className="px-2 py-1">
                       {feild.value(item)}
@@ -87,16 +77,14 @@ export function Table<T>({
                 </tr>
                 {toggle && (
                   <tr
-                    className={clsx("border-b-2 border-gray-200 bg-slate-200")}
-                  >
+                    className={clsx("border-b-2 border-gray-200 bg-slate-200")}>
                     {feilds.map((feild, k) => {
                       if (feild.details) {
                         return (
                           <td
                             key={data.length * feilds.length + k}
                             className="px-2 py-1"
-                            colSpan={feild.colSpan ?? 1}
-                          >
+                            colSpan={feild.colSpan ?? 1}>
                             {feild.details(item)}
                           </td>
                         );
