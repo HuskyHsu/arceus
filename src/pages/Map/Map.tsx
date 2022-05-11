@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 
-import { Icon, Table, TypeIcon } from "@/components";
-import { BaseProps, BossPokemon } from "@/models";
+import { Icon, Table } from "@/components";
+import { BossPokemon, MapData } from "@/models";
 import { api, BASE_URL, useFilter } from "@/utils";
-import { AreaSelect, MapDom } from "./components";
+import { AreaSelect, MapDom, TableList, Types } from "./components";
 
 const useBossPokemonList = (area: string) => {
   const [pokemonList, setPokemonList] = useState<BossPokemon[]>([]);
@@ -23,73 +23,31 @@ const useBossPokemonList = (area: string) => {
   return { pokemonList };
 };
 
-function Types({ pm }: BaseProps) {
-  if (pm.types.length === 1) {
-    return <TypeIcon type={pm.types[0]} />;
-  }
-  return (
-    <li className="flex gap-1">
-      {
-        <>
-          <TypeIcon type={pm.types[0]} />
-          <TypeIcon type={pm.types[1]} />
-        </>
-      }
-    </li>
-  );
-}
+const useMapData = () => {
+  const [mapData, setMapData] = useState<MapData>({
+    respawn: [],
+  });
+
+  const getData = async () => {
+    return await api<MapData>(`${BASE_URL}data/map/cobaltcoastlands.json`);
+  };
+
+  useEffect(() => {
+    (async () => {
+      const data = await getData();
+      setMapData(data);
+    })();
+  }, []);
+
+  return { mapData };
+};
 
 function Map() {
-  const feilds = [
-    {
-      name: (
-        <span className={"flex gap-x-2"}>
-          <Icon.Boss className="h-[1.3rem] w-[1.3rem]" />
-          頭目名稱
-        </span>
-      ),
-      value: (pm: BossPokemon) => (
-        <p className={"flex gap-x-2"}>
-          <Icon.Boss className="h-[1.3rem] w-[1.3rem]" />
-          {pm.name}
-        </p>
-      ),
-      width: "w-3/12",
-    },
-    {
-      name: "屬性",
-      value: (pm: BossPokemon) => <Types pm={pm} />,
-      width: "w-2/12",
-    },
-    {
-      name: "等級",
-      value: (pm: BossPokemon) => pm.level,
-      width: "w-1/12",
-    },
-    {
-      name: "出沒地點",
-      value: (pm: BossPokemon) => pm.nearby,
-      width: "w-4/12",
-    },
-    {
-      name: "詳細",
-      value: (pm: BossPokemon) => (
-        <Link to={`/${pm.link}`}>
-          <img
-            className="w-5 h-5"
-            src={`${BASE_URL}image/pokeball.png`}
-            alt=""
-          />
-        </Link>
-      ),
-      width: "w-2/12",
-    },
-  ];
-
   const [searchParams, setSearchParams] = useSearchParams();
 
   const filterModel = useFilter(searchParams.get("area") ?? "黑曜原野");
   const { pokemonList } = useBossPokemonList(filterModel.filter.area);
+  const { mapData } = useMapData();
 
   useEffect(() => {
     setSearchParams({ area: filterModel.filter.area });
@@ -100,6 +58,7 @@ function Map() {
       <div className="h-full w-full">
         <MapDom
           pmList={pokemonList}
+          mapData={mapData}
           filter={filterModel.filter}
           updateKeywordFilter={filterModel.updateKeywordFilter}
         />
@@ -116,18 +75,7 @@ function Map() {
               updateAreaSelect={filterModel.updateAreaSelect}
             />
           </div>
-          <Table
-            feilds={feilds}
-            data={pokemonList}
-            selectIndex={
-              filterModel.filter.keyword === ""
-                ? -1
-                : Number(filterModel.filter.keyword)
-            }
-            clickFn={(i: string) => {
-              filterModel.updateKeywordFilter(i);
-            }}
-          />
+          <TableList pokemonList={pokemonList} filterModel={filterModel} />
         </div>
       </div>
     </div>

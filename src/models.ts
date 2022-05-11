@@ -104,6 +104,14 @@ export interface Filter {
   areaSelector: boolean;
 }
 
+export interface FilterContextInterface {
+  updateKeywordFilter: Function;
+  updateTypeFilter: Function;
+  toggereAreaSelect: Function;
+  updateAreaSelect: Function;
+  filter: Filter;
+}
+
 export enum TypeMap {
   "一般" = "Normal",
   "草" = "Grass",
@@ -147,4 +155,14 @@ export interface Display {
   selectGender: string;
   shiny: boolean;
   actionTab: string;
+}
+
+interface Respawn {
+  id: number;
+  points: number[][];
+  convexHull?: number[];
+}
+
+export interface MapData {
+  respawn: Respawn[];
 }
