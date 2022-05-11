@@ -24,23 +24,23 @@ if __name__ == "__main__":
 
         spawntable[spawn["icon"]][spawn["tableID"]].append(spawn["coords"])
 
+    respawn = []
     for key in spawntable["pokeball"].keys():
+        base = {"id": key, "points": spawntable["pokeball"][key]}
         if len(spawntable["pokeball"][key]) <= 3:
+            respawn.append(base)
             continue
 
         spawntable["pokeball"][key] = [
             (row[0], row[1]) for row in spawntable["pokeball"][key]
         ]
         hull = ConvexHull(spawntable["pokeball"][key])
-        spawntable["pokeball"][key] = [
-            spawntable["pokeball"][key][i] for i in hull.vertices
-        ]
+        base["convexHull"] = [int(i) for i in hull.vertices]
+        respawn.append(base)
 
-    # generators = np.array([[0.2, 0.2],
-    #                    [0.2, 0.4],
-    #                    [0.4, 0.4],
-    #                    [0.4, 0.2],
-    #                    [0.3, 0.6]])
+    for key in [k for k in spawntable.keys()]:
+        del spawntable[key]
+    spawntable["respawn"] = respawn
 
     with open("./cobaltcoastlands_.json", "wt", encoding="utf-8") as fout:
         fout.write(json.dumps(spawntable, ensure_ascii=False))
