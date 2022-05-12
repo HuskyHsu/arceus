@@ -28,9 +28,9 @@ export function usePokemon() {
   return pokemonList;
 }
 
-export function useFilter(area = "全區域") {
+export function useFilter(area = "全區域", displayTypes = defaultTypeTrue) {
   const [filter, setFilter] = useState({
-    types: defaultTypeTrue,
+    types: displayTypes,
     keyword: "",
     area: area,
     areaSelector: false,

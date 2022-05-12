@@ -166,3 +166,24 @@ interface Respawn {
 export interface MapData {
   respawn: Respawn[];
 }
+
+// [({
+//   condition: "Morning - All Weather",
+//   data: [
+//     { name: "Machop", alpha: false, "%": 81.3, level: "24 - 27" },
+//     { name: "Machoke", alpha: false, "%": 16.26, level: "31 - 34" },
+//     { name: "Machop", alpha: true, "%": 1.63, level: "39 - 42" },
+//     { name: "Machoke", alpha: true, "%": 0.81, level: "46 - 49" },
+//   ],
+// },];
+
+export interface Haunt {
+  name: string;
+  alpha: boolean;
+  "%": number;
+  level: string;
+}
+export interface SpawnTable {
+  condition: string;
+  data: Haunt[];
+}

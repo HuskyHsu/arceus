@@ -1,8 +1,8 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 
 import { Icon, Table } from "@/components";
-import { BossPokemon, MapData } from "@/models";
+import { BossPokemon, Filter, Haunt, MapData, SpawnTable } from "@/models";
 import { api, BASE_URL, useFilter } from "@/utils";
 import { AreaSelect, MapDom, TableList, Types } from "./components";
 
@@ -23,41 +23,94 @@ const useBossPokemonList = (area: string) => {
   return { pokemonList };
 };
 
-const useMapData = () => {
+const useMapData = (filter: Filter) => {
   const [mapData, setMapData] = useState<MapData>({
     respawn: [],
   });
 
-  const getData = async () => {
+  const [spawntables, setSpawntables] = useState<SpawnTable[]>([]);
+
+  const getMapData = async () => {
     return await api<MapData>(`${BASE_URL}data/map/cobaltcoastlands.json`);
+  };
+
+  const getSpawntable = async (id: string) => {
+    return await api<SpawnTable[]>(`${BASE_URL}data/map/spawntable/${id}.json`);
   };
 
   useEffect(() => {
     (async () => {
-      const data = await getData();
+      const data = await getMapData();
       setMapData(data);
     })();
-  }, []);
+  }, [filter.area]);
 
-  return { mapData };
+  useEffect(() => {
+    (async () => {
+      if (!filter.keyword.startsWith("respawn-")) {
+        return;
+      }
+      const data = await getSpawntable(filter.keyword.split("-")[1]);
+      setSpawntables(data);
+    })();
+  }, [filter.keyword]);
+
+  return { mapData, spawntables };
 };
 
 function Map() {
   const [searchParams, setSearchParams] = useSearchParams();
+  const area = searchParams.get("area") ?? "群青海岸";
+  const displayTypes = {
+    respawn: true,
+    boss: true,
+  };
 
-  const filterModel = useFilter(searchParams.get("area") ?? "黑曜原野");
-  const { pokemonList } = useBossPokemonList(filterModel.filter.area);
-  const { mapData } = useMapData();
+  const filterModel = useFilter(area, displayTypes);
+
+  // const { pokemonList } = useBossPokemonList(filterModel.filter.area);
+  const { mapData, spawntables } = useMapData(filterModel.filter);
 
   useEffect(() => {
     setSearchParams({ area: filterModel.filter.area });
   }, [filterModel.filter.area]);
 
+  const spawntableFeilds = [
+    {
+      name: "名稱",
+      value: (haunt: Haunt) => {
+        return haunt.name;
+      },
+      width: "w-3/12",
+    },
+    {
+      name: "頭目",
+      value: (haunt: Haunt) => {
+        return haunt.alpha ? "頭目" : "一般";
+      },
+      width: "w-3/12",
+    },
+    {
+      name: "機率",
+      value: (haunt: Haunt) => {
+        return haunt["%"];
+      },
+      width: "w-3/12",
+    },
+    {
+      name: "等級",
+      value: (haunt: Haunt) => {
+        return haunt.level;
+      },
+      width: "w-3/12",
+    },
+  ];
+
   return (
     <div className="flex flex-col md:flex-row gap-2">
       <div className="h-full w-full">
         <MapDom
-          pmList={pokemonList}
+          // pmList={pokemonList}
           mapData={mapData}
           filter={filterModel.filter}
           updateKeywordFilter={filterModel.updateKeywordFilter}
@@ -75,7 +128,17 @@ function Map() {
               updateAreaSelect={filterModel.updateAreaSelect}
             />
           </div>
-          <TableList pokemonList={pokemonList} filterModel={filterModel} />
+          <div className="grid gap-y-4">
+            {spawntables.map((spawntable) => {
+              return (
+                <div key={spawntable.condition}>
+                  <h4 className="text-lg">{spawntable.condition}</h4>
+                  <Table feilds={spawntableFeilds} data={spawntable.data} />
+                </div>
+              );
+            })}
+          </div>
+          {/* <TableList pokemonList={pokemonList} filterModel={filterModel} /> */}
         </div>
       </div>
     </div>
