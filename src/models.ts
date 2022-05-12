@@ -55,8 +55,8 @@ export interface BasePokemon {
 
 export interface BossPokemon extends BasePokemon {
   level: number;
-  nearby: string;
-  position: number[];
+  time: string;
+  point: number[];
 }
 
 export interface BaseProps {
@@ -165,19 +165,11 @@ interface Respawn {
 
 export interface MapData {
   respawn: Respawn[];
+  boss: [];
 }
 
-// [({
-//   condition: "Morning - All Weather",
-//   data: [
-//     { name: "Machop", alpha: false, "%": 81.3, level: "24 - 27" },
-//     { name: "Machoke", alpha: false, "%": 16.26, level: "31 - 34" },
-//     { name: "Machop", alpha: true, "%": 1.63, level: "39 - 42" },
-//     { name: "Machoke", alpha: true, "%": 0.81, level: "46 - 49" },
-//   ],
-// },];
-
 export interface Haunt {
+  link: string;
   name: string;
   alpha: boolean;
   "%": number;
@@ -186,4 +178,10 @@ export interface Haunt {
 export interface SpawnTable {
   condition: string;
   data: Haunt[];
+}
+
+export interface MapProps {
+  mapData: MapData;
+  filter: Filter;
+  updateKeywordFilter: Function;
 }

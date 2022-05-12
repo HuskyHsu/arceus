@@ -21,8 +21,8 @@ export function Marker({
         "absolute -translate-y-2/4 -translate-x-2/4"
       )}
       style={{
-        top: `${pm.position[1] / 10}%`,
-        left: `${pm.position[0] / 10}%`,
+        top: `${pm.point[1] / 10}%`,
+        left: `${pm.point[0] / 10}%`,
       }}
       onClick={() => {
         updateKeywordFilter();

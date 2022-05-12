@@ -1,1 +1,1 @@
-[{"condition": "全天 - 不分天氣", "data": [{"name": "Stantler", "alpha": false, "%": 99.01, "level": "41 - 44"}, {"name": "Stantler", "alpha": true, "%": 0.99, "level": "56 - 59"}]}]
+[{"condition": "全天 - 不分天氣", "data": [{"link": "049", "name": "驚角鹿", "alpha": false, "%": 99.01, "level": "41 - 44"}, {"link": "049", "name": "驚角鹿", "alpha": true, "%": 0.99, "level": "56 - 59"}]}]

@@ -1,1 +1,1 @@
-[{"condition": "全天 - 不分天氣", "data": [{"name": "Mothim", "alpha": false, "%": 99.01, "level": "33 - 36"}, {"name": "Mothim", "alpha": true, "%": 0.99, "level": "48 - 51"}]}]
+[{"condition": "全天 - 不分天氣", "data": [{"link": "045", "name": "紳士蛾", "alpha": false, "%": 99.01, "level": "33 - 36"}, {"link": "045", "name": "紳士蛾", "alpha": true, "%": 0.99, "level": "48 - 51"}]}]

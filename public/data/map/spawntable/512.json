@@ -1,1 +1,1 @@
-[{"condition": "全天 - 不分天氣", "data": [{"name": "Golduck", "alpha": false, "%": 99.01, "level": "41 - 44"}, {"name": "Golduck", "alpha": true, "%": 0.99, "level": "56 - 59"}]}]
+[{"condition": "全天 - 不分天氣", "data": [{"link": "069", "name": "哥達鴨", "alpha": false, "%": 99.01, "level": "41 - 44"}, {"link": "069", "name": "哥達鴨", "alpha": true, "%": 0.99, "level": "56 - 59"}]}]

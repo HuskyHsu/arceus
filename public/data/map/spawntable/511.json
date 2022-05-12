@@ -1,1 +1,1 @@
-[{"condition": "全天 - 不分天氣", "data": [{"name": "Combee", "alpha": false, "%": 99.01, "level": "17 - 20"}, {"name": "Combee", "alpha": true, "%": 0.99, "level": "32 - 35"}]}]
+[{"condition": "全天 - 不分天氣", "data": [{"link": "070", "name": "三蜜蜂", "alpha": false, "%": 99.01, "level": "17 - 20"}, {"link": "070", "name": "三蜜蜂", "alpha": true, "%": 0.99, "level": "32 - 35"}]}]

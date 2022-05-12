@@ -2,15 +2,15 @@ import { Link } from "react-router-dom";
 
 import { Icon, Table } from "@/components";
 import { BossPokemon, FilterContextInterface } from "@/models";
-import { BASE_URL } from "@/utils";
-import { Types } from "./Types";
+import { Types } from "../Types";
+import { getBossKey } from "../Maps";
 
 interface Props {
   pokemonList: BossPokemon[];
   filterModel: FilterContextInterface;
 }
 
-export function TableList({ pokemonList, filterModel }: Props) {
+export function Boss({ pokemonList, filterModel }: Props) {
   const feilds = [
     {
       name: (
@@ -21,13 +21,13 @@ export function TableList({ pokemonList, filterModel }: Props) {
       ),
       value: (pm: BossPokemon) => (
         <Link to={`/${pm.link}`}>
-          <p className={"flex gap-x-2"}>
+          <p className={"flex gap-x-2 text-blue-900 underline"}>
             <Icon.Boss className="h-[1.3rem] w-[1.3rem]" />
             {pm.name}
           </p>
         </Link>
       ),
-      width: "w-3/12",
+      width: "w-4/12",
     },
     {
       name: "屬性",
@@ -40,23 +40,24 @@ export function TableList({ pokemonList, filterModel }: Props) {
       width: "w-2/12",
     },
     {
-      name: "出沒地點",
-      value: (pm: BossPokemon) => pm.nearby,
-      width: "w-4/12",
+      name: "出沒時間",
+      value: (pm: BossPokemon) => pm.time,
+      width: "w-3/12",
     },
   ];
+
+  let selectIndex = -1;
+  if (filterModel.filter.keyword.startsWith("boss-")) {
+    selectIndex = Number(filterModel.filter.keyword.split("-")[1]);
+  }
 
   return (
     <Table
       feilds={feilds}
       data={pokemonList}
-      selectIndex={
-        filterModel.filter.keyword === ""
-          ? -1
-          : Number(filterModel.filter.keyword)
-      }
-      clickFn={(i: string) => {
-        filterModel.updateKeywordFilter(i);
+      selectIndex={selectIndex}
+      clickFn={(i: number) => {
+        filterModel.updateKeywordFilter(getBossKey(Number(i)));
       }}
     />
   );

@@ -45,7 +45,7 @@ export function Table<T>({ feilds, data, selectIndex, clickFn }: Props<T>) {
                   "bg-yellow-200": selectIndex === i,
                 })}
                 onClick={() => {
-                  if (clickFn) clickFn(String(i));
+                  if (clickFn) clickFn(i);
                 }}>
                 {feilds.map((feild, j) => (
                   <td key={j} className="px-2 py-1">
@@ -67,7 +67,7 @@ export function Table<T>({ feilds, data, selectIndex, clickFn }: Props<T>) {
                   })}
                   onClick={() => {
                     setToggle((toggle) => !toggle);
-                    if (clickFn) clickFn(String(i));
+                    if (clickFn) clickFn(i);
                   }}>
                   {feilds.map((feild, j) => (
                     <td key={j} className="px-2 py-1">

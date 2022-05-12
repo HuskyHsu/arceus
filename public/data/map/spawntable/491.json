@@ -1,1 +1,1 @@
-[{"condition": "全天 - 不分天氣", "data": [{"name": "Shellos", "alpha": false, "%": 99.01, "level": "31 - 34"}, {"name": "Shellos", "alpha": true, "%": 0.99, "level": "46 - 49"}]}]
+[{"condition": "全天 - 不分天氣", "data": [{"link": "082", "name": "無殼海兔", "alpha": false, "%": 99.01, "level": "31 - 34"}, {"link": "082", "name": "無殼海兔", "alpha": true, "%": 0.99, "level": "46 - 49"}]}]
