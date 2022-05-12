@@ -83,6 +83,12 @@ def get_respawn(spawntable):
         spawntable["pokeball"][key] = [
             (row[0], row[1]) for row in spawntable["pokeball"][key]
         ]
+
+        if len(list(set(spawntable["pokeball"][key]))) < 3:
+            respawn.append(base)
+            continue
+
+        # print(spawntable["pokeball"][key])
         hull = ConvexHull(spawntable["pokeball"][key])
         base["convexHull"] = [int(i) for i in hull.vertices]
         respawn.append(base)
@@ -93,6 +99,7 @@ def get_respawn(spawntable):
 def get_alpha(spawntable):
     alpha = []
     for key in spawntable["alpha"].keys():
+        print(f"boss {key}")
         if len(spawntable["alpha"][key]) == 1:
             clean_table = get_spawntable(key, True)[0]
             base = {
@@ -199,7 +206,7 @@ if __name__ == "__main__":
 
     base_output = "../../public/data/map"
 
-    for area in ["群青海岸"]:
+    for area in ["純白凍土"]:  # "黑曜原野", "紅蓮濕地", "群青海岸", "天冠山麓", "純白凍土"
         all_spawntable = get_raw_data(area)
 
         for spawn in all_spawntable:
@@ -211,7 +218,7 @@ if __name__ == "__main__":
 
         save_file(f"{base_output}/{area}_.json", spawntable)
 
-        continue
+        # continue
         for respawn in spawntable["respawn"]:
             tableId = respawn["id"]
             print(tableId)
