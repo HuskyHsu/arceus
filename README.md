@@ -6,11 +6,14 @@
 
 ### Web site: [https://huskyhsu.github.io/arceus/](https://huskyhsu.github.io/arceus/)
 
+> - 2022-05-13 update<br>
+>   定點頭目分布與重生點地圖
+
 ## Pages
 
 - [阿爾宙斯圖鑑索引](#阿爾宙斯圖鑑索引)
 - [詳細資料介紹](#詳細資料介紹)
-- [定點頭目分布地圖](#定點頭目分布地圖)
+- [定點頭目分布與重生點地圖](#定點頭目分布與重生點地圖)
 
 ## 頁面功能介紹
 
@@ -37,9 +40,12 @@
 ![](images/detail_move_2.png)
 ![](images/detail_evolution.png)
 
-### 定點頭目分布地圖
+### 定點頭目分布與重生點地圖
 
 ![](images/map.png)
+
+> 2022-05-13 update
+> ![](images/map_respawn.png)
 
 ### 支援 RWD
 
