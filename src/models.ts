@@ -55,8 +55,8 @@ export interface BasePokemon {
 
 export interface BossPokemon extends BasePokemon {
   level: number;
-  nearby: string;
-  position: number[];
+  time: string;
+  point: number[];
 }
 
 export interface BaseProps {
@@ -104,6 +104,14 @@ export interface Filter {
   areaSelector: boolean;
 }
 
+export interface FilterContextInterface {
+  updateKeywordFilter: Function;
+  updateTypeFilter: Function;
+  toggereAreaSelect: Function;
+  updateAreaSelect: Function;
+  filter: Filter;
+}
+
 export enum TypeMap {
   "一般" = "Normal",
   "草" = "Grass",
@@ -147,4 +155,33 @@ export interface Display {
   selectGender: string;
   shiny: boolean;
   actionTab: string;
+}
+
+interface Respawn {
+  id: number;
+  points: number[][];
+  convexHull?: number[];
+}
+
+export interface MapData {
+  respawn: Respawn[];
+  boss: [];
+}
+
+export interface Haunt {
+  link: string;
+  name: string;
+  alpha: boolean;
+  "%": number;
+  level: string;
+}
+export interface SpawnTable {
+  condition: string;
+  data: Haunt[];
+}
+
+export interface MapProps {
+  mapData: MapData;
+  filter: Filter;
+  updateKeywordFilter: Function;
 }

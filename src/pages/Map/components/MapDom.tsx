@@ -1,34 +1,25 @@
-import { BossPokemon, Filter } from "@/models";
+import { MapProps } from "@/models";
 import { BASE_URL } from "@/utils";
-import { Marker } from "./Marker";
+import * as Maps from "./Maps";
 
-interface MapProps {
-  pmList: BossPokemon[];
-  filter: Filter;
-  updateKeywordFilter: Function;
-}
-
-export function MapDom({ pmList, filter, updateKeywordFilter }: MapProps) {
+export function MapDom({ mapData, filter, updateKeywordFilter }: MapProps) {
   return (
     <div
-      className="relative aspect-square bg-no-repeat bg-cover"
+      className="relative aspect-square bg-no-repeat bg-cover overflow-clip"
       style={{
         backgroundImage: `url(${BASE_URL}image/map/${filter.area}_LA.png)`,
         height: "100vmin",
-      }}
-    >
-      {pmList.map((pm, i) => {
-        return (
-          <Marker
-            key={i}
-            pm={pm}
-            selected={filter.keyword === String(i)}
-            updateKeywordFilter={() => {
-              updateKeywordFilter(String(i));
-            }}
-          />
-        );
-      })}
+      }}>
+      <Maps.Respawn
+        mapData={mapData}
+        filter={filter}
+        updateKeywordFilter={updateKeywordFilter}
+      />
+      <Maps.Boss
+        mapData={mapData}
+        filter={filter}
+        updateKeywordFilter={updateKeywordFilter}
+      />
     </div>
   );
 }
