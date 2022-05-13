@@ -9,6 +9,7 @@ export function Boss({ mapData, filter, updateKeywordFilter }: MapProps) {
   if (!filter.types.boss) {
     return <></>;
   }
+
   return (
     <>
       {mapData.boss.map((pm, i) => {

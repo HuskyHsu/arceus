@@ -15,7 +15,7 @@ const useMapData = (filter: Filter, updateKeywordFilter: Function) => {
   const [spawntables, setSpawntables] = useState<SpawnTable[]>([]);
 
   const getMapData = async (area: string) => {
-    return await api<MapData>(`${BASE_URL}data/map/${area}_.json`);
+    return await api<MapData>(`${BASE_URL}data/map/${area}.json`);
   };
 
   const getSpawntable = async (id: string) => {
@@ -46,7 +46,7 @@ const useMapData = (filter: Filter, updateKeywordFilter: Function) => {
 
 function Map() {
   const [searchParams, setSearchParams] = useSearchParams();
-  const area = searchParams.get("area") ?? "群青海岸";
+  const area = searchParams.get("area") ?? "黑曜原野";
   const displayTypes = {
     respawn: true,
     boss: true,

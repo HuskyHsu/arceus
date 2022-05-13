@@ -37033,5 +37033,23 @@
         ],
         "icon": "mass",
         "tableID": 8006
+    },
+    {
+        "coords": [
+            746,
+            69.4,
+            852
+        ],
+        "icon": "alpha",
+        "tableID": 783
+    },
+    {
+        "coords": [
+            746,
+            69.4,
+            852
+        ],
+        "icon": "alpha",
+        "tableID": 785
     }
 ]

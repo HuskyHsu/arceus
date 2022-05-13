@@ -118,12 +118,34 @@ def get_alpha(spawntable):
     return alpha
 
 
+def overlapping_boss(spawntable):
+    overlapping = set()
+    has_overlapping = {}
+
+    for boss in spawntable["boss"]:
+        key = (boss["point"][0], boss["point"][1])
+        if key in overlapping:
+            has_overlapping[(boss["point"][0], boss["point"][1])] = True
+        overlapping.add(key)
+
+    for boss in spawntable["boss"]:
+        key = (boss["point"][0], boss["point"][1])
+        if key in has_overlapping:
+            if has_overlapping[key]:
+                boss["point"][0] -= 20
+                has_overlapping[key] = not has_overlapping[key]
+            else:
+                boss["point"][0] += 20
+
+
 def find_link(name):
     match_pm = [pm for pm in all_pm if pm["name"] == name.split("(")[0]]
     if len(match_pm) == 1:
         return match_pm[0]
     elif len(match_pm) > 1:
         print(name)
+        if name == "狃拉":
+            return match_pm[1]
         return match_pm[0]
     else:
         print(f"找不到啦~{name}")
@@ -206,7 +228,13 @@ if __name__ == "__main__":
 
     base_output = "../../public/data/map"
 
-    for area in ["純白凍土"]:  # "黑曜原野", "紅蓮濕地", "群青海岸", "天冠山麓", "純白凍土"
+    for area in [
+        "黑曜原野",
+        "紅蓮濕地",
+        "群青海岸",
+        "天冠山麓",
+        "純白凍土",
+    ]:  # "黑曜原野", "紅蓮濕地", "群青海岸", "天冠山麓", "純白凍土"
         all_spawntable = get_raw_data(area)
 
         for spawn in all_spawntable:
@@ -216,7 +244,9 @@ if __name__ == "__main__":
 
         spawntable = {"respawn": get_respawn(spawntable), "boss": get_alpha(spawntable)}
 
-        save_file(f"{base_output}/{area}_.json", spawntable)
+        overlapping_boss(spawntable)
+
+        save_file(f"{base_output}/{area}.json", spawntable)
 
         # continue
         for respawn in spawntable["respawn"]:
@@ -225,3 +255,8 @@ if __name__ == "__main__":
             clean_table = get_spawntable(tableId)
 
             save_file(f"{base_output}/spawntable/{tableId}.json", clean_table)
+
+    # for tableId in range(766, 786):
+    #     print(tableId)
+    #     clean_table = get_spawntable(tableId)
+    #     save_file(f"{base_output}/spawntable/{tableId}.json", clean_table)

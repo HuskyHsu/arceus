@@ -21,10 +21,10 @@ export function Boss({ pokemonList, filterModel }: Props) {
       ),
       value: (pm: BossPokemon) => (
         <Link to={`/${pm.link}`}>
-          <p className={"flex gap-x-2 text-blue-900 underline"}>
-            <Icon.Boss className="h-[1.3rem] w-[1.3rem]" />
+          <span className={" text-blue-900 underline w-fix inline"}>
+            <Icon.Boss className="h-[1.3rem] w-[1.3rem] inline mr-1" />
             {pm.name}
-          </p>
+          </span>
         </Link>
       ),
       width: "w-4/12",

@@ -13,10 +13,10 @@ export function Spawntables({ spawntables }: Props) {
       value: (haunt: Haunt) => {
         return haunt.alpha ? (
           <Link to={`/${haunt.link}`}>
-            <p className={"flex gap-x-2 text-blue-900 underline"}>
+            <span className={" text-blue-900 underline inline"}>
               {haunt.name}
-              <Icon.Boss className="h-[1.3rem] w-[1.3rem]" />
-            </p>
+              <Icon.Boss className="h-[1.3rem] w-[1.3rem] inline ml-1" />
+            </span>
           </Link>
         ) : (
           <Link to={`/${haunt.link}`} className="text-blue-900 underline">
