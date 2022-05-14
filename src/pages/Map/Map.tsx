@@ -10,6 +10,7 @@ const useMapData = (filter: Filter, updateKeywordFilter: Function) => {
   const [mapData, setMapData] = useState<MapData>({
     respawn: [],
     boss: [],
+    pmTable: {},
   });
 
   const [spawntables, setSpawntables] = useState<SpawnTable[]>([]);
@@ -26,8 +27,27 @@ const useMapData = (filter: Filter, updateKeywordFilter: Function) => {
     (async () => {
       const data = await getMapData(filter.area);
       setMapData(data);
-      data.respawn.length > 0 &&
-        updateKeywordFilter(Maps.getRespawnKey(data.respawn[0].id));
+      if (data.respawn.length > 0) {
+        if (filter.keyword === "") {
+          updateKeywordFilter(Maps.getRespawnKey(data.respawn[0].id));
+        } else if (filter.keyword.startsWith("respawn-")) {
+          updateKeywordFilter(Maps.getRespawnKey(data.respawn[0].id));
+        } else {
+          const link = filter.keyword.split("-")[1];
+          if (
+            data.pmTable[link] === undefined ||
+            data.pmTable[link].length === 0
+          ) {
+            return updateKeywordFilter("");
+          }
+          const tableId = data.pmTable[link][0];
+          const SpawntableData = await getSpawntable(`${tableId}`);
+          if (filter.keyword.split("-").length === 2) {
+            updateKeywordFilter(`${filter.keyword}-${tableId}`);
+          }
+          setSpawntables(SpawntableData);
+        }
+      }
     })();
   }, [filter.area]);
 
@@ -47,12 +67,13 @@ const useMapData = (filter: Filter, updateKeywordFilter: Function) => {
 function Map() {
   const [searchParams, setSearchParams] = useSearchParams();
   const area = searchParams.get("area") ?? "黑曜原野";
+  const keyword = searchParams.get("keyword") ?? "";
   const displayTypes = {
     respawn: true,
     boss: true,
   };
 
-  const filterModel = useFilter(area, displayTypes);
+  const filterModel = useFilter(area, displayTypes, keyword);
 
   const { mapData, spawntables } = useMapData(
     filterModel.filter,
@@ -60,8 +81,11 @@ function Map() {
   );
 
   useEffect(() => {
-    setSearchParams({ area: filterModel.filter.area });
-  }, [filterModel.filter.area]);
+    setSearchParams({
+      area: filterModel.filter.area,
+      keyword: filterModel.filter.keyword,
+    });
+  }, [filterModel.filter.area, filterModel.filter.keyword]);
 
   return (
     <div className="flex flex-col md:flex-row gap-2">
@@ -84,9 +108,13 @@ function Map() {
               updateAreaSelect={filterModel.updateAreaSelect}
             />
           </div>
-          {filterModel.filter.keyword.startsWith("respawn") && (
+          {(filterModel.filter.keyword.startsWith("respawn") ||
+            filterModel.filter.keyword.startsWith("pokemon")) && (
             <div className="grid gap-y-4">
-              <Tables.Spawntables spawntables={spawntables} />
+              <Tables.Spawntables
+                spawntables={spawntables}
+                filterModel={filterModel}
+              />
             </div>
           )}
           {filterModel.filter.keyword.startsWith("boss") && (

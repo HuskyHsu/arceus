@@ -53,6 +53,22 @@ def get_raw_data(area):
     return all_spawntable
 
 
+def get_raw_pm_table_data(area):
+    with open(f"./pm/{area}.json", "rt", encoding="utf-8") as fin:
+        all_pm_table = json.load(fin)
+
+    return all_pm_table
+
+
+def format_pm_table_data(all_pm_table, ids_m):
+    all_pm_table_ = {}
+    for pid, ids in all_pm_table.items():
+        pm = find_link_by_pid(int(pid))
+        all_pm_table_[pm["link"]] = [i for i in ids if i in ids_m]
+
+    return all_pm_table_
+
+
 def sort_coords(coords):
     return [coords[0], coords[2], coords[1]]
 
@@ -138,7 +154,7 @@ def overlapping_boss(spawntable):
                 boss["point"][0] += 20
 
 
-def find_link(name):
+def find_link_by_name(name):
     match_pm = [pm for pm in all_pm if pm["name"] == name.split("(")[0]]
     if len(match_pm) == 1:
         return match_pm[0]
@@ -149,6 +165,19 @@ def find_link(name):
         return match_pm[0]
     else:
         print(f"找不到啦~{name}")
+
+
+def find_link_by_pid(pid):
+    match_pm = [pm for pm in all_pm if pm["pid"] == pid]
+    if len(match_pm) == 1:
+        return match_pm[0]
+    elif len(match_pm) > 1:
+        print(pid, match_pm[0]["name"])
+        if match_pm[0]["name"] == "狃拉":
+            return match_pm[1]
+        return match_pm[0]
+    else:
+        print(f"找不到啦~{pid}")
 
 
 def get_spawntable(id, full_info=False):
@@ -189,7 +218,7 @@ def get_spawntable(id, full_info=False):
         subtable = []
         for items in zip(*info):
             name = name_map[items[0][0]]
-            base_pm = find_link(name)
+            base_pm = find_link_by_name(name)
             if full_info:
                 subtable.append(
                     {
@@ -236,19 +265,25 @@ if __name__ == "__main__":
         "純白凍土",
     ]:  # "黑曜原野", "紅蓮濕地", "群青海岸", "天冠山麓", "純白凍土"
         all_spawntable = get_raw_data(area)
+        all_pm_table = get_raw_pm_table_data(area)
 
         for spawn in all_spawntable:
             spawn["coords"] = sort_coords(spawn["coords"])
 
         spawntable = format_spawntable(all_spawntable)
 
-        spawntable = {"respawn": get_respawn(spawntable), "boss": get_alpha(spawntable)}
+        spawntable = {
+            "respawn": get_respawn(spawntable),
+            "boss": get_alpha(spawntable),
+        }
+        ids = [respawn["id"] for respawn in spawntable["respawn"]]
+        spawntable["pmTable"] = format_pm_table_data(all_pm_table, ids)
 
         overlapping_boss(spawntable)
 
         save_file(f"{base_output}/{area}.json", spawntable)
 
-        # continue
+        continue
         for respawn in spawntable["respawn"]:
             tableId = respawn["id"]
             print(tableId)
@@ -256,7 +291,7 @@ if __name__ == "__main__":
 
             save_file(f"{base_output}/spawntable/{tableId}.json", clean_table)
 
-    # for tableId in range(766, 786):
+    # for tableId in range(6, 7):
     #     print(tableId)
     #     clean_table = get_spawntable(tableId)
     #     save_file(f"{base_output}/spawntable/{tableId}.json", clean_table)

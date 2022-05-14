@@ -59,7 +59,7 @@ export function BaseInfo() {
           for (let key in method.location) {
             locations.push(
               <p key={key}>
-                <Link to={`/map?area=${key}`}>
+                <Link to={`/map?area=${key}&keyword=pokemon-${pokemon.link}`}>
                   <span className="text-sm font-medium bg-sky-900 py-1 px-2 rounded text-gray-100 align-middle">
                     {key}
                   </span>

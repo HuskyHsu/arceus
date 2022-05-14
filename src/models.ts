@@ -163,9 +163,14 @@ interface Respawn {
   convexHull?: number[];
 }
 
+interface MapPm {
+  [propName: string]: number[];
+}
+
 export interface MapData {
   respawn: Respawn[];
-  boss: [];
+  boss: BossPokemon[];
+  pmTable: MapPm;
 }
 
 export interface Haunt {

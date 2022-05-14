@@ -1,12 +1,13 @@
 import { Link } from "react-router-dom";
-import { Haunt, SpawnTable } from "@/models";
+import { FilterContextInterface, Haunt, SpawnTable } from "@/models";
 import { Icon, Table } from "@/components";
 
 interface Props {
   spawntables: SpawnTable[];
+  filterModel: FilterContextInterface;
 }
 
-export function Spawntables({ spawntables }: Props) {
+export function Spawntables({ spawntables, filterModel }: Props) {
   const spawntableFeilds = [
     {
       name: "名稱",
@@ -45,10 +46,29 @@ export function Spawntables({ spawntables }: Props) {
   return (
     <>
       {spawntables.map((spawntable) => {
+        let selectIndex = -1;
+        if (filterModel.filter.keyword.startsWith("pokemon-")) {
+          const link = filterModel.filter.keyword.split("-")[1];
+          selectIndex = spawntable.data.findIndex((row) => row.link === link);
+        }
+
         return (
           <div key={spawntable.condition}>
             <h4 className="text-lg">{spawntable.condition}</h4>
-            <Table feilds={spawntableFeilds} data={spawntable.data} />
+            <Table
+              feilds={spawntableFeilds}
+              data={spawntable.data}
+              selectIndex={selectIndex}
+              clickFn={(i: number) => {
+                filterModel.updateKeywordFilter(
+                  `pokemon-${spawntable.data[i].link}-${
+                    filterModel.filter.keyword.startsWith("respawn")
+                      ? filterModel.filter.keyword.split("-")[1]
+                      : filterModel.filter.keyword.split("-")[2]
+                  }`
+                );
+              }}
+            />
           </div>
         );
       })}
