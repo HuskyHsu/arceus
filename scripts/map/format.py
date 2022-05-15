@@ -112,6 +112,28 @@ def get_respawn(spawntable):
     return respawn
 
 
+def get_tree(spawntable):
+    tree = []
+    for key in spawntable["tree"].keys():
+        base = {"id": key, "points": spawntable["tree"][key]}
+        if len(spawntable["tree"][key]) < 3:
+            tree.append(base)
+            continue
+
+        spawntable["tree"][key] = [(row[0], row[1]) for row in spawntable["tree"][key]]
+
+        if len(list(set(spawntable["tree"][key]))) < 3:
+            tree.append(base)
+            continue
+
+        # print(spawntable["tree"][key])
+        hull = ConvexHull(spawntable["tree"][key])
+        base["convexHull"] = [int(i) for i in hull.vertices]
+        tree.append(base)
+
+    return tree
+
+
 def get_alpha(spawntable):
     alpha = []
     for key in spawntable["alpha"].keys():
@@ -180,7 +202,7 @@ def find_link_by_pid(pid):
         print(f"找不到啦~{pid}")
 
 
-def get_spawntable(id, full_info=False):
+def get_spawntable(id, full_info=False, prefix=""):
     table_text = requests.get(
         f"https://www.serebii.net/pokearth/hisui/spawntable/{id}.txt"
     )
@@ -240,7 +262,12 @@ def get_spawntable(id, full_info=False):
                     }
                 )
 
-        clean_table.append({"condition": key, "data": subtable})
+        clean_table.append(
+            {
+                "condition": ("" if prefix == "" else prefix + " - ") + key,
+                "data": subtable,
+            }
+        )
 
     return clean_table
 
@@ -274,20 +301,29 @@ if __name__ == "__main__":
 
         spawntable = {
             "respawn": get_respawn(spawntable),
+            "tree": get_tree(spawntable),
             "boss": get_alpha(spawntable),
         }
         ids = [respawn["id"] for respawn in spawntable["respawn"]]
+        ids += [respawn["id"] for respawn in spawntable["tree"]]
         spawntable["pmTable"] = format_pm_table_data(all_pm_table, ids)
 
         overlapping_boss(spawntable)
 
         save_file(f"{base_output}/{area}.json", spawntable)
 
-        continue
+        # continue
         for respawn in spawntable["respawn"]:
             tableId = respawn["id"]
             print(tableId)
-            clean_table = get_spawntable(tableId)
+            clean_table = get_spawntable(tableId, False)
+
+            save_file(f"{base_output}/spawntable/{tableId}.json", clean_table)
+
+        for respawn in spawntable["tree"]:
+            tableId = respawn["id"]
+            print(tableId)
+            clean_table = get_spawntable(tableId, False, "搖晃的樹")
 
             save_file(f"{base_output}/spawntable/{tableId}.json", clean_table)
 

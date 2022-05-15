@@ -9,6 +9,7 @@ import { AreaSelect, MapDom, Tables, Maps } from "./components";
 const useMapData = (filter: Filter, updateKeywordFilter: Function) => {
   const [mapData, setMapData] = useState<MapData>({
     respawn: [],
+    tree: [],
     boss: [],
     pmTable: {},
   });
@@ -53,7 +54,12 @@ const useMapData = (filter: Filter, updateKeywordFilter: Function) => {
 
   useEffect(() => {
     (async () => {
-      if (!filter.keyword.startsWith("respawn-")) {
+      if (
+        !(
+          filter.keyword.startsWith("respawn-") ||
+          filter.keyword.startsWith("tree-")
+        )
+      ) {
         return;
       }
       const data = await getSpawntable(filter.keyword.split("-")[1]);
@@ -70,6 +76,7 @@ function Map() {
   const keyword = searchParams.get("keyword") ?? "";
   const displayTypes = {
     respawn: true,
+    tree: true,
     boss: true,
   };
 
@@ -109,6 +116,7 @@ function Map() {
             />
           </div>
           {(filterModel.filter.keyword.startsWith("respawn") ||
+            filterModel.filter.keyword.startsWith("tree") ||
             filterModel.filter.keyword.startsWith("pokemon")) && (
             <div className="grid gap-y-4">
               <Tables.Spawntables

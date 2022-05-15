@@ -15,6 +15,11 @@ export function MapDom({ mapData, filter, updateKeywordFilter }: MapProps) {
         filter={filter}
         updateKeywordFilter={updateKeywordFilter}
       />
+      <Maps.Tree
+        mapData={mapData}
+        filter={filter}
+        updateKeywordFilter={updateKeywordFilter}
+      />
       <Maps.Boss
         mapData={mapData}
         filter={filter}

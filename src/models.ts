@@ -169,6 +169,7 @@ interface MapPm {
 
 export interface MapData {
   respawn: Respawn[];
+  tree: Respawn[];
   boss: BossPokemon[];
   pmTable: MapPm;
 }

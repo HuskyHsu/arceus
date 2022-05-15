@@ -62,7 +62,8 @@ export function Spawntables({ spawntables, filterModel }: Props) {
               clickFn={(i: number) => {
                 filterModel.updateKeywordFilter(
                   `pokemon-${spawntable.data[i].link}-${
-                    filterModel.filter.keyword.startsWith("respawn")
+                    filterModel.filter.keyword.startsWith("respawn") ||
+                    filterModel.filter.keyword.startsWith("tree")
                       ? filterModel.filter.keyword.split("-")[1]
                       : filterModel.filter.keyword.split("-")[2]
                   }`

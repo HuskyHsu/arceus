@@ -15,7 +15,9 @@ function SvgMap({ mapData, filter }: MapProps) {
   }
 
   return (
-    <svg className="absolute w-full h-full" viewBox="0 0 1000 1000">
+    <svg
+      className="absolute w-full h-full pointer-events-none"
+      viewBox="0 0 1000 1000">
       {mapData.respawn.map((respawn, i) => {
         if (filter.keyword.startsWith("respawn-")) {
           if (filter.keyword !== getRespawnKey(respawn.id)) {
