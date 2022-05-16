@@ -10,19 +10,23 @@ export function MapDom({ mapData, filter, updateKeywordFilter }: MapProps) {
         backgroundImage: `url(${BASE_URL}image/map/${filter.area}_LA.png)`,
         height: "100vmin",
       }}>
-      <Maps.Respawn
+      <Maps.Points
         mapData={mapData}
         filter={filter}
+        type={"respawn"}
         updateKeywordFilter={updateKeywordFilter}
       />
-      <Maps.Tree
+      <Maps.Points
         mapData={mapData}
         filter={filter}
+        type={"tree"}
+        color={"bg-emerald-300/50 border-emerald-600"}
         updateKeywordFilter={updateKeywordFilter}
       />
       <Maps.Boss
         mapData={mapData}
         filter={filter}
+        type={"boss"}
         updateKeywordFilter={updateKeywordFilter}
       />
     </div>

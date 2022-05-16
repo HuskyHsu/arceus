@@ -157,7 +157,7 @@ export interface Display {
   actionTab: string;
 }
 
-interface Respawn {
+export interface MultiPoint {
   id: number;
   points: number[][];
   convexHull?: number[];
@@ -168,8 +168,8 @@ interface MapPm {
 }
 
 export interface MapData {
-  respawn: Respawn[];
-  tree: Respawn[];
+  respawn: MultiPoint[];
+  tree: MultiPoint[];
   boss: BossPokemon[];
   pmTable: MapPm;
 }
@@ -189,5 +189,7 @@ export interface SpawnTable {
 export interface MapProps {
   mapData: MapData;
   filter: Filter;
+  type?: string;
+  color?: string;
   updateKeywordFilter: Function;
 }
