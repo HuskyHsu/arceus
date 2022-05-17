@@ -1,13 +1,52 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { FilterContextInterface, Haunt, SpawnTable } from "@/models";
+import { FilterContextInterface, Haunt, MapData, SpawnTable } from "@/models";
 import { Icon, Table } from "@/components";
+import { api, BASE_URL } from "@/utils";
 
 interface Props {
-  spawntables: SpawnTable[];
+  mapData: MapData;
   filterModel: FilterContextInterface;
 }
 
-export function Spawntables({ spawntables, filterModel }: Props) {
+const getSpawntable = async (id: string) => {
+  return await api<SpawnTable[]>(`${BASE_URL}data/map/spawntable/${id}.json`);
+};
+
+export function Spawntables({ mapData, filterModel }: Props) {
+  if (filterModel.filter.keyword == "") {
+    return <></>;
+  }
+
+  const [spawntables, setSpawntables] = useState<SpawnTable[]>([]);
+
+  useEffect(() => {
+    (async () => {
+      let tableId = null;
+      const keyword = filterModel.filter.keyword;
+      if (keyword.startsWith("respawn-") || keyword.startsWith("tree-")) {
+        tableId = keyword.split("-")[1];
+      } else if (keyword.startsWith("pokemon-")) {
+        const link = keyword.split("-")[1];
+        if (
+          mapData.pmTable[link] === undefined ||
+          mapData.pmTable[link].length === 0
+        ) {
+          return;
+        }
+        tableId = String(mapData.pmTable[link][0]);
+
+        if (keyword.split("-").length === 2) {
+          filterModel.updateKeywordFilter(`${keyword}-${tableId}`);
+        }
+      } else {
+        return;
+      }
+      const data = await getSpawntable(tableId);
+      setSpawntables(data);
+    })();
+  }, [filterModel.filter.keyword]);
+
   const spawntableFeilds = [
     {
       name: "名稱",

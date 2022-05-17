@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-import { Filter, MapData, SpawnTable } from "@/models";
+import { Filter, MapData } from "@/models";
 import { api, BASE_URL } from "@/utils";
 import { Maps } from ".";
 
@@ -12,14 +12,8 @@ export const useMapData = (filter: Filter, updateKeywordFilter: Function) => {
     pmTable: {},
   });
 
-  const [spawntables, setSpawntables] = useState<SpawnTable[]>([]);
-
   const getMapData = async (area: string) => {
     return await api<MapData>(`${BASE_URL}data/map/${area}.json`);
-  };
-
-  const getSpawntable = async (id: string) => {
-    return await api<SpawnTable[]>(`${BASE_URL}data/map/spawntable/${id}.json`);
   };
 
   useEffect(() => {
@@ -40,30 +34,11 @@ export const useMapData = (filter: Filter, updateKeywordFilter: Function) => {
             return updateKeywordFilter("");
           }
           const tableId = data.pmTable[link][0];
-          const SpawntableData = await getSpawntable(`${tableId}`);
-          if (filter.keyword.split("-").length === 2) {
-            updateKeywordFilter(`${filter.keyword}-${tableId}`);
-          }
-          setSpawntables(SpawntableData);
+          updateKeywordFilter(`${filter.keyword}-${tableId}`);
         }
       }
     })();
   }, [filter.area]);
 
-  useEffect(() => {
-    (async () => {
-      if (
-        !(
-          filter.keyword.startsWith("respawn-") ||
-          filter.keyword.startsWith("tree-")
-        )
-      ) {
-        return;
-      }
-      const data = await getSpawntable(filter.keyword.split("-")[1]);
-      setSpawntables(data);
-    })();
-  }, [filter.keyword]);
-
-  return { mapData, spawntables };
+  return { mapData };
 };

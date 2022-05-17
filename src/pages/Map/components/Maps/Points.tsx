@@ -164,8 +164,6 @@ function DomMap({
     );
   }
 
-  console.log(filter, type);
-
   return (
     <>
       {dataset.map((multiPoint, i) => {

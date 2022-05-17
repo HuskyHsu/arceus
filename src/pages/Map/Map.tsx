@@ -27,7 +27,13 @@ function Header({ filterModel }: Props) {
 }
 
 function Map() {
-  const [searchParams, setSearchParams] = useSearchParams();
+  const params = document.location.href.split("?");
+  let paramsString = "";
+  if (params.length > 1) {
+    paramsString = params[1];
+  }
+  let searchParams = new URLSearchParams(paramsString);
+
   const area = searchParams.get("area") ?? "黑曜原野";
   const keyword = searchParams.get("keyword") ?? "";
   const displayTypes = {
@@ -38,16 +44,17 @@ function Map() {
 
   const filterModel = useFilter(area, displayTypes, keyword);
 
-  const { mapData, spawntables } = useMapData(
+  const { mapData } = useMapData(
     filterModel.filter,
     filterModel.updateKeywordFilter
   );
 
   useEffect(() => {
-    setSearchParams({
-      area: filterModel.filter.area,
-      keyword: filterModel.filter.keyword,
-    });
+    searchParams.set("area", filterModel.filter.area);
+    searchParams.set("keyword", filterModel.filter.keyword);
+
+    window.location.href =
+      document.location.href.split("?")[0] + "?" + searchParams.toString();
   }, [filterModel.filter.area, filterModel.filter.keyword]);
 
   const displayTable = filterModel.filter.keyword.startsWith("boss")
@@ -60,7 +67,9 @@ function Map() {
         <MapDom
           mapData={mapData}
           filter={filterModel.filter}
-          updateKeywordFilter={filterModel.updateKeywordFilter}
+          updateKeywordFilter={(keyword: string) => {
+            filterModel.updateKeywordFilter(keyword);
+          }}
         />
       </div>
       <div className="w-full max-h-screen">
@@ -70,10 +79,7 @@ function Map() {
             <Tables.Boss pokemonList={mapData.boss} filterModel={filterModel} />
           ) : (
             <div className="grid gap-y-4">
-              <Tables.Spawntables
-                spawntables={spawntables}
-                filterModel={filterModel}
-              />
+              <Tables.Spawntables mapData={mapData} filterModel={filterModel} />
             </div>
           )}
         </div>
