@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Link, useSearchParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import { Icon } from "@/components";
 import { useFilter } from "@/utils";
@@ -39,6 +39,7 @@ function Map() {
   const displayTypes = {
     respawn: true,
     tree: true,
+    crystal: true,
     boss: true,
   };
 

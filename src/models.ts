@@ -170,6 +170,7 @@ interface MapPm {
 export interface MapData {
   respawn: MultiPoint[];
   tree: MultiPoint[];
+  crystal: MultiPoint[];
   boss: BossPokemon[];
   pmTable: MapPm;
 }

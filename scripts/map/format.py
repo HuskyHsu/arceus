@@ -134,6 +134,30 @@ def get_tree(spawntable):
     return tree
 
 
+def get_crystal(spawntable):
+    crystal = []
+    for key in spawntable["crystal"].keys():
+        base = {"id": key, "points": spawntable["crystal"][key]}
+        if len(spawntable["crystal"][key]) < 3:
+            crystal.append(base)
+            continue
+
+        spawntable["crystal"][key] = [
+            (row[0], row[1]) for row in spawntable["crystal"][key]
+        ]
+
+        if len(list(set(spawntable["crystal"][key]))) < 3:
+            crystal.append(base)
+            continue
+
+        # print(spawntable["crystal"][key])
+        hull = ConvexHull(spawntable["crystal"][key])
+        base["convexHull"] = [int(i) for i in hull.vertices]
+        crystal.append(base)
+
+    return crystal
+
+
 def get_alpha(spawntable):
     alpha = []
     for key in spawntable["alpha"].keys():
@@ -302,10 +326,12 @@ if __name__ == "__main__":
         spawntable = {
             "respawn": get_respawn(spawntable),
             "tree": get_tree(spawntable),
+            "crystal": get_crystal(spawntable),
             "boss": get_alpha(spawntable),
         }
         ids = [respawn["id"] for respawn in spawntable["respawn"]]
         ids += [respawn["id"] for respawn in spawntable["tree"]]
+        ids += [respawn["id"] for respawn in spawntable["crystal"]]
         spawntable["pmTable"] = format_pm_table_data(all_pm_table, ids)
 
         overlapping_boss(spawntable)
@@ -324,6 +350,13 @@ if __name__ == "__main__":
             tableId = respawn["id"]
             print(tableId)
             clean_table = get_spawntable(tableId, False, "搖晃的樹")
+
+            save_file(f"{base_output}/spawntable/{tableId}.json", clean_table)
+
+        for respawn in spawntable["crystal"]:
+            tableId = respawn["id"]
+            print(tableId)
+            clean_table = get_spawntable(tableId, False, "搖晃的礦石")
 
             save_file(f"{base_output}/spawntable/{tableId}.json", clean_table)
 

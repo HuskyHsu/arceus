@@ -24,7 +24,11 @@ export function Spawntables({ mapData, filterModel }: Props) {
     (async () => {
       let tableId = null;
       const keyword = filterModel.filter.keyword;
-      if (keyword.startsWith("respawn-") || keyword.startsWith("tree-")) {
+      if (
+        keyword.startsWith("respawn-") ||
+        keyword.startsWith("tree-") ||
+        keyword.startsWith("crystal-")
+      ) {
         tableId = keyword.split("-")[1];
       } else if (keyword.startsWith("pokemon-")) {
         const link = keyword.split("-")[1];

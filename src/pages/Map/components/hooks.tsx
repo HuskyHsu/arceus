@@ -8,6 +8,7 @@ export const useMapData = (filter: Filter, updateKeywordFilter: Function) => {
   const [mapData, setMapData] = useState<MapData>({
     respawn: [],
     tree: [],
+    crystal: [],
     boss: [],
     pmTable: {},
   });

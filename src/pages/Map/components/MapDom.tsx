@@ -23,6 +23,13 @@ export function MapDom({ mapData, filter, updateKeywordFilter }: MapProps) {
         color={"bg-emerald-300/50 border-emerald-600"}
         updateKeywordFilter={updateKeywordFilter}
       />
+      <Maps.Points
+        mapData={mapData}
+        filter={filter}
+        type={"crystal"}
+        color={"bg-stone-300/50 border-stone-600"}
+        updateKeywordFilter={updateKeywordFilter}
+      />
       <Maps.Boss
         mapData={mapData}
         filter={filter}
