@@ -62,9 +62,16 @@ function Map() {
     ? "boss"
     : "spawntables";
 
+  const isMobile = window.screen.width < 768;
+
   return (
     <div className="flex flex-col md:flex-row gap-2">
-      <div className="h-full w-full">
+      <div
+        className="h-full overflow-hidden"
+        style={{
+          clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
+          width: "100vmin",
+        }}>
         <MapDom
           mapData={mapData}
           filter={filterModel.filter}
@@ -73,7 +80,11 @@ function Map() {
           }}
         />
       </div>
-      <div className="w-full max-h-screen">
+      <div
+        className="max-h-screen w-full"
+        style={{
+          maxWidth: isMobile ? "100vmin" : "60vmin",
+        }}>
         <div className="max-h-screen overflow-y-auto p-4 max-w-xl">
           <Header filterModel={filterModel} />
           {displayTable === "boss" ? (

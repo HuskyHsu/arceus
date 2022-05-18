@@ -31,7 +31,11 @@ export function Spawntables({ mapData, filterModel }: Props) {
       ) {
         tableId = keyword.split("-")[1];
       } else if (keyword.startsWith("pokemon-")) {
-        const link = keyword.split("-")[1];
+        const keywordInfo = keyword.split("-");
+        if (keywordInfo.length === 3) {
+          return;
+        }
+        const link = keywordInfo[1];
         if (
           mapData.pmTable[link] === undefined ||
           mapData.pmTable[link].length === 0
@@ -106,7 +110,8 @@ export function Spawntables({ mapData, filterModel }: Props) {
                 filterModel.updateKeywordFilter(
                   `pokemon-${spawntable.data[i].link}-${
                     filterModel.filter.keyword.startsWith("respawn") ||
-                    filterModel.filter.keyword.startsWith("tree")
+                    filterModel.filter.keyword.startsWith("tree") ||
+                    filterModel.filter.keyword.startsWith("crystal")
                       ? filterModel.filter.keyword.split("-")[1]
                       : filterModel.filter.keyword.split("-")[2]
                   }`
