@@ -58,8 +58,8 @@ function SvgMap({ mapData, type = "", filter }: MapProps) {
   function Circle({ multiPoint }: MultiPointProps) {
     return (
       <circle
-        cx={multiPoint.points[0][0]}
-        cy={multiPoint.points[0][1]}
+        cx={multiPoint.points[0][0] - 8}
+        cy={multiPoint.points[0][1] - 8}
         r="20"
         className="fill-red-500/40 stroke-red-400"
       />
@@ -69,10 +69,10 @@ function SvgMap({ mapData, type = "", filter }: MapProps) {
   function Line({ multiPoint }: MultiPointProps) {
     return (
       <line
-        x1={multiPoint.points[0][0]}
-        y1={multiPoint.points[0][1]}
-        x2={multiPoint.points[1][0]}
-        y2={multiPoint.points[1][1]}
+        x1={multiPoint.points[0][0] - 8}
+        y1={multiPoint.points[0][1] - 8}
+        x2={multiPoint.points[1][0] - 8}
+        y2={multiPoint.points[1][1] - 8}
         className="stroke-red-400 stroke-[4px]"
       />
     );
@@ -84,7 +84,9 @@ function SvgMap({ mapData, type = "", filter }: MapProps) {
         className="fill-red-500/40 stroke-red-400"
         points={multiPoint.convexHull
           ?.map((i) => {
-            return `${multiPoint.points[i][0]} ${multiPoint.points[i][1]}`;
+            return `${multiPoint.points[i][0] - 8} ${
+              multiPoint.points[i][1] - 8
+            }`;
           })
           .join(",")}
       />
@@ -151,7 +153,7 @@ function DomMap({
       <button
         className={clsx(
           "flex flex-col justify-center items-center w-3 h-3",
-          "absolute -translate-y-2/4 -translate-x-2/4",
+          "absolute -translate-y-full -translate-x-full",
           "border-[1px] rounded-full",
           color
         )}
