@@ -18,6 +18,8 @@ interface Props<T> {
 
 export function Table<T>({ feilds, data, selectIndex, clickFn }: Props<T>) {
   const hasToggle = feilds.find((feild) => feild.details !== undefined);
+  const [toggles, setToggles] = useState(data.map((_) => false));
+
   return (
     <table className="table-auto w-full text-left text-sm whitespace-no-wrap">
       <thead className="sticky top-0">
@@ -57,8 +59,6 @@ export function Table<T>({ feilds, data, selectIndex, clickFn }: Props<T>) {
           })}
         {hasToggle &&
           data.map((item, i) => {
-            const [toggle, setToggle] = useState(false);
-
             return (
               <Fragment key={i}>
                 <tr
@@ -66,7 +66,11 @@ export function Table<T>({ feilds, data, selectIndex, clickFn }: Props<T>) {
                     "bg-yellow-200": selectIndex === i,
                   })}
                   onClick={() => {
-                    setToggle((toggle) => !toggle);
+                    setToggles((toggles) => {
+                      return toggles.map((toggle, j) => {
+                        return i === j ? !toggle : toggle;
+                      });
+                    });
                     if (clickFn) clickFn(i);
                   }}>
                   {feilds.map((feild, j) => (
@@ -75,7 +79,7 @@ export function Table<T>({ feilds, data, selectIndex, clickFn }: Props<T>) {
                     </td>
                   ))}
                 </tr>
-                {toggle && (
+                {toggles[i] && (
                   <tr
                     className={clsx("border-b-2 border-gray-200 bg-slate-200")}>
                     {feilds.map((feild, k) => {
