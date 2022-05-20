@@ -32,7 +32,7 @@ export function Spawntables({ mapData, filterModel }: Props) {
         tableId = keyword.split("-")[1];
       } else if (keyword.startsWith("pokemon-")) {
         const keywordInfo = keyword.split("-");
-        if (keywordInfo.length === 3 && spawntables.length === 0) {
+        if (keywordInfo.length === 3 && spawntables.length > 0) {
           return;
         }
         const link = keywordInfo[1];
