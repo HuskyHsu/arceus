@@ -2520,12 +2520,12 @@
         "accuracy": 80,
         "PP": 5,
         "description": "用交織著愛與恨的烈風席捲對手進行攻擊。追加效果會依出招時的形態而改變。",
-        "effect": null,
-        "agilePower": null,
-        "agileEffect": null,
-        "strongPower": null,
-        "strongAccuracy": null,
-        "strongEffect": null
+        "effect": "命中後30%機率自身進入3回合進攻提升和防守提升狀態",
+        "agilePower": 75,
+        "agileEffect": "命中後30%機率自身進入2回合進攻提升和防守提升狀態",
+        "strongPower": 115,
+        "strongAccuracy": 90,
+        "strongEffect": "命中後50%機率自身進入4回合進攻提升和防守提升狀態"
     },
     {
         "id": 832,
