@@ -9,8 +9,10 @@
   },
   "dependencies": {
     "clsx": "^1.1.1",
+    "leaflet": "^1.8.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
+    "react-leaflet": "^4.0.0",
     "react-router-dom": "^6.2.2",
     "vite-plugin-svgr": "^1.1.0"
   },
