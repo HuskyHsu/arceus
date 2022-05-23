@@ -1,0 +1,8 @@
+.leaflet-container {
+  background: rgb(209, 191, 161);
+  background: radial-gradient(
+    circle,
+    rgba(209, 191, 161, 0.2) 0%,
+    rgba(209, 191, 161, 0.6) 100%
+  );
+}
