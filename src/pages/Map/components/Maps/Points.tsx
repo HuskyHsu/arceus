@@ -58,8 +58,8 @@ function SvgMap({ mapData, type = "", filter }: MapProps) {
   function Circle({ multiPoint }: MultiPointProps) {
     return (
       <circle
-        cx={multiPoint.points[0][0] - 8}
-        cy={multiPoint.points[0][1] - 8}
+        cx={multiPoint.points[0][0]}
+        cy={multiPoint.points[0][1]}
         r="20"
         className="fill-red-500/40 stroke-red-400"
       />
@@ -69,10 +69,10 @@ function SvgMap({ mapData, type = "", filter }: MapProps) {
   function Line({ multiPoint }: MultiPointProps) {
     return (
       <line
-        x1={multiPoint.points[0][0] - 8}
-        y1={multiPoint.points[0][1] - 8}
-        x2={multiPoint.points[1][0] - 8}
-        y2={multiPoint.points[1][1] - 8}
+        x1={multiPoint.points[0][0]}
+        y1={multiPoint.points[0][1]}
+        x2={multiPoint.points[1][0]}
+        y2={multiPoint.points[1][1]}
         className="stroke-red-400 stroke-[4px]"
       />
     );
@@ -84,9 +84,7 @@ function SvgMap({ mapData, type = "", filter }: MapProps) {
         className="fill-red-500/40 stroke-red-400"
         points={multiPoint.convexHull
           ?.map((i) => {
-            return `${multiPoint.points[i][0] - 8} ${
-              multiPoint.points[i][1] - 8
-            }`;
+            return `${multiPoint.points[i][0]} ${multiPoint.points[i][1]}`;
           })
           .join(",")}
       />
@@ -96,7 +94,7 @@ function SvgMap({ mapData, type = "", filter }: MapProps) {
   return (
     <svg
       className="absolute w-full h-full pointer-events-none"
-      viewBox="0 0 1000 1000">
+      viewBox="0 0 1024 1024">
       {dataset.map((multiPoint, i) => {
         if (pass(multiPoint)) {
           return;
@@ -153,13 +151,13 @@ function DomMap({
       <button
         className={clsx(
           "flex flex-col justify-center items-center w-3 h-3",
-          "absolute -translate-y-full -translate-x-full",
+          "absolute  -translate-y-2/4 -translate-x-2/4",
           "border-[1px] rounded-full",
           color
         )}
         style={{
-          top: `${point[1] / 10}%`,
-          left: `${point[0] / 10}%`,
+          top: `${point[1] / 10.24}%`,
+          left: `${point[0] / 10.24}%`,
         }}>
         {selected && <AnimatePoint />}
       </button>
