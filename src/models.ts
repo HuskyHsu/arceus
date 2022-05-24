@@ -107,6 +107,7 @@ export interface Filter {
 export interface FilterContextInterface {
   updateKeywordFilter: Function;
   updateTypeFilter: Function;
+  toggereTypeSelect: Function;
   toggereAreaSelect: Function;
   updateAreaSelect: Function;
   filter: Filter;
@@ -193,4 +194,5 @@ export interface MapProps {
   type?: string;
   color?: string;
   updateKeywordFilter: Function;
+  filterModel?: FilterContextInterface;
 }
