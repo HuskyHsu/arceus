@@ -36,7 +36,11 @@ function Map_({ pokemonList }: PokemonBaseList) {
         <MapContainer
           bounds={[
             [0, 0],
-            [1000, 1000],
+            [1024, 1024],
+          ]}
+          maxBounds={[
+            [0, 0],
+            [1024, 1024],
           ]}
           crs={CRS.Simple}
           minZoom={-1}
@@ -50,7 +54,7 @@ function Map_({ pokemonList }: PokemonBaseList) {
             url={`${BASE_URL}image/map/黑曜原野_LA.png`}
             bounds={[
               [0, 0],
-              [1000, 1000],
+              [1024, 1024],
             ]}
           />
           {mapData.boss.map((boss) => {

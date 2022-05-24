@@ -35,7 +35,7 @@ export function BossMarker({ pm, updateKeywordFilter, selected }: MarkerProps) {
 
   return (
     <Marker
-      position={[1000 - pm.point[1], pm.point[0]]}
+      position={[1024 - pm.point[1], pm.point[0]]}
       icon={customMarkerIcon}></Marker>
   );
 }
