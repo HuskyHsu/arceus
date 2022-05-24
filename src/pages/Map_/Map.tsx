@@ -1,11 +1,13 @@
+import { renderToStaticMarkup } from "react-dom/server";
+
 import { MapContainer, ImageOverlay, Marker } from "react-leaflet";
-import clsx from "clsx";
-import { CRS, icon, divIcon } from "leaflet";
+import { CRS, divIcon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "./index.css";
 
 import { BasePokemon } from "@/models";
-import { BASE_URL, bgTypeClass } from "@/utils";
+import { BASE_URL, useFilter } from "@/utils";
+import { BossMarker, useMapData } from "./components";
 
 interface PokemonBaseList {
   pokemonList: BasePokemon[];
@@ -13,12 +15,20 @@ interface PokemonBaseList {
 
 function Map_({ pokemonList }: PokemonBaseList) {
   const isMobile = window.screen.width < 768;
-  const pmIcon = icon({
-    iconUrl: `${BASE_URL}image/icon/143.png`,
-    iconSize: [40, 40],
-    iconAnchor: [20, 20],
-    className: clsx("ring-white", "rounded-full ring-2", bgTypeClass(["一般"])),
-  });
+
+  const displayTypes = {
+    respawn: true,
+    tree: true,
+    crystal: true,
+    boss: true,
+  };
+
+  const filterModel = useFilter("黑曜原野", displayTypes, "");
+
+  const { mapData } = useMapData(
+    filterModel.filter,
+    filterModel.updateKeywordFilter
+  );
 
   return (
     <div className="grid grid-cols-12 h-screen">
@@ -43,7 +53,16 @@ function Map_({ pokemonList }: PokemonBaseList) {
               [1000, 1000],
             ]}
           />
-          <Marker position={[500, 500]} icon={pmIcon}></Marker>
+          {mapData.boss.map((boss) => {
+            return (
+              <BossMarker
+                key={boss.link}
+                pm={boss}
+                updateKeywordFilter={() => {}}
+                selected={false}
+              />
+            );
+          })}
         </MapContainer>
       </div>
       <div className="col-span-4 h-full">04</div>

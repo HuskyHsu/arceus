@@ -6,3 +6,9 @@
     rgba(209, 191, 161, 0.6) 100%
   );
 }
+
+.leaflet-div-icon {
+  background: rgba(0,0,0, 0);
+  border-width: 0;
+  border-radius: 100%;
+}
