@@ -18,11 +18,11 @@ export function Marker({
     <button
       className={clsx(
         "flex flex-col justify-center items-center",
-        "absolute -translate-y-3/4 -translate-x-3/4"
+        "absolute -translate-y-2/4 -translate-x-2/4"
       )}
       style={{
-        top: `${pm.point[1] / 10}%`,
-        left: `${pm.point[0] / 10}%`,
+        top: `${pm.point[1] / 10.24}%`,
+        left: `${pm.point[0] / 10.24}%`,
       }}
       onClick={() => {
         updateKeywordFilter();
