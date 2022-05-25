@@ -14,10 +14,7 @@ interface MarkerProps {
 
 export function BossMarker({ pm, updateKeywordFilter, selected }: MarkerProps) {
   const iconMarkup = renderToStaticMarkup(
-    <button
-      onClick={() => {
-        updateKeywordFilter();
-      }}>
+    <button>
       <p
         className={clsx(
           "absolute w-10 h-10 rounded-full bg-white",
@@ -36,6 +33,12 @@ export function BossMarker({ pm, updateKeywordFilter, selected }: MarkerProps) {
   return (
     <Marker
       position={[1024 - pm.point[1], pm.point[0]]}
-      icon={customMarkerIcon}></Marker>
+      icon={customMarkerIcon}
+      eventHandlers={{
+        click: () => {
+          updateKeywordFilter();
+        },
+      }}
+    />
   );
 }

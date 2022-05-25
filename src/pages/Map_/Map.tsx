@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import {
   MapContainer,
   ImageOverlay,
@@ -6,13 +7,13 @@ import {
 } from "react-leaflet";
 import { CRS } from "leaflet";
 import "leaflet/dist/leaflet.css";
-import "./index.css";
 
 import { BasePokemon, FilterContextInterface, MapNewProps } from "@/models";
-import { BASE_URL, useFilter } from "@/utils";
-import { AreaSelect, BossMarker, useMapData } from "./components";
-import { Link } from "react-router-dom";
 import { Icon } from "@/components";
+import { BASE_URL, useFilter } from "@/utils";
+
+import { AreaSelect, BossMarker, Tables, useMapData } from "./components";
+import "./index.css";
 
 interface PokemonBaseList {
   pokemonList: BasePokemon[];
@@ -79,12 +80,16 @@ function MapDom({ mapData, filterModel }: MapNewProps) {
       <LayersControl position="topright" collapsed={false}>
         <LayerMap filterModel={filterModel} name={"定點頭目"} type={"boss"}>
           <>
-            {mapData.boss.map((boss) => {
+            {mapData.boss.map((boss, i) => {
               return (
                 <BossMarker
-                  key={boss.link}
+                  key={i}
                   pm={boss}
-                  updateKeywordFilter={() => {}}
+                  updateKeywordFilter={() => {
+                    const keyword = `boss-${boss.link}`;
+                    console.log(keyword);
+                    filterModel.updateKeywordFilter(keyword);
+                  }}
                   selected={false}
                 />
               );
@@ -142,11 +147,13 @@ function Map_({ pokemonList }: PokemonBaseList) {
       <div className="col-span-12 md:col-span-6 h-full">
         <MapDom mapData={mapData} filterModel={filterModel}></MapDom>
       </div>
-      <div className="col-span-12 md:col-span-6 h-full p-4">
-        <Header filterModel={filterModel} />
-        {Object.entries(filterModel.filter.types)
-          .map(([key, value]) => `${key}-${value}`)
-          .join("\n")}
+      <div className="col-span-12 md:col-span-6 h-full p-4 flex flex-col">
+        <div className="grow-0 h-12">
+          <Header filterModel={filterModel} />
+        </div>
+        <div className="grow h-20 overflow-y-auto">
+          <Tables.Boss pokemonList={mapData.boss} filterModel={filterModel} />
+        </div>
       </div>
     </div>
   );
