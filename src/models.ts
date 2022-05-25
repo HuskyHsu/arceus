@@ -194,5 +194,11 @@ export interface MapProps {
   type?: string;
   color?: string;
   updateKeywordFilter: Function;
-  filterModel?: FilterContextInterface;
+}
+
+export interface MapNewProps {
+  mapData: MapData;
+  type?: string;
+  color?: string;
+  filterModel: FilterContextInterface;
 }

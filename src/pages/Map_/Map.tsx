@@ -8,7 +8,7 @@ import { CRS } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import "./index.css";
 
-import { BasePokemon, FilterContextInterface, MapProps } from "@/models";
+import { BasePokemon, FilterContextInterface, MapNewProps } from "@/models";
 import { BASE_URL, useFilter } from "@/utils";
 import { AreaSelect, BossMarker, useMapData } from "./components";
 import { Link } from "react-router-dom";
@@ -22,7 +22,36 @@ interface Props {
   filterModel: FilterContextInterface;
 }
 
-function MapDom({ mapData, filter, filterModel }: MapProps) {
+interface Layer {
+  children: JSX.Element;
+  filterModel: FilterContextInterface;
+  name: string;
+  type: string;
+}
+
+function LayerMap({ children, filterModel, name, type }: Layer) {
+  return (
+    <LayersControl.Overlay name={name} checked={filterModel.filter.types[type]}>
+      <LayerGroup
+        eventHandlers={{
+          add: () => {
+            if (!filterModel.filter.types[type]) {
+              filterModel.toggereTypeSelect(type);
+            }
+          },
+          remove: () => {
+            if (filterModel.filter.types[type]) {
+              filterModel.toggereTypeSelect(type);
+            }
+          },
+        }}>
+        {children}
+      </LayerGroup>
+    </LayersControl.Overlay>
+  );
+}
+
+function MapDom({ mapData, filterModel }: MapNewProps) {
   const isMobile = window.screen.width < 768;
   return (
     <MapContainer
@@ -41,27 +70,15 @@ function MapDom({ mapData, filter, filterModel }: MapProps) {
       preferCanvas={true}
       className="h-full w-full">
       <ImageOverlay
-        url={`${BASE_URL}image/map/${filter.area}_LA.png`}
+        url={`${BASE_URL}image/map/${filterModel.filter.area}_LA.png`}
         bounds={[
           [0, 0],
           [1024, 1024],
         ]}
       />
       <LayersControl position="topright" collapsed={false}>
-        <LayersControl.Overlay name="頭目" checked={filter.types.boss}>
-          <LayerGroup
-            eventHandlers={{
-              add: () => {
-                if (!filterModel?.filter.types["boss"]) {
-                  filterModel?.toggereTypeSelect("boss");
-                }
-              },
-              remove: () => {
-                if (filterModel?.filter.types["boss"]) {
-                  filterModel?.toggereTypeSelect("boss");
-                }
-              },
-            }}>
+        <LayerMap filterModel={filterModel} name={"定點頭目"} type={"boss"}>
+          <>
             {mapData.boss.map((boss) => {
               return (
                 <BossMarker
@@ -72,53 +89,17 @@ function MapDom({ mapData, filter, filterModel }: MapProps) {
                 />
               );
             })}
-          </LayerGroup>
-        </LayersControl.Overlay>
-        <LayersControl.Overlay name="出怪點" checked={filter.types.respawn}>
-          <LayerGroup
-            eventHandlers={{
-              add: () => {
-                if (!filterModel?.filter.types["respawn"]) {
-                  filterModel?.toggereTypeSelect("respawn");
-                }
-              },
-              remove: () => {
-                if (filterModel?.filter.types["respawn"]) {
-                  filterModel?.toggereTypeSelect("respawn");
-                }
-              },
-            }}></LayerGroup>
-        </LayersControl.Overlay>
-        <LayersControl.Overlay name="搖樹" checked={filter.types.tree}>
-          <LayerGroup
-            eventHandlers={{
-              add: () => {
-                if (!filterModel?.filter.types["tree"]) {
-                  filterModel?.toggereTypeSelect("tree");
-                }
-              },
-              remove: () => {
-                if (filterModel?.filter.types["tree"]) {
-                  filterModel?.toggereTypeSelect("tree");
-                }
-              },
-            }}></LayerGroup>
-        </LayersControl.Overlay>
-        <LayersControl.Overlay name="敲礦" checked={filter.types.crystal}>
-          <LayerGroup
-            eventHandlers={{
-              add: () => {
-                if (!filterModel?.filter.types["crystal"]) {
-                  filterModel?.toggereTypeSelect("crystal");
-                }
-              },
-              remove: () => {
-                if (filterModel?.filter.types["crystal"]) {
-                  filterModel?.toggereTypeSelect("crystal");
-                }
-              },
-            }}></LayerGroup>
-        </LayersControl.Overlay>
+          </>
+        </LayerMap>
+        <LayerMap filterModel={filterModel} name={"重生點"} type={"respawn"}>
+          <></>
+        </LayerMap>
+        <LayerMap filterModel={filterModel} name={"搖晃的樹"} type={"tree"}>
+          <></>
+        </LayerMap>
+        <LayerMap filterModel={filterModel} name={"搖晃的礦"} type={"crystal"}>
+          <></>
+        </LayerMap>
       </LayersControl>
     </MapContainer>
   );
@@ -159,11 +140,7 @@ function Map_({ pokemonList }: PokemonBaseList) {
   return (
     <div className="grid grid-cols-12 h-screen">
       <div className="col-span-12 md:col-span-6 h-full">
-        <MapDom
-          mapData={mapData}
-          filter={filterModel.filter}
-          updateKeywordFilter={filterModel.updateKeywordFilter}
-          filterModel={filterModel}></MapDom>
+        <MapDom mapData={mapData} filterModel={filterModel}></MapDom>
       </div>
       <div className="col-span-12 md:col-span-6 h-full p-4">
         <Header filterModel={filterModel} />
