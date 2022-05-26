@@ -176,6 +176,16 @@ export interface MapData {
   pmTable: MapPm;
 }
 
+export enum MapSetTypes {
+  respawn = "respawn",
+  tree = "tree",
+  crystal = "crystal",
+}
+
+export enum MapInfoTypes {
+  boss = "boss",
+}
+
 export interface Haunt {
   link: string;
   name: string;
@@ -194,11 +204,4 @@ export interface MapProps {
   type?: string;
   color?: string;
   updateKeywordFilter: Function;
-}
-
-export interface MapNewProps {
-  mapData: MapData;
-  type?: string;
-  color?: string;
-  filterModel: FilterContextInterface;
 }

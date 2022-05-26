@@ -57,7 +57,7 @@ export function Boss({ pokemonList, filterModel }: Props) {
       data={pokemonList}
       selectIndex={selectIndex}
       clickFn={(i: number) => {
-        filterModel.updateKeywordFilter("");
+        filterModel.updateKeywordFilter(`boss-${pokemonList[i].link}`);
       }}
     />
   );
