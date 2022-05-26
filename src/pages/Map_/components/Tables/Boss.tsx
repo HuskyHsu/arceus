@@ -47,7 +47,8 @@ export function Boss({ pokemonList, filterModel }: Props) {
 
   let selectIndex = -1;
   if (filterModel.filter.keyword.startsWith("boss-")) {
-    selectIndex = Number(filterModel.filter.keyword.split("-")[1]);
+    const link = filterModel.filter.keyword.split("-")[1];
+    selectIndex = pokemonList.findIndex((pm) => pm.link === link);
   }
 
   return (

@@ -81,16 +81,20 @@ function MapDom({ mapData, filterModel }: MapNewProps) {
         <LayerMap filterModel={filterModel} name={"定點頭目"} type={"boss"}>
           <>
             {mapData.boss.map((boss, i) => {
+              let selected = false;
+              if (filterModel.filter.keyword.startsWith("boss-")) {
+                selected =
+                  boss.link === filterModel.filter.keyword.split("-")[1];
+              }
               return (
                 <BossMarker
                   key={i}
                   pm={boss}
                   updateKeywordFilter={() => {
                     const keyword = `boss-${boss.link}`;
-                    console.log(keyword);
                     filterModel.updateKeywordFilter(keyword);
                   }}
-                  selected={false}
+                  selected={selected}
                 />
               );
             })}
@@ -144,15 +148,20 @@ function Map_({ pokemonList }: PokemonBaseList) {
 
   return (
     <div className="grid grid-cols-12 h-screen">
+      <div className="col-span-12 md:col-span-3 h-full">
+        {filterModel.filter.keyword}
+      </div>
       <div className="col-span-12 md:col-span-6 h-full">
         <MapDom mapData={mapData} filterModel={filterModel}></MapDom>
       </div>
-      <div className="col-span-12 md:col-span-6 h-full p-4 flex flex-col">
-        <div className="grow-0 h-12">
-          <Header filterModel={filterModel} />
-        </div>
-        <div className="grow h-20 overflow-y-auto">
-          <Tables.Boss pokemonList={mapData.boss} filterModel={filterModel} />
+      <div className="col-span-12 md:col-span-3 h-full p-4">
+        <div className="w-full h-full flex flex-col justify-center items-center">
+          <div className="grow-0 h-12">
+            <Header filterModel={filterModel} />
+          </div>
+          <div className="grow h-20 overflow-y-auto">
+            <Tables.Boss pokemonList={mapData.boss} filterModel={filterModel} />
+          </div>
         </div>
       </div>
     </div>
