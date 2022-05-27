@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Icon, Table } from "@/components";
 import { BossPokemon, FilterContextInterface } from "@/models";
 import { Types } from "./Types";
+import { keys } from "..";
 
 interface Props {
   pokemonList: BossPokemon[];
@@ -57,7 +58,8 @@ export function Boss({ pokemonList, filterModel }: Props) {
       data={pokemonList}
       selectIndex={selectIndex}
       clickFn={(i: number) => {
-        filterModel.updateKeywordFilter(`boss-${pokemonList[i].link}`);
+        const keyword = keys.getBossKey(pokemonList[i]);
+        filterModel.updateKeywordFilter(keyword);
       }}
     />
   );

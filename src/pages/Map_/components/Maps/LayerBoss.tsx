@@ -1,4 +1,5 @@
 import { FilterContextInterface, MapData, MapInfoTypes } from "@/models";
+import { keys } from "..";
 import { LayerBase } from "./LayerBase";
 import { BossMarker } from "./Marker";
 
@@ -15,16 +16,14 @@ export function LayerBoss({ mapData, filterModel }: MapProps) {
       type={MapInfoTypes.boss}>
       <>
         {mapData.boss.map((boss, i) => {
-          let selected = false;
-          if (filterModel.filter.keyword.startsWith("boss-")) {
-            selected = boss.link === filterModel.filter.keyword.split("-")[1];
-          }
+          const keyword = keys.getBossKey(boss);
+          const selected = keyword === filterModel.filter.keyword;
+
           return (
             <BossMarker
               key={i}
               pm={boss}
               updateKeywordFilter={() => {
-                const keyword = `boss-${boss.link}`;
                 filterModel.updateKeywordFilter(keyword);
               }}
               selected={selected}
