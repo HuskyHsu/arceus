@@ -105,6 +105,7 @@ function Map_({ pokemonList }: PokemonBaseList) {
           </div>
           <div className="w-full grow h-20 overflow-y-auto">
             <Tables.Boss pokemonList={mapData.boss} filterModel={filterModel} />
+            <Tables.Spawntables mapData={mapData} filterModel={filterModel} />
           </div>
         </div>
       </div>

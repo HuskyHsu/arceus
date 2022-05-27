@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { FilterContextInterface, Haunt, MapData, SpawnTable } from "@/models";
 import { Icon, Table } from "@/components";
 import { api, BASE_URL } from "@/utils";
+import { keys } from "..";
 
 interface Props {
   mapData: MapData;
@@ -14,7 +15,8 @@ const getSpawntable = async (id: string) => {
 };
 
 export function Spawntables({ mapData, filterModel }: Props) {
-  if (filterModel.filter.keyword == "") {
+  const keywordInfo = filterModel.filter.keyword.split("-");
+  if (keywordInfo.length === 0) {
     return <></>;
   }
 
@@ -23,29 +25,21 @@ export function Spawntables({ mapData, filterModel }: Props) {
   useEffect(() => {
     (async () => {
       let tableId = null;
-      const keyword = filterModel.filter.keyword;
-      if (
-        keyword.startsWith("respawn-") ||
-        keyword.startsWith("tree-") ||
-        keyword.startsWith("crystal-")
-      ) {
-        tableId = keyword.split("-")[1];
-      } else if (keyword.startsWith("pokemon-")) {
-        const keywordInfo = keyword.split("-");
+      const keywordInfo = filterModel.filter.keyword.split("-");
+      if (keys.checkKeywordType(keywordInfo[0]) === "spawntables") {
+        tableId = keywordInfo[1];
+      } else if (keys.checkKeywordType(keywordInfo[0]) === "pokemon") {
         if (keywordInfo.length === 3 && spawntables.length > 0) {
           return;
         }
         const link = keywordInfo[1];
-        if (
-          mapData.pmTable[link] === undefined ||
-          mapData.pmTable[link].length === 0
-        ) {
+        if ((mapData.pmTable[link]?.length ?? 0) === 0) {
           return;
         }
         tableId = String(mapData.pmTable[link][0]);
 
-        if (keyword.split("-").length === 2) {
-          filterModel.updateKeywordFilter(`${keyword}-${tableId}`);
+        if (keywordInfo.length === 2) {
+          filterModel.updateKeywordFilter([...keywordInfo, tableId].join("-"));
         }
       } else {
         return;
@@ -90,14 +84,17 @@ export function Spawntables({ mapData, filterModel }: Props) {
     },
   ];
 
+  let link = "";
+  if (keys.checkKeywordType(keywordInfo[0]) === "pokemon") {
+    link = keywordInfo[1];
+  }
+
   return (
     <>
       {spawntables.map((spawntable) => {
-        let selectIndex = -1;
-        if (filterModel.filter.keyword.startsWith("pokemon-")) {
-          const link = filterModel.filter.keyword.split("-")[1];
-          selectIndex = spawntable.data.findIndex((row) => row.link === link);
-        }
+        const selectIndex = spawntable.data.findIndex(
+          (row) => row.link === link
+        );
 
         return (
           <div key={spawntable.condition}>
@@ -108,13 +105,13 @@ export function Spawntables({ mapData, filterModel }: Props) {
               selectIndex={selectIndex}
               clickFn={(i: number) => {
                 filterModel.updateKeywordFilter(
-                  `pokemon-${spawntable.data[i].link}-${
-                    filterModel.filter.keyword.startsWith("respawn") ||
-                    filterModel.filter.keyword.startsWith("tree") ||
-                    filterModel.filter.keyword.startsWith("crystal")
-                      ? filterModel.filter.keyword.split("-")[1]
-                      : filterModel.filter.keyword.split("-")[2]
-                  }`
+                  [
+                    "pokemon",
+                    spawntable.data[i].link,
+                    keys.checkKeywordType(keywordInfo[0]) === "spawntables"
+                      ? keywordInfo[1]
+                      : keywordInfo[2],
+                  ].join("-")
                 );
               }}
             />

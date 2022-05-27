@@ -2,6 +2,7 @@ import { CircleMarker } from "react-leaflet";
 
 import { FilterContextInterface, MapData, MapSetTypes } from "@/models";
 import { LayerBase } from "./LayerBase";
+import { keys } from "..";
 
 interface Props {
   mapData: MapData;
@@ -33,6 +34,12 @@ export function LayerPoints({
                   color: color[0],
                   fillColor: color[1],
                   fillOpacity: 0.5,
+                }}
+                eventHandlers={{
+                  click: () => {
+                    const keyword = keys.getPointKey(type, dataset.id);
+                    filterModel.updateKeywordFilter(keyword);
+                  },
                 }}
               />
             );

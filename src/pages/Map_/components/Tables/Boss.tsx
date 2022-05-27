@@ -11,6 +11,10 @@ interface Props {
 }
 
 export function Boss({ pokemonList, filterModel }: Props) {
+  if (!filterModel.filter.keyword.startsWith("boss-")) {
+    return <></>;
+  }
+
   const feilds = [
     {
       name: (
@@ -46,11 +50,9 @@ export function Boss({ pokemonList, filterModel }: Props) {
     },
   ];
 
-  let selectIndex = -1;
-  if (filterModel.filter.keyword.startsWith("boss-")) {
-    const link = filterModel.filter.keyword.split("-")[1];
-    selectIndex = pokemonList.findIndex((pm) => pm.link === link);
-  }
+  const selectIndex = pokemonList
+    .map((pm) => keys.getBossKey(pm))
+    .indexOf(filterModel.filter.keyword);
 
   return (
     <Table
