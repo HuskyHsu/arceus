@@ -82,8 +82,9 @@ function Summary({
               pm={pm}
               size={"M"}
               style={clsx(
-                "ring-[3px]",
-                pm.link === keyword.split("-")[1] ? "ring-red-500" : ""
+                pm.link === keyword.split("-")[1]
+                  ? "ring-[5px] ring-yellow-500"
+                  : "ring-0"
               )}
             />
           </button>
