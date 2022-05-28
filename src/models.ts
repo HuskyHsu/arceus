@@ -164,7 +164,7 @@ export interface MultiPoint {
   convexHull?: number[];
 }
 
-interface MapPm {
+export interface MapPm {
   [propName: string]: number[];
 }
 

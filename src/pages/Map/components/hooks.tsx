@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import { Filter, MapData } from "@/models";
 import { api, BASE_URL } from "@/utils";
-import { Maps } from ".";
+import { keys } from ".";
 
 export const useMapData = (filter: Filter, updateKeywordFilter: Function) => {
   const [mapData, setMapData] = useState<MapData>({
@@ -22,12 +22,12 @@ export const useMapData = (filter: Filter, updateKeywordFilter: Function) => {
       const data = await getMapData(filter.area);
       setMapData(data);
       if (data.respawn.length > 0) {
-        if (filter.keyword === "") {
-          updateKeywordFilter(Maps.getKey("respawn", data.respawn[0].id));
-        } else if (filter.keyword.startsWith("respawn-")) {
-          updateKeywordFilter(Maps.getKey("respawn", data.respawn[0].id));
-        } else {
-          const link = filter.keyword.split("-")[1];
+        const keywordInfo = filter.keyword.split("-");
+        if (keywordInfo.length < 2) {
+          const keyword = keys.getPointKey("respawn", data.respawn[0].id);
+          updateKeywordFilter(keyword);
+        } else if (keywordInfo.length === 3 || keywordInfo[0] === "pokemon") {
+          const link = keywordInfo[1];
           if (
             data.pmTable[link] === undefined ||
             data.pmTable[link].length === 0
@@ -35,7 +35,7 @@ export const useMapData = (filter: Filter, updateKeywordFilter: Function) => {
             return updateKeywordFilter("");
           }
           const tableId = data.pmTable[link][0];
-          updateKeywordFilter(`${filter.keyword}-${tableId}`);
+          updateKeywordFilter(["pokemon", link, tableId].join("-"));
         }
       }
     })();

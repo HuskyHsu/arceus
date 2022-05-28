@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 
 import { Icon, Table } from "@/components";
 import { BossPokemon, FilterContextInterface } from "@/models";
-import { Types } from "../Types";
-import { getBossKey } from "../Maps";
+import { Types } from "./Types";
+import { keys } from "..";
 
 interface Props {
   pokemonList: BossPokemon[];
@@ -11,6 +11,10 @@ interface Props {
 }
 
 export function Boss({ pokemonList, filterModel }: Props) {
+  if (!filterModel.filter.keyword.startsWith("boss-")) {
+    return <></>;
+  }
+
   const feilds = [
     {
       name: (
@@ -46,10 +50,9 @@ export function Boss({ pokemonList, filterModel }: Props) {
     },
   ];
 
-  let selectIndex = -1;
-  if (filterModel.filter.keyword.startsWith("boss-")) {
-    selectIndex = Number(filterModel.filter.keyword.split("-")[1]);
-  }
+  const selectIndex = pokemonList
+    .map((pm) => keys.getBossKey(pm))
+    .indexOf(filterModel.filter.keyword);
 
   return (
     <Table
@@ -57,7 +60,8 @@ export function Boss({ pokemonList, filterModel }: Props) {
       data={pokemonList}
       selectIndex={selectIndex}
       clickFn={(i: number) => {
-        filterModel.updateKeywordFilter(getBossKey(Number(i)));
+        const keyword = keys.getBossKey(pokemonList[i]);
+        filterModel.updateKeywordFilter(keyword);
       }}
     />
   );

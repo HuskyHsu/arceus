@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 
 import Layout from "@/components/Layout";
 
-import { List, Detail, Map, Map_ } from "@/pages";
+import { List, Detail, Map } from "@/pages";
 import { usePokemon, useFilter } from "@/utils";
 
 function MainRouter() {
@@ -19,10 +19,7 @@ function MainRouter() {
         <Route path=":link" element={<Detail pokemonList={pokemonList} />} />
       </Route>
       <Route path="/map" element={<Layout />}>
-        <Route index element={<Map />} />
-      </Route>
-      <Route path="/map_" element={<Layout />}>
-        <Route index element={<Map_ pokemonList={pokemonList} />} />
+        <Route index element={<Map pokemonList={pokemonList} />} />
       </Route>
     </Routes>
   );
