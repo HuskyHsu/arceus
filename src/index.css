@@ -16,3 +16,7 @@ body {
 body::-webkit-scrollbar {
   display: none;
 }
+
+table {
+  overflow: overlay;
+}

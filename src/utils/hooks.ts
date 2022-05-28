@@ -61,6 +61,14 @@ export function useFilter(
     });
   };
 
+  const toggereTypeSelect = (targetType: string) => {
+    setFilter((filter: Filter) => {
+      let { types } = filter;
+      types = { ...types, ...{ [targetType]: !types[targetType] } };
+      return { ...filter, ...{ types } };
+    });
+  };
+
   const toggereAreaSelect = () => {
     setFilter((filter: Filter) => {
       return { ...filter, ...{ areaSelector: !filter.areaSelector } };
@@ -80,6 +88,7 @@ export function useFilter(
     filter,
     updateKeywordFilter,
     updateTypeFilter,
+    toggereTypeSelect,
     toggereAreaSelect,
     updateAreaSelect,
   };

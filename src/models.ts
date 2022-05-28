@@ -107,6 +107,7 @@ export interface Filter {
 export interface FilterContextInterface {
   updateKeywordFilter: Function;
   updateTypeFilter: Function;
+  toggereTypeSelect: Function;
   toggereAreaSelect: Function;
   updateAreaSelect: Function;
   filter: Filter;
@@ -163,7 +164,7 @@ export interface MultiPoint {
   convexHull?: number[];
 }
 
-interface MapPm {
+export interface MapPm {
   [propName: string]: number[];
 }
 
@@ -173,6 +174,16 @@ export interface MapData {
   crystal: MultiPoint[];
   boss: BossPokemon[];
   pmTable: MapPm;
+}
+
+export enum MapSetTypes {
+  respawn = "respawn",
+  tree = "tree",
+  crystal = "crystal",
+}
+
+export enum MapInfoTypes {
+  boss = "boss",
 }
 
 export interface Haunt {

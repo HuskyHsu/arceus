@@ -19,7 +19,7 @@ function MainRouter() {
         <Route path=":link" element={<Detail pokemonList={pokemonList} />} />
       </Route>
       <Route path="/map" element={<Layout />}>
-        <Route index element={<Map />} />
+        <Route index element={<Map pokemonList={pokemonList} />} />
       </Route>
     </Routes>
   );

@@ -1,17 +1,41 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import clsx from "clsx";
+import "leaflet/dist/leaflet.css";
 
-import { Icon } from "@/components";
-import { useFilter } from "@/utils";
-import { FilterContextInterface } from "@/models";
+import {
+  BasePokemon,
+  FilterContextInterface,
+  MapData,
+  MapPm,
+  MapSetTypes,
+} from "@/models";
+import { Avatars, Icon } from "@/components";
+import { BASE_URL, useFilter } from "@/utils";
 
-import { AreaSelect, MapDom, Tables, useMapData } from "./components";
+import { AreaSelect, Maps, Tables, useMapData } from "./components";
+import "./index.css";
 
-interface Props {
+interface PokemonBaseList {
+  pokemonList: BasePokemon[];
+}
+
+interface SummaryPrpos extends PokemonBaseList {
+  mapData: MapData;
+  updateKeywordFilter: Function;
+  keyword: string;
+}
+
+interface HeaderProps {
   filterModel: FilterContextInterface;
 }
 
-function Header({ filterModel }: Props) {
+interface CountPrpos {
+  mapData: MapData;
+  filterModel: FilterContextInterface;
+}
+
+function Header({ filterModel }: HeaderProps) {
   return (
     <div className="mb-4 flex gap-x-4">
       <Link to="/" className="bg-white rounded-full p-1 shadow-md">
@@ -26,7 +50,80 @@ function Header({ filterModel }: Props) {
   );
 }
 
-function Map() {
+function Summary({
+  pokemonList,
+  mapData,
+  keyword,
+  updateKeywordFilter,
+}: SummaryPrpos) {
+  const bossLinks = mapData.boss.map((boss) => boss.link);
+  const matchPms = pokemonList.filter((pm) => {
+    return (
+      (mapData.pmTable[pm.link]?.length ?? 0) > 0 || bossLinks.includes(pm.link)
+    );
+  });
+
+  return (
+    <>
+      {matchPms.map((pm) => {
+        return (
+          <button
+            key={pm.link}
+            onClick={() => {
+              if (mapData.pmTable[pm.link].length > 0) {
+                updateKeywordFilter(
+                  ["pokemon", pm.link, mapData.pmTable[pm.link][0]].join("-")
+                );
+              } else {
+                updateKeywordFilter(["boss", pm.link].join("-"));
+              }
+            }}>
+            <Avatars
+              pm={pm}
+              size={"M"}
+              style={clsx(
+                "ring-[3px]",
+                pm.link === keyword.split("-")[1] ? "ring-red-500" : ""
+              )}
+            />
+          </button>
+        );
+      })}
+    </>
+  );
+}
+
+function Count({ mapData, filterModel }: CountPrpos) {
+  const keywordInfo = filterModel.filter.keyword.split("-");
+  if (
+    keywordInfo[0] !== "pokemon" ||
+    mapData.pmTable[keywordInfo[1]] === undefined
+  ) {
+    return <></>;
+  }
+
+  const sphereCount = mapData.pmTable[keywordInfo[1]].length;
+  const pointCount = Object.values(MapSetTypes).reduce((sum, type) => {
+    sum += mapData[type]
+      .filter((dataset) => {
+        return mapData.pmTable[keywordInfo[1]].includes(dataset.id);
+      })
+      .reduce((subSum, dataset) => {
+        return subSum + dataset.points.length;
+      }, 0);
+    return sum;
+  }, 0);
+
+  return (
+    <h4 className="text-md text-center">
+      共計{sphereCount}處，{pointCount}個點位有機會出沒
+    </h4>
+  );
+}
+
+function Map({ pokemonList }: PokemonBaseList) {
+  const isMobile = window.screen.width < 768;
+
   const params = document.location.href.split("?");
   let paramsString = "";
   if (params.length > 1) {
@@ -36,6 +133,7 @@ function Map() {
 
   const area = searchParams.get("area") ?? "黑曜原野";
   const keyword = searchParams.get("keyword") ?? "";
+
   const displayTypes = {
     respawn: true,
     tree: true,
@@ -58,42 +156,53 @@ function Map() {
       document.location.href.split("?")[0] + "?" + searchParams.toString();
   }, [filterModel.filter.area, filterModel.filter.keyword]);
 
-  const displayTable = filterModel.filter.keyword.startsWith("boss")
-    ? "boss"
-    : "spawntables";
-
-  const isMobile = window.screen.width < 768;
-
   return (
-    <div className="flex flex-col md:flex-row gap-2">
-      <div
-        className="h-full overflow-hidden"
-        style={{
-          clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
-          width: "100vmin",
-        }}>
-        <MapDom
-          mapData={mapData}
-          filter={filterModel.filter}
-          updateKeywordFilter={(keyword: string) => {
-            filterModel.updateKeywordFilter(keyword);
-          }}
-        />
-      </div>
-      <div
-        className="max-h-screen w-full"
-        style={{
-          maxWidth: isMobile ? "100vmin" : "60vmin",
-        }}>
-        <div className="max-h-screen overflow-y-auto p-4 max-w-xl">
-          <Header filterModel={filterModel} />
-          {displayTable === "boss" ? (
-            <Tables.Boss pokemonList={mapData.boss} filterModel={filterModel} />
-          ) : (
-            <div className="grid gap-y-4">
-              <Tables.Spawntables mapData={mapData} filterModel={filterModel} />
+    <div className="grid grid-cols-12 h-screen">
+      <div className="col-span-12 md:col-span-3 h-full w-full p-4">
+        <div className="w-full h-full flex flex-col justify-center items-center">
+          <div className="w-full grow-0 h-20">
+            <div
+              className={clsx(
+                "w-full h-12",
+                "flex items-center justify-center",
+                "text-white",
+                "bg-no-repeat bg-contain"
+              )}
+              style={{
+                backgroundImage: `url(${BASE_URL}image/brush_1.png)`,
+                backgroundSize: "350px 40px",
+                backgroundPosition: "center",
+              }}>
+              可捕獲的寶可夢
             </div>
-          )}
+            <Count mapData={mapData} filterModel={filterModel} />
+          </div>
+          <div
+            className={clsx(
+              "w-full grow h-20 overflow-y-auto",
+              "flex flex-wrap justify-around items-start gap-x-2"
+            )}>
+            <Summary
+              pokemonList={pokemonList}
+              mapData={mapData}
+              keyword={filterModel.filter.keyword}
+              updateKeywordFilter={filterModel.updateKeywordFilter}
+            />
+          </div>
+        </div>
+      </div>
+      <div className="col-span-12 md:col-span-6 h-full">
+        <Maps.MapDom mapData={mapData} filterModel={filterModel}></Maps.MapDom>
+      </div>
+      <div className="col-span-12 md:col-span-3 h-full w-full p-4">
+        <div className="w-full h-full flex flex-col justify-center items-center">
+          <div className="w-full grow-0 h-12">
+            <Header filterModel={filterModel} />
+          </div>
+          <div className="w-full grow h-20 overflow-y-auto">
+            <Tables.Boss pokemonList={mapData.boss} filterModel={filterModel} />
+            <Tables.Spawntables mapData={mapData} filterModel={filterModel} />
+          </div>
         </div>
       </div>
     </div>
