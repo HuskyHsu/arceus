@@ -1,13 +1,8 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
-import { LayersControl } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 
-import {
-  BasePokemon,
-  FilterContextInterface,
-  MapData,
-  MapSetTypes,
-} from "@/models";
+import { BasePokemon, FilterContextInterface } from "@/models";
 import { Icon } from "@/components";
 import { useFilter } from "@/utils";
 
@@ -20,42 +15,6 @@ interface PokemonBaseList {
 
 interface Props {
   filterModel: FilterContextInterface;
-}
-
-interface MapProps {
-  mapData: MapData;
-  filterModel: FilterContextInterface;
-}
-
-function MapDom({ mapData, filterModel }: MapProps) {
-  return (
-    <Maps.Base filterModel={filterModel}>
-      <LayersControl position="topright" collapsed={false}>
-        <Maps.LayerBoss mapData={mapData} filterModel={filterModel} />
-        <Maps.LayerPoints
-          mapData={mapData}
-          filterModel={filterModel}
-          name={"重生定點"}
-          type={MapSetTypes.respawn}
-          color={["rgb(202, 138, 4)", "rgb(253, 224, 71)"]}
-        />
-        <Maps.LayerPoints
-          mapData={mapData}
-          filterModel={filterModel}
-          name={"搖晃的樹"}
-          type={MapSetTypes.tree}
-          color={["rgb(5, 150, 105)", "rgb(110, 231, 183)"]}
-        />
-        <Maps.LayerPoints
-          mapData={mapData}
-          filterModel={filterModel}
-          name={"搖晃的礦"}
-          type={MapSetTypes.crystal}
-          color={["rgb(87, 83, 78)", "rgb(214, 211, 209)"]}
-        />
-      </LayersControl>
-    </Maps.Base>
-  );
 }
 
 function Header({ filterModel }: Props) {
@@ -76,6 +35,16 @@ function Header({ filterModel }: Props) {
 function Map_({ pokemonList }: PokemonBaseList) {
   const isMobile = window.screen.width < 768;
 
+  const params = document.location.href.split("?");
+  let paramsString = "";
+  if (params.length > 1) {
+    paramsString = params[1];
+  }
+  let searchParams = new URLSearchParams(paramsString);
+
+  const area = searchParams.get("area") ?? "黑曜原野";
+  const keyword = searchParams.get("keyword") ?? "";
+
   const displayTypes = {
     respawn: true,
     tree: true,
@@ -83,12 +52,20 @@ function Map_({ pokemonList }: PokemonBaseList) {
     boss: true,
   };
 
-  const filterModel = useFilter("黑曜原野", displayTypes, "");
+  const filterModel = useFilter(area, displayTypes, keyword);
 
   const { mapData } = useMapData(
     filterModel.filter,
     filterModel.updateKeywordFilter
   );
+
+  useEffect(() => {
+    searchParams.set("area", filterModel.filter.area);
+    searchParams.set("keyword", filterModel.filter.keyword);
+
+    window.location.href =
+      document.location.href.split("?")[0] + "?" + searchParams.toString();
+  }, [filterModel.filter.area, filterModel.filter.keyword]);
 
   return (
     <div className="grid grid-cols-12 h-screen">
@@ -96,7 +73,7 @@ function Map_({ pokemonList }: PokemonBaseList) {
         {filterModel.filter.keyword}
       </div>
       <div className="col-span-12 md:col-span-6 h-full">
-        <MapDom mapData={mapData} filterModel={filterModel}></MapDom>
+        <Maps.MapDom mapData={mapData} filterModel={filterModel}></Maps.MapDom>
       </div>
       <div className="col-span-12 md:col-span-3 h-full w-full p-4">
         <div className="w-full h-full flex flex-col justify-center items-center">

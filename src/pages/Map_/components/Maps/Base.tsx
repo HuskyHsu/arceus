@@ -26,7 +26,6 @@ export function Base({ children, filterModel }: Props) {
       zoomSnap={0.5}
       zoomDelta={0.5}
       wheelPxPerZoomLevel={120}
-      preferCanvas={true}
       className="h-full w-full">
       <ImageOverlay
         url={`${BASE_URL}image/map/${filterModel.filter.area}_LA.png`}

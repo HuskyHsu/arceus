@@ -9,6 +9,7 @@ interface MapProps {
 }
 
 export function LayerBoss({ mapData, filterModel }: MapProps) {
+  const keywordInfo = filterModel.filter.keyword.split("-");
   return (
     <LayerBase
       filterModel={filterModel}
@@ -16,8 +17,13 @@ export function LayerBoss({ mapData, filterModel }: MapProps) {
       type={MapInfoTypes.boss}>
       <>
         {mapData.boss.map((boss, i) => {
+          let selected = false;
           const keyword = keys.getBossKey(boss);
-          const selected = keyword === filterModel.filter.keyword;
+          if (keywordInfo.length === 2) {
+            selected = keyword === filterModel.filter.keyword;
+          } else if (keywordInfo.length === 3) {
+            selected = keywordInfo[1] === boss.link;
+          }
 
           return (
             <BossMarker
