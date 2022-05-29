@@ -205,7 +205,11 @@ function Map({ pokemonList }: PokemonBaseList) {
         }}>
         <Maps.MapDom mapData={mapData} filterModel={filterModel}></Maps.MapDom>
       </div>
-      <div className="col-span-12 md:col-span-3 h-full w-full p-4">
+      <div
+        className="col-span-12 md:col-span-3 h-full w-full p-4"
+        style={{
+          height: isMobile ? "80vmin" : "100%",
+        }}>
         <div className="w-full h-full flex flex-col justify-center items-center">
           <div className="w-full grow-0 h-12">
             <Header filterModel={filterModel} />
