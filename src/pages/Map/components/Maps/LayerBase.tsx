@@ -1,11 +1,16 @@
 import { LayerGroup, LayersControl } from "react-leaflet";
-import { FilterContextInterface, MapInfoTypes, MapSetTypes } from "@/models";
+import {
+  FilterContextInterface,
+  MapInfoTypes,
+  MapPointTypes,
+  MapSetTypes,
+} from "@/models";
 
 interface Layer {
   children: JSX.Element;
   filterModel: FilterContextInterface;
   name: string;
-  type: MapSetTypes | MapInfoTypes;
+  type: MapSetTypes | MapInfoTypes | MapPointTypes;
 }
 
 export function LayerBase({ children, filterModel, name, type }: Layer) {

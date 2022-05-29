@@ -4,7 +4,7 @@ export function getBossKey(pm: BasePokemon) {
   return `boss-${pm.link}`;
 }
 
-export function getPointKey(type: string, id: number) {
+export function getPointKey(type: string, id: number | string) {
   return `${type}-${id}`;
 }
 

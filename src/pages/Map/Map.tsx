@@ -140,6 +140,8 @@ function Map({ pokemonList }: PokemonBaseList) {
     tree: true,
     crystal: true,
     boss: true,
+    spiritomb: false,
+    unown: false,
   };
 
   const filterModel = useFilter(area, displayTypes, keyword);
@@ -203,6 +205,7 @@ function Map({ pokemonList }: PokemonBaseList) {
           <div className="w-full grow h-20 overflow-y-auto">
             <Tables.Boss pokemonList={mapData.boss} filterModel={filterModel} />
             <Tables.Spawntables mapData={mapData} filterModel={filterModel} />
+            <Tables.Unown mapData={mapData} filterModel={filterModel} />
           </div>
         </div>
       </div>

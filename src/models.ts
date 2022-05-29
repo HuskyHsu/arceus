@@ -162,6 +162,7 @@ export interface MultiPoint {
   id: number;
   points: number[][];
   convexHull?: number[];
+  attr?: string;
 }
 
 export interface MapPm {
@@ -173,6 +174,8 @@ export interface MapData {
   tree: MultiPoint[];
   crystal: MultiPoint[];
   boss: BossPokemon[];
+  spiritomb: MultiPoint[];
+  unown: MultiPoint[];
   pmTable: MapPm;
 }
 
@@ -186,6 +189,10 @@ export enum MapInfoTypes {
   boss = "boss",
 }
 
+export enum MapPointTypes {
+  spiritomb = "spiritomb",
+  unown = "unown",
+}
 export interface Haunt {
   link: string;
   name: string;

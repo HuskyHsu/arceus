@@ -3,13 +3,18 @@ import { CircleMarker, Marker } from "react-leaflet";
 import { divIcon } from "leaflet";
 import clsx from "clsx";
 
-import { FilterContextInterface, MapData, MapSetTypes } from "@/models";
+import {
+  FilterContextInterface,
+  MapData,
+  MapPointTypes,
+  MapSetTypes,
+} from "@/models";
 import { LayerBase } from "./LayerBase";
 import { keys } from "..";
 
 interface Props {
   mapData: MapData;
-  type: MapSetTypes;
+  type: MapSetTypes | MapPointTypes;
   name: string;
   color: string[];
   filterModel: FilterContextInterface;
@@ -42,10 +47,14 @@ export function LayerPoints({
       <>
         {mapData[type].map((dataset) => {
           let selected = false;
-          if (keyWordInfo.length === 2) {
-            selected = Number(keyWordInfo[1]) === dataset.id;
-          } else if (keyWordInfo.length === 3) {
-            selected = Number(keyWordInfo[2]) === dataset.id;
+          if (dataset.attr === undefined) {
+            if (keyWordInfo.length === 2) {
+              selected = Number(keyWordInfo[1]) === dataset.id;
+            } else if (keyWordInfo.length === 3) {
+              selected = Number(keyWordInfo[2]) === dataset.id;
+            }
+          } else {
+            selected = dataset.attr === keyWordInfo[1];
           }
 
           if (!selected) {
@@ -73,11 +82,14 @@ export function LayerPoints({
                   weight: 1,
                   color: color[0],
                   fillColor: color[1],
-                  fillOpacity: 0.5,
+                  fillOpacity: 0.8,
                 }}
                 eventHandlers={{
                   click: () => {
-                    const keyword = keys.getPointKey(type, dataset.id);
+                    const keyword = keys.getPointKey(
+                      type,
+                      dataset.attr === undefined ? dataset.id : dataset.attr
+                    );
                     filterModel.updateKeywordFilter(keyword);
                   },
                 }}

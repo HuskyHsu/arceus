@@ -65,6 +65,8 @@ def format_pm_table_data(all_pm_table, ids_m):
     for pid, ids in all_pm_table.items():
         pm = find_link_by_pid(int(pid))
         all_pm_table_[pm["link"]] = [i for i in ids if i in ids_m]
+        if len(all_pm_table_[pm["link"]]) == 0:
+            del all_pm_table_[pm["link"]]
 
     return all_pm_table_
 
@@ -178,6 +180,37 @@ def get_alpha(spawntable):
         alpha.append(base)
 
     return alpha
+
+
+def get_spiritomb(spawntable):
+    spiritomb = []
+    for key in spawntable["spiritomb"].keys():
+        base = {"id": key, "points": spawntable["spiritomb"][key]}
+        spiritomb.append(base)
+
+    return spiritomb
+
+
+def get_unown(spawntable):
+    unown = []
+    for key in spawntable["unown"].keys():
+        print(key)
+        table_text = requests.get(
+            f"https://www.serebii.net/pokearth/hisui/spawntable/{key}.txt"
+        )
+
+        # '/legendsarceus/pokemon/small/201-b.png'
+        if "/legendsarceus/pokemon/small/201.png" in table_text.text:
+            unown_type = "a"
+        else:
+            unown_type = table_text.text.split("/legendsarceus/pokemon/small/201-")[1][
+                0
+            ]
+
+        base = {"id": key, "points": spawntable["unown"][key], "attr": unown_type}
+        unown.append(base)
+
+    return unown
 
 
 def overlapping_boss(spawntable):
@@ -328,6 +361,8 @@ if __name__ == "__main__":
             "tree": get_tree(spawntable),
             "crystal": get_crystal(spawntable),
             "boss": get_alpha(spawntable),
+            "spiritomb": get_spiritomb(spawntable),
+            "unown": get_unown(spawntable),
         }
         ids = [respawn["id"] for respawn in spawntable["respawn"]]
         ids += [respawn["id"] for respawn in spawntable["tree"]]
@@ -338,7 +373,7 @@ if __name__ == "__main__":
 
         save_file(f"{base_output}/{area}.json", spawntable)
 
-        # continue
+        continue
         for respawn in spawntable["respawn"]:
             tableId = respawn["id"]
             print(tableId)

@@ -1,7 +1,12 @@
 import { latLng } from "leaflet";
 import { CircleMarker, LayerGroup, Polygon, Polyline } from "react-leaflet";
 
-import { MapData, MapSetTypes, MultiPoint } from "@/models";
+import {
+  FilterContextInterface,
+  MapData,
+  MapSetTypes,
+  MultiPoint,
+} from "@/models";
 
 interface SphereProps {
   dataset: MultiPoint;
@@ -9,7 +14,7 @@ interface SphereProps {
 
 interface LayerProps {
   mapData: MapData;
-  keywordInfo: string[];
+  filterModel: FilterContextInterface;
 }
 
 function getTableIds(mapData: MapData, keywordInfo: string[]) {
@@ -27,8 +32,8 @@ function getTableIds(mapData: MapData, keywordInfo: string[]) {
 }
 
 function Sphere({ dataset }: SphereProps) {
-  const strokeColor = "rgb(248, 113, 113)";
-  const fillColor = "rgba(239, 68, 68, 0.4)";
+  const strokeColor = "#f87171";
+  const fillColor = "#ef444466";
   const pathOptions = {
     weight: 1,
     color: strokeColor,
@@ -66,11 +71,16 @@ function Sphere({ dataset }: SphereProps) {
   );
 }
 
-export function LayerSphere({ mapData, keywordInfo }: LayerProps) {
+export function LayerSphere({ mapData, filterModel }: LayerProps) {
+  const keywordInfo = filterModel.filter.keyword.split("-");
   return (
     <>
       {Object.values(MapSetTypes).map((type) => {
         return mapData[type].map((dataset, i) => {
+          if (!filterModel.filter.types[type]) {
+            return;
+          }
+
           if (keywordInfo.length < 2) {
             return;
           } else if (keywordInfo.length === 2) {

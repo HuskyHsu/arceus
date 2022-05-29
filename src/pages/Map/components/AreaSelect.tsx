@@ -21,8 +21,7 @@ export function AreaSelect({
       <button
         type="button"
         className="w-32 flex justify-evenly bg-white rounded-full shadow px-2 py-1"
-        onClick={() => toggereAreaSelect()}
-      >
+        onClick={() => toggereAreaSelect()}>
         <span></span>
         {filter.area}
         <Icon.Down className="h-6 w-6" />
@@ -32,11 +31,10 @@ export function AreaSelect({
           "absolute z-20 w-32 mt-4 px-2 flex flex-col justify-center",
           "bg-white rounded-md shadow-md border-2",
           { hidden: !filter.areaSelector }
-        )}
-      >
+        )}>
         {Object.keys(areaMap.area)
           .sort()
-          .filter((a) => Number(a) > 0)
+          .filter((a) => Number(a) > -1)
           .map((a, i, arr) => {
             return (
               <li
@@ -48,8 +46,7 @@ export function AreaSelect({
                 key={a}
                 onClick={() =>
                   updateAreaSelect(areaMap.area[a as keyof typeof areaMap.area])
-                }
-              >
+                }>
                 {areaMap.area[a as keyof typeof areaMap.area]}
               </li>
             );

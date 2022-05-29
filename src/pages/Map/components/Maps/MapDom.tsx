@@ -1,6 +1,11 @@
 import { LayersControl, Pane } from "react-leaflet";
 
-import { FilterContextInterface, MapData, MapSetTypes } from "@/models";
+import {
+  FilterContextInterface,
+  MapData,
+  MapPointTypes,
+  MapSetTypes,
+} from "@/models";
 import { Base } from "./Base";
 import { LayerSphere } from "./LayerSphere";
 import { LayerBoss } from "./LayerBoss";
@@ -16,10 +21,7 @@ export function MapDom({ mapData, filterModel }: MapProps) {
     <Base filterModel={filterModel}>
       <>
         <Pane name="svgLayer" className="pointer-events-none">
-          <LayerSphere
-            mapData={mapData}
-            keywordInfo={filterModel.filter.keyword.split("-")}
-          />
+          <LayerSphere mapData={mapData} filterModel={filterModel} />
         </Pane>
         <Pane name="point">
           <LayersControl position="topright" collapsed={false}>
@@ -29,21 +31,35 @@ export function MapDom({ mapData, filterModel }: MapProps) {
               filterModel={filterModel}
               name={"重生定點"}
               type={MapSetTypes.respawn}
-              color={["rgb(202, 138, 4)", "rgb(253, 224, 71)"]}
+              color={["#ca8a04", "#fde047"]}
             />
             <LayerPoints
               mapData={mapData}
               filterModel={filterModel}
               name={"搖晃的樹"}
               type={MapSetTypes.tree}
-              color={["rgb(5, 150, 105)", "rgb(110, 231, 183)"]}
+              color={["#059669", "#6ee7b7"]}
             />
             <LayerPoints
               mapData={mapData}
               filterModel={filterModel}
               name={"搖晃的礦"}
               type={MapSetTypes.crystal}
-              color={["rgb(87, 83, 78)", "rgb(214, 211, 209)"]}
+              color={["#57534e", "#d6d3d1"]}
+            />
+            <LayerPoints
+              mapData={mapData}
+              filterModel={filterModel}
+              name={"107幽火"}
+              type={MapPointTypes.spiritomb}
+              color={["#673ced", "#ffadff"]}
+            />
+            <LayerPoints
+              mapData={mapData}
+              filterModel={filterModel}
+              name={"未知圖騰"}
+              type={MapPointTypes.unown}
+              color={["#000000", "#ffffff"]}
             />
           </LayersControl>
         </Pane>

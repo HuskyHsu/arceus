@@ -51,7 +51,11 @@ const getSpawntable = async (id: string) => {
 
 export function Spawntables({ mapData, filterModel }: Props) {
   const keywordInfo = filterModel.filter.keyword.split("-");
-  if (keywordInfo.length === 0 || keywordInfo[0] === "boss") {
+  if (
+    keywordInfo.length === 0 ||
+    keywordInfo[0] === "boss" ||
+    keywordInfo[0] === "unown"
+  ) {
     return <></>;
   }
 
