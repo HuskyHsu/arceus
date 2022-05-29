@@ -136,10 +136,10 @@ function Map({ pokemonList }: PokemonBaseList) {
   const keyword = searchParams.get("keyword") ?? "";
 
   const displayTypes = {
-    respawn: true,
-    tree: true,
-    crystal: true,
     boss: true,
+    respawn: !isMobile,
+    tree: !isMobile,
+    crystal: !isMobile,
     spiritomb: false,
     unown: false,
   };
@@ -161,7 +161,11 @@ function Map({ pokemonList }: PokemonBaseList) {
 
   return (
     <div className="grid grid-cols-12 h-screen">
-      <div className="col-span-12 md:col-span-3 h-full w-full p-4">
+      <div
+        className="col-span-12 md:col-span-3 w-full p-4"
+        style={{
+          height: isMobile ? "80vmin" : "100%",
+        }}>
         <div className="w-full h-full flex flex-col justify-center items-center">
           <div className="w-full grow-0 h-20">
             <div
@@ -194,7 +198,11 @@ function Map({ pokemonList }: PokemonBaseList) {
           </div>
         </div>
       </div>
-      <div className="col-span-12 md:col-span-6 h-full">
+      <div
+        className="col-span-12 md:col-span-6"
+        style={{
+          height: isMobile ? "100vmin" : "100%",
+        }}>
         <Maps.MapDom mapData={mapData} filterModel={filterModel}></Maps.MapDom>
       </div>
       <div className="col-span-12 md:col-span-3 h-full w-full p-4">
