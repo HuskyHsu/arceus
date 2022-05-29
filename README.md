@@ -6,14 +6,19 @@
 
 ### Web site: [https://huskyhsu.github.io/arceus/](https://huskyhsu.github.io/arceus/)
 
-> - 2022-05-13 update<br>
->   定點頭目分布與重生點地圖
+#### update
+
+> - 2022-05-29
+>   - 地圖範圍可捕獲寶可夢
+>   - 107 幽火與定點未知圖騰位置
+> - 2022-05-13
+>   - 定點頭目分布與重生點地圖
 
 ## Pages
 
 - [阿爾宙斯圖鑑索引](#阿爾宙斯圖鑑索引)
 - [詳細資料介紹](#詳細資料介紹)
-- [定點頭目分布與重生點地圖](#定點頭目分布與重生點地圖)
+- [地圖索引功能](#地圖索引功能)
 
 ## 頁面功能介紹
 
@@ -40,12 +45,14 @@
 ![](images/detail_move_2.png)
 ![](images/detail_evolution.png)
 
-### 定點頭目分布與重生點地圖
+### 地圖索引功能
 
 ![](images/map.png)
-
-> 2022-05-13 update
-> ![](images/map_respawn.png)
+![](images/map_respawn.png)
+![](images/map_tree.png)
+![](images/map_crystal.png)
+![](images/map_unown.png)
+![](images/map_spiritomb.png)
 
 ### 支援 RWD
 
@@ -64,9 +71,8 @@
 
 ## ToDo
 
-- [ ] 107 幽火點位
+- [x] 107 幽火點位
 - [ ] 大大大量發現
-- [ ] 地圖小區域標示
-- [ ] 地圖標示小區域出沒怪
+- [x] 地圖小區域標示
+- [x] 地圖標示小區域出沒怪
 - [ ] 可習得該技能怪清單
-- [ ] 地圖小區域標示
