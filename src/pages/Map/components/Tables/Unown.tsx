@@ -22,7 +22,7 @@ export function Unown({ filterModel, mapData }: Props) {
     {
       name: "圖片",
       value: (points: MultiPoint) => {
-        let imgUrl = `${BASE_URL}image/pokemon/201${points.attr}.png`;
+        let imgUrl = `${BASE_URL}image/pokemon/201${(points.attr ?? "").toUpperCase()}.png`;
         if (points.attr === "a") {
           imgUrl = `${BASE_URL}image/pokemon/201.png`;
         } else if (points.attr === "!") {
