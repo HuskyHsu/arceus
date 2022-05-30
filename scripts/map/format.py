@@ -60,12 +60,21 @@ def get_raw_pm_table_data(area):
     return all_pm_table
 
 
-def format_pm_table_data(all_pm_table, ids_m):
+def format_pm_table_data(all_pm_table, boss_list, ids_m, mass_ids):
     all_pm_table_ = {}
     for pid, ids in all_pm_table.items():
         pm = find_link_by_pid(int(pid))
-        all_pm_table_[pm["link"]] = [i for i in ids if i in ids_m]
-        if len(all_pm_table_[pm["link"]]) == 0:
+        all_pm_table_[pm["link"]] = {
+            "spawntables": [i for i in ids if i in ids_m],
+            "boss": len([boss for boss in boss_list if pm["link"] == boss["link"]]) > 0,
+            "mass": len([i for i in ids if i in mass_ids]) > 0,
+        }
+
+        if (
+            len(all_pm_table_[pm["link"]]["spawntables"]) == 0
+            and not all_pm_table_[pm["link"]]["boss"]
+            and not all_pm_table_[pm["link"]]["mass"]
+        ):
             del all_pm_table_[pm["link"]]
 
     return all_pm_table_
@@ -176,6 +185,7 @@ def get_alpha(spawntable):
                     "point": spawntable["layAlpha"][key][0],
                     "level": int(clean_table["data"][0]["level"].split(" - ")[0]),
                     "time": clean_table["condition"].split(" - ")[0],
+                    # "tableId": int(key),
                 },
             }
         else:
@@ -184,15 +194,6 @@ def get_alpha(spawntable):
         alpha.append(base)
 
     return alpha
-
-
-def get_spiritomb(spawntable):
-    spiritomb = []
-    for key in spawntable["laySpiritomb"].keys():
-        base = {"id": key, "points": spawntable["laySpiritomb"][key]}
-        spiritomb.append(base)
-
-    return spiritomb
 
 
 def get_unown(spawntable):
@@ -215,6 +216,20 @@ def get_unown(spawntable):
         unown.append(base)
 
     return unown
+
+
+def get_spiritomb(spawntable):
+    spiritomb = []
+    for key in spawntable["laySpiritomb"].keys():
+        base = {"id": key, "points": spawntable["laySpiritomb"][key]}
+        spiritomb.append(base)
+
+    return spiritomb
+
+
+def get_mass(spawntable):
+    mass = [key for key in spawntable["laySwarm"].keys()]
+    return mass
 
 
 def overlapping_boss(spawntable):
@@ -360,6 +375,7 @@ if __name__ == "__main__":
 
         spawntable = format_spawntable(all_spawntable)
 
+        mass_ids = get_mass(spawntable)
         spawntable = {
             "respawn": get_respawn(spawntable),
             "tree": get_tree(spawntable),
@@ -367,11 +383,16 @@ if __name__ == "__main__":
             "boss": get_alpha(spawntable),
             "spiritomb": get_spiritomb(spawntable),
             "unown": get_unown(spawntable),
+            # "mass": get_mass(spawntable)
         }
+        # ids = [respawn["tableId"] for respawn in spawntable["boss"]]
         ids = [respawn["id"] for respawn in spawntable["respawn"]]
         ids += [respawn["id"] for respawn in spawntable["tree"]]
         ids += [respawn["id"] for respawn in spawntable["crystal"]]
-        spawntable["pmTable"] = format_pm_table_data(all_pm_table, ids)
+        # ids += mass_ids
+        spawntable["pmTable"] = format_pm_table_data(
+            all_pm_table, spawntable["boss"], ids, mass_ids
+        )
 
         overlapping_boss(spawntable)
 
