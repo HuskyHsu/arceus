@@ -79,35 +79,37 @@ def format_spawntable(all_spawntable):
     spawntable = {}
 
     for spawn in all_spawntable:
-        if spawn["icon"] not in spawntable:
-            spawntable[spawn["icon"]] = {}
+        lay_name = spawn["layer"].strip()
+        if lay_name not in spawntable:
+            spawntable[lay_name] = {}
 
-        if spawn["tableID"] not in spawntable[spawn["icon"]]:
-            spawntable[spawn["icon"]][spawn["tableID"]] = []
+        if spawn["tableID"] not in spawntable[lay_name]:
+            spawntable[lay_name][spawn["tableID"]] = []
 
-        spawntable[spawn["icon"]][spawn["tableID"]].append(spawn["coords"])
+        spawntable[lay_name][spawn["tableID"]].append(spawn["coords"])
 
+    print([k for k in spawntable.keys()])
     return spawntable
 
 
 def get_respawn(spawntable):
     respawn = []
-    for key in spawntable["pokeball"].keys():
-        base = {"id": key, "points": spawntable["pokeball"][key]}
-        if len(spawntable["pokeball"][key]) < 3:
+    for key in spawntable["layPokeball"].keys():
+        base = {"id": key, "points": spawntable["layPokeball"][key]}
+        if len(spawntable["layPokeball"][key]) < 3:
             respawn.append(base)
             continue
 
-        spawntable["pokeball"][key] = [
-            (row[0], row[1]) for row in spawntable["pokeball"][key]
+        spawntable["layPokeball"][key] = [
+            (row[0], row[1]) for row in spawntable["layPokeball"][key]
         ]
 
-        if len(list(set(spawntable["pokeball"][key]))) < 3:
+        if len(list(set(spawntable["layPokeball"][key]))) < 3:
             respawn.append(base)
             continue
 
-        # print(spawntable["pokeball"][key])
-        hull = ConvexHull(spawntable["pokeball"][key])
+        # print(spawntable["layPokeball"][key])
+        hull = ConvexHull(spawntable["layPokeball"][key])
         base["convexHull"] = [int(i) for i in hull.vertices]
         respawn.append(base)
 
@@ -116,20 +118,22 @@ def get_respawn(spawntable):
 
 def get_tree(spawntable):
     tree = []
-    for key in spawntable["tree"].keys():
-        base = {"id": key, "points": spawntable["tree"][key]}
-        if len(spawntable["tree"][key]) < 3:
+    for key in spawntable["layTree"].keys():
+        base = {"id": key, "points": spawntable["layTree"][key]}
+        if len(spawntable["layTree"][key]) < 3:
             tree.append(base)
             continue
 
-        spawntable["tree"][key] = [(row[0], row[1]) for row in spawntable["tree"][key]]
+        spawntable["layTree"][key] = [
+            (row[0], row[1]) for row in spawntable["layTree"][key]
+        ]
 
-        if len(list(set(spawntable["tree"][key]))) < 3:
+        if len(list(set(spawntable["layTree"][key]))) < 3:
             tree.append(base)
             continue
 
-        # print(spawntable["tree"][key])
-        hull = ConvexHull(spawntable["tree"][key])
+        # print(spawntable["layTree"][key])
+        hull = ConvexHull(spawntable["layTree"][key])
         base["convexHull"] = [int(i) for i in hull.vertices]
         tree.append(base)
 
@@ -138,22 +142,22 @@ def get_tree(spawntable):
 
 def get_crystal(spawntable):
     crystal = []
-    for key in spawntable["crystal"].keys():
-        base = {"id": key, "points": spawntable["crystal"][key]}
-        if len(spawntable["crystal"][key]) < 3:
+    for key in spawntable["layCrystal"].keys():
+        base = {"id": key, "points": spawntable["layCrystal"][key]}
+        if len(spawntable["layCrystal"][key]) < 3:
             crystal.append(base)
             continue
 
-        spawntable["crystal"][key] = [
-            (row[0], row[1]) for row in spawntable["crystal"][key]
+        spawntable["layCrystal"][key] = [
+            (row[0], row[1]) for row in spawntable["layCrystal"][key]
         ]
 
-        if len(list(set(spawntable["crystal"][key]))) < 3:
+        if len(list(set(spawntable["layCrystal"][key]))) < 3:
             crystal.append(base)
             continue
 
-        # print(spawntable["crystal"][key])
-        hull = ConvexHull(spawntable["crystal"][key])
+        # print(spawntable["layCrystal"][key])
+        hull = ConvexHull(spawntable["layCrystal"][key])
         base["convexHull"] = [int(i) for i in hull.vertices]
         crystal.append(base)
 
@@ -162,14 +166,14 @@ def get_crystal(spawntable):
 
 def get_alpha(spawntable):
     alpha = []
-    for key in spawntable["alpha"].keys():
+    for key in spawntable["layAlpha"].keys():
         print(f"boss {key}")
-        if len(spawntable["alpha"][key]) == 1:
+        if len(spawntable["layAlpha"][key]) == 1:
             clean_table = get_spawntable(key, True)[0]
             base = {
                 **clean_table["data"][0]["pm"],
                 **{
-                    "point": spawntable["alpha"][key][0],
+                    "point": spawntable["layAlpha"][key][0],
                     "level": int(clean_table["data"][0]["level"].split(" - ")[0]),
                     "time": clean_table["condition"].split(" - ")[0],
                 },
@@ -184,8 +188,8 @@ def get_alpha(spawntable):
 
 def get_spiritomb(spawntable):
     spiritomb = []
-    for key in spawntable["spiritomb"].keys():
-        base = {"id": key, "points": spawntable["spiritomb"][key]}
+    for key in spawntable["laySpiritomb"].keys():
+        base = {"id": key, "points": spawntable["laySpiritomb"][key]}
         spiritomb.append(base)
 
     return spiritomb
@@ -193,7 +197,7 @@ def get_spiritomb(spawntable):
 
 def get_unown(spawntable):
     unown = []
-    for key in spawntable["unown"].keys():
+    for key in spawntable["layUnown"].keys():
         print(key)
         table_text = requests.get(
             f"https://www.serebii.net/pokearth/hisui/spawntable/{key}.txt"
@@ -207,7 +211,7 @@ def get_unown(spawntable):
                 0
             ]
 
-        base = {"id": key, "points": spawntable["unown"][key], "attr": unown_type}
+        base = {"id": key, "points": spawntable["layUnown"][key], "attr": unown_type}
         unown.append(base)
 
     return unown
