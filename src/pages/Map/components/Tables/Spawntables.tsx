@@ -80,10 +80,10 @@ export function Spawntables({ mapData, filterModel }: Props) {
         if (keywordInfo.length === 3) {
           tableId = keywordInfo[2];
         } else {
-          if ((mapData.pmTable[link]?.length ?? 0) === 0) {
+          if ((mapData.pmTable[link]?.spawntables.length ?? 0) === 0) {
             return;
           }
-          tableId = String(mapData.pmTable[link][0]);
+          tableId = String(mapData.pmTable[link].spawntables[0]);
         }
 
         if (keywordInfo.length === 2) {

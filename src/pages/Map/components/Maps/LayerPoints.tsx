@@ -27,7 +27,7 @@ export function LayerPoints({
   type,
   color,
 }: Props) {
-  const keyWordInfo = filterModel.filter.keyword.split("-");
+  const keywordInfo = filterModel.filter.keyword.split("-");
   const iconMarkup = renderToStaticMarkup(
     <p
       className={clsx(
@@ -48,13 +48,15 @@ export function LayerPoints({
         {mapData[type].map((dataset) => {
           let selected = false;
           if (dataset.attr === undefined) {
-            if (keyWordInfo.length === 2) {
-              selected = Number(keyWordInfo[1]) === dataset.id;
-            } else if (keyWordInfo.length === 3) {
-              selected = Number(keyWordInfo[2]) === dataset.id;
+            if (keywordInfo.length === 2) {
+              if (keywordInfo[0] !== "boss") {
+                selected = Number(keywordInfo[1]) === dataset.id;
+              }
+            } else if (keywordInfo.length === 3) {
+              selected = Number(keywordInfo[2]) === dataset.id;
             }
           } else {
-            selected = dataset.attr === keyWordInfo[1];
+            selected = dataset.attr === keywordInfo[1];
           }
 
           if (!selected) {

@@ -32,11 +32,11 @@ export const useMapData = (filter: Filter, updateKeywordFilter: Function) => {
           const link = keywordInfo[1];
           if (
             data.pmTable[link] === undefined ||
-            data.pmTable[link].length === 0
+            data.pmTable[link].spawntables.length === 0
           ) {
             return updateKeywordFilter("");
           }
-          const tableId = data.pmTable[link][0];
+          const tableId = data.pmTable[link].spawntables[0];
           updateKeywordFilter(["pokemon", link, tableId].join("-"));
         }
       }

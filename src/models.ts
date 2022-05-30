@@ -165,8 +165,14 @@ export interface MultiPoint {
   attr?: string;
 }
 
-export interface MapPm {
-  [propName: string]: number[];
+interface mapPm {
+  spawntables: number[];
+  boss: boolean;
+  mass: boolean;
+}
+
+interface MapPms {
+  [propName: string]: mapPm;
 }
 
 export interface MapData {
@@ -176,7 +182,7 @@ export interface MapData {
   boss: BossPokemon[];
   spiritomb: MultiPoint[];
   unown: MultiPoint[];
-  pmTable: MapPm;
+  pmTable: MapPms;
 }
 
 export enum MapSetTypes {

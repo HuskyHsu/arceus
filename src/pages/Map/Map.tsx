@@ -7,7 +7,6 @@ import {
   BasePokemon,
   FilterContextInterface,
   MapData,
-  MapPm,
   MapSetTypes,
 } from "@/models";
 import { Avatars, Icon } from "@/components";
@@ -56,10 +55,11 @@ function Summary({
   keyword,
   updateKeywordFilter,
 }: SummaryPrpos) {
-  const bossLinks = mapData.boss.map((boss) => boss.link);
   const matchPms = pokemonList.filter((pm) => {
     return (
-      (mapData.pmTable[pm.link]?.length ?? 0) > 0 || bossLinks.includes(pm.link)
+      (mapData.pmTable[pm.link]?.spawntables.length ?? 0) > 0 ||
+      mapData.pmTable[pm.link]?.boss ||
+      mapData.pmTable[pm.link]?.mass
     );
   });
 
@@ -70,11 +70,15 @@ function Summary({
           <button
             key={pm.link}
             onClick={() => {
-              if (mapData.pmTable[pm.link].length > 0) {
+              if (mapData.pmTable[pm.link].spawntables.length > 0) {
                 updateKeywordFilter(
-                  ["pokemon", pm.link, mapData.pmTable[pm.link][0]].join("-")
+                  [
+                    "pokemon",
+                    pm.link,
+                    mapData.pmTable[pm.link].spawntables[0],
+                  ].join("-")
                 );
-              } else {
+              } else if (mapData.pmTable[pm.link].boss) {
                 updateKeywordFilter(["boss", pm.link].join("-"));
               }
             }}>
@@ -103,11 +107,11 @@ function Count({ mapData, filterModel }: CountPrpos) {
     return <></>;
   }
 
-  const sphereCount = mapData.pmTable[keywordInfo[1]].length;
+  const sphereCount = mapData.pmTable[keywordInfo[1]].spawntables.length;
   const pointCount = Object.values(MapSetTypes).reduce((sum, type) => {
     sum += mapData[type]
       .filter((dataset) => {
-        return mapData.pmTable[keywordInfo[1]].includes(dataset.id);
+        return mapData.pmTable[keywordInfo[1]].spawntables.includes(dataset.id);
       })
       .reduce((subSum, dataset) => {
         return subSum + dataset.points.length;

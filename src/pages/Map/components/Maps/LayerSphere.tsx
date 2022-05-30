@@ -25,7 +25,7 @@ function getTableIds(mapData: MapData, keywordInfo: string[]) {
   if (keywordInfo[0] === "pokemon") {
     const link = keywordInfo[1];
     if (mapData.pmTable[link]) {
-      tableIds = mapData.pmTable[link];
+      tableIds = mapData.pmTable[link].spawntables;
     }
   }
   return tableIds;
@@ -89,6 +89,8 @@ export function LayerSphere({ mapData, filterModel }: LayerProps) {
               if (!tableIds.includes(dataset.id)) {
                 return;
               }
+            } else if (keywordInfo[0] === "boss") {
+              return;
             } else {
               const tableId = Number(keywordInfo[1]);
               if (dataset.id !== tableId) {
