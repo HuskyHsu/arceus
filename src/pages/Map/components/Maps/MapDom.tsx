@@ -10,6 +10,7 @@ import { Base } from "./Base";
 import { LayerSphere } from "./LayerSphere";
 import { LayerBoss } from "./LayerBoss";
 import { LayerPoints } from "./LayerPoints";
+import { LayerEvent } from "./LayerEvent";
 
 interface MapProps {
   mapData: MapData;
@@ -26,6 +27,7 @@ export function MapDom({ mapData, filterModel }: MapProps) {
         <Pane name="point">
           <LayersControl position="topright" collapsed={false}>
             <LayerBoss mapData={mapData} filterModel={filterModel} />
+            <LayerEvent mapData={mapData} filterModel={filterModel} />
             <LayerPoints
               mapData={mapData}
               filterModel={filterModel}

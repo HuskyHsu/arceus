@@ -61,7 +61,7 @@ def get_raw_pm_table_data(area):
 
 
 def format_pm_table_data(
-    all_pm_table, boss_list, ids_m, mass_ids, massive_ids, distortion_ids
+    all_pm_table, boss_list, event_list, ids_m, mass_ids, massive_ids, distortion_ids
 ):
     all_pm_table_ = {}
     for pid, ids in all_pm_table.items():
@@ -69,6 +69,8 @@ def format_pm_table_data(
         all_pm_table_[pm["link"]] = {
             "spawntables": [i for i in ids if i in ids_m],
             "boss": len([boss for boss in boss_list if pm["link"] == boss["link"]]) > 0,
+            "event": len([boss for boss in event_list if pm["link"] == boss["link"]])
+            > 0,
             "mass": len([i for i in ids if i in mass_ids]) > 0,
             "massive": len([i for i in ids if i in massive_ids]) > 0,
             "distortion": len([i for i in ids if i in distortion_ids]) > 0,
@@ -77,6 +79,7 @@ def format_pm_table_data(
         if (
             len(all_pm_table_[pm["link"]]["spawntables"]) == 0
             and not all_pm_table_[pm["link"]]["boss"]
+            and not all_pm_table_[pm["link"]]["event"]
             and not all_pm_table_[pm["link"]]["mass"]
             and not all_pm_table_[pm["link"]]["massive"]
             and not all_pm_table_[pm["link"]]["distortion"]
@@ -92,7 +95,7 @@ def sort_coords(coords):
 
 def format_spawntable(all_spawntable):
     spawntable = {}
-
+    attr = {}
     for spawn in all_spawntable:
         lay_name = spawn["layer"].strip()
         if lay_name not in spawntable:
@@ -102,9 +105,11 @@ def format_spawntable(all_spawntable):
             spawntable[lay_name][spawn["tableID"]] = []
 
         spawntable[lay_name][spawn["tableID"]].append(spawn["coords"])
+        if "attr" in spawn:
+            attr[spawn["tableID"]] = spawn["attr"]
 
     print([k for k in spawntable.keys()])
-    return spawntable
+    return spawntable, attr
 
 
 def get_respawn(spawntable):
@@ -200,6 +205,29 @@ def get_alpha(spawntable):
         alpha.append(base)
 
     return alpha
+
+
+def get_event(spawntable, attr):
+    event = []
+    for key in spawntable["layEvent"].keys():
+        print(f"event {key}")
+        if len(spawntable["layEvent"][key]) == 1:
+            clean_table = get_spawntable(key, True)[0]
+            base = {
+                **clean_table["data"][0]["pm"],
+                **{
+                    "point": spawntable["layEvent"][key][0],
+                    "level": int(clean_table["data"][0]["level"].split(" - ")[0]),
+                    "attr": attr[int(key)],
+                    # "tableId": int(key),
+                },
+            }
+        else:
+            print(key)
+
+        event.append(base)
+
+    return event
 
 
 def get_unown(spawntable):
@@ -389,7 +417,7 @@ if __name__ == "__main__":
         for spawn in all_spawntable:
             spawn["coords"] = sort_coords(spawn["coords"])
 
-        spawntable = format_spawntable(all_spawntable)
+        spawntable, attr = format_spawntable(all_spawntable)
 
         mass_ids = get_mass(spawntable)
         massive_ids = get_massive(spawntable)
@@ -399,6 +427,7 @@ if __name__ == "__main__":
             "tree": get_tree(spawntable),
             "crystal": get_crystal(spawntable),
             "boss": get_alpha(spawntable),
+            "event": get_event(spawntable, attr),
             "spiritomb": get_spiritomb(spawntable),
             "unown": get_unown(spawntable),
         }
@@ -408,7 +437,13 @@ if __name__ == "__main__":
         ids += [respawn["id"] for respawn in spawntable["crystal"]]
         # ids += mass_ids
         spawntable["pmTable"] = format_pm_table_data(
-            all_pm_table, spawntable["boss"], ids, mass_ids, massive_ids, distortion_ids
+            all_pm_table,
+            spawntable["boss"],
+            spawntable["event"],
+            ids,
+            mass_ids,
+            massive_ids,
+            distortion_ids,
         )
 
         overlapping_boss(spawntable)

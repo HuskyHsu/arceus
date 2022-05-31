@@ -4301,33 +4301,25 @@
   },
   {
     "coords": [
-      39.9,
-      10.202,
-      39.8
-    ],
-    "icon": "eventIcon",
-    "tableID": 364,
-    "layer": "layEvent"
-  },
-  {
-    "coords": [
       535,
       42.3,
       601.4
     ],
     "icon": "eventIcon",
     "tableID": 365,
-    "layer": "layEvent"
+    "layer": "layEvent",
+    "attr": "副任務94 洗翠的化身們"
   },
   {
     "coords": [
-      39.9,
+      751,
       10.202,
-      39.8
+      303
     ],
     "icon": "eventIcon",
     "tableID": 366,
-    "layer": "layEvent"
+    "layer": "layEvent",
+    "attr": "主任務21 湖的石板"
   },
   {
     "coords": [
@@ -4337,7 +4329,8 @@
     ],
     "icon": "eventIcon",
     "tableID": 367,
-    "layer": "layEvent"
+    "layer": "layEvent",
+    "attr": "副任務22 飄浮在黑夜的幽火"
   },
   {
     "coords": [

@@ -4277,7 +4277,8 @@
         ],
         "icon": "eventIcon",
         "tableID": 600,
-        "layer": "layEvent"
+        "layer": "layEvent",
+        "attr": "副任務94 洗翠的化身們"
     },
     {
         "coords": [
@@ -4287,7 +4288,8 @@
         ],
         "icon": "eventIcon",
         "tableID": 601,
-        "layer": "layEvent "
+        "layer": "layEvent",
+        "attr": "主任務22 吹火島的石板"
     },
     {
         "coords": [
@@ -4297,7 +4299,8 @@
         ],
         "icon": "eventIcon",
         "tableID": 602,
-        "layer": "layEvent "
+        "layer": "layEvent",
+        "attr": "副任務66 海之傳說"
     },
     {
         "coords": [
@@ -4307,7 +4310,8 @@
         ],
         "icon": "eventIcon",
         "tableID": 603,
-        "layer": "layEvent "
+        "layer": "layEvent",
+        "attr": "副任務66 海之傳說"
     },
     {
         "coords": [

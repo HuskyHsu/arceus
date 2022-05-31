@@ -2947,7 +2947,8 @@
         ],
         "icon": "eventIcon",
         "tableID": 801,
-        "layer": "layEvent"
+        "layer": "layEvent",
+        "attr": "主任務23 迎月戰場的石板"
     },
     {
         "coords": [
@@ -2957,7 +2958,8 @@
         ],
         "icon": "eventIcon",
         "tableID": 802,
-        "layer": "layEvent"
+        "layer": "layEvent",
+        "attr": "副任務93 漆黑的惡夢"
     },
     {
         "coords": [

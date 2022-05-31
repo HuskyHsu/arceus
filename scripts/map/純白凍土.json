@@ -3551,13 +3551,14 @@
     },
     {
         "coords": [
-            39.9,
+            489,
             10.2,
-            39.8
+            135
         ],
         "icon": "eventIcon",
         "tableID": 1022,
-        "layer": "layEvent"
+        "layer": "layEvent",
+        "attr": "主任務21 湖的石板"
     },
     {
         "coords": [
@@ -3567,7 +3568,8 @@
         ],
         "icon": "eventIcon",
         "tableID": 1023,
-        "layer": "layEvent"
+        "layer": "layEvent",
+        "attr": "副任務94 洗翠的化身們"
     },
     {
         "coords": [

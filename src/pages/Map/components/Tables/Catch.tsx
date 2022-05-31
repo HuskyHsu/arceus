@@ -176,6 +176,7 @@ function Count({ pm, mapData, filterModel }: CountPrpos) {
     targetPm.distortion ? "時空扭曲" : null,
     targetPm.mass ? "大量出現" : null,
     targetPm.massive ? "大大大量出現" : null,
+    targetPm.event ? "任務" : null,
   ]
     .filter(Boolean)
     .join(", ");
@@ -201,7 +202,7 @@ function Count({ pm, mapData, filterModel }: CountPrpos) {
           {events !== "" && (
             <span className="block">
               ({events}
-              事件亦有機會出現)
+              事件中出現)
             </span>
           )}
         </div>
@@ -224,7 +225,8 @@ export function Catch({ pokemonList, mapData, filterModel }: CatchProps) {
       mapData.pmTable[pm.link]?.boss ||
       mapData.pmTable[pm.link]?.mass ||
       mapData.pmTable[pm.link]?.massive ||
-      mapData.pmTable[pm.link]?.distortion
+      mapData.pmTable[pm.link]?.distortion ||
+      mapData.pmTable[pm.link]?.event
     );
   });
 

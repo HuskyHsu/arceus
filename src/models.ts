@@ -59,6 +59,12 @@ export interface BossPokemon extends BasePokemon {
   point: number[];
 }
 
+export interface EventPokemon extends BasePokemon {
+  level: number;
+  attr: string;
+  point: number[];
+}
+
 export interface BaseProps {
   pm: BasePokemon;
 }
@@ -168,6 +174,7 @@ export interface MultiPoint {
 export interface mapPm {
   spawntables: number[];
   boss: boolean;
+  event: boolean;
   mass: boolean;
   massive: boolean;
   distortion: boolean;
@@ -182,6 +189,7 @@ export interface MapData {
   tree: MultiPoint[];
   crystal: MultiPoint[];
   boss: BossPokemon[];
+  event: BossPokemon[];
   spiritomb: MultiPoint[];
   unown: MultiPoint[];
   pmTable: MapPms;
@@ -195,6 +203,7 @@ export enum MapSetTypes {
 
 export enum MapInfoTypes {
   boss = "boss",
+  event = "event",
 }
 
 export enum MapPointTypes {

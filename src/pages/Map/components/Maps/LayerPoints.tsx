@@ -49,7 +49,7 @@ export function LayerPoints({
           let selected = false;
           if (dataset.attr === undefined) {
             if (keywordInfo.length === 2) {
-              if (keywordInfo[0] !== "boss") {
+              if (keywordInfo[0] !== "boss" && keywordInfo[0] !== "pokemon") {
                 selected = Number(keywordInfo[1]) === dataset.id;
               }
             } else if (keywordInfo.length === 3) {

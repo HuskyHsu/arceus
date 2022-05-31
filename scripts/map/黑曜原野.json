@@ -3177,17 +3177,19 @@
     ],
     "icon": "event",
     "tableID": 133,
-    "layer": "layEvent"
+    "layer": "layEvent",
+    "attr": "副任務19 奇特小火馬的目擊報告"
   },
   {
     "coords": [
-      39.9,
+      143,
       10.202,
-      39.8
+      466
     ],
     "icon": "event",
     "tableID": 135,
-    "layer": "layEvent"
+    "layer": "layEvent",
+    "attr": "主任務21 湖的石板"
   },
   {
     "coords": [
@@ -3197,7 +3199,8 @@
     ],
     "icon": "event",
     "tableID": 136,
-    "layer": "layEvent"
+    "layer": "layEvent",
+    "attr": "副任務94 洗翠的化身們"
   },
   {
     "coords": [
@@ -3207,37 +3210,8 @@
     ],
     "icon": "event",
     "tableID": 137,
-    "layer": "layEvent"
-  },
-  {
-    "coords": [
-      399.9,
-      43.92,
-      181.26
-    ],
-    "icon": "event",
-    "tableID": 138,
-    "layer": "layEvent"
-  },
-  {
-    "coords": [
-      452.03,
-      28.78,
-      274.35
-    ],
-    "icon": "event",
-    "tableID": 139,
-    "layer": "layEvent"
-  },
-  {
-    "coords": [
-      417.44,
-      33.21,
-      246.82
-    ],
-    "icon": "event",
-    "tableID": 140,
-    "layer": "layEvent"
+    "layer": "layEvent",
+    "attr": "副任務92 想傳達感謝"
   },
   {
     "coords": [

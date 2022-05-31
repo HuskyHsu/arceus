@@ -10,6 +10,7 @@ export const useMapData = (filter: Filter, updateKeywordFilter: Function) => {
     tree: [],
     crystal: [],
     boss: [],
+    event: [],
     spiritomb: [],
     unown: [],
     pmTable: {},

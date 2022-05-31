@@ -1,22 +1,19 @@
 import { Link } from "react-router-dom";
 
-import { Icon, Table } from "@/components";
-import { BossPokemon, FilterContextInterface } from "@/models";
-import { Types } from "./Types";
+import { Table } from "@/components";
+import { EventPokemon, FilterContextInterface } from "@/models";
 import { keys } from "..";
 
 interface Props {
-  pokemonList: BossPokemon[];
+  pokemonList: EventPokemon[];
   filterModel: FilterContextInterface;
 }
 
-export function Boss({ pokemonList, filterModel }: Props) {
+export function Event({ pokemonList, filterModel }: Props) {
   const keywordInfo = filterModel.filter.keyword.split("-");
 
-  if (keywordInfo[0] !== "boss") {
-    if (keywordInfo[0] !== "pokemon" || keywordInfo.length === 3) {
-      return <></>;
-    }
+  if (keywordInfo[0] !== "pokemon" || keywordInfo.length === 3) {
+    return <></>;
   }
 
   const selectIndex = pokemonList.map((pm) => pm.link).indexOf(keywordInfo[1]);
@@ -26,36 +23,25 @@ export function Boss({ pokemonList, filterModel }: Props) {
 
   const feilds = [
     {
-      name: (
-        <span className={"flex gap-x-2"}>
-          <Icon.Boss className="h-[1.3rem] w-[1.3rem]" />
-          頭目名稱
-        </span>
-      ),
-      value: (pm: BossPokemon) => (
+      name: "名稱",
+      value: (pm: EventPokemon) => (
         <Link to={`/${pm.link}`}>
           <span className={" text-blue-900 underline w-fix inline"}>
-            <Icon.Boss className="h-[1.3rem] w-[1.3rem] inline mr-1" />
             {pm.name}
           </span>
         </Link>
       ),
-      width: "w-4/12",
-    },
-    {
-      name: "屬性",
-      value: (pm: BossPokemon) => <Types pm={pm} />,
       width: "w-3/12",
     },
     {
       name: "等級",
-      value: (pm: BossPokemon) => pm.level,
+      value: (pm: EventPokemon) => pm.level,
       width: "w-2/12",
     },
     {
-      name: "出沒時間",
-      value: (pm: BossPokemon) => pm.time,
-      width: "w-3/12",
+      name: "事件",
+      value: (pm: EventPokemon) => pm.attr,
+      width: "w-7/12",
     },
   ];
 
