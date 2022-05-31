@@ -181,7 +181,7 @@ function Count({ pm, mapData, filterModel }: CountPrpos) {
     .join(", ");
 
   return (
-    <div className="w-full h-full">
+    <div className="w-full h-full flex flex-col gap-y-1">
       <Table
         feilds={feilds}
         data={[targetPm]}
@@ -190,7 +190,7 @@ function Count({ pm, mapData, filterModel }: CountPrpos) {
         headerCenter={true}
       />
       {sphereCount !== 0 || targetPm.boss ? (
-        <>
+        <div>
           <span>
             {sphereCount !== 0
               ? targetPm.boss
@@ -204,7 +204,7 @@ function Count({ pm, mapData, filterModel }: CountPrpos) {
               事件亦有機會出現)
             </span>
           )}
-        </>
+        </div>
       ) : (
         <span>
           僅在
@@ -258,7 +258,7 @@ export function Catch({ pokemonList, mapData, filterModel }: CatchProps) {
       <div
         className={clsx(
           "w-full grow h-20 overflow-y-auto",
-          "flex flex-wrap justify-around items-start gap-2"
+          "flex flex-wrap justify-around items-start gap-2 pt-1"
         )}>
         <Summary
           pokemonList={matchPms}
