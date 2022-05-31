@@ -11,8 +11,10 @@ interface Props {
 }
 
 export function Boss({ pokemonList, filterModel }: Props) {
-  if (!filterModel.filter.keyword.startsWith("boss-")) {
-    if (filterModel.filter.keyword.split("-").length === 3) {
+  const keywordInfo = filterModel.filter.keyword.split("-");
+
+  if (keywordInfo[0] !== "boss") {
+    if (keywordInfo[0] !== "pokemon" || keywordInfo.length === 3) {
       return <></>;
     }
   }
@@ -51,8 +53,6 @@ export function Boss({ pokemonList, filterModel }: Props) {
       width: "w-3/12",
     },
   ];
-
-  const keywordInfo = filterModel.filter.keyword.split("-");
 
   const selectIndex = pokemonList.map((pm) => pm.link).indexOf(keywordInfo[1]);
 

@@ -58,7 +58,7 @@ function Summary({
               pm={pm}
               size={"M"}
               style={clsx(
-                pm.link === link ? "ring-[5px] ring-yellow-500" : "ring-0"
+                pm.link === link ? "ring-[5px] ring-sky-700" : "ring-0"
               )}
               imgStyle={clsx({
                 grayscale: pmInfo.spawntables.length === 0 && !pmInfo.boss,
