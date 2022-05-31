@@ -124,7 +124,7 @@ function Count({ pm, mapData, filterModel }: CountPrpos) {
           );
         }
       },
-      width: "w-4/12",
+      width: "w-1/5",
     },
     {
       name: "頭目",
@@ -135,7 +135,7 @@ function Count({ pm, mapData, filterModel }: CountPrpos) {
           })}
         />
       ),
-      width: "w-4/12",
+      width: "w-1/5",
     },
     {
       name: "時空扭曲",
@@ -146,7 +146,7 @@ function Count({ pm, mapData, filterModel }: CountPrpos) {
           })}
         />
       ),
-      width: "w-4/12",
+      width: "w-1/5",
     },
     {
       name: "大量出現",
@@ -157,7 +157,7 @@ function Count({ pm, mapData, filterModel }: CountPrpos) {
           })}
         />
       ),
-      width: "w-4/12",
+      width: "w-1/5",
     },
     {
       name: "大大大",
@@ -168,7 +168,7 @@ function Count({ pm, mapData, filterModel }: CountPrpos) {
           })}
         />
       ),
-      width: "w-4/12",
+      width: "w-1/5",
     },
   ];
 
