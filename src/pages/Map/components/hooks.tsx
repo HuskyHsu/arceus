@@ -39,6 +39,8 @@ export const useMapData = (filter: Filter, updateKeywordFilter: Function) => {
           const tableId = data.pmTable[link].spawntables[0];
           updateKeywordFilter(["pokemon", link, tableId].join("-"));
         }
+      } else {
+        updateKeywordFilter("");
       }
     })();
   }, [filter.area]);
