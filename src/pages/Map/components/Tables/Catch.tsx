@@ -127,7 +127,12 @@ function Count({ pm, mapData, filterModel }: CountPrpos) {
       width: "w-1/5",
     },
     {
-      name: "頭目",
+      name: (
+        <>
+          <span className="block">定點</span>
+          <span>頭目</span>
+        </>
+      ),
       value: (targetPm: mapPm) => (
         <Icon.Boss
           className={clsx("h-10 w-full", {
@@ -138,7 +143,12 @@ function Count({ pm, mapData, filterModel }: CountPrpos) {
       width: "w-1/5",
     },
     {
-      name: "時空扭曲",
+      name: (
+        <>
+          <span className="block">時空</span>
+          <span>扭曲</span>
+        </>
+      ),
       value: () => (
         <Icon.Distortion
           className={clsx("h-10 w-full", {
@@ -149,7 +159,12 @@ function Count({ pm, mapData, filterModel }: CountPrpos) {
       width: "w-1/5",
     },
     {
-      name: "大量出現",
+      name: (
+        <>
+          <span className="block">大量</span>
+          <span>出現</span>
+        </>
+      ),
       value: () => (
         <Icon.Star
           className={clsx("h-10 w-full", {
@@ -160,7 +175,12 @@ function Count({ pm, mapData, filterModel }: CountPrpos) {
       width: "w-1/5",
     },
     {
-      name: "大大大",
+      name: (
+        <>
+          <span className="block">大大大</span>
+          <span>量出現</span>
+        </>
+      ),
       value: () => (
         <Icon.Stars
           className={clsx("h-10 w-full", {
@@ -248,7 +268,7 @@ export function Catch({ pokemonList, mapData, filterModel }: CatchProps) {
           可捕獲的寶可夢
         </div>
         {keywordInfo[0] === "pokemon" && (
-          <div className="h-32">
+          <div className="h-36">
             <Count
               pm={pokemonList.find((pm) => pm.link === keywordInfo[1])}
               mapData={mapData}
