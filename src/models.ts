@@ -189,7 +189,7 @@ export interface MapData {
   tree: MultiPoint[];
   crystal: MultiPoint[];
   boss: BossPokemon[];
-  event: BossPokemon[];
+  event: EventPokemon[];
   spiritomb: MultiPoint[];
   unown: MultiPoint[];
   pmTable: MapPms;
