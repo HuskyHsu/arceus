@@ -4,10 +4,10 @@ import { divIcon } from "leaflet";
 import clsx from "clsx";
 
 import { Avatars } from "@/components";
-import { BossPokemon } from "@/models";
+import { BossPokemon, EventPokemon } from "@/models";
 
 interface MarkerProps {
-  pm: BossPokemon;
+  pm: BossPokemon | EventPokemon;
   updateKeywordFilter: Function;
   selected: boolean;
 }
