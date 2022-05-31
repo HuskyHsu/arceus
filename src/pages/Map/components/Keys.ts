@@ -1,7 +1,7 @@
 import { BasePokemon } from "@/models";
 
 export function getBossKey(pm: BasePokemon) {
-  return `boss-${pm.link}`;
+  return `pokemon-${pm.link}`;
 }
 
 export function getPointKey(type: string, id: number | string) {
