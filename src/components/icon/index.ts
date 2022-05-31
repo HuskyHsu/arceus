@@ -10,7 +10,10 @@ import { ReactComponent as Forward } from "./Forward.svg";
 import { ReactComponent as Boss } from "./Boss.svg";
 import { ReactComponent as Map } from "./Map.svg";
 import { ReactComponent as PokemonBall } from "./PokemonBall.svg";
+import { ReactComponent as Star } from "./Star.svg";
 import { ReactComponent as Stars } from "./Stars.svg";
+import { ReactComponent as Distortion } from "./Distortion.svg";
+
 export {
   Search,
   Down,
@@ -24,5 +27,7 @@ export {
   Table,
   Shiny,
   PokemonBall,
+  Star,
   Stars,
+  Distortion,
 };

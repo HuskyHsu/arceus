@@ -76,7 +76,7 @@ function Map({ pokemonList }: PokemonBaseList) {
         style={{
           height: isMobile ? "80vmin" : "100%",
         }}>
-        <div className="w-full h-full flex flex-col justify-center items-center">
+        <div className="w-full h-full flex flex-col justify-center items-center gap-y-4">
           <Tables.Catch
             pokemonList={pokemonList}
             mapData={mapData}

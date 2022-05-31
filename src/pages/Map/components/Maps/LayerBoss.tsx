@@ -19,9 +19,7 @@ export function LayerBoss({ mapData, filterModel }: MapProps) {
         {mapData.boss.map((boss, i) => {
           let selected = false;
           const keyword = keys.getBossKey(boss);
-          if (keywordInfo.length === 2) {
-            selected = keyword === filterModel.filter.keyword;
-          } else if (keywordInfo.length === 3) {
+          if (keywordInfo.length >= 2) {
             selected = keywordInfo[1] === boss.link;
           }
 

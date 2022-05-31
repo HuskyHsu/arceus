@@ -165,10 +165,12 @@ export interface MultiPoint {
   attr?: string;
 }
 
-interface mapPm {
+export interface mapPm {
   spawntables: number[];
   boss: boolean;
   mass: boolean;
+  massive: boolean;
+  distortion: boolean;
 }
 
 interface MapPms {

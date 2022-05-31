@@ -7,9 +7,10 @@ import { BASE_URL } from "@/utils/const";
 interface Props extends BaseProps {
   size?: string;
   style?: string;
+  imgStyle?: string;
 }
 
-export function Avatars({ pm, style = "", size = "L" }: Props) {
+export function Avatars({ pm, style = "", size = "L", imgStyle = "" }: Props) {
   const center =
     "absolute transform inset-1/2 -translate-x-1/2 -translate-y-1/2";
   const imgPath = `${BASE_URL}image/icon/${pm.linkPid}.png`;
@@ -39,13 +40,17 @@ export function Avatars({ pm, style = "", size = "L" }: Props) {
           "transition-all",
           sizeClassBg,
           style
-        )}
-      >
+        )}>
         <img
           src={imgPath}
           loading="lazy"
           alt=""
-          className={clsx("max-w-none rounded-full", center, sizeClass)}
+          className={clsx(
+            "max-w-none rounded-full",
+            center,
+            sizeClass,
+            imgStyle
+          )}
         />
       </div>
     </header>

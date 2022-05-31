@@ -12,7 +12,9 @@ interface Props {
 
 export function Boss({ pokemonList, filterModel }: Props) {
   if (!filterModel.filter.keyword.startsWith("boss-")) {
-    return <></>;
+    if (filterModel.filter.keyword.split("-").length === 3) {
+      return <></>;
+    }
   }
 
   const feilds = [
@@ -50,9 +52,9 @@ export function Boss({ pokemonList, filterModel }: Props) {
     },
   ];
 
-  const selectIndex = pokemonList
-    .map((pm) => keys.getBossKey(pm))
-    .indexOf(filterModel.filter.keyword);
+  const keywordInfo = filterModel.filter.keyword.split("-");
+
+  const selectIndex = pokemonList.map((pm) => pm.link).indexOf(keywordInfo[1]);
 
   return (
     <Table

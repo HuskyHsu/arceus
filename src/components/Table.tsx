@@ -14,9 +14,16 @@ interface Props<T> {
   data: T[];
   selectIndex?: Number;
   clickFn?: Function;
+  headerCenter?: boolean;
 }
 
-export function Table<T>({ feilds, data, selectIndex, clickFn }: Props<T>) {
+export function Table<T>({
+  feilds,
+  data,
+  selectIndex,
+  clickFn,
+  headerCenter = false,
+}: Props<T>) {
   const hasToggle = feilds.find((feild) => feild.details !== undefined);
   const [toggles, setToggles] = useState(data.map((_) => false));
 
@@ -31,7 +38,8 @@ export function Table<T>({ feilds, data, selectIndex, clickFn }: Props<T>) {
                 "px-2 py-1",
                 "title-font tracking-wider whitespace-nowrap text-gray-100 bg-sky-900",
                 feild.width ? feild.width : ""
-              )}>
+              )}
+              align={headerCenter ? "center" : "left"}>
               {feild.name}
             </th>
           ))}

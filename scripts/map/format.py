@@ -60,20 +60,26 @@ def get_raw_pm_table_data(area):
     return all_pm_table
 
 
-def format_pm_table_data(all_pm_table, boss_list, ids_m, mass_ids):
+def format_pm_table_data(
+    all_pm_table, boss_list, ids_m, mass_ids, massive_ids, distortion_ids
+):
     all_pm_table_ = {}
     for pid, ids in all_pm_table.items():
-        pm = find_link_by_pid(int(pid))
+        pm = find_link_by_pid(int(pid), 132 in ids)
         all_pm_table_[pm["link"]] = {
             "spawntables": [i for i in ids if i in ids_m],
             "boss": len([boss for boss in boss_list if pm["link"] == boss["link"]]) > 0,
             "mass": len([i for i in ids if i in mass_ids]) > 0,
+            "massive": len([i for i in ids if i in massive_ids]) > 0,
+            "distortion": len([i for i in ids if i in distortion_ids]) > 0,
         }
 
         if (
             len(all_pm_table_[pm["link"]]["spawntables"]) == 0
             and not all_pm_table_[pm["link"]]["boss"]
             and not all_pm_table_[pm["link"]]["mass"]
+            and not all_pm_table_[pm["link"]]["massive"]
+            and not all_pm_table_[pm["link"]]["distortion"]
         ):
             del all_pm_table_[pm["link"]]
 
@@ -232,6 +238,16 @@ def get_mass(spawntable):
     return mass
 
 
+def get_massive(spawntable):
+    massive = [key for key in spawntable["layMassive"].keys()]
+    return massive
+
+
+def get_distortion(spawntable):
+    distortion = [key for key in spawntable["layDist"].keys()]
+    return distortion
+
+
 def overlapping_boss(spawntable):
     overlapping = set()
     has_overlapping = {}
@@ -252,27 +268,27 @@ def overlapping_boss(spawntable):
                 boss["point"][0] += 20
 
 
-def find_link_by_name(name):
+def find_link_by_name(name, distortion=False):
     match_pm = [pm for pm in all_pm if pm["name"] == name.split("(")[0]]
     if len(match_pm) == 1:
         return match_pm[0]
     elif len(match_pm) > 1:
         print(name)
         if name == "狃拉":
-            return match_pm[1]
+            return match_pm[0] if distortion else match_pm[1]
         return match_pm[0]
     else:
         print(f"找不到啦~{name}")
 
 
-def find_link_by_pid(pid):
+def find_link_by_pid(pid, distortion=False):
     match_pm = [pm for pm in all_pm if pm["pid"] == pid]
     if len(match_pm) == 1:
         return match_pm[0]
     elif len(match_pm) > 1:
         print(pid, match_pm[0]["name"])
         if match_pm[0]["name"] == "狃拉":
-            return match_pm[1]
+            return match_pm[0] if distortion else match_pm[1]
         return match_pm[0]
     else:
         print(f"找不到啦~{pid}")
@@ -376,6 +392,8 @@ if __name__ == "__main__":
         spawntable = format_spawntable(all_spawntable)
 
         mass_ids = get_mass(spawntable)
+        massive_ids = get_massive(spawntable)
+        distortion_ids = get_distortion(spawntable)
         spawntable = {
             "respawn": get_respawn(spawntable),
             "tree": get_tree(spawntable),
@@ -383,7 +401,6 @@ if __name__ == "__main__":
             "boss": get_alpha(spawntable),
             "spiritomb": get_spiritomb(spawntable),
             "unown": get_unown(spawntable),
-            # "mass": get_mass(spawntable)
         }
         # ids = [respawn["tableId"] for respawn in spawntable["boss"]]
         ids = [respawn["id"] for respawn in spawntable["respawn"]]
@@ -391,7 +408,7 @@ if __name__ == "__main__":
         ids += [respawn["id"] for respawn in spawntable["crystal"]]
         # ids += mass_ids
         spawntable["pmTable"] = format_pm_table_data(
-            all_pm_table, spawntable["boss"], ids, mass_ids
+            all_pm_table, spawntable["boss"], ids, mass_ids, massive_ids, distortion_ids
         )
 
         overlapping_boss(spawntable)

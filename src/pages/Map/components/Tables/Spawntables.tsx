@@ -59,6 +59,10 @@ export function Spawntables({ mapData, filterModel }: Props) {
     return <></>;
   }
 
+  if (keywordInfo[0] === "pokemon" && keywordInfo.length == 2) {
+    return <></>;
+  }
+
   const [spawntables, setSpawntables] = useState<SpawnTable[]>([]);
 
   const ref = useRef("");
