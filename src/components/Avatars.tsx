@@ -13,7 +13,9 @@ interface Props extends BaseProps {
 export function Avatars({ pm, style = "", size = "L", imgStyle = "" }: Props) {
   const center =
     "absolute transform inset-1/2 -translate-x-1/2 -translate-y-1/2";
-  const imgPath = `${BASE_URL}image/icon/${pm.linkPid}.png`;
+  const imgPath = `${BASE_URL}image/icon/${pm.linkPid}${
+    pm.shiny ? "_s" : ""
+  }.png`;
 
   let sizeClass = "";
   let sizeClassBg = "";

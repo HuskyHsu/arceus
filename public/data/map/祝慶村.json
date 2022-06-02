@@ -1,1 +1,251 @@
-{"respawn":[],"tree":[],"crystal":[],"boss":[],"spiritomb":[{"id":-1,"points":[[293,118,0]]},{"id":-1,"points":[[546,100,0]]},{"id":-1,"points":[[391,259,0]]},{"id":-1,"points":[[626,318,0]]},{"id":-1,"points":[[271,372,0]]},{"id":-1,"points":[[473,400,0]]},{"id":-1,"points":[[294,802,0]]}],"unown":[{"id":-1,"points":[[524,535,0]],"attr":"h"},{"id":-1,"points":[[467,167,0]],"attr":"w"},{"id":-1,"points":[[610,163,0]],"attr":"?"}],"pmTable":{}}
+{
+    "respawn": [],
+    "tree": [],
+    "crystal": [],
+    "boss": [],
+    "event": [
+        {
+            "id": 1,
+            "pid": 722,
+            "name": "木木梟",
+            "types": [
+                "草",
+                "飛行"
+            ],
+            "genderDiff": false,
+            "link": "001",
+            "linkPid": "722",
+            "point": [
+                482,
+                138,
+                0
+            ],
+            "level": 5,
+            "attr": "最初的夥伴，3選1"
+        },
+        {
+            "id": 4,
+            "pid": 155,
+            "name": "火球鼠",
+            "types": [
+                "火"
+            ],
+            "genderDiff": false,
+            "link": "004",
+            "linkPid": "155",
+            "point": [
+                522,
+                138,
+                0
+            ],
+            "level": 5,
+            "attr": "最初的夥伴，3選1"
+        },
+        {
+            "id": 7,
+            "pid": 501,
+            "name": "水水獺",
+            "types": [
+                "水"
+            ],
+            "genderDiff": false,
+            "link": "007",
+            "linkPid": "501",
+            "point": [
+                562,
+                138,
+                0
+            ],
+            "level": 5,
+            "attr": "最初的夥伴，3選1"
+        },
+        {
+            "id": 1,
+            "pid": 722,
+            "name": "木木梟",
+            "types": [
+                "草",
+                "飛行"
+            ],
+            "genderDiff": false,
+            "link": "001",
+            "linkPid": "722",
+            "point": [
+                482,
+                178,
+                0
+            ],
+            "level": 5,
+            "attr": "完成主任務18後，最初的夥伴選擇火球鼠或水水獺時"
+        },
+        {
+            "id": 4,
+            "pid": 155,
+            "name": "火球鼠",
+            "types": [
+                "火"
+            ],
+            "genderDiff": false,
+            "link": "004",
+            "linkPid": "155",
+            "point": [
+                522,
+                178,
+                0
+            ],
+            "level": 5,
+            "attr": "完成主任務18後，最初的夥伴選擇木木梟或水水獺時"
+        },
+        {
+            "id": 7,
+            "pid": 501,
+            "name": "水水獺",
+            "types": [
+                "水"
+            ],
+            "genderDiff": false,
+            "link": "007",
+            "linkPid": "501",
+            "point": [
+                562,
+                178,
+                0
+            ],
+            "level": 5,
+            "attr": "完成主任務18後，最初的夥伴選擇木木梟或火球鼠時"
+        }
+    ],
+    "spiritomb": [
+        {
+            "id": -1,
+            "points": [
+                [
+                    293,
+                    118,
+                    0
+                ]
+            ]
+        },
+        {
+            "id": -1,
+            "points": [
+                [
+                    546,
+                    100,
+                    0
+                ]
+            ]
+        },
+        {
+            "id": -1,
+            "points": [
+                [
+                    391,
+                    259,
+                    0
+                ]
+            ]
+        },
+        {
+            "id": -1,
+            "points": [
+                [
+                    626,
+                    318,
+                    0
+                ]
+            ]
+        },
+        {
+            "id": -1,
+            "points": [
+                [
+                    271,
+                    372,
+                    0
+                ]
+            ]
+        },
+        {
+            "id": -1,
+            "points": [
+                [
+                    473,
+                    400,
+                    0
+                ]
+            ]
+        },
+        {
+            "id": -1,
+            "points": [
+                [
+                    294,
+                    802,
+                    0
+                ]
+            ]
+        }
+    ],
+    "unown": [
+        {
+            "id": -1,
+            "points": [
+                [
+                    524,
+                    535,
+                    0
+                ]
+            ],
+            "attr": "h"
+        },
+        {
+            "id": -1,
+            "points": [
+                [
+                    467,
+                    167,
+                    0
+                ]
+            ],
+            "attr": "w"
+        },
+        {
+            "id": -1,
+            "points": [
+                [
+                    610,
+                    163,
+                    0
+                ]
+            ],
+            "attr": "?"
+        }
+    ],
+    "pmTable": {
+        "001": {
+            "spawntables": [],
+            "boss": false,
+            "event": true,
+            "mass": false,
+            "massive": false,
+            "distortion": false
+        },
+        "004": {
+            "spawntables": [],
+            "boss": false,
+            "event": true,
+            "mass": false,
+            "massive": false,
+            "distortion": false
+        },
+        "007": {
+            "spawntables": [],
+            "boss": false,
+            "event": true,
+            "mass": false,
+            "massive": false,
+            "distortion": false
+        }
+    }
+}

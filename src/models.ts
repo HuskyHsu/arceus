@@ -51,6 +51,7 @@ export interface BasePokemon {
   locations?: Set<string>;
   link: string;
   linkPid: string;
+  shiny?: boolean;
 }
 
 export interface BossPokemon extends BasePokemon {

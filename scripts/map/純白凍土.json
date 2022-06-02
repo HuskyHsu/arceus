@@ -3573,6 +3573,32 @@
     },
     {
         "coords": [
+            538,
+            0,
+            899
+        ],
+        "icon": "eventIcon",
+        "tableID": -1,
+        "layer": "layEvent",
+        "attr": "副任務83 藏身白雪中的白色六尾",
+        "link": "168A",
+        "level": 40
+    },
+    {
+        "coords": [
+            715,
+            0,
+            88
+        ],
+        "icon": "eventIcon",
+        "tableID": -2,
+        "layer": "layEvent",
+        "attr": "主任務24 雪峰神殿的石板",
+        "link": "229",
+        "level": 70
+    },
+    {
+        "coords": [
             406.05,
             40.2,
             567.45
