@@ -106,22 +106,22 @@ def format_pm_map_data(area_name, map_data, all_pm, new_pmTable):
             new_pmTable[link].append(catch.dict(exclude_none=True))
 
         if mapPm["event"]:
-            event = Event(
-                **{
-                    "type": "event",
-                    "location": area_name,
-                    "remark": [
-                        e["attr"] for e in map_data["event"] if e["link"] == link
-                    ][0],
-                }
-            )
-            new_pmTable[link].append(event.dict(exclude_none=True))
+            for e in [e["attr"] for e in map_data["event"] if e["link"] == link]:
+                event = Event(
+                    **{
+                        "type": "event",
+                        "location": area_name,
+                        "remark": e,
+                    }
+                )
+                new_pmTable[link].append(event.dict(exclude_none=True))
 
     # return {key: val for key, val in sorted(new_pmTable.items(), key=itemgetter(0))}
 
 
 def get_all_map_data(all_pm, new_pmTable):
     area_list = [
+        "祝慶村",
         "黑曜原野",
         "紅蓮濕地",
         "群青海岸",
@@ -152,17 +152,20 @@ if __name__ == "__main__":
 
     new_pmTable = {}
     get_all_map_data(all_pm, new_pmTable)
-    print(new_pmTable)
+    # print(new_pmTable)
     print(len(new_pmTable.keys()))
     for pm in all_pm:
         if pm["link"] in new_pmTable:
+            pm["getMethods"] = new_pmTable[pm["link"]]
             continue
         if pm["link"][:-1] in new_pmTable:
+            pm["getMethods"] = new_pmTable[pm["link"][:-1]]
             continue
         if (pm["link"] + "O") in new_pmTable:
+            pm["getMethods"] = new_pmTable[pm["link"] + "O"]
             continue
 
         print(pm["name"], pm["altForm"] if "altForm" in pm else "")
 
-    # save_split(all_pm)
-    # save_full_data(all_pm)
+    save_split(all_pm)
+    save_full_data(all_pm)
