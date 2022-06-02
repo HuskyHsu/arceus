@@ -145,6 +145,12 @@ def get_all_map_data(all_pm, new_pmTable):
             evolution = Evolution(**{"type": "evolution", "remark": evolution_info[0]})
             new_pmTable[full_pm["link"]].append(evolution.dict(exclude_none=True))
 
+    sort_key = {"catch": 1, "event": 2, "evolution": 3}
+    for key in new_pmTable.keys():
+        new_pmTable[key] = list(
+            sorted(new_pmTable[key], key=lambda i: sort_key[i["type"]])
+        )
+
 
 if __name__ == "__main__":
 
