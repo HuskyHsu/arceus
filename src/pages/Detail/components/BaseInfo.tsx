@@ -94,7 +94,14 @@ export function BaseInfo() {
         }
         return (
           <div className="flex ">
-            {method.respawn && <Icon.Ball className={clsx("h-7 w-8")} />}
+            {method.respawn && (
+              <>
+                <Icon.Ball className={clsx("h-7 w-8")} />
+                {method.remark && (
+                  <span className="text-xs pt-3">({method.remark})</span>
+                )}
+              </>
+            )}
             {method.tree && <Icon.Tree className={clsx("h-7 w-8")} />}
             {method.crystal && <Icon.Crystal className={clsx("h-7 w-8")} />}
             {method.boss && <Icon.Boss className={clsx("h-7 w-8")} />}
