@@ -4315,6 +4315,19 @@
     },
     {
         "coords": [
+            163,
+            0,
+            254
+        ],
+        "icon": "eventIcon",
+        "tableID": -1,
+        "layer": "layEvent",
+        "attr": "副任務91 騎拉帝納的去向",
+        "link": "237O",
+        "level": 70
+    },
+    {
+        "coords": [
             529,
             2,
             329

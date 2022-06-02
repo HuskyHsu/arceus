@@ -3178,7 +3178,8 @@
     "icon": "event",
     "tableID": 133,
     "layer": "layEvent",
-    "attr": "副任務19 奇特小火馬的目擊報告"
+    "attr": "副任務19 奇特小火馬的目擊報告(異色)",
+    "shiny": true
   },
   {
     "coords": [

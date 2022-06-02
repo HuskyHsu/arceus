@@ -10,9 +10,12 @@ import { ReactComponent as Forward } from "./Forward.svg";
 import { ReactComponent as Boss } from "./Boss.svg";
 import { ReactComponent as Map } from "./Map.svg";
 import { ReactComponent as PokemonBall } from "./PokemonBall.svg";
+import { ReactComponent as Ball } from "./Ball.svg";
 import { ReactComponent as Star } from "./Star.svg";
 import { ReactComponent as Stars } from "./Stars.svg";
 import { ReactComponent as Distortion } from "./Distortion.svg";
+import { ReactComponent as Crystal } from "./Crystal.svg";
+import { ReactComponent as Tree } from "./Tree.svg";
 
 export {
   Search,
@@ -27,7 +30,10 @@ export {
   Table,
   Shiny,
   PokemonBall,
+  Ball,
   Star,
   Stars,
   Distortion,
+  Crystal,
+  Tree,
 };

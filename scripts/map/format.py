@@ -61,7 +61,14 @@ def get_raw_pm_table_data(area):
 
 
 def format_pm_table_data(
-    all_pm_table, boss_list, event_list, ids_m, mass_ids, massive_ids, distortion_ids
+    all_pm_table,
+    boss_list,
+    event_list,
+    ids_m,
+    mass_ids,
+    massive_ids,
+    distortion_ids,
+    other_event,
 ):
     all_pm_table_ = {}
     for pid, ids in all_pm_table.items():
@@ -86,6 +93,19 @@ def format_pm_table_data(
         ):
             del all_pm_table_[pm["link"]]
 
+    for link in list(other_event):
+        if link in all_pm_table_:
+            all_pm_table_[link] = True
+        else:
+            all_pm_table_[link] = {
+                "spawntables": [],
+                "boss": False,
+                "event": True,
+                "mass": False,
+                "massive": False,
+                "distortion": False,
+            }
+
     return all_pm_table_
 
 
@@ -96,6 +116,7 @@ def sort_coords(coords):
 def format_spawntable(all_spawntable):
     spawntable = {}
     attr = {}
+    other_info = {}
     for spawn in all_spawntable:
         lay_name = spawn["layer"].strip()
         if lay_name not in spawntable:
@@ -107,9 +128,23 @@ def format_spawntable(all_spawntable):
         spawntable[lay_name][spawn["tableID"]].append(spawn["coords"])
         if "attr" in spawn:
             attr[spawn["tableID"]] = spawn["attr"]
+            if spawn["tableID"] < 0:
+                other_info[spawn["tableID"]] = {
+                    "level": spawn["level"],
+                    "link": spawn["link"],
+                }
+            if "shiny" in spawn:
+                print("shiny")
+                if spawn["tableID"] in other_info:
+                    other_info[spawn["tableID"]]["shiny"] = spawn["shiny"]
+                else:
+                    other_info[spawn["tableID"]] = {
+                        "shiny": spawn["shiny"],
+                    }
+                print(other_info[spawn["tableID"]])
 
     print([k for k in spawntable.keys()])
-    return spawntable, attr
+    return spawntable, attr, other_info
 
 
 def get_respawn(spawntable):
@@ -202,32 +237,53 @@ def get_alpha(spawntable):
         else:
             print(key)
 
+        del base["locations"]
         alpha.append(base)
 
     return alpha
 
 
-def get_event(spawntable, attr):
+def get_event(spawntable, attr, other_info):
     event = []
+    other_event = set()
     for key in spawntable["layEvent"].keys():
         print(f"event {key}")
         if len(spawntable["layEvent"][key]) == 1:
-            clean_table = get_spawntable(key, True)[0]
-            base = {
-                **clean_table["data"][0]["pm"],
-                **{
-                    "point": spawntable["layEvent"][key][0],
-                    "level": int(clean_table["data"][0]["level"].split(" - ")[0]),
-                    "attr": attr[int(key)],
-                    # "tableId": int(key),
-                },
-            }
+            if key > 0:
+                clean_table = get_spawntable(key, True)[0]
+                base = {
+                    **clean_table["data"][0]["pm"],
+                    **{
+                        "point": spawntable["layEvent"][key][0],
+                        "level": int(clean_table["data"][0]["level"].split(" - ")[0]),
+                        "attr": attr[int(key)],
+                        # "tableId": int(key),
+                    },
+                }
+                del base["locations"]
+                if int(key) in other_info and "shiny" in other_info[int(key)]:
+                    base["shiny"] = other_info[int(key)]["shiny"]
+            else:
+                link = other_info[int(key)]["link"]
+                base_pm = find_link_by_link(link)
+                base = {
+                    **base_pm,
+                    **{
+                        "point": spawntable["layEvent"][key][0],
+                        "level": other_info[int(key)]["level"],
+                        "attr": attr[int(key)],
+                        # "tableId": int(key),
+                    },
+                }
+                del base["locations"]
+                other_event.add(link)
+
         else:
             print(key)
 
         event.append(base)
 
-    return event
+    return event, other_event
 
 
 def get_unown(spawntable):
@@ -322,6 +378,17 @@ def find_link_by_pid(pid, distortion=False):
         print(f"找不到啦~{pid}")
 
 
+def find_link_by_link(link):
+    match_pm = [pm for pm in all_pm if pm["link"] == link]
+    if len(match_pm) == 1:
+        return match_pm[0]
+    elif len(match_pm) > 1:
+        print(link, match_pm[0]["name"])
+        return match_pm[0]
+    else:
+        print(f"找不到啦~{link}")
+
+
 def get_spawntable(id, full_info=False, prefix=""):
     table_text = requests.get(
         f"https://www.serebii.net/pokearth/hisui/spawntable/{id}.txt"
@@ -406,10 +473,6 @@ if __name__ == "__main__":
 
     for area in [
         "黑曜原野",
-        "紅蓮濕地",
-        "群青海岸",
-        "天冠山麓",
-        "純白凍土",
     ]:  # "黑曜原野", "紅蓮濕地", "群青海岸", "天冠山麓", "純白凍土"
         all_spawntable = get_raw_data(area)
         all_pm_table = get_raw_pm_table_data(area)
@@ -417,17 +480,18 @@ if __name__ == "__main__":
         for spawn in all_spawntable:
             spawn["coords"] = sort_coords(spawn["coords"])
 
-        spawntable, attr = format_spawntable(all_spawntable)
+        spawntable, attr, other_info = format_spawntable(all_spawntable)
 
         mass_ids = get_mass(spawntable)
         massive_ids = get_massive(spawntable)
         distortion_ids = get_distortion(spawntable)
+        event, other_event = get_event(spawntable, attr, other_info)
         spawntable = {
             "respawn": get_respawn(spawntable),
             "tree": get_tree(spawntable),
             "crystal": get_crystal(spawntable),
             "boss": get_alpha(spawntable),
-            "event": get_event(spawntable, attr),
+            "event": event,
             "spiritomb": get_spiritomb(spawntable),
             "unown": get_unown(spawntable),
         }
@@ -444,6 +508,7 @@ if __name__ == "__main__":
             mass_ids,
             massive_ids,
             distortion_ids,
+            other_event,
         )
 
         overlapping_boss(spawntable)

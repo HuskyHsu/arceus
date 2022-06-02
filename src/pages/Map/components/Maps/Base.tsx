@@ -1,4 +1,4 @@
-import { ImageOverlay, MapContainer } from "react-leaflet";
+import { ImageOverlay, MapContainer, useMapEvents } from "react-leaflet";
 import { CRS } from "leaflet";
 
 import { BASE_URL } from "@/utils";
@@ -7,6 +7,15 @@ import { FilterContextInterface } from "@/models";
 export interface Props {
   children: JSX.Element;
   filterModel: FilterContextInterface;
+}
+
+function MyComponent() {
+  useMapEvents({
+    contextmenu(event) {
+      console.log([event.latlng.lng, 1024 - event.latlng.lat]);
+    },
+  });
+  return null;
 }
 
 export function Base({ children, filterModel }: Props) {
@@ -34,6 +43,7 @@ export function Base({ children, filterModel }: Props) {
         ]}
       />
       {children}
+      <MyComponent />
     </MapContainer>
   );
 }

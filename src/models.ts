@@ -1,11 +1,42 @@
-export interface Location {
-  [propName: string]: number[] | undefined;
+export enum MethodTypes {
+  event = "event",
+  catch = "catch",
+  evolution = "evolution",
 }
 
-export interface GetMethod {
-  mode: string;
-  location?: string | Location;
+enum AreaTypes {
+  祝慶村 = "祝慶村",
+  黑曜原野 = "黑曜原野",
+  紅蓮濕地 = "紅蓮濕地",
+  群青海岸 = "群青海岸",
+  天冠山麓 = "天冠山麓",
+  純白凍土 = "純白凍土",
+}
+
+interface GetMethodBase {
+  type: MethodTypes;
   remark?: string;
+}
+
+export interface GetMethodEvolution extends GetMethodBase {
+  type: MethodTypes.evolution;
+}
+
+export interface GetMethodEvent extends GetMethodBase {
+  type: MethodTypes.event;
+  location: AreaTypes;
+}
+
+export interface GetMethodCatch extends GetMethodBase {
+  type: MethodTypes.catch;
+  location: AreaTypes;
+  respawn: boolean;
+  tree: boolean;
+  crystal: boolean;
+  boss: boolean;
+  mass: boolean;
+  massive: boolean;
+  distortion: boolean;
 }
 
 enum MoveCategory {
@@ -51,6 +82,7 @@ export interface BasePokemon {
   locations?: Set<string>;
   link: string;
   linkPid: string;
+  shiny?: boolean;
 }
 
 export interface BossPokemon extends BasePokemon {
@@ -92,7 +124,7 @@ interface ImageMap {
 }
 
 export interface Pokemon extends BasePokemon {
-  getMethods: GetMethod[];
+  getMethods: GetMethodCatch[] | GetMethodEvent[] | GetMethodEvolution[];
   stats: number[];
   evolution?: Evolution[];
   items: Item[];
