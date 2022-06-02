@@ -72,7 +72,14 @@ export function BaseInfo() {
       name: "地點",
       value: (method: GetMethodCatch | GetMethodEvent | GetMethodEvolution) => {
         if (method.type !== MethodTypes.evolution) {
-          return method.location;
+          return (
+            <Link
+              to={`/map?area=${method.location}&keyword=pokemon-${pokemon.link}`}>
+              <span className={" text-blue-900 underline inline"}>
+                {method.location}
+              </span>
+            </Link>
+          );
         } else {
           return "";
         }
