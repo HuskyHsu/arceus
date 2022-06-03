@@ -9,7 +9,7 @@
 #### update
 
 > - `2022-06-03`
->   - 新增時空扭曲、大量出現、大大大量出現資料
+>   - 新增時空扭曲、大量出現、大大大量出現、任務中取得資料
 >   - (地圖，詳細資料中均有顯示)
 >   - 清單頁面新增取得方式過濾器
 > - `2022-05-29`
@@ -53,6 +53,7 @@
 ### 地圖索引功能
 
 ![](images/map.png)
+![](images/map_event.png)
 ![](images/map_respawn.png)
 ![](images/map_tree.png)
 ![](images/map_crystal.png)
