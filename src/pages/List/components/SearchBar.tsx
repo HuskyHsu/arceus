@@ -167,7 +167,7 @@ export function SearchBar() {
             </div>
           ))}
         </li>
-        <li className="flex gap-4">
+        <li className="w-full md:w-5/6 flex flex-wrap justify-center items-center gap-4">
           <CatchTypeButton typeName="捕捉" TypeKey={CatchType.respawn}>
             <Icon.Ball className={clsx("w-8 h-8")} />
           </CatchTypeButton>
