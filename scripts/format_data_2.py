@@ -38,5 +38,5 @@ if __name__ == "__main__":
         ) as fout:
             fout.write(json.dumps(pm, ensure_ascii=False))
 
-    with open("../public/data/pokemon_full_new.json", "wt", encoding="utf-8") as fout:
-        fout.write(json.dumps(all_pm, ensure_ascii=False))
+    # with open("../public/data/pokemon_full_new.json", "wt", encoding="utf-8") as fout:
+    #     fout.write(json.dumps(all_pm, ensure_ascii=False))
