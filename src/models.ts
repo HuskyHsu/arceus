@@ -27,16 +27,26 @@ export interface GetMethodEvent extends GetMethodBase {
   location: AreaTypes;
 }
 
+export enum CatchType {
+  respawn = "respawn",
+  tree = "tree",
+  crystal = "crystal",
+  boss = "boss",
+  mass = "mass",
+  massive = "massive",
+  distortion = "distortion",
+}
+
 export interface GetMethodCatch extends GetMethodBase {
   type: MethodTypes.catch;
   location: AreaTypes;
-  respawn: boolean;
-  tree: boolean;
-  crystal: boolean;
-  boss: boolean;
-  mass: boolean;
-  massive: boolean;
-  distortion: boolean;
+  [CatchType.respawn]: boolean;
+  [CatchType.tree]: boolean;
+  [CatchType.crystal]: boolean;
+  [CatchType.boss]: boolean;
+  [CatchType.mass]: boolean;
+  [CatchType.massive]: boolean;
+  [CatchType.distortion]: boolean;
 }
 
 enum MoveCategory {
@@ -79,10 +89,13 @@ export interface BasePokemon {
   types: string[];
   altForm?: string;
   genderDiff: boolean;
-  locations?: Set<string>;
   link: string;
   linkPid: string;
   shiny?: boolean;
+}
+
+export interface ListPokemon extends BasePokemon {
+  getMethods: (GetMethodCatch | GetMethodEvent | GetMethodEvolution)[];
 }
 
 export interface BossPokemon extends BasePokemon {
@@ -98,7 +111,7 @@ export interface EventPokemon extends BasePokemon {
 }
 
 export interface BaseProps {
-  pm: BasePokemon;
+  pm: ListPokemon | BasePokemon;
 }
 
 interface Evolution {
@@ -124,13 +137,14 @@ interface ImageMap {
 }
 
 export interface Pokemon extends BasePokemon {
-  getMethods: GetMethodCatch[] | GetMethodEvent[] | GetMethodEvolution[];
+  getMethods: (GetMethodCatch | GetMethodEvent | GetMethodEvolution)[];
   stats: number[];
   evolution?: Evolution[];
   items: Item[];
   learnset: Learnset;
   imgPath: ImageMap;
 }
+
 interface TypeShow {
   [propName: string]: boolean;
 }
@@ -145,6 +159,7 @@ export interface Filter {
 export interface FilterContextInterface {
   updateKeywordFilter: Function;
   updateTypeFilter: Function;
+  updateCatchTypeFilter: Function;
   toggereTypeSelect: Function;
   toggereAreaSelect: Function;
   updateAreaSelect: Function;

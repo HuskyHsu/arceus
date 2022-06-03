@@ -2,10 +2,10 @@ import { createContext } from "react";
 import clsx from "clsx";
 
 import { BaseInfo, SearchBar } from "./components";
-import { BasePokemon, FilterContextInterface } from "@/models";
+import { ListPokemon, FilterContextInterface } from "@/models";
 
 interface PokemonBaseList {
-  pokemonList: BasePokemon[];
+  pokemonList: ListPokemon[];
 }
 
 interface Porps extends PokemonBaseList {

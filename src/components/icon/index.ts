@@ -16,6 +16,7 @@ import { ReactComponent as Stars } from "./Stars.svg";
 import { ReactComponent as Distortion } from "./Distortion.svg";
 import { ReactComponent as Crystal } from "./Crystal.svg";
 import { ReactComponent as Tree } from "./Tree.svg";
+import { ReactComponent as Flag } from "./Flag.svg";
 
 export {
   Search,
@@ -36,4 +37,5 @@ export {
   Distortion,
   Crystal,
   Tree,
+  Flag,
 };

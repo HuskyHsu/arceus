@@ -3,11 +3,24 @@ import { Route, Routes } from "react-router-dom";
 import Layout from "@/components/Layout";
 
 import { List, Detail, Map } from "@/pages";
-import { usePokemon, useFilter } from "@/utils";
+import {
+  usePokemon,
+  useFilter,
+  defaultTypeTrue,
+  defaultCatchTypeTrue,
+} from "@/utils";
+import { MethodTypes } from "@/models";
 
 function MainRouter() {
   const pokemonList = usePokemon();
-  const filterModel = useFilter();
+
+  const allTypes = {
+    ...defaultTypeTrue,
+    ...defaultCatchTypeTrue,
+    [MethodTypes.event]: true,
+  };
+
+  const filterModel = useFilter(undefined, allTypes);
 
   return (
     <Routes>

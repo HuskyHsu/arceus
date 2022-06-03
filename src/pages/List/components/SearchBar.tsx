@@ -2,13 +2,19 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import clsx from "clsx";
 
-import { TypeMap } from "@/models";
+import { CatchType, MethodTypes, TypeMap } from "@/models";
 import { TypeIcon, Icon } from "@/components";
 import areaMap from "@/data/area.json";
 import { FilterContext } from "../List";
 
 interface TypeProps {
   type: string;
+}
+
+interface ButtonProps {
+  children: JSX.Element;
+  typeName: string;
+  TypeKey: string;
 }
 
 function AreaSelect() {
@@ -20,8 +26,7 @@ function AreaSelect() {
       <button
         type="button"
         className="w-32 flex justify-evenly bg-white rounded-full shadow px-2 py-1"
-        onClick={() => toggereAreaSelect()}
-      >
+        onClick={() => toggereAreaSelect()}>
         <span>{filter.area}</span>
         <Icon.Down className="h-6 w-6" />
       </button>
@@ -30,8 +35,7 @@ function AreaSelect() {
           "absolute z-20 w-32 mt-4 px-2 flex flex-col justify-center",
           "bg-white rounded-md shadow-md border-2",
           { hidden: !filter.areaSelector }
-        )}
-      >
+        )}>
         {Object.keys(areaMap.area)
           .sort()
           .map((a, i, arr) => {
@@ -45,8 +49,7 @@ function AreaSelect() {
                 key={a}
                 onClick={() =>
                   updateAreaSelect(areaMap.area[a as keyof typeof areaMap.area])
-                }
-              >
+                }>
                 {areaMap.area[a as keyof typeof areaMap.area]}
               </li>
             );
@@ -84,24 +87,52 @@ function SearchInput() {
 }
 
 function Tip({ type }: TypeProps) {
+  const width = type.length <= 4 ? "w-20" : "w-32";
   return (
-    <div className="absolute -top-8 -left-6 hidden group-hover:block w-20">
+    <div
+      className={clsx(
+        "absolute -translate-x-1/2 -top-8 left-4 hidden group-hover:block",
+        width
+      )}>
       <p
         className={clsx(
           "rounded z-20",
           "text-center",
-          "bg-slate-600 text-white w-20"
-        )}
-      >
+          "bg-slate-600 text-white",
+          width
+        )}>
         {type}
       </p>
       <p
         className={clsx(
           "w-0 h-0 border-8 my-0 mx-auto",
           "border-t-slate-600 border-x-transparent border-b-transparent"
-        )}
-      ></p>
+        )}></p>
     </div>
+  );
+}
+
+function CatchTypeButton({ children, typeName, TypeKey }: ButtonProps) {
+  const { filter, updateCatchTypeFilter } = useContext(FilterContext);
+  return (
+    <button
+      type="button"
+      className={clsx(
+        "flex justify-center items-center",
+        "h-10 w-10 rounded-md",
+        "border-2 border-slate-400",
+        {
+          "opacity-50 grayscale": !filter.types[TypeKey],
+        }
+      )}
+      onClick={() => {
+        updateCatchTypeFilter(TypeKey);
+      }}>
+      <div className="group relative">
+        {children}
+        <Tip type={typeName} />
+      </div>
+    </button>
   );
 }
 
@@ -118,13 +149,12 @@ export function SearchBar() {
           className={clsx(
             "w-full max-w-xl flex items-center gap-2 px-4 py-2 justify-between",
             "rounded-full bg-gray-100 shadow-inner shadow-gray-700"
-          )}
-        >
+          )}>
           <SearchInput />
         </li>
         <li className="w-full md:w-5/6 flex flex-wrap justify-center items-center gap-4">
           {Object.keys(TypeMap).map((type) => (
-            <div key={type} className="group relative">
+            <div key={type} className="group relative h-8">
               <TypeIcon
                 type={type}
                 className={clsx("w-8 h-8", {
@@ -136,6 +166,32 @@ export function SearchBar() {
               <Tip type={type} />
             </div>
           ))}
+        </li>
+        <li className="flex gap-4">
+          <CatchTypeButton typeName="捕捉" TypeKey={CatchType.respawn}>
+            <Icon.Ball className={clsx("w-8 h-8")} />
+          </CatchTypeButton>
+          <CatchTypeButton typeName="搖晃樹木" TypeKey={CatchType.tree}>
+            <Icon.Tree className="h-8 w-8" />
+          </CatchTypeButton>
+          <CatchTypeButton typeName="搖晃礦石" TypeKey={CatchType.crystal}>
+            <Icon.Crystal className="h-8 w-8" />
+          </CatchTypeButton>
+          <CatchTypeButton typeName="定點頭目" TypeKey={CatchType.boss}>
+            <Icon.Boss className="h-8 w-8" />
+          </CatchTypeButton>
+          <CatchTypeButton typeName="時空扭曲" TypeKey={CatchType.distortion}>
+            <Icon.Distortion className="h-8 w-8" />
+          </CatchTypeButton>
+          <CatchTypeButton typeName="大量出現" TypeKey={CatchType.mass}>
+            <Icon.Star className="h-8 w-8" />
+          </CatchTypeButton>
+          <CatchTypeButton typeName="大大大量出現" TypeKey={CatchType.massive}>
+            <Icon.Stars className="h-8 w-8" />
+          </CatchTypeButton>
+          <CatchTypeButton typeName="任務事件" TypeKey={MethodTypes.event}>
+            <Icon.Flag className="h-8 w-8" />
+          </CatchTypeButton>
         </li>
       </ul>
     </form>
