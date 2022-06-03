@@ -82,3 +82,12 @@
 - [x] 地圖小區域標示
 - [x] 地圖標示小區域出沒怪
 - [ ] 可習得該技能怪清單
+
+### reference
+
+1. [wiki.52poke.com(list)](https://wiki.52poke.com/zh-hant/%E5%AE%9D%E5%8F%AF%E6%A2%A6%E5%88%97%E8%A1%A8%EF%BC%88%E6%8C%89%E6%B4%97%E7%BF%A0%E5%9B%BE%E9%89%B4%E7%BC%96%E5%8F%B7%EF%BC%89)
+2. [wiki.52poke.com(move)](https://wiki.52poke.com/zh-hant/%E6%8B%9B%E5%BC%8F%E5%88%97%E8%A1%A8%EF%BC%88%E4%BC%A0%E8%AF%B4_%E9%98%BF%E5%B0%94%E5%AE%99%E6%96%AF%EF%BC%89)
+3. [www.serebii.net](https://www.serebii.net/pokearth/hisui/obsidianfieldlands.shtml)
+4. [rankedboost.com](https://rankedboost.com/pokemon-legends-arceus/pokedex/)
+5. [arceus.gg](https://www.arceus.gg/)
+6. [archives.bulbagarden.net](https://archives.bulbagarden.net/wiki/Category:Legends:_Arceus_models)
