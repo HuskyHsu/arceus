@@ -1,4 +1,6 @@
-import { Route, Routes } from "react-router-dom";
+import { useEffect } from "react";
+import { Route, Routes, useLocation } from "react-router-dom";
+import ReactGA from "react-ga";
 
 import Layout from "@/components/Layout";
 
@@ -21,6 +23,14 @@ function MainRouter() {
   };
 
   const filterModel = useFilter(undefined, allTypes);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    console.log(location.pathname + location.search);
+    ReactGA.initialize("G-D5W7V4RE1E");
+    ReactGA.pageview(location.pathname + location.search);
+  }, [location]);
 
   return (
     <Routes>
